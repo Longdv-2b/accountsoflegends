@@ -1,0 +1,44 @@
+<div class="video-open-popup ">
+  <a class="video-mp" href="javascript:void(0)" data-toggle="modal" data-target="#video_product">
+    <svg aria-hidden="true" data-prefix="fal" data-icon="play-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-play-circle fa-w-16 fa-3x"><path fill="currentColor" d="M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z" class=""></path></svg>
+  </a>
+  <div class="modal_cms">
+    <div class="modal-cms-overlay"></div>
+    <div class="modal-content-cms">
+      <div class="header">
+        <a class="close-button" title="{{ 'cart.ajax_cart.close' | t }}" href="javascript:void(0)">
+          {% include 'icon-close' %}
+        </a>
+      </div>
+      <div class="videocontent">
+        {% if product.metafields.c_f['Product Video'] %}
+        {% capture video_id %}{{ product.metafields.c_f['Product Video'] }}{% endcapture %}
+        <iframe width="100%" data-video-id="{{video_id }}"  class="lazyload" height="100%" data-src="https://www.youtube.com/embed/{{video_id }}?autoplay=1&mute=1" frameborder="0" allowfullscreen="" volume="0"></iframe>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .video-open-popup svg{
+    width:48px;
+    height: 48px;
+  }
+  .video-open-popup a{
+    color: {{section.settings.video_product_icon}};
+  }
+  .video-open-popup {
+    position: absolute;
+    bottom: 46px;
+    left: 20px;
+  }
+  @media(max-width:1024px){
+    .video-open-popup{bottom: 0px;}
+  }
+  @media(max-width:768px){
+    .video-open-popup{bottom: -50px;}
+    
+    
+  }
+  
+</style>

@@ -1,0 +1,381 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+
+    
+    
+    
+    
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639414103123').children('.module');
+  $module.gfV3Product();
+})( window.GemQuery || jQuery );
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639414103090').children('.module');
+  $module.gfV3ProductCartButton({ onItemAdded: function(data) {}});
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+    
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639414103203').children('.module');
+  $module.gfV3Product();
+})( window.GemQuery || jQuery );
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639414103227').children('.module');
+  $module.gfV3ProductCartButton({ onItemAdded: function(data) {}});
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639414103239').children('.module');
+  $module.gfV3Product();
+})( window.GemQuery || jQuery );
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639414103185').children('.module');
+  $module.gfV3ProductCartButton({ onItemAdded: function(data) {}});
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639414103265').children('.module');
+  $module.gfV3Product();
+})( window.GemQuery || jQuery );
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639414103124').children('.module');
+  $module.gfV3ProductCartButton({ onItemAdded: function(data) {}});
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639414103165').children('.module');
+  $module.gfV3Product();
+})( window.GemQuery || jQuery );
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639414103196').children('.module');
+  $module.gfV3ProductCartButton({ onItemAdded: function(data) {}});
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639407594985').children('.module');
+  $module.gfV3Product();
+})( window.GemQuery || jQuery );
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639407594903').children('.module');
+  $module.gfV3ProductCartButton({ onItemAdded: function(data) {}});
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639407603362').children('.module');
+  $module.gfV3Product();
+})( window.GemQuery || jQuery );
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639407603321').children('.module');
+  $module.gfV3ProductCartButton({ onItemAdded: function(data) {}});
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639406862683').children('.module');
+  $module.gfV3Product();
+})( window.GemQuery || jQuery );
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639407144902').children('.module');
+  $module.gfV3ProductCartButton({ onItemAdded: function(data) {}});
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639407604149').children('.module');
+  $module.gfV3Product();
+})( window.GemQuery || jQuery );
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639407604080').children('.module');
+  $module.gfV3ProductCartButton({ onItemAdded: function(data) {}});
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639407833835').children('.module');
+  $module.gfV3Product();
+})( window.GemQuery || jQuery );
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639407833736').children('.module');
+  $module.gfV3ProductCartButton({ onItemAdded: function(data) {}});
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+    
+    
+    
+(function( jQuery ){
+    var $module = jQuery('#m-1639481245747').children('.module');
+    $module.gfV1Countdown({
+        id: "1639481245747",
+        idSlug: "1639481245747"
+    });
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+    
+(function( jQuery ){
+  try {
+    var $module = jQuery('#m-1631180794710').children('.module');
+    var single = $module.attr('data-single');
+    var openDefault = $module.attr('data-openDefault');
+    var openTab = $module.attr('data-openTab');
+    var mode = jQuery('.gryffeditor').hasClass('editing') ? 'dev' : 'production';
+
+    if(openDefault == 0 || openDefault == '0') {
+      openTab = '0';
+    }
+
+    $module.gfAccordion({
+      single: single,
+      openTab: openTab,
+      mode: mode,
+      onChanged: function() {	
+        // Fix (P) Desc read more bug	
+        $module.find('.module-wrap[data-label="(P) Description"]').each(function(index, el) {	
+          if (jQuery(el).children('.module').data('gfv3productdesc') != undefined) {	
+            jQuery(el).children(".module").data("gfv3productdesc").initReadMore();	
+          }	
+        })	
+      }
+    });
+
+    var borderColor = $module.attr('data-borderColor');
+    var borderSize = $module.attr('data-borderSize');
+
+    $module.children('[data-accordion]').children('[data-control]').css('border-bottom', borderSize + ' solid ' + borderColor);
+    $module.children('[data-accordion]').children('[data-content]').children().css('border-bottom', borderSize + ' solid ' + borderColor);
+  } catch(err) {}
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1639482371428').children('.module');
+  $module.gfV2HeroBanner({});
+  
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+(function( jQuery ){
+    var $module = jQuery('#m-1631519425202').children('.module');
+    var btnLabel = $module.attr('data-btnlabel');
+    
+    if ($module.attr('data-modelink') == 'auto'){
+        $module.attr('data-editlink', '');
+    }
+    
+    $module.gfSocialShare({
+        btnLabel: btnLabel
+    });
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+    
+    
+    
+(function( jQuery ){
+    var $module = jQuery('#m-1631529666710').children('.module');
+    $module.gfV1Countdown({
+        id: "1631529666710",
+        idSlug: "1631529666710"
+    });
+})( window.GemQuery || jQuery );
+    
+    
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1631507883139').children('.module');
+  $module.gfV1Popup();
+
+  var mode = jQuery('.gryffeditor').hasClass('editing') ? 'dev' : 'production';
+  if(mode == 'dev') {
+    var moduleId = "1631507883139";
+    var moduleIdSlug = moduleId.toString().replace(/-/g, '');
+    if (moduleIdSlug == "1631507883139") {
+      window.getPopup1631507883139 = function() {
+        return $module.data('gfv1popup');
+      }
+    }
+  }
+})( window.GemQuery || jQuery );
+    
+(function( jQuery ){
+  var $module = jQuery('#m-1631508076303').children('.module');
+
+  var mode = jQuery('.gryffeditor').hasClass('editing') ? 'dev' : 'production';
+  if(mode == 'production') { 
+    $module.children('form').on('submit', function() {
+      try {
+        localStorage.setItem('gemId', '#m-1631508076303');
+      } catch(err) {}
+    });
+
+    var gemId = '';
+    try {
+      var gemId = localStorage.getItem('gemId');
+    } catch(err) {}
+
+    if(gemId != '') {
+      var moduleId = '#' + $module.parent().attr('id');
+      if(gemId == moduleId) {
+        $module.find(".note").show();
+        
+        var $note = $module.find('.note.form-success, .note.form-error');
+        if ($note.length > 0) {
+          $popup = $module.closest('.module-wrap[data-label="Popup"]');
+          if ($popup.children('.module').data('gfv1popup')) {
+            $popup.children('.module').data('gfv1popup').show();
+          }
+        }
+          
+        var cbLink = $module.find('input[name="gemcallback"]').val() != undefined ? jQuery.trim($module.find('input[name="gemcallback"]').val()) : '';
+
+        if(cbLink && cbLink != '') {
+          try {
+            localStorage.setItem('gemId', 'redirected');
+          } catch(err) {}
+
+          var target = $module.attr("data-target") || '';
+          if(target!=="_blank"){
+            window.location.href = cbLink;
+          }else {
+            window.open(cbLink, '_blank')
+          }
+        }
+      }
+    } else {
+      var cbLink = $module.find('input[name="gemcallback"]').val() != undefined ? jQuery.trim($module.find('input[name="gemcallback"]').val()) : '';
+      
+      var $note = $module.find('.note.form-success, .note.form-error');
+      if ($note.length > 0) {
+        $popup = $module.closest('.module-wrap[data-label="Popup"]');
+        if ($popup.children('.module').data('gfv1popup')) {
+          $popup.children('.module').data('gfv1popup').show();
+        }
+      }
+
+      if(cbLink && cbLink != '') {
+        var target = $module.attr("data-target") || '';
+        if(target!=="_blank"){
+          window.location.href = cbLink;
+        }else {
+          window.open(cbLink, '_blank')
+        }
+      }
+    }
+  }
+})( window.GemQuery || jQuery );
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

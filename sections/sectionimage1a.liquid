@@ -1,0 +1,457 @@
+{% include 'style-custom-block-overview' %}
+{% if section.settings.enable %}
+<section class="mrbt custom-block-overview section-{{section.id}} " id="{{section.settings.id_scroll}}">
+  <div class="min mrtp">
+
+    
+  <div class="overview-bottom mrtp">
+    {% for block in section.blocks %}
+      <div class="se1 custom-overview block-{{block.id}} {% if block.settings.alignment == 'right' %}custom-overview-rtl{% endif %}" style="background: {{block.settings.back_style_left}}">
+        <div class="left sec1lf">
+        
+          <div class="se1ingg">
+            {% if block.settings.img_style != blank %}
+            <div class="sec1ov" >
+          	 <img class="gmgs" src="{{ block.settings.img_style | img_url:'1000x' }}" alt="white illustrated starburst" >
+            </div>
+           
+           
+            {% endif %}
+          </div>
+        
+         
+        </div>
+        <div class="div1se1">
+          <div class="div2se1">
+            <div class="div3se1">
+              <div class="desv jj" >
+                <p>
+                  <span class="outerspan">
+                  <span class="Wclass" style="font-size: {{block.settings.font_siz}}; color: {{block.settings.des_style_color}} ;">{{block.settings.W}}</span>
+                    </span>
+                <p style="font-size: {{block.settings.font_size}}; color: {{block.settings.des_style_color}} ;"> {{ block.settings.par1 }}</p>
+                </p>
+              </div>
+            <h3 class="title hdpadbot" style=" font-size: {{block.settings.font_size_title_style}};color: {{block.settings.title_style_color}} ;">
+              {{block.settings.title_style }}
+            </h3>
+              <div class="des padbot" style="font-size: {{block.settings.font_size}}; color: {{block.settings.des_style_color}} ;">
+                {{ block.settings.des_style }}
+              </div>
+            
+               <h3 class="title hdpadbot" style=" font-size: {{block.settings.font_size_title_style}};color: {{block.settings.title_style_color}} ;">
+              {{block.settings.title_style1 }}
+            </h3>
+              <div class="des padbot" style="font-size: {{block.settings.font_size}}; color: {{block.settings.des_style_color}} ;">
+                {{ block.settings.des_style1 }}
+              </div>
+           
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    
+  </div>
+   
+  </div>
+</section>
+
+
+
+{% endif %}
+
+<style>
+  .elementor-shape-top {
+    top: -1px;
+}
+  .elementor-shape {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    direction: ltr;
+}
+  
+  .elementor *, .elementor :after, .elementor :before {
+
+    box-sizing: border-box;
+}
+  .elementor-53098 .elementor-element.elementor-element-28b00dfe>.elementor-shape-top svg {
+    width: calc(115% + 1.3px);
+    height: 60px;
+}
+  .elementor-shape svg {
+    display: block;
+    
+    position: relative;
+    left: 50%;
+  
+    -ms-transform: translateX(-50%);
+    
+}
+  svg:not(:root) {
+    overflow: hidden;
+}
+  .elementor-shape .elementor-shape-fill {
+    fill: #fff;
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotateY(
+0deg
+);
+    transform: rotateY(
+0deg
+);
+}
+ 
+  .elementor-shape[data-negative=false].elementor-shape-bottom, .elementor-shape[data-negative=true].elementor-shape-top {
+    -webkit-transform: rotate(
+180deg
+);
+    -ms-transform: rotate(180deg);
+    transform: rotate(
+180deg
+);
+}
+  .elementor-shape-bottom {
+    bottom: -1px;
+}
+  .elementor-53098 .elementor-element.elementor-element-28b00dfe>.elementor-shape-bottom svg {
+    width: calc(115% + 1.3px);
+    height: 60px;
+    transform: translateX(-50%) rotateY(
+180deg
+);
+}
+  .elementor-shape-bottom:not([data-negative=true]) svg {
+    z-index: -1;
+}
+  .elementor-shape svg {
+    display: block;
+    width: calc(100% + 1.3px);
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+ .elementor-shape .elementor-shape-fill {
+    fill: #fff;
+    /* -webkit-transform-origin: center; */
+    -ms-transform-origin: center;
+    transform-origin: center;
+    /* -webkit-transform: rotateY(
+0deg
+); */
+    transform: rotateY(
+0deg
+);
+}
+  .min{
+    position: relative;
+}
+
+  
+  
+  .min {
+    display: block;
+    margin-top: 69px;
+}
+  .overview-bottom.mrtp {
+    padding-top: 0px;
+}
+  
+  svg.svtop{
+    
+     width: 100%;
+    width: calc(115% + 1.3px);
+    height: 60px;
+    transform: translateX(-50%) rotateY( 
+359deg
+ );
+   
+}
+  .elementor-53098 .elementor-element.elementor-element-28b00dfe>.elementor-shape-bottom svg {
+    width: calc(115% + 1.3px);
+    height: 60px;
+    transform: translateX(-50%) rotateY(
+180deg
+);
+}
+  .elementor-shape svg {
+    display: block;
+    width: calc(100% + 1.3px);
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+  .elementor-shape .elementor-shape-fill {
+    fill: black;
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotateY(
+0deg
+);
+    transform: rotateY(
+0deg
+);
+}
+  svg.svbt {
+    width: 100%;
+}
+  svg.svbt {
+    width: 100%;
+    width: calc(115% + 1.3px);
+    height: 60px;
+    transform: translateX(-50%) rotateY( 
+359deg
+ );
+}
+  
+  
+   @media (min-width: 992px){
+     h3.title.hdpadbot {
+    margin-bottom: 7px !important;
+}
+         .des.padbot {
+    padding-bottom: 1.25em;
+}
+    .min.mrtp {
+    margin-top: 0px;
+}
+     section.mrbt.custom-block-overview.section-16287856003a056b24 {
+    padding-bottom: 0px;
+}
+     img.gmgs {
+    height: 503px;
+    width: 100%;
+    object-fit: cover;
+}
+   .se1.custom-overview.block-162874952364c3365d-0.custom-overview-rtl {
+    padding-top: 70px;
+    padding-bottom: 77px;
+}
+     .se1.custom-overview.block-16287856003a056b24-0 {
+       padding: 85px 50px 63px 25px;
+}
+  
+ 
+  .desv {
+    display: flex;
+}
+  span.Wclass {
+    float: left;
+    text-align: center;
+    line-height: 1;
+    margin-right: 15px;
+}
+
+       .div1se1 {
+    width: 50%;
+    padding: 30px 40px;
+}
+  .sec1ov {
+    border: 31px solid white;
+}
+     .se1ingg {
+    padding: 16px 25px;
+}
+   }
+   
+   
+   @media (max-width: 767px){
+     .se1.custom-overview.block-162874952364c3365d-0.custom-overview-rtl {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.desv {
+    display: flex;
+}
+  span.Wclass {
+    float: left;
+    text-align: center;
+    line-height: 1;
+    font-size: 50px;
+    margin-right: 15px;
+}
+  
+     .desv {
+    display: block !important;
+}
+   
+   .left.sec1lf {
+    padding: 0px;
+}
+     .div3se1 {
+    width: 100%;
+    padding: 12px 10px;
+}
+   }
+</style>
+{% schema %}
+  {
+    "name": "sectionimage1a",
+    "max_blocks": 9,
+    "settings": [
+        {
+          "type":"checkbox",
+          "id":"enable",
+          "label":"Enable?",
+          "default":true
+        }
+        
+     ],
+      "blocks":[
+        {
+          "type":"overview_style",
+          "name":"Overview Style ",
+          "settings":[
+          {
+          "type":"select",
+          "id":"alignment",
+          "label":"Content Alignment",
+          "default":"left",
+          "options":[
+            {
+              "value":"left",
+              "label":"Left"
+            },
+            {
+              "value":"right",
+              "label":"Right"
+            }
+          ]
+        },
+        {
+          "type":"select",
+          "id":"style_custom",
+          "label":"Style Custom",
+          "default":"img",
+          "options":[
+            {
+              "value":"img",
+              "label":"Image"
+            }
+           
+          ]
+        },
+        
+         
+      
+        {
+          "type":"color",
+          "id":"back_style_left",
+          "label":"Background",
+          "default":"#f7f7f7"
+        },
+        {
+          "type":"text",
+          "id":"W",
+          "label":"Title",
+          "default":"Phasellus Loremous"
+        },
+        {
+          "type":"textarea",
+          "id":"par1",
+          "label":"Content",
+		  "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis."
+        },
+        {
+          "type":"text",
+          "id":"title_style",
+          "label":"Title",
+          "default":"Phasellus Loremous"
+        },
+        
+        {
+          "type":"textarea",
+          "id":"des_style",
+          "label":"Content",
+		  "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis."
+        },
+{
+          "type":"text",
+          "id":"title_style1",
+          "label":"Title",
+          "default":"Phasellus Loremous"
+        },
+        
+        {
+          "type":"textarea",
+          "id":"des_style1",
+          "label":"Content",
+		  "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis."
+        },
+        {
+          "type":"color",
+          "id":"title_style_color",
+          "label":"Color",
+          "default":"#000d41"
+        },
+        {
+          "type":"text",
+          "id":"font_size_title_style",
+          "label":"Font Size",
+          "default":"30px"
+        },
+        {
+          "type":"color",
+          "id":"des_style_color",
+          "label":"Color",
+          "default":"#73788a"
+        },
+        {
+          "type":"text",
+          "id":"font_size",
+          "label":"Font Size",
+          "default":"14px",
+          "info":"-----------------------------"
+        },
+        {
+          "type":"text",
+          "id":"font_siz",
+          "label":"Font Size",
+          "default":"14px"
+          
+        },
+      
+            {
+              "type":"color",
+              "id":"link_color",
+              "label":"Color",
+              "default":"#296fc2"
+            },
+           
+        {
+          "type":"image_picker",
+          "id":"img_style",
+          "label":"Image"
+        }
+
+
+          ]
+        }
+        
+
+      ],
+      "presets":[
+        {
+          "name":"sectionimage1a",
+          "category":"Advanced layout",
+          "blocks":[
+            {
+              "type":"overview_style"
+            }
+            
+          ]
+        }
+
+      ]
+  }
+{% endschema %}

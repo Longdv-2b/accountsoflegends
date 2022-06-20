@@ -1,0 +1,2326 @@
+{
+  "current": {
+    "enable_multilang": false,
+    "lange_1": "English",
+    "lange_2": "German",
+    "social_facebook_link": "",
+    "social_twitter_link": "",
+    "social_vimeo_link": "",
+    "social_instagram_link": "",
+    "social_google_plus_link": "",
+    "social_pinterest_link": "",
+    "messenger_link": "",
+    "social_snapchat_link": "",
+    "social_youtube_link": "",
+    "favicon": "shopify:\/\/shop_images\/android-icon-192x192_9b790f9f-990c-4490-a8a6-e982a015221e.png",
+    "body_font_size": "14",
+    "body_color": "#73788a",
+    "body_bg": "#fff",
+    "enable_opengraph": true,
+    "image_share": "",
+    "color_title_product": "#000d41",
+    "use_color_swatch": false,
+    "option_color_swatch": "Color",
+    "color_swatch_style": "normal",
+    "buy_now_header": "shopify:\/\/products\/lol-smurfs",
+    "video_size": "square",
+    "btn_1_bg_color": "#313131",
+    "btn_1_border_color": "#313131",
+    "btn_1_text_color": "#fff",
+    "btn_1_bg_color_hover": "#313131",
+    "btn_1_border_color_hover": "#313131",
+    "btn_1_text_color_hover": "#ffffff",
+    "btn_2_bg_color": "#313131",
+    "btn_2_border_color": "#313131",
+    "btn_2_text_color": "#ffffff",
+    "btn_2_bg_color_hover": "#313131",
+    "btn_2_border_color_hover": "#313131",
+    "btn_2_text_color_hover": "#fff",
+    "ajax_popup_cart": "none",
+    "secure_text": "Secure Checkout Guarantee.",
+    "show_shipping_calculator": false,
+    "shipping_calculator_heading": "Get Shipping Estimates",
+    "shipping_calculator_default_country": "Canada",
+    "color_button_checkout": "#fff",
+    "back_button_checkout": "#ec3323",
+    "title_login": "Returning Customer",
+    "login_text_desc": "I am a returning customer",
+    "title_register": "New Customer",
+    "register_text_desc": "Register Account",
+    "register_text_desc_2": "By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.",
+    "enable_multiple_currencies": false,
+    "currency_1_unit": "USD",
+    "currency_2_unit": "EUR",
+    "currency_3_unit": "GBP",
+    "currency_4_unit": "AUD",
+    "font": "google_fonts",
+    "fonts_name": "Poppins",
+    "shopify_font_ud": "work_sans_n6",
+    "mamuta_product_box_position": "none",
+    "checkout_header_image": "shopify:\/\/shop_images\/challenger_f7cb67fc-c2c6-4af8-b971-c58835bda7ac.jpg",
+    "checkout_logo_image": "shopify:\/\/shop_images\/Logo_Transparency_1.png",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#197bbd",
+    "checkout_button_color": "#e93323",
+    "checkout_error_color": "#e32c2b",
+    "custom_color": "#222222",
+    "main_product": "shopify:\/\/products\/sticker-1",
+    "cart_popup_related_title": "You May Also Like",
+    "color_title_product_hover": "#73788a",
+    "color_vendor": "#232323",
+    "display_popup_newsletter": true,
+    "popup_newsletter_delay": "5",
+    "newsletter": "",
+    "popup_newsletter_title": "",
+    "popup_newsletter_des": "",
+    "popup_newsletter_text_note": "",
+    "newssletter_success_text": "You have successfully subscribed!",
+    "display_popup_social": true,
+    "image_swap": true,
+    "product_image_border": false,
+    "product_image_border_color": "",
+    "product_image_resize": false,
+    "product_image_crop": false,
+    "product_image_height": "130",
+    "show_vendor": true,
+    "display_product_reviews": true,
+    "display_item_size": true,
+    "display_item_swatch": true,
+    "display_button": true,
+    "collection_infinite_scrolling": true,
+    "infinity_scroll_feature": true,
+    "enable_quick_view": true,
+    "qv_display_product_reviews": true,
+    "qv_show_sold_in": true,
+    "qv_item_prd": "3,5,6,7,8,10,12,15",
+    "qv_item_prds": "sold in last",
+    "qv_hours_prs": "10,15,16,17,18,20,25,35",
+    "qv_item_hours": "hours",
+    "display_quickview_vendor": true,
+    "quickview_text_vendor": "Product Vendor",
+    "display_quickview_product_sku": true,
+    "text_quickview_product_sku": "SKU:",
+    "display_quickview_availability": true,
+    "quickview_text_availability": "Availability",
+    "display_quickview_product_type": true,
+    "quickview_text_product_type": "Product Type",
+    "quickview_text_countdown": "Limited-Time Offers, End in:",
+    "display_quickview_short_desc": true,
+    "display_quickview_subtotal": true,
+    "dpl_customers_view_qv": true,
+    "title_view_qv": "customers are viewing this product",
+    "number_view_qv": "283, 100, 59, 11, 14, 185, 193, 165, 50, 38, 99, 112, 46, 10, 125, 200, 250, 18",
+    "display_product_detail_share": true,
+    "search_1": "Your search for | Ihre Suche nach",
+    "search_2": "did not yield any results. | hat keine Ergebnisse hervorgebracht.",
+    "search_3": "Your search for | Ihre Suche nach",
+    "search_4": "revealed the following: | hat folgende Ergebnisse hervorgebracht:",
+    "enable_search_trending": true,
+    "trending_search_title": "trending",
+    "trending_search_item_1": "dempus",
+    "trending_search_item_2": "sample",
+    "trending_search_item_3": "magnis",
+    "trending_search_item_4": "loremous saliduar",
+    "trending_search_item_5": "naminos",
+    "trending_search_item_6": "dinterdum",
+    "enable_search_popular_products": true,
+    "popular_products_search_title": "Popular Products",
+    "popular_products_collection": "",
+    "popular_products_limit": 3,
+    "sale_text": "#fff",
+    "bg_sale": "#e95144",
+    "custom_label_text": "#fff",
+    "custom_label_bg": "#323232",
+    "bundle_label_text": "#fff",
+    "bundle_label_bg": "#232323",
+    "new_label_text": "#fff",
+    "new_label_bg": "#06bfe2",
+    "sold_out_text": "#fff",
+    "bg_sold_out": "#c1c1c1",
+    "color_price": "#232323",
+    "color_price_sale": "#e95144",
+    "color_compare_price": "#969696",
+    "color_quick_view": "#fff",
+    "bg_quick_view": "#000",
+    "color_wishlist": "#232323",
+    "bg_wishlist": "#ffe5e5",
+    "enable_hover_image": false,
+    "bg_menu_mb": "#fff",
+    "color_menu_mb": "#323232",
+    "border_color_menu_mb": "#e5e5e5",
+    "color_menu_mb_lv1": "#323232",
+    "color_menu_mb_lv1_hover": "#0688e2",
+    "bg_color_menu_mb_lv1_hover": "#f8f8f8",
+    "color_menu_mb_lv2": "#323232",
+    "color_menu_mb_lv2_hover": "#323232",
+    "color_menu_mb_lv3": "#646464",
+    "color_menu_mb_lv3_hover": "#0688e2",
+    "link_color": "#0688e2",
+    "link_color_hover": "#ff5621",
+    "display_breadcrumb": true,
+    "breadcrumb_color": "#999999",
+    "breadcrumb_text_transform": "capitalize",
+    "page_title_font_size": "24",
+    "page_title_color": "#232323",
+    "page_title_text_align": "left",
+    "enable_sidebar_multiple_choice": true,
+    "product_name_text_transform": "none",
+    "product_name_text_align": "left",
+    "enable_wishlist": true,
+    "display_size_chart": true,
+    "display_size_chart_at": "Size",
+    "size_guide_text": "Size Guide",
+    "custom_size_chart_header": "Size Chart",
+    "size_chart": "none",
+    "custom_size_chart": "",
+    "enable_ask_an_expert": true,
+    "ask_an_expert": "Have Questions? Ask An Expert",
+    "ask_an_expert_header": "Have Questions?",
+    "ask_an_expert_title": "Ask the Fashion Expert anything on Ella Boutique",
+    "ask_an_expert_des": "We will follow up with you via email within 24-36 hours",
+    "ask_an_expert_questions": "Please answer the following questionnaire",
+    "enable_ask_do_you_need": true,
+    "ask_do_you_need": "Do You Need",
+    "ask_do_you_need_1": "Pricing",
+    "ask_do_you_need_2": "Answers",
+    "ask_do_you_need_3": "Both",
+    "ask_form_mess": "What can i help you with today ?",
+    "enable_how_would_you_like_me_to_contact_you": true,
+    "how_would_you_like_me_to_contact_you": "How would you like me to contact you?",
+    "contact_with_you_1": "Phone",
+    "contact_with_you_2": "Email",
+    "contact_with_you_3": "Both",
+    "base_font_new": "beefcakes_n4",
+    "shopify_font": "work_sans_n6",
+    "header_font_new": "americana_n4",
+    "social_tumblr_link": "",
+    "btn_3_bg_color": "#ef6454",
+    "btn_3_border_color": "#ef6454",
+    "btn_3_text_color": "#fff",
+    "bg_body_boxed": "#f8f8f8",
+    "list_collections_layout": "collections_01_grid",
+    "category_layout": "default",
+    "product_layout": "default",
+    "blog_layout": "default",
+    "footer_layout": "default",
+    "password_layout": "default",
+    "display_sticky": false,
+    "display_sticky_mb": true,
+    "display_countdown": true,
+    "bg_sticky": "#fff",
+    "color_sticky": "#3c3c3c",
+    "color_variants": "#646464",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "display_header_top": true,
+          "top_message_text": "NOW: 10 LoL Smurfs giveaway in our discord! 💕",
+          "bg_header_top": "#d0a85c",
+          "text_header_top_color": "#ffffff",
+          "dropdown_color": "#f1ac28",
+          "back_dropdown": "#ffffff",
+          "font-size-hd-top": "20px",
+          "back_header_bottom": "#ffffff",
+          "brand_type": "image",
+          "brand_text": "",
+          "logo": "shopify:\/\/shop_images\/Transparent.png",
+          "max_height_logo_mb": "26px",
+          "logo_pc_homepage": "shopify:\/\/shop_images\/Transparent.png",
+          "max_height_logo_pc_homepage": "36px",
+          "logo_pc": "shopify:\/\/shop_images\/Transparent.png",
+          "max_height_logo_pc": "36px",
+          "color_nav_homepage": "#ffffff",
+          "color_nav": "#000d41",
+          "goto_homepage": "Back to Home",
+          "font_size_menu": "14px",
+          "color_sub_nav": "#000d41",
+          "color_hover_sub_nav": "#296fc2",
+          "back_sub_nav": "#ffffff",
+          "back_sub_nav_hover": "#d0a85c",
+          "bg_cart_color": "#f1ac28",
+          "bg_cart_color_mb": "#313131",
+          "cart_color": "#ffffff",
+          "cart_color_mb": "#ffffff",
+          "back_header_mb": "#ffffff",
+          "color_header_mobile": "#000d41",
+          "text_buy_now": "Smurf Now"
+        }
+      },
+      "navigation": {
+        "type": "navigation",
+        "settings": {
+          "display_fixtop_menu": true,
+          "logo_fix": "",
+          "alignment": "left",
+          "bg_menu": "#232323",
+          "bg_dropdown_menu": "#fff",
+          "color_menu_lv1": "#fff",
+          "hover_color_mnu_lv1": "#fff",
+          "font_size_mnu_lv1": "13px",
+          "color_menu_lv2": "#232323",
+          "hover_color_mnu_lv2": "#232323",
+          "font_size_mnu_lv2": "12px",
+          "color_menu_lv3": "#3c3c3c",
+          "hover_color_mnu_lv3": "#0688e2",
+          "font_size_mnu_lv3": "12px",
+          "enable_sale": true,
+          "lb_sale": "Sale",
+          "sale_item": "",
+          "bg_lb_sale": "#ef6454",
+          "color_lb_sale": "#fff",
+          "enable_new": true,
+          "lb_new": "New",
+          "new_item": "",
+          "bg_lb_new": "#06bfe2",
+          "color_lb_new": "#fff",
+          "enable_hot": true,
+          "lb_hot": "Hot",
+          "hot_item": "",
+          "bg_lb_hot": "#ffbb49",
+          "color_lb_hot": "#fff",
+          "display_megamenu": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "bg_footer_img": "bg-footer",
+          "bg_footer_color": "#232323",
+          "bg_footer_position_x": "left",
+          "bg_footer_position_y": "top",
+          "bg_footer_repeat": "repeat-x",
+          "bg_footer_attachment": "fixed",
+          "footer_newsletter_enable": false,
+          "footer_newsletter_title": "Email Signup",
+          "font_size_new_title": "50px",
+          "color_new_title": "#ffffff",
+          "footer_newsletter_des": "",
+          "font_size_new_descriptions": "16px",
+          "color_new_descriptions": "#ffffff",
+          "bg_newsletter_color": "#ffffff",
+          "newsletter_color": "#717171",
+          "newsletter_border_color": "#ffffff",
+          "bg_newsletter_button_color": "#313e74",
+          "newsletter_button_color": "#ffffff",
+          "footer_social_enable": false,
+          "footer_social_color": "#ffffff",
+          "brand_type": "image",
+          "brand_text": "",
+          "logo_pc": "shopify:\/\/shop_images\/AOL_Favicon_8ae81c6a-6f19-490d-ad53-7caf9dcfc9e4.png",
+          "max_height_logo_pc": "36px",
+          "footer_address_code": "© Accounts Of Legends. All Rights Reserved.\nWe are not associated or affiliated with Riot Games Inc in any way.",
+          "color_address": "#73788a",
+          "menu_footer": "footer",
+          "color_nav_footer": "#73788a",
+          "show_payment_icons": false,
+          "payment_display_visa": true,
+          "payment_display_visa_electron": false,
+          "payment_display_american_express": true,
+          "payment_display_master": true,
+          "payment_display_maestro": false,
+          "payment_display_solo": false,
+          "payment_display_shopify": false,
+          "payment_display_paypal": true,
+          "payment_display_amazon_payments": true,
+          "payment_display_apple_pay": false,
+          "payment_display_bitcoin": true,
+          "payment_display_cirrus": false,
+          "payment_display_dankort": false,
+          "payment_display_diners_club": false,
+          "payment_display_discover": false,
+          "payment_display_dogecoin": false,
+          "payment_display_dwolla": false,
+          "payment_display_forbrugsforeningen": false,
+          "payment_display_interac": false,
+          "payment_display_jcb": false,
+          "payment_display_litecoin": true,
+          "payment_display_stripe": true,
+          "payment_display_sage": false,
+          "payment_display_wallet": false
+        }
+      },
+      "someone-purchased": {
+        "type": "someone-purchased",
+        "settings": {
+          "display_someone-purchased": false,
+          "display_someone-purchased_mb": false,
+          "show_someone-purchased": "right",
+          "someone_speed": "7000",
+          "text": "",
+          "time_location_text": ""
+        }
+      },
+      "GDPR-modal": {
+        "type": "GDPR-modal",
+        "settings": {
+          "display_gdpr": false,
+          "bg_color": "#f7f7f7",
+          "text_color": "#73788a",
+          "content": "The cookie settings on this website are set to 'allow all cookies' to give you the very best experience. Please click Accept Cookies to continue to use the site.",
+          "privacy_policy_text": "privacy policy",
+          "text_color_hover": "#296fc2",
+          "privacy_policy_link": "https:\/\/policies.google.com\/",
+          "accept_cookies_text": "Accept Cookies",
+          "icon_svg_color": "#296fc2"
+        }
+      },
+      "contact-template": {
+        "type": "contact-template",
+        "settings": {
+          "display_google_map": false,
+          "google_map_code": "<iframe src=\"https:\/\/www.google.com\/maps\/embed?pb=!1m18!1m12!1m3!1d3919.211481188846!2d106.71971781526032!3d10.795108461799389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529a18fa325fd%3A0x25f815f86c6d39c1!2sVincom+Center+Landmark+81!5e0!3m2!1svi!2s!4v1561710379219!5m2!1svi!2s\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen=\"\"><\/iframe>",
+          "contact_title": "Contact Us",
+          "contact_text_desc": "Get in touch! We're here to quickly provide you with the info  you need & answer any question you may have.",
+          "title_left": "Send us an email",
+          "des_left": "Have a question or comment? \nUse the form below to send us a message:",
+          "contact_your_name": "",
+          "contact_phone_number": "",
+          "contact_your_email": "",
+          "title_right": "Please get in touch!",
+          "des_right": "We'd love to hear from you - please use the form to send us your message or ideas.",
+          "btn_right": "Shop now",
+          "link_btn_right": "shopify:\/\/products\/lol-smurfs",
+          "display_location": true,
+          "location_code": "<p>E-Mail: support@accountsoflegends.com<\/p>\n<p class=\"open-hours\">Opening Hours:<br>Monday to Friday: 9am - 5pm<br>Saturday & Sundays: Close<\/p>"
+        }
+      },
+      "about-us_content": {
+        "type": "about-us_content",
+        "blocks": {
+          "1561956956924": {
+            "type": "top_content",
+            "settings": {
+              "display_banner": true,
+              "banner": "",
+              "alignment": "right",
+              "title_1": "Our Mission",
+              "content_1": "We strive to be industrious and innovative, offering our customers something they want, putting their desires at the top of our priority list.",
+              "title_2": "",
+              "content_2": "",
+              "title_3": "",
+              "content_3": "",
+              "title_4": "",
+              "content_4": "",
+              "title_5": "",
+              "content_5": ""
+            }
+          },
+          "1562031959903": {
+            "type": "top_content",
+            "settings": {
+              "display_banner": true,
+              "banner": "",
+              "alignment": "left",
+              "title_1": "Our Story",
+              "content_1": "We started as a small business in USA, and our aim is to continue providing our customers with products that keep them happy, at prices that keep them happy.  At Smart Tech LED, our aim is to offer you LED Strip Light that show you that we really care! Not only have we got the trendiest LED lights, but we can also guarantee that they are of the finest quality.",
+              "title_2": "",
+              "content_2": "",
+              "title_3": "",
+              "content_3": "",
+              "title_4": "",
+              "content_4": "",
+              "title_5": "",
+              "content_5": ""
+            }
+          },
+          "1562031994850": {
+            "type": "top_content",
+            "settings": {
+              "display_banner": true,
+              "banner": "",
+              "alignment": "right",
+              "title_1": "The Team",
+              "content_1": "We are a motivated, friendly and passionate team who drive our business forward every single day to make our customers happy. Whether it’s through the latest product research and bringing them to market for you or it’s just having a chat and helping you out. We are dedicated to you.",
+              "title_2": "",
+              "content_2": "",
+              "title_3": "Title",
+              "content_3": "",
+              "title_4": "",
+              "content_4": "",
+              "title_5": "",
+              "content_5": ""
+            }
+          },
+          "1562035184585": {
+            "type": "bottom_content",
+            "settings": {
+              "image": "",
+              "title": "Michael D.",
+              "subtitle": "Managing Director",
+              "content": "Nam tempus turpis at metus scelerisque placerat nulla deumantos a solicitud felis. Pellentesque diam dolor elementum etos lobortis des mollis.",
+              "url": "shopify:\/\/collections\/all"
+            }
+          },
+          "1562035195511": {
+            "type": "bottom_content",
+            "settings": {
+              "image": "",
+              "title": "Anne L.",
+              "subtitle": "Art Director",
+              "content": "Nam tempus turpis at metus scelerisque placerat nulla deumantos a solicitud felis. Pellentesque diam dolor elementum etos lobortis des mollis.",
+              "url": "shopify:\/\/collections\/all"
+            }
+          },
+          "1562035197429": {
+            "type": "bottom_content",
+            "settings": {
+              "image": "",
+              "title": "Michael D.",
+              "subtitle": "Lead Customer Service",
+              "content": "Nam tempus turpis at metus scelerisque placerat nulla deumantos a solicitud felis. Pellentesque diam dolor elementum etos lobortis des mollis.",
+              "url": "shopify:\/\/collections\/all"
+            }
+          }
+        },
+        "block_order": [
+          "1561956956924",
+          "1562031959903",
+          "1562031994850",
+          "1562035184585",
+          "1562035195511",
+          "1562035197429"
+        ],
+        "settings": {
+          "display_top_content": true,
+          "about_title": "About Us",
+          "about_text_desc": "Find out more about the company, our values and what we stand for.",
+          "top_content_bgc": "#fafafa",
+          "top_content_tt_size": "30",
+          "top_content_ttc": "#000d41",
+          "top_content_txtc": "#73788a",
+          "dots_color": "#969696",
+          "display_bottom_content": false,
+          "bot_heading": "Our Team.",
+          "bot_subheading": "Quisquemos sodales suscipit tortor ditaemcos condimentum de cosmo lacus meleifend menean diverra loremous. Nullam sit amet orci rutrum risus laoreet semper vel non magna. Mauris vel sem a lectus vehicula ultricies. Etiam semper sollicitudin lectus indous scelerisque. Curabitur vel tristique lacus. Nam risus mauris, accumsan et eleifend vitae, dignissim at eros.",
+          "bottom_content_ttc": "#000d41",
+          "bottom_content_txtc": "#73788a",
+          "link_color": "#296fc2",
+          "addthis_code": "<!-- Go to www.addthis.com\/dashboard to customize your tools --> <script type=\"text\/javascript\" src=\"\/\/s7.addthis.com\/js\/300\/addthis_widget.js#pubid=ra-5d0c92dcba478c17\"><\/script>\n<!-- Go to www.addthis.com\/dashboard to customize your tools --> <div class=\"addthis_inline_share_toolbox_vv3h\"><\/div>"
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "blocks": {
+          "1596771353895": {
+            "type": "Specification_content",
+            "settings": {
+              "case_des": "How to buy a New League Of Legends Unranked Level 30 Smurf Acount",
+              "desscription": ""
+            }
+          },
+          "1596771362759": {
+            "type": "Specification_content",
+            "settings": {
+              "case_des": "Chose your Server",
+              "desscription": "NA\/ EUW\/ EUNE"
+            }
+          },
+          "1596771425382": {
+            "type": "Specification_content",
+            "settings": {
+              "case_des": "Chose your Account type",
+              "desscription": "We have pure Blue Essence Accounts, as well as Capsule Accounts. You can chose from 40k up to 70k Essences."
+            }
+          },
+          "1596771447143": {
+            "type": "Specification_content",
+            "settings": {
+              "case_des": "The Account Rank",
+              "desscription": "We only have unranked Accounts. They have never been in a ranked game and have a completely fresh mmr."
+            }
+          },
+          "1597345464255": {
+            "type": "Specification_content",
+            "settings": {
+              "case_des": "Need further assistance?",
+              "desscription": "We offer Live chat and E-Mail support. Our working times are from 8am to 10pm UTC. Rest assured that we fix any issues in max. 24 hours."
+            }
+          }
+        },
+        "block_order": [
+          "1596771353895",
+          "1596771362759",
+          "1596771425382",
+          "1596771447143",
+          "1597345464255"
+        ],
+        "settings": {
+          "style_moreview": "vertical",
+          "video_product": true,
+          "video_product_icon": "#ec3323",
+          "enable_payment_button": true,
+          "display_product_reviews": true,
+          "display_vendor": false,
+          "text_vendor": "Vendor:",
+          "display_product_sku": false,
+          "text_product_sku": "SKU:",
+          "display_availability": false,
+          "text_availability": "Availability:",
+          "display_product_type": false,
+          "text_product_type": "Product Type:",
+          "show_desc": "full",
+          "display_subtotal": false,
+          "display_trust_img": true,
+          "enable_tab1": false,
+          "specification_tab_title": "Specification",
+          "enable_tab2": false,
+          "custom_tab_title": "Frequently Asked Questions",
+          "content_cusstom_tab": "<div>\n<p><b><\/b><\/p>\n<p><b>How long does the delivery take? <\/b><span> We always deliver the Accounts instantly after receiving your payment. Please keep in mind that the processing time of the payment provider can take a few minutes sometimes. If there are any problems just let us know and rest assured that we will fix it.<\/span><\/p>\n<p><b>I just bought an Account, what now? <\/b><span>After your payment is processed, you will get 2 E-Mails. One confirmation mail for your order and one E-Mail with the Account Details. The Details will be in an email by \"Send Owl\". Please check your spam folder too.<\/span><\/p>\n<p><b>CAN I change E-Mail and Password after purchasing an Account?? <\/b><span>Yes and we clearly advice you to do so! We want our customers to feel as safe as possible so every account can be registered to your own E-mail. To do so, log into your account on the League of Legends website (not in the client). Go to settings and then hit the sign behind the e-mail. It will ask you to type in the new e-mail and send a verifivation code to your mail. Now you are all set for your new smurf account. Have fun!<\/span><\/p>\n<p><b>Why should I buy an Account?<\/b><span> Leveling an account to level 30 just to play ranked is annoying and takes time. A lot of time. We are here to save you from wasting days of continuously playing. Buying an account only takes a few seconds and thanks to our instant delivery system you can play right away!<\/span><\/p>\n\n\n<p><b>Why should I  buy an Account from your site?<\/b><span> We are selling League Of Legends Accounts for over 3 years now. After 10000 sold accounts on various market places we decided to make our own website to provide the best service for our customers. We provide the fastest service (24\/7 instant delivery) and the best prices for high quality LoL Unranked Smurfaccounts. Our website is SSL-Secured (check http:\/\/) and uses the safest payment providers (PayPal and Stripe) to guarantee full security.<\/span><\/p>\n<p><span>Our goal is to offer you the best service, no matter where you live. Every day, we deliver to hundreds of customers across the main Servers NA and EUW, ensuring that we provide the very highest levels of responsiveness to you at all times.<\/span><\/p>\n\n<p><span>If you haven't received a shipping confirmation email with your tracking info within 3 days then feel free to get in touch.<\/span><\/p>\n\n<p><b>REFUNDS<\/b><\/p>\n<p><span>We always offer a replacement according to our return\/refund policies. <\/span><\/p>\n<\/div>"
+        }
+      },
+      "faq-product": {
+        "type": "faq-product",
+        "blocks": {
+          "1562727467841": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How Does Your Service Work and What Can I Expect?",
+              "answer_faqs_pre": "Through our service, you can expect to get instant delivery as we strive for customer satisfaction. As soon as the transaction is made, you will get your account delivered to your email instantly. Most of the time, there isn’t any kind of delay and the accounts are delivered as soon as our system detects the transaction has been made. If you used PayPal, the account will be sent to your paypal email, otherwise it will be sent to the email you provided in the checkout. So always make sure to enter the correct mail and check for any spelling mistakes.\n\nApart from swift delivery, you will also be getting full access to the account (unverified). You can always change email and password and fully secure the account. The account delivered will be completely yours as you will be getting exactly what you paid for.\n\nIt is also worth mentioning that we will be giving you a lifetime warranty on your account. There shouldn’t be any issue with the account, and even if there is, you will get to enjoy lifetime warranty. As a result, you can use the account without needing to worry much about anything.\n\nBesides this, you will also get to enjoy a live customer chat support. In case of any query or issues with the account or something in general, our support team will be more than happy to comply and answer all of your queries.\n\nThe same goes for any issues that you might be facing while in the midst of a transaction. More specifically, the support team is available throughout and will answer to any of your query or question regarding League of Legends smurf accounts."
+            }
+          },
+          "fc88d5b6-e638-4d59-844d-6fb976b40bec": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How Exactly Do I Receive My New LoL Account?",
+              "answer_faqs_pre": "At Accounts Of Legends you will always get your New Smurf Account instantly sent to your email. Make sure that you provide the correct emails during the checkout process. The email provided there will be used to send you your new personal Leauge Of Legends Smurf Account. After the payment is done, go to your email inbox and check for our emails. Also check your spam folder if you can`t find it. If you still can`t find it, kindly contact us in the live chat or via email: support@accountsoflegends.com."
+            }
+          },
+          "40d3cd80-2bb9-4ef1-baad-dc2b7d74bd58": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How Can I Be Sure the Smurf Account Won’t Be Stolen?",
+              "answer_faqs_pre": "Now that you have set your account and are ready to enjoy smurfing on your new LoL account, you might still have one question on your mind. What’s the guarantee that your account won’t be getting stolen or stops working?\n\nWe have already mentioned how all the accounts that we provide are completely unverified. This means that after you buy these accounts, you will also have to verify these accounts with your own email. Once you verify your account, you can also proceed to changing the password of the account (which is also highly recommended). In case you forget your password or (the worst case) you get hacked, you can simply recover the account using your own personal email."
+            }
+          },
+          "1562727481168": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "Are League of Legends Unranked Accounts Expensive?",
+              "answer_faqs_pre": "Players also have this concern of League of Legends accounts being too expensive. However, this isn’t true at all. Different LoL smurf accounts exist depending on the requirement of the player. The accounts having more essences will cost more than an ordinary smurf account.\n\nIn case you have no idea on what a League of Legends account usually cost, our price range usually starts from $9,99 up to $19,99. A few years ago a basic smurf account with 30.000 essences would cost you over $30 and some places still offer them for such ridiculous prices. Most usually, players like to buy a level 30 LoL account as it isn’t all that expensive but allows them to enjoy most of the activities on the go. On Accounts Of Legends you get LoL Unranked Smurf accounts for only $9,99 and they are completely ready for ranked with the amount of essences on it.\n\nAnother factor on what the account’s pricing might depend on is the current state of the game. To put it bluntly, the relation of pricing of the account follows the same supply and demand rule as all the other items on the market.\n\nThese are mostly the two main factors on what the pricing of the LoL accounts will mostly depend. Luckily, you can find both cheap as well as more expensive accounts on accountsoflegends.com depending on your needs."
+            }
+          },
+          "1562727495559": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How to Buy League of Legends Smurf Accounts?",
+              "answer_faqs_pre": "There are a number of different ways on how one can buy League of Legends accounts. All of the ways are completely secure and won’t pose any kind of threat to the player. If you are looking for the safest advice, we recommend that you go for a professional seller that offers a wide service.\n\nBefore you end up buying a LoL Smurfaccount, you will have to keep an eye on the number of services that you are getting on your transaction. For example, you should always check whether you are getting a lifetime warranty on the account or not. Also make sure that the account is unverified. That means you can change email and password. This way, nobody else will ever have access to your account and in the rare case of being hacked or forgetting your log in details, you can easily recover your account using your email.\n\nThese are all the main factors that you will need to check before getting the account. This will help you to determine exactly how reliable or good the source is from where you are making your purchase. Another thing to look out for is the customer support. Is email support offered or maybe even a professional live chat support? If there is a live chat, make use of it and get all the information you need.\n\nOne thing that you will need to absolutely avoid is going for an unreasonable cheap account from a random website without reputation. Sadly, some places sell verified, banned or even hacked accounts. Instead, you need to make sure that the source or website from where you are getting your LoL Account should be completely safe and reliable at all costs. It may cost you a few more bucks, but it is better than the account which might get banned or stop working after a certain period time. This is why it is crucial that you don’t just end up buying from a completely random website."
+            }
+          },
+          "1562727587922": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "What to Do After Receiving the Account?",
+              "answer_faqs_technical": "As soon as you receive your account, we recommend that you check a number of things to avoid facing any kind of complication. Start with checking your account for any type of issues. If you notice anything wrong with the account, we strongly recommend that you contact us so we can have a look. If you don’t know what things to check, you will have to check things like the Server, Essences, Status of the account, and whether it has been previously used or not.\n\nThe format of the account is always as to mention the name of the player followed by the password and the server. After you have confirmed that there is nothing wrong with your account, you should immediately change the email, and the password of the account in order to completely secure it. To do this, you will have to access the League’s website.\n\nAfter you launch the game, we suggest going to a custom game and adjusting the settings of your game. Some of the most important settings include:\n\nVideo – Enable line missile display (for skillshots!)\n\nInterface - Turn on Chat as well as timestamps.\n\nInterface - Turn on Gold, Mana, Damage, Heal, Mana, and similar settings (at the bottom).\n\nSounds – Unmute\n\nGame – Turn off movement prediction (at the bottom).\nOnce you are done with adjusting the game’s settings, we suggest buying 20 different champions to use in ranked. Lastly, change your in-game name. You should now be set to enjoying your level 30 LoL unranked smurf account. Just make sure that you follow all these instructions, so you don’t end up facing any type of issues in the future."
+            }
+          }
+        },
+        "block_order": [
+          "1562727467841",
+          "fc88d5b6-e638-4d59-844d-6fb976b40bec",
+          "40d3cd80-2bb9-4ef1-baad-dc2b7d74bd58",
+          "1562727481168",
+          "1562727495559",
+          "1562727587922"
+        ],
+        "settings": {
+          "enable": true,
+          "title_faqs": "Frequently Asked Questions",
+          "color_title_faqs": "#000d41",
+          "font_size_title_faqs": "50px",
+          "color_icon_qs": "#dddddd",
+          "color_question": "#0051ba",
+          "font_size_qs": "14px",
+          "color_question_answer": "#73788a",
+          "font_size_answer": "14px",
+          "title_pre_questions": "What is on your mind?",
+          "des_pre_questions": "Click on any question to see a detailed answer and explanation",
+          "title_technical_questions": "All you need to know!",
+          "des_technical_questions": "Common questions after buying the account",
+          "color_title_botton": "#000d41",
+          "font_size_title_botton": "20px"
+        }
+      },
+      "description_product_detail": {
+        "type": "description_product_detail",
+        "blocks": {
+          "1563331558511": {
+            "type": "descript_style",
+            "disabled": true,
+            "settings": {
+              "alignment": "left",
+              "style_custom": "img",
+              "video_id": "video_youtube",
+              "video_link": "_9VUPq3SxOc",
+              "video_mp4_link": "",
+              "back_style_left": "#f7f7f7",
+              "title_style": "YOU CAN CALL US SAVIOUR OF TIME!",
+              "title_style_color": "#000d41",
+              "font_size_title_style": "30px",
+              "des_style": "Leveling a LoL Aaccount to level 30 just to play ranked is annoying and takes time. A lot of time. We are here to save you from wasting days of continuously playing. \n\nBuying an account only takes a few seconds and thanks to our instant delivery system you can play on your new personal smurf account right away!",
+              "des_style_color": "#73788a",
+              "font_size_des_style": "17px",
+              "link_title": "",
+              "link_color": "#296fc2",
+              "font_size_link": "14px",
+              "link_style": "",
+              "img_style": "shopify:\/\/shop_images\/stop_watch.jpg"
+            }
+          },
+          "1563331606409": {
+            "type": "descript_style",
+            "disabled": true,
+            "settings": {
+              "alignment": "right",
+              "style_custom": "img",
+              "video_id": "video_youtube",
+              "video_link": "_9VUPq3SxOc",
+              "video_mp4_link": "",
+              "back_style_left": "#f7f7f7",
+              "title_style": "EVEN PRO PLAYERS AND STREAMERS PURCHASE LEAGUE OF LEGENDS SMURF ACCOUNTS",
+              "title_style_color": "#000d41",
+              "font_size_title_style": "30px",
+              "des_style": "In the past, you've probably encountered League Of Legends \"Unranked to Challenger\" Twitch streams\/Youtube videos. Many professionals, League Of Legends challenger players, and smurfs often buy fresh LoL Level 30 unranked accounts where they start their journeys to high elo. Most notably, IWD (Ex-pro jungler), RAT IRL (Challenger streamer), and TF Blade recently bought fresh Level 30 League Of Legends Anranked Accounts on EUW or NA that they climbed to top of the LoL ranked ladder with. It's a common practice nowadays to buy new Unranked LoL Smurf Accounts that you'll play competitively on.",
+              "des_style_color": "#73788a",
+              "font_size_des_style": "17px",
+              "link_title": "",
+              "link_color": "#296fc2",
+              "font_size_link": "14px",
+              "link_style": "",
+              "img_style": "shopify:\/\/shop_images\/challenger_f83c78e7-b55a-40d9-a1e9-54541ead6313.jpg"
+            }
+          },
+          "1563331640605": {
+            "type": "descript_style",
+            "disabled": true,
+            "settings": {
+              "alignment": "left",
+              "style_custom": "img",
+              "video_id": "video_youtube",
+              "video_link": "_9VUPq3SxOc",
+              "video_mp4_link": "",
+              "back_style_left": "#f7f7f7",
+              "title_style": "I JUST PURCHASED AN ACCOUNT, WHAT NOW?",
+              "title_style_color": "#000d41",
+              "font_size_title_style": "30px",
+              "des_style": "After the payment for your new League Of Legends Unranked Smurf Account is approved (usually takes less than 1 minute), you will get an e-mail from us separately with the LoL Smurf Account details. If you can´t find it in your regular inbox, please check your spam folder.\n\nBefore going into a ranked game, please check the ingame settings and adjust them to your favour.\n\nIt is also important that all of our League Of Legends Unranked Smurf Accounts are UNVERIFIED. That means you can connect your own email to your new Level 30 LoL Smurf Account, in order to change the password.",
+              "des_style_color": "#73788a",
+              "font_size_des_style": "17px",
+              "link_title": "",
+              "link_color": "#296fc2",
+              "font_size_link": "14px",
+              "link_style": "",
+              "img_style": "shopify:\/\/shop_images\/eve.jpeg"
+            }
+          }
+        },
+        "block_order": [
+          "1563331558511",
+          "1563331606409",
+          "1563331640605"
+        ],
+        "settings": {
+          "enable": false,
+          "overview_title": "Why you should buy an Account",
+          "title_color": "#000d41",
+          "font_size_title": "40px",
+          "overview_des": "",
+          "sub_content_color": "#73788a",
+          "font_size_des": "14px"
+        }
+      },
+      "contact-support-pr": {
+        "type": "contact-support-pr",
+        "settings": {
+          "enable": false,
+          "des": "Unable to find satisfactory answers ?",
+          "color_title": "#73788a",
+          "font_size_title": "14px",
+          "text_button": "Contact Support",
+          "color_button_content": "#ffffff",
+          "back_button_content": "#313131",
+          "color_hover": "#313131",
+          "back_button_hover": "#ffffff"
+        }
+      },
+      "product-review": {
+        "type": "product-review",
+        "settings": {
+          "enable": false,
+          "review_title": "Customer Reviews",
+          "review_title_color": "#000d41",
+          "content_des_review": "nice",
+          "sub_color": "#73788a"
+        }
+      },
+      "password-section": {
+        "type": "password-section",
+        "settings": {
+          "brand_type": "image",
+          "brand_text": "",
+          "brand_text_color": "#000d41",
+          "logo_pc": "",
+          "max_height_logo_pc": "30px",
+          "logo_mb": "",
+          "max_height_logo_mb": "25",
+          "access_lable": "Early Access Login",
+          "access_lable_color": "#fff",
+          "banner": "",
+          "heading": "Our new store will be  opening soon",
+          "heading_size": "30",
+          "subtitle": "Phasellus lorem malesuada de pulvinar commodo maecenas.",
+          "subtitle_size": "13",
+          "backbround_color": "#fff",
+          "text_color": "#000d41",
+          "display_newsletter": true,
+          "success_message": "Thanks for contacting us. We'll get back to you as soon as possible",
+          "display_product_detail_share": true,
+          "footer_address_code": ""
+        }
+      },
+      "cart-template": {
+        "type": "cart-template",
+        "settings": {
+          "cart_notes": false
+        }
+      },
+      "404-section": {
+        "type": "404-section",
+        "settings": {
+          "overlay_color": "#ffffff",
+          "overlay_opacity": "0.35",
+          "number_size": "200",
+          "subtitle": "Oops... the page you looking for clocked out!",
+          "subtitle_size": "16",
+          "text_color": "#232323",
+          "btn_bgc": "#232323",
+          "btn_txtc": "#ffffff",
+          "btn_bdc": "#232323",
+          "btn_bgc_h": "#ffffff",
+          "btn_txtc_h": "#232323",
+          "btn_bdc_h": "#232323",
+          "btn_link_1": "\/",
+          "btn_text_1": "Return to Store"
+        }
+      },
+      "1597344429549": {
+        "type": "home-banner-parallax",
+        "settings": {
+          "enable": true,
+          "back_image": "shopify:\/\/shop_images\/eve.jpeg",
+          "min_height": "890px",
+          "sub_heading": "",
+          "color_sub": "#ffffff",
+          "font_size_sub": "14px",
+          "heading": "What are you waiting for?",
+          "color_heading": "#ffffff",
+          "font_size_heading": "50px",
+          "text_submit": "Shop Now",
+          "btn_color": "#ffffff",
+          "back_btn_color": "rgba(0,0,0,0)",
+          "link_button": "shopify:\/\/products\/lol-smurfs",
+          "animation_image": false,
+          "image_right": "shopify:\/\/shop_images\/Logo_Transparency_1.png"
+        }
+      },
+      "1628785531c82c3e4b": {
+        "type": "sectionimg2",
+        "blocks": {
+          "1628785531c82c3e4b-0": {
+            "type": "overview_style",
+            "settings": {}
+          }
+        },
+        "block_order": [
+          "1628785531c82c3e4b-0"
+        ],
+        "settings": {
+          "enable": true,
+          "back_style_left": "#e4e4e4",
+          "title_style": "Buy Your New LoL Smurf",
+          "W": "",
+          "par1": "Buy your new Unranked Smurf Account and start playing instantly. All of our accounts are delivered instantly per mail after the purchase, that means: No more waiting! You can choose your favorite champs and hop right into the war of ranked. Our accounts are always unverified, what means you can connect your own email to them and change the password as well. You can fully secure the account and nobody else will ever have access to it!",
+          "des_style": "Leveling a League Of Legends Account to level 30 just to play ranked is annoying and takes time. A lot of time. We are here to save you from wasting days of continuously playing. Buying an account only takes a few seconds and thanks to our instant delivery system you can play on your new personal smurf account right away!",
+          "des_style2": "There are many different reaasons why people get a new lol smurf account. Those start at things like exploring the servers, or limit testing. Others might just want to play with friends in a lower elo or have a back up just in case something happened to your main account and you dont want to ruin your MMR. A League Of Legends smurf account opens the oportunity to learn new things without having to worry about losing elo on your main lol account. Also almost all pro players and streamers own many lol smurf accounts that they use to climb, practise etc.",
+          "des_style3": "Wether you play on EUW, NA, EUNE, BR or TR, we got you covered with our Accounts. As the demand is the highest for EUW LoL Unranked Accounts and NA Level 30  Smurf Accounts, we alway have a lot of accounts for EUW Accounts and NA Accounts in Stock.",
+          "title_style_color": "#393838",
+          "font_size_title_style": "70px",
+          "font_size": "18px",
+          "font_siz": "50px",
+          "des_style_color": "#73788a"
+        }
+      },
+      "sectionimage3": {
+        "type": "sectionimage3",
+        "blocks": {
+          "df1b4141-8e13-49a3-abfc-39941d19367b": {
+            "type": "overview_style",
+            "disabled": true,
+            "settings": {
+              "alignment": "left",
+              "title1": "Phasellus Loremous",
+              "title_style": "Phasellus Loremous",
+              "des_style": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+              "back_style_left1": "#d4a3a3",
+              "title_styl": "#000d41",
+              "font_siz": "30px",
+              "font_size_title_style": "30px",
+              "font_size_des_style": "14px"
+            }
+          }
+        },
+        "block_order": [
+          "df1b4141-8e13-49a3-abfc-39941d19367b"
+        ],
+        "settings": {
+          "enable": false,
+          "back_style_left": "#f7f7f7"
+        }
+      },
+      "Tabsection": {
+        "type": "Tabsection",
+        "settings": {
+          "enable": true,
+          "back_color": "#ffffff",
+          "num1": "1",
+          "num2": "2",
+          "num3": "3",
+          "num4": "4",
+          "num5": "5",
+          "Numberf": "16px",
+          "hocol": "#000d41",
+          "activ": "#000d41",
+          "borcol": "#000d41",
+          "Tbaboccol": "#000000",
+          "fonttabh": "20px",
+          "fonttabsb": "18px",
+          "colotitle": "#000d41",
+          "colotitle1": "#000d41",
+          "heading": "Sample Heading",
+          "color_heading": "#000d41",
+          "font_size_heading": "24px",
+          "title": "Cosmo Milancelos",
+          "color_title": "#000d41",
+          "font_size_title": "50px",
+          "title1": "Cosmo Milancelos",
+          "sub_heading1": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus ansullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+          "title2": "Cosmo Milancelos",
+          "sub_heading2": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus ansullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+          "title3": "Cosmo Milancelos",
+          "sub_heading3": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus ansullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+          "title4": "Cosmo Milancelos",
+          "sub_heading4": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus ansullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+          "title5": "Cosmo Milancelos",
+          "sub_heading5": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus ansullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis."
+        }
+      },
+      "sectionimg2": {
+        "type": "sectionimg2",
+        "blocks": {
+          "48af0519-756b-409f-8d9f-ad84400944d3": {
+            "type": "overview_style",
+            "settings": {}
+          }
+        },
+        "block_order": [
+          "48af0519-756b-409f-8d9f-ad84400944d3"
+        ],
+        "settings": {
+          "enable": false,
+          "back_style_left": "#f7f7f7",
+          "title_style": "Phasellus Loremous",
+          "W": "Phasellus Loremous",
+          "par1": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+          "des_style": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+          "des_style2": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+          "des_style3": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+          "title_style_color": "#000d41",
+          "font_size_title_style": "30px",
+          "font_size": "20px",
+          "font_siz": "20px",
+          "des_style_color": "#73788a"
+        }
+      },
+      "sectionimage1": {
+        "type": "sectionimage1",
+        "blocks": {
+          "0de24515-56e2-4409-a512-9aac9381015f": {
+            "type": "overview_style",
+            "disabled": true,
+            "settings": {
+              "alignment": "left",
+              "style_custom": "img",
+              "back_style_left": "#f7f7f7",
+              "W": "Phasellus Loremous",
+              "par1": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesqrbus an sullamcorper mattis drostique des comm5z5rz",
+              "title_style": "Phasellus Loremous",
+              "des_style": "Nam tempus turpis at metus scelerisque placerat nulla deumantos so5erz5rez5rzas loremos. Donec pretium egestas sapien et mollis.",
+              "title_style1": "Phasellus Loremous",
+              "des_style1": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+              "title_style_color": "#000d41",
+              "font_size_title_style": "30px",
+              "des_style_color": "#73788a",
+              "font_size": "14px",
+              "font_siz": "14px",
+              "link_color": "#296fc2"
+            }
+          },
+          "5adaf569-36ab-40c6-b583-2f09fd6aef6e": {
+            "type": "overview_style",
+            "disabled": true,
+            "settings": {
+              "alignment": "left",
+              "style_custom": "img",
+              "back_style_left": "#f7f7f7",
+              "W": "Phasellus Loremous",
+              "par1": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+              "title_style": "Phasellus Loremous",
+              "des_style": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+              "title_style1": "Phasellus Loremous",
+              "des_style1": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+              "title_style_color": "#000d41",
+              "font_size_title_style": "30px",
+              "des_style_color": "#73788a",
+              "font_size": "14px",
+              "font_siz": "14px",
+              "link_color": "#296fc2"
+            }
+          }
+        },
+        "block_order": [
+          "0de24515-56e2-4409-a512-9aac9381015f",
+          "5adaf569-36ab-40c6-b583-2f09fd6aef6e"
+        ],
+        "settings": {
+          "enable": false
+        }
+      },
+      "sectionimage3p": {
+        "type": "sectionimage3p",
+        "blocks": {
+          "8437992c-b77d-4869-b525-10b29b81828d": {
+            "type": "overview_style",
+            "settings": {
+              "alignment": "left",
+              "title1": "Phasellus Loremous",
+              "title_style": "Phasellus Loremous",
+              "des_style": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+              "back_style_left1": "#f4f4ff",
+              "title_styl": "#000d41",
+              "font_siz": "30px",
+              "font_size_title_style": "30px",
+              "font_size_des_style": "14px"
+            }
+          }
+        },
+        "block_order": [
+          "8437992c-b77d-4869-b525-10b29b81828d"
+        ],
+        "settings": {
+          "enable": false,
+          "back_style_left": "#f7f7f7"
+        }
+      },
+      "Tabsectionp": {
+        "type": "Tabsectionp",
+        "settings": {
+          "enable": true,
+          "back_color": "#ffffff",
+          "num1": "1",
+          "num2": "2",
+          "num3": "3",
+          "num4": "4",
+          "num5": "5",
+          "Numberf": "16px",
+          "hocol": "#e1bc76",
+          "activ": "#bc9750",
+          "borcol": "#f6c975",
+          "borcolhov": "#fbd287",
+          "Tbaboccol": "#000d41",
+          "fonttabh": "30px",
+          "fonttabsb": "18px",
+          "colotitle": "#000d41",
+          "colotitle1": "#000d41",
+          "heading": "your new LoL Smurf Account in 5 easy steps!",
+          "color_heading": "#000d41",
+          "font_size_heading": "24px",
+          "title": "How To Buy...",
+          "color_title": "#000000",
+          "font_size_title": "70px",
+          "title1": "Choose your LoL Account!",
+          "sub_heading1": "Select the correct Server and decide how many Blue Essences you want to have on your new LoL Smurf. Go through your champion pool and see what you need!",
+          "image1": "shopify:\/\/shop_images\/STEP_1.gif",
+          "title2": "Add your details!",
+          "sub_heading2": "Once you chose your Account, just add it to the cart and initiate the checkout. Make sure to type in your valid details, especially the email. The provided email will be used to send you the new Unranked LoL Account!",
+          "image2": "shopify:\/\/shop_images\/STEP-2_1.gif",
+          "title3": "How would you like to pay?",
+          "sub_heading3": "We only offer the most secure payment gateways such as PayPal, Stripe (for cards) or Coinbase (for Cryptos). They are all SSL-Secured and will never show your details to third parties!",
+          "image3": "shopify:\/\/shop_images\/STEP-3.gif",
+          "title4": "Check your E-mails!",
+          "sub_heading4": "Go to your E-mail inbox and check for and email by us. Make sure to also go to your spam folder. Once you found the email, go carefully through it and simply copy and paste your new LoL Account details! The format is always name----password.",
+          "image4": "shopify:\/\/shop_images\/4k_panth.jpg",
+          "title5": "Let the fun begin!",
+          "sub_heading5": "Once logged in, buy all the desired champs and make sure to change your email, password and ingame name! We also recommend to start with a custom game to make sure you will have a flawless experience.",
+          "image5": "shopify:\/\/shop_images\/Screenshot_428.png"
+        }
+      },
+      "sectionimg2p": {
+        "type": "sectionimg2p",
+        "blocks": {
+          "fdb4196e-b3a8-42f5-b6e7-a5f7b26dffce": {
+            "type": "overview_style",
+            "settings": {}
+          }
+        },
+        "block_order": [
+          "fdb4196e-b3a8-42f5-b6e7-a5f7b26dffce"
+        ],
+        "settings": {
+          "enable": true,
+          "back_style_left": "#f4f4ff",
+          "title_style": "Buy Your New LoL Smurf",
+          "W": "",
+          "par1": "Buy your new Unranked Smurf Account and start playing instantly. All of our accounts are delivered instantly per mail after the purchase, that means: No more waiting! You can choose your favorite champs and hop right into the war of ranked. Our accounts are always unverified, what means you can connect your own email to them and change the password as well. You can fully secure the account and nobody else will ever have access to it!",
+          "des_style": "Leveling a League Of Legends Account to level 30 just to play ranked is annoying and takes time. A lot of time. We are here to save you from wasting days of continuously playing. Buying an account only takes a few seconds and thanks to our instant delivery system you can play on your new personal smurf account right away!",
+          "des_style2": "There are many different reaasons why people get a new lol smurf account. Those start at things like exploring the servers, or limit testing. Others might just want to play with friends in a lower elo or have a back up just in case something happened to your main account and you dont want to ruin your MMR. A League Of Legends smurf account opens the oportunity to learn new things without having to worry about losing elo on your main lol account. Also almost all pro players and streamers own many lol smurf accounts that they use to climb, practise etc.",
+          "des_style3": "Wether you play on EUW, NA, EUNE, BR or TR, we got you covered with our Accounts. As the demand is the highest for EUW LoL Unranked Accounts and NA Level 30 Smurf Accounts, we alway have a lot of accounts for EUW Accounts and NA Accounts in Stock.",
+          "title_style_color": "#000d41",
+          "font_size_title_style": "60px",
+          "font_size": "20px",
+          "font_siz": "20px",
+          "des_style_color": "#73788a"
+        }
+      },
+      "sectionimage1p": {
+        "type": "sectionimage1p",
+        "blocks": {
+          "76575403-a34a-497f-8eda-ba4926e9d6dd": {
+            "type": "overview_style",
+            "settings": {
+              "alignment": "right",
+              "style_custom": "img",
+              "back_style_left": "#ffffff",
+              "W": "",
+              "par1": "",
+              "title_style": "Why do you give away Free LoL Accounts?",
+              "des_style": "Being in the market for many years, we often got these questions: \"Can I get a free account?\" or \"How to get a free LoL Smurf Account?\". Unfortunately, we could never provide this to our customers even though we would love to give back to everyone. So we came up with a unique and completely new way to make League Of Legends players days a little",
+              "title_style1": "Why you should own League of Legends smurf accounts",
+              "des_style1": "There are many different reasons why people get a new lol smurf account. Those start at things like exploring the servers, or limit testing. Others might just want to play with friends in a lower elo or have a backup just in case something happened to your main account and you don't want to ruin your MMR. A League Of Legends smurf account opens the opportunity to learn new things without having to worry about losing elo on your main lol account. Also, almost all pro players and streamers own many lol smurf accounts that they use to climb, practice, etc. That's why we are really happy to present this unique opportunity to get LoL Smurf Accounts completely for Free.",
+              "title_style_color": "#000d41",
+              "font_size_title_style": "30px",
+              "des_style_color": "#73788a",
+              "font_size": "20px",
+              "font_siz": "20px",
+              "link_color": "#296fc2",
+              "img_style": "shopify:\/\/shop_images\/2._evelynn.png"
+            }
+          }
+        },
+        "block_order": [
+          "76575403-a34a-497f-8eda-ba4926e9d6dd"
+        ],
+        "settings": {
+          "enable": true
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {}
+      },
+      "collection-sidebar-template": {
+        "type": "collection-sidebar-template",
+        "blocks": {
+          "e2f4bd6b-3b10-4fd5-a6fa-57264932e207": {
+            "type": "filter_text",
+            "settings": {
+              "enable": true,
+              "title": "Server",
+              "list_tags": "EUW, NA"
+            }
+          },
+          "2c4b4649-cda7-4afa-8978-5457c14dd85d": {
+            "type": "filter_text",
+            "settings": {
+              "enable": true,
+              "title": "Rank",
+              "list_tags": "Iron, Bronze, Silver, Gold, Platinum, Diamond"
+            }
+          },
+          "4a26e84b-c09d-437a-93c3-12b30eacfaf7": {
+            "type": "filter_text",
+            "settings": {
+              "enable": true,
+              "title": "Level",
+              "list_tags": "30+"
+            }
+          },
+          "d8209ad2-70bb-4efb-a7a0-8ac9836b6014": {
+            "type": "filter_text",
+            "settings": {
+              "enable": true,
+              "title": "Champions",
+              "list_tags": "20-40, 40-60, 60-80, 80-100, 100+"
+            }
+          },
+          "cbd13fce-0e3d-4566-aa2a-2231ab5aaf00": {
+            "type": "filter_text",
+            "settings": {
+              "enable": true,
+              "title": "Skins",
+              "list_tags": "1-5, 5-10, 10-15, 15-20, 20+"
+            }
+          },
+          "7f0a46c5-f735-42ce-8bdc-777ce0f010d9": {
+            "type": "filter_text",
+            "settings": {
+              "enable": true,
+              "title": "Blue essences",
+              "list_tags": "0,1,2,3,4,5,6,7,8,9,10"
+            }
+          }
+        },
+        "block_order": [
+          "e2f4bd6b-3b10-4fd5-a6fa-57264932e207",
+          "2c4b4649-cda7-4afa-8978-5457c14dd85d",
+          "4a26e84b-c09d-437a-93c3-12b30eacfaf7",
+          "d8209ad2-70bb-4efb-a7a0-8ac9836b6014",
+          "cbd13fce-0e3d-4566-aa2a-2231ab5aaf00",
+          "7f0a46c5-f735-42ce-8bdc-777ce0f010d9"
+        ],
+        "settings": {
+          "display_sidebar": true,
+          "show_sidebar": "left",
+          "enable_categories": false,
+          "title_categories": "",
+          "style_categories": "style_show_all",
+          "link_list": "",
+          "enable_product": false,
+          "title_product": "",
+          "collection": "",
+          "limit": "8",
+          "enable_img_1": false,
+          "link_img_1": "",
+          "enable_img_2": false,
+          "link_img_2": "",
+          "enable_custom_block": false,
+          "title_custom_block": "Custom Block",
+          "quote_custom_block": ""
+        }
+      },
+      "lootbox-section": {
+        "type": "lootbox-section",
+        "settings": {
+          "prize_product": "shopify:\/\/shop_images\/2.jpg",
+          "prize_5percent": "shopify:\/\/shop_images\/3.jpg",
+          "prize_10percent": "shopify:\/\/shop_images\/4.jpg",
+          "prize_15percent": "shopify:\/\/shop_images\/5.jpg",
+          "prize_20percent": "shopify:\/\/shop_images\/6.jpg",
+          "prize_25percent": "shopify:\/\/shop_images\/7.jpg",
+          "prize_30percent": "shopify:\/\/shop_images\/8.jpg",
+          "prize_35percent": "shopify:\/\/shop_images\/9.jpg",
+          "prize_40percent": "shopify:\/\/shop_images\/11.jpg",
+          "prize_45percent": "shopify:\/\/shop_images\/12.jpg",
+          "prize_50percent": "shopify:\/\/shop_images\/13.png",
+          "prize_60percent": "shopify:\/\/shop_images\/14.jpg",
+          "prize_75percent": "shopify:\/\/shop_images\/15.jpg"
+        }
+      },
+      "page-mmr": {
+        "type": "page-mmr",
+        "blocks": {
+          "5dfcb9f6-4dcc-42d1-b4f0-f06e42bdd44a": {
+            "type": "Server",
+            "settings": {
+              "server_code": "euw",
+              "server_name": "EUW"
+            }
+          },
+          "e6ab21e1-d4a4-431e-a4ac-f195f6a545bf": {
+            "type": "Server",
+            "settings": {
+              "server_code": "eune",
+              "server_name": "EUNE"
+            }
+          },
+          "cffa17b4-cfa5-4373-b69e-46a68c27e7e5": {
+            "type": "Server",
+            "settings": {
+              "server_code": "na",
+              "server_name": "NA"
+            }
+          },
+          "35d2fd7c-519e-4ec9-8988-19a3b9a4d4fd": {
+            "type": "Server",
+            "settings": {
+              "server_code": "kr",
+              "server_name": "KR"
+            }
+          }
+        },
+        "block_order": [
+          "5dfcb9f6-4dcc-42d1-b4f0-f06e42bdd44a",
+          "e6ab21e1-d4a4-431e-a4ac-f195f6a545bf",
+          "cffa17b4-cfa5-4373-b69e-46a68c27e7e5",
+          "35d2fd7c-519e-4ec9-8988-19a3b9a4d4fd"
+        ],
+        "settings": {
+          "brand_logo": "MMR TRACKER",
+          "brand_lead": "League of Legends League MMR Tracker",
+          "field_placeholder": "Find a summoner"
+        }
+      },
+      "16370907372bb67905": {
+        "type": "a-hero",
+        "settings": {
+          "enable": true,
+          "back_image": "shopify:\/\/shop_images\/image_2.png",
+          "fixed_enable": true,
+          "min_height": "890px",
+          "image_right": "shopify:\/\/shop_images\/Logo_Transparency_1_eee6864d-46d1-4891-823d-d44e99a704d8.png",
+          "img_width": 100,
+          "sub_heading": "Buy League Of Legends Smurf Accounts",
+          "color_sub": "#f3de94",
+          "font_size_sub": "14px",
+          "heading": "start smurfing instantly",
+          "color_heading": "#ffffff",
+          "font_size_heading": "50px",
+          "text_submit": "Free LoL Account",
+          "btn_color": "#f3de94",
+          "back_btn_color": "rgba(0,0,0,0)",
+          "link_button": "https:\/\/accountsoflegends.com\/pages\/lootbox",
+          "text_submit2": "Ranked Accounts",
+          "btn_color2": "#f3de94",
+          "back_btn_color2": "rgba(0,0,0,0)",
+          "link_button2": "shopify:\/\/collections\/lol-ranked-accounts",
+          "text_submit3": "Unranked Accounts",
+          "btn_color3": "#f3de94",
+          "back_btn_color3": "rgba(0,0,0,0)",
+          "link_button3": "#unranked-account"
+        }
+      },
+      "1637091061cce3f912": {
+        "type": "a-boosting",
+        "blocks": {
+          "1637091061cce3f912-0": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/C23-PNG.png",
+              "boost_text": "Instant Delivery",
+              "hading_color": "#000d41",
+              "boost_desc": "Every LoL Account comes instantly to your email. You will get Name and Password sent to your email and you can start playing ranked right away. No wasting time, no annoying waiting. If you have any questions or concers, you can always contact us  in the life chat and we will assist you!",
+              "text_color": "#3d4246"
+            }
+          },
+          "ca0420aa-a32a-4cbf-be3a-11e74daa8e38": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/C21-PNG.png",
+              "boost_text": "Easy and Safe",
+              "hading_color": "#000d41",
+              "boost_desc": "Your security is an important factor for us. On our websites your details hidden and secured. Accepting Paypal or cards, we use the safest payment gateways. You can even change E-Mail and Password to fully secure the LoL Account. Nobody else will ever have access to your personal account!",
+              "text_color": "#3d4246"
+            }
+          },
+          "a5b6a49d-4362-4a1a-b4de-3df9e9fb59e3": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/c26-PNG.png",
+              "boost_text": "Highest Quality",
+              "hading_color": "#000d41",
+              "boost_desc": "We always provide the highest quality. All of our LoL Smurf Accounts are leveled savely and with a VPN to prevent suspicious behaviour after a new IP log in. Thats why our smurf accounts do not get banned and are known for the best warranty and longevity. Go and experience it yourself right now!",
+              "text_color": "#3d4246"
+            }
+          }
+        },
+        "block_order": [
+          "1637091061cce3f912-0",
+          "ca0420aa-a32a-4cbf-be3a-11e74daa8e38",
+          "a5b6a49d-4362-4a1a-b4de-3df9e9fb59e3"
+        ],
+        "settings": {
+          "boost_text": "The best Solution to buy a new LoL Unranked Smurf Account",
+          "hading_color": "#000d41",
+          "boost_desc": "Having been in the Account industry for years, we understand all our customers needs and frustrations. Our LoL Accounts are all secure and always come with full email access. Our only priority is to deliver you the best League of Legends Smurf Accounts instantly, securely and without hassle.",
+          "text_color": "#3d4246"
+        }
+      },
+      "1637091630081ccd29": {
+        "type": "a-faq-product",
+        "blocks": {
+          "f8ec95de-a517-4c34-bdc7-b8c38322be4b": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How Does Your Service Work and What Can I Expect?",
+              "answer_faqs_pre": "Through our service, you can expect to get instant delivery as we strive for customer satisfaction. As soon as the transaction is made, you will get your account delivered to your email instantly. Most of the time, there isn’t any kind of delay and the accounts are delivered as soon as our system detects the transaction has been made. If you used PayPal, the account will be sent to your paypal email, otherwise it will be sent to the email you provided in the checkout. So always make sure to enter the correct mail and check for any spelling mistakes. Apart from swift delivery, you will also be getting full access to the account (unverified). You can always change email and password and fully secure the account. The account delivered will be completely yours as you will be getting exactly what you paid for. It is also worth mentioning that we will be giving you a lifetime warranty on your account. There shouldn’t be any issue with the account, and even if there is, you will get to enjoy lifetime warranty. As a result, you can use the account without needing to worry much about anything. Besides this, you will also get to enjoy a live customer chat support. In case of any query or issues with the account or something in general, our support team will be more than happy to comply and answer all of your queries. The same goes for any issues that you might be facing while in the midst of a transaction. More specifically, the support team is available throughout and will answer to any of your query or question regarding League of Legends smurf accounts."
+            }
+          },
+          "be248b68-d1b6-48b7-80d8-5854503661ac": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How Exactly Do I Receive My New LoL Account?",
+              "answer_faqs_pre": "At Accounts Of Legends you will always get your New Smurf Account instantly sent to your email. Make sure that you provide the correct emails during the checkout process. The email provided there will be used to send you your new personal Leauge Of Legends Smurf Account. After the payment is done, go to your email inbox and check for our emails. Also check your spam folder if you can`t find it. If you still can`t find it, kindly contact us in the live chat or via email: support@accountsoflegends.com."
+            }
+          },
+          "dd3bf306-c89a-433c-af7d-d8062ef463b4": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How Can I Be Sure the Smurf Account Won’t Be Stolen?",
+              "answer_faqs_pre": "Now that you have set your account and are ready to enjoy smurfing on your new LoL account, you might still have one question on your mind. What’s the guarantee that your account won’t be getting stolen or stops working? We have already mentioned how all the accounts that we provide are completely unverified. This means that after you buy these accounts, you will also have to verify these accounts with your own email. Once you verify your account, you can also proceed to changing the password of the account (which is also highly recommended). In case you forget your password or (the worst case) you get hacked, you can simply recover the account using your own personal email."
+            }
+          },
+          "b1826bdc-3b6c-4374-906a-da7c0b82775e": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "Are League of Legends Unranked Accounts Expensive?",
+              "answer_faqs_technical": "Players also have this concern of League of Legends accounts being too expensive. However, this isn’t true at all. Different LoL smurf accounts exist depending on the requirement of the player. The accounts having more essences will cost more than an ordinary smurf account. In case you have no idea on what a League of Legends account usually cost, our price range usually starts from $9,99 up to $19,99. A few years ago a basic smurf account with 30.000 essences would cost you over $30 and some places still offer them for such ridiculous prices. Most usually, players like to buy a level 30 LoL account as it isn’t all that expensive but allows them to enjoy most of the activities on the go. On Accounts Of Legends you get LoL Unranked Smurf accounts for only $9,99 and they are completely ready for ranked with the amount of essences on it. Another factor on what the account’s pricing might depend on is the current state of the game. To put it bluntly, the relation of pricing of the account follows the same supply and demand rule as all the other items on the market. These are mostly the two main factors on what the pricing of the LoL accounts will mostly depend. Luckily, you can find both cheap as well as more expensive accounts on accountsoflegends.com depending on your needs."
+            }
+          },
+          "9c3fc4ff-0c93-486e-b698-42262c99e36b": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "How to Buy League of Legends Smurf Accounts?",
+              "answer_faqs_technical": "There are a number of different ways on how one can buy League of Legends accounts. All of the ways are completely secure and won’t pose any kind of threat to the player. If you are looking for the safest advice, we recommend that you go for a professional seller that offers a wide service. Before you end up buying a LoL Smurfaccount, you will have to keep an eye on the number of services that you are getting on your transaction. For example, you should always check whether you are getting a lifetime warranty on the account or not. Also make sure that the account is unverified. That means you can change email and password. This way, nobody else will ever have access to your account and in the rare case of being hacked or forgetting your log in details, you can easily recover your account using your email. These are all the main factors that you will need to check before getting the account. This will help you to determine exactly how reliable or good the source is from where you are making your purchase. Another thing to look out for is the customer support. Is email support offered or maybe even a professional live chat support? If there is a live chat, make use of it and get all the information you need. One thing that you will need to absolutely avoid is going for an unreasonable cheap account from a random website without reputation. Sadly, some places sell verified, banned or even hacked accounts. Instead, you need to make sure that the source or website from where you are getting your LoL Account should be completely safe and reliable at all costs. It may cost you a few more bucks, but it is better than the account which might get banned or stop working after a certain period time. This is why it is crucial that you don’t just end up buying from a completely random website."
+            }
+          },
+          "9a121d07-8f5e-452b-9e99-be7575fd1db9": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "What to Do After Receiving the Account?",
+              "answer_faqs_technical": "As soon as you receive your account, we recommend that you check a number of things to avoid facing any kind of complication. Start with checking your account for any type of issues. If you notice anything wrong with the account, we strongly recommend that you contact us so we can have a look. If you don’t know what things to check, you will have to check things like the Server, Essences, Status of the account, and whether it has been previously used or not. The format of the account is always as to mention the name of the player followed by the password and the server. After you have confirmed that there is nothing wrong with your account, you should immediately change the email, and the password of the account in order to completely secure it. To do this, you will have to access the League’s website. After you launch the game, we suggest going to a custom game and adjusting the settings of your game. Some of the most important settings include: Video – Enable line missile display (for skillshots!) Interface - Turn on Chat as well as timestamps. Interface - Turn on Gold, Mana, Damage, Heal, Mana, and similar settings (at the bottom). Sounds – Unmute Game – Turn off movement prediction (at the bottom). Once you are done with adjusting the game’s settings, we suggest buying 20 different champions to use in ranked. Lastly, change your in-game name. You should now be set to enjoying your level 30 LoL unranked smurf account. Just make sure that you follow all these instructions, so you don’t end up facing any type of issues in the future."
+            }
+          }
+        },
+        "block_order": [
+          "f8ec95de-a517-4c34-bdc7-b8c38322be4b",
+          "be248b68-d1b6-48b7-80d8-5854503661ac",
+          "dd3bf306-c89a-433c-af7d-d8062ef463b4",
+          "b1826bdc-3b6c-4374-906a-da7c0b82775e",
+          "9c3fc4ff-0c93-486e-b698-42262c99e36b",
+          "9a121d07-8f5e-452b-9e99-be7575fd1db9"
+        ],
+        "settings": {
+          "enable": true,
+          "title_faqs": "Frequently Asked Questions",
+          "text_faqs": "<p><strong>FREE Lifetime Warranty on all<\/strong>: With our lifetime warranty your lol unranked smurf is safe <strong>forever<\/strong>. If something happens to your new account,  which is our fault, we will either replace the account or offer you a full refund.<br\/>We guarantee you that your account will be 100% safe!<br\/><\/p>",
+          "color_title_faqs": "#000d41",
+          "font_size_title_faqs": "50px",
+          "color_icon_qs": "#dddddd",
+          "color_question": "#296fc2",
+          "font_size_qs": "14px",
+          "color_question_answer": "#73788a",
+          "font_size_answer": "14px",
+          "title_pre_questions": "",
+          "des_pre_questions": "",
+          "title_technical_questions": "",
+          "des_technical_questions": "",
+          "color_title_botton": "#000d41",
+          "font_size_title_botton": "20px"
+        }
+      },
+      "a-faq-product": {
+        "type": "a-faq-product",
+        "blocks": {
+          "8df1675e-7203-49b0-b81b-28462d068f95": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How can I participate?",
+              "answer_faqs_pre": "You must have an account on our website and choose your server. After that you get a free Lootbox every day (every 24 hours) and for every 10$ spent. To be eligible  to win an account you must be a customer (at least 1 order from us). We had to implement this rule due to people creating several fake accounts. If you have no fulfilled orders you can only win discount codes up to 75%."
+            }
+          },
+          "5cf02121-1789-452c-b22d-367b68840f48": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How Do I Receive My Free LoL Account?",
+              "answer_faqs_pre": "If you are a lucky winner of a Free Level 30 LoL Unranked Account, we will instantly send you the Free League of Legends Smurf to your Email. If you need assistance just contact us in the chat"
+            }
+          },
+          "21dddfad-7856-48d1-97b9-7065d6e3aef2": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "Is the LoL Smurf Account really free?",
+              "answer_faqs_pre": "Yes it is absolutely free! After winning an Account, you will get it right away on your email."
+            }
+          },
+          "5801c6d3-fd9d-4a1a-a647-dab0560c9db7": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "What can I win?",
+              "answer_faqs_technical": "You can win either a Free LoL Account for your Server or Discount codes that will be applied automatically."
+            }
+          },
+          "fdc91868-618f-4ecf-aa3c-7e0610f30281": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "How do I claim my prize?",
+              "answer_faqs_technical": "When winning an Free LoL Account, you will instantly get it sent to your email. When winning a discount code, the highest discount code will be applied automatically in the checkout."
+            }
+          },
+          "0709c569-be13-4465-95b8-bf125bfc653e": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "I have won 4 different discounts, what now?",
+              "answer_faqs_technical": "The highest discount code will always be applied in the checkout. Each Discount Code will be valid for 7 days."
+            }
+          }
+        },
+        "block_order": [
+          "8df1675e-7203-49b0-b81b-28462d068f95",
+          "5cf02121-1789-452c-b22d-367b68840f48",
+          "21dddfad-7856-48d1-97b9-7065d6e3aef2",
+          "5801c6d3-fd9d-4a1a-a647-dab0560c9db7",
+          "fdc91868-618f-4ecf-aa3c-7e0610f30281",
+          "0709c569-be13-4465-95b8-bf125bfc653e"
+        ],
+        "settings": {
+          "enable": true,
+          "title_faqs": "Frequently Asked Questions",
+          "text_faqs": "<p>Learn more about our League of Legends Lootbox system at accountsoflegends.com and how you get the chance to win free LoL Unranked Accounts every day. We think this is a great way to give back to our community. Create an Account on our website now and start winning a Free Level 30 LoL Account today!<\/p>",
+          "color_title_faqs": "#000d41",
+          "font_size_title_faqs": "50px",
+          "color_icon_qs": "#dddddd",
+          "color_question": "#296fc2",
+          "font_size_qs": "14px",
+          "color_question_answer": "#73788a",
+          "font_size_answer": "14px",
+          "title_pre_questions": "",
+          "des_pre_questions": "",
+          "title_technical_questions": "",
+          "des_technical_questions": "",
+          "color_title_botton": "#000d41",
+          "font_size_title_botton": "20px"
+        }
+      },
+      "a-boosting": {
+        "type": "a-boosting",
+        "blocks": {
+          "1019740a-fa19-4314-8986-7854f508af47": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/C23-PNG.png",
+              "boost_text": "Instant Free LoL Account",
+              "hading_color": "#000000",
+              "boost_desc": "Open your Daily Lootbox and get a Free LoL Account instantly on your email! The whole process is automated so you don't have to do or worry about anything.",
+              "text_color": "#73788a"
+            }
+          },
+          "ab19667b-df51-4328-81a4-5df8f93a9abb": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/C21-PNG.png",
+              "boost_text": "Secure Daily Prizes",
+              "hading_color": "#000000",
+              "boost_desc": "You get one free Lootbox every 24 hours and one Lootbox for every $10 spent on your Account. Open your Lootbox to win great prizes every day including Discounts and Accounts!",
+              "text_color": "#73788a"
+            }
+          },
+          "5c8a7772-c921-4ef9-bc39-96d8061e4cc0": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/c26-PNG.png",
+              "boost_text": "A Unique Experience",
+              "hading_color": "#000000",
+              "boost_desc": "We always strive to provide the highest quality. That's why we created this unique feature on our website that you will not see anywhere else! Only at Accounts Of Legends.",
+              "text_color": "#73788a"
+            }
+          }
+        },
+        "block_order": [
+          "1019740a-fa19-4314-8986-7854f508af47",
+          "ab19667b-df51-4328-81a4-5df8f93a9abb",
+          "5c8a7772-c921-4ef9-bc39-96d8061e4cc0"
+        ],
+        "settings": {
+          "boost_text": "Win a Free League Of Legends Unranked Account",
+          "hading_color": "#000000",
+          "boost_desc": "Having been in the Account industry for years, we understand all our customers' needs and frustrations. Our LoL Accounts are all secure and always come with full email access. Our only priority is to deliver you the best League of Legends Smurf Accounts instantly, securely, and without hassle. Win Free LoL Level 30 Unranked Smurf Accounts on NA, EUW, EUNE, BR and OCE. This is the only way to get secure League of Legends Accounts for absolutely free!",
+          "text_color": "#73788a"
+        }
+      },
+      "a-faq-product-collections": {
+        "type": "a-faq-product-collections",
+        "blocks": {
+          "34f2c990-7e13-481d-9100-637d031bf009": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "Can i change E-Mail and Password?",
+              "answer_faqs_pre": "Yes you can. All of our sellers must provide full E-mail access or unverified LoL Accounts. So after purchasing a LoL Ranked Smurf Account you will get Name, Password and E-Mail access so you can change all the details."
+            }
+          },
+          "e95b9766-d4f1-4bb8-a4be-51b3fe6e6152": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How long does the Delivery take?",
+              "answer_faqs_pre": "The delivery is instant and you will receive all details on your email. If you used PayPal, we will send it to your PayPal email. If you provide an E-Mail in the checkout, we will send it to that email. If you cant find it, contact us in the Livechat or per email at support@accountsoflegends.com and we will help you out."
+            }
+          },
+          "e44ad646-6eba-4a05-bd15-643407313a8b": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How do i know my Account will not be stolen?",
+              "answer_faqs_pre": "Ever League Of Legends Account comes with the full recovery details. You can change email and password, so nobody else  will have access to your new LoL Ranked Account"
+            }
+          },
+          "12a6a137-3942-45f4-a538-d901b174d364": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "How many Champs or Blue Essences are on the Account?",
+              "answer_faqs_technical": "Every LoL Ranked Smurf Account has different ammounts of Champs and BE. You will get all the informations (like Level, Rank, Champions, BE etc) about the League Account in the details."
+            }
+          },
+          "e66fec22-68f7-41d5-9b25-fcebb0068ddc": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "I just bought a LoL Smurf Account, what now?",
+              "answer_faqs_technical": "After purchasing a LoL Account, please check out your emails. If you cant find the email, check your spam folder as well. If you still cant find it contact us in the live chat and we will gladly help you out!"
+            }
+          },
+          "589a4d26-4f8f-4349-8f1b-aeed73fc4620": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "I bought the wrong Server, Rank etc, what now?",
+              "answer_faqs_technical": "If you purchased an Account and notice you did a mistake, dont use it, dont spend any BE and leave the Account as it is. We will have a look and verify that the account remained unused. If the Account was not used we can offer a replacement. If you used the LoL Account, unfortunately we can not offer a refund or a replacement."
+            }
+          },
+          "eb78be9d-e2d7-402d-8dac-edeb071410b1": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "I want to buy a Diamond LoL Account, will it decay?",
+              "answer_faqs_technical": "Yes, League of Legends Diamond Accounts do decay. We make sure that our sellers always update their Listings and make sure that every detail is up to date. If you buy a Diamond Account or higher, we recommend to check if you need to play any decay games right away."
+            }
+          },
+          "46b4289c-98e2-4a95-a234-026f7e89cf91": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "Which Ranks and Servers do you offer?",
+              "answer_faqs_pre": "We only have LoL Ranked Accounts on the NA and EUW Server due to the demand being low on other Servers. We offer LoL Accounts in Gold, Platinum, Diamond and Master. Buying League Of Legends Gold and Platinum Accounts is less expensive, while LoL Diamond and Master Accounts can be more expensive."
+            }
+          }
+        },
+        "block_order": [
+          "34f2c990-7e13-481d-9100-637d031bf009",
+          "e95b9766-d4f1-4bb8-a4be-51b3fe6e6152",
+          "e44ad646-6eba-4a05-bd15-643407313a8b",
+          "12a6a137-3942-45f4-a538-d901b174d364",
+          "e66fec22-68f7-41d5-9b25-fcebb0068ddc",
+          "589a4d26-4f8f-4349-8f1b-aeed73fc4620",
+          "eb78be9d-e2d7-402d-8dac-edeb071410b1",
+          "46b4289c-98e2-4a95-a234-026f7e89cf91"
+        ],
+        "settings": {
+          "enable": true,
+          "title_faqs": "Buy LoL Ranked Accounts with high mmr",
+          "text_faqs": "<p>Do you look for accounts that have finished the placements already and have a high rank in the current league of legends season? We offer LoL ranked smurf accounts ranging from silver to diamond. We offer a safe and secure way to buy LoL accounts with Rank.<\/p>",
+          "color_title_faqs": "#000d41",
+          "font_size_title_faqs": "50px",
+          "color_icon_qs": "#dddddd",
+          "color_question": "#296fc2",
+          "font_size_qs": "14px",
+          "color_question_answer": "#73788a",
+          "font_size_answer": "14px",
+          "title_pre_questions": "",
+          "des_pre_questions": "",
+          "title_technical_questions": "",
+          "des_technical_questions": "",
+          "color_title_botton": "#000d41",
+          "font_size_title_botton": "20px"
+        }
+      },
+      "a-boosting-collections": {
+        "type": "a-boosting-collections",
+        "blocks": {
+          "8795f1b0-adfe-4291-ad9f-df81a5d0b325": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/C23-PNG.png",
+              "boost_text": "Instant Delivery",
+              "hading_color": "#000000",
+              "boost_desc": "Every LoL Ranked Account comes instantly to your email. You will get Name, Password and Recovery Email sent to your Email and you can start playing ranked right away. No more annoying waiting. If you have any questions or concers, you can always contact us in the life chat and we will gladly assist you!",
+              "text_color": "#73788a"
+            }
+          },
+          "09406f27-b99c-43b7-8eae-82e539753a8c": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/C21-PNG.png",
+              "boost_text": "Easy and Safe",
+              "hading_color": "#000000",
+              "boost_desc": "Your security is an important factor for us. On our websites your details hidden and secured. Accepting Paypal or cards, we use the safest payment gateways. You can even change E-Mail and Password to fully secure the LoL Ranked Account. Nobody else will ever have access to your personal LoL Smurf Account!",
+              "text_color": "#73788a"
+            }
+          },
+          "3bbb4856-1bad-4273-91e4-ab6f6a384023": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/c26-PNG.png",
+              "boost_text": "Highest Quality",
+              "hading_color": "#000000",
+              "boost_desc": "We always provide the highest quality. All of our LoL Smurf Accounts are leveled savely and with a VPN to prevent suspicious behaviour after a new IP log in. Thats why our smurf accounts do not get banned and are known for the best warranty and longevity. Go and experience it yourself right now!",
+              "text_color": "#73788a"
+            }
+          }
+        },
+        "block_order": [
+          "8795f1b0-adfe-4291-ad9f-df81a5d0b325",
+          "09406f27-b99c-43b7-8eae-82e539753a8c",
+          "3bbb4856-1bad-4273-91e4-ab6f6a384023"
+        ],
+        "settings": {
+          "boost_text": "The best Solution to buy a new LoL Ranked Account",
+          "hading_color": "#000000",
+          "boost_desc": "Having been in the League Of Legends Account industry for years, we understand all our customers needs and frustrations. Our LoL Accounts are all secure and always come with full email access. Our only priority is to deliver you the best League of Legends Smurf Accounts instantly, securely and without hassle. We got LoL Accounts in Gold, Platinum, Diamond and even Master. If you need a LoL Gold to Master Smurf Account on NA or EUW, we will cover all your needs.",
+          "text_color": "#73788a"
+        }
+      },
+      "sectionimage1p-collections": {
+        "type": "sectionimage1p-collections",
+        "settings": {
+          "enable": true
+        }
+      },
+      "sectionimg2-collections": {
+        "type": "sectionimg2-collections",
+        "settings": {
+          "enable": false,
+          "back_style_left": "#f7f7f7",
+          "title_style": "Phasellus Loremous",
+          "W": "Phasellus Loremous",
+          "par1": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+          "des_style": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+          "des_style2": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+          "des_style3": "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis.",
+          "title_style_color": "#000d41",
+          "font_size_title_style": "30px",
+          "font_size": "20px",
+          "font_siz": "20px",
+          "des_style_color": "#73788a"
+        }
+      },
+      "a-faq-mmr": {
+        "type": "a-faq-mmr",
+        "blocks": {
+          "36550640-75a7-45ec-83cc-e036e2ab50e4": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How do I use this LoL MMR Calculator?",
+              "answer_faqs_pre": "Choose your server NA, EUW, EUNE, or KR and type in the LoL Account Name that you want to check out. Then hit enter and you will get all information that you need."
+            }
+          },
+          "047bac32-68b9-4381-bf8f-5a433eb38a37": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "Why is my LoL Accounts MMR not tracked?",
+              "answer_faqs_technical": "Please note that we only calculate the MMR of players that have been active for the last 30 days. If you did not play enough League Of Legends games, we can not calculate or track your Accounts MMR."
+            }
+          },
+          "35f29cc2-b8a3-49b0-b677-315225467cba": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How accurate is your MMR Tracker?",
+              "answer_faqs_pre": "We calculate your LoL MMR for Ranked, Normal, and ARAMs with 95% Accuracy. We will also display a range that your MMR lays within. The more LoL Games you play, the more accurate your MMR will be."
+            }
+          },
+          "c682471f-b4a3-4f2d-b995-3c6a01718e46": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "Why is my MMR higher\/lower than my actual Rank?",
+              "answer_faqs_technical": "If you win a lot of games, chances are that your MMR will be much higher than your actual rank. When your MMR is higher than your rank, you will get significantly more League Points (LP) and climb faster. That also means that you will be matched with players in a higher elo than your actual rank. If your MMR is lower than your actual rank, it is the other way around: You lost too many games and are matched with people below your actual rank."
+            }
+          },
+          "fc8bd648-d400-40bf-a305-a39da9787026": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How can I improve my MMR?",
+              "answer_faqs_pre": "Simply put: Your MMR increases when winning and decreases when losing. The easiest way to get a good MMR is maintaining a high win rate (at least positive). The higher your win rate the better will your MMR be. You can use the following rule of thumb: +10 MMR Points for a win and -10 MMR Points for a loss.  Bellow we also added 7 tips on how to improve your MMR in League of Legends easily."
+            }
+          },
+          "3a4d251b-f2e3-48d7-b79d-3a9559c984c4": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "Does dodging a lobby impact my MMR?",
+              "answer_faqs_technical": "No, dodging a champ select will not impact your MMR. You will only lose LP. Riot started punishing people who dodge a lot recently. Within 24 hours you will lose -3 LP for your first dodge, -10 for the second, and -15 for the third one. However, dodging 3 games per day will also block your Account for 12 hours. Your MMR will remain the same."
+            }
+          }
+        },
+        "block_order": [
+          "36550640-75a7-45ec-83cc-e036e2ab50e4",
+          "047bac32-68b9-4381-bf8f-5a433eb38a37",
+          "35f29cc2-b8a3-49b0-b677-315225467cba",
+          "c682471f-b4a3-4f2d-b995-3c6a01718e46",
+          "fc8bd648-d400-40bf-a305-a39da9787026",
+          "3a4d251b-f2e3-48d7-b79d-3a9559c984c4"
+        ],
+        "settings": {
+          "enable": true,
+          "title_faqs": "Frequently asked questions",
+          "text_faqs": "",
+          "color_title_faqs": "#000d41",
+          "font_size_title_faqs": "50px",
+          "color_icon_qs": "#dddddd",
+          "color_question": "#296fc2",
+          "font_size_qs": "14px",
+          "color_question_answer": "#73788a",
+          "font_size_answer": "14px",
+          "title_pre_questions": "",
+          "des_pre_questions": "",
+          "title_technical_questions": "",
+          "des_technical_questions": "",
+          "color_title_botton": "#000d41",
+          "font_size_title_botton": "20px"
+        }
+      },
+      "a-boosting-mmr": {
+        "type": "a-boosting-mmr",
+        "settings": {
+          "boost_text": "",
+          "hading_color": "#000000",
+          "boost_desc": "",
+          "text_color": "#73788a"
+        }
+      },
+      "sectionimage1p-mmr": {
+        "type": "sectionimage1p-mmr",
+        "blocks": {
+          "665dc9bb-229b-44bc-ab10-20285e8edefd": {
+            "type": "overview_style",
+            "settings": {
+              "alignment": "right",
+              "style_custom": "img",
+              "back_style_left": "#ffffff",
+              "W": "",
+              "par1": "",
+              "title_style": "<br><br>What is a LOL MMR checker and how do I use it?",
+              "des_style": "If you've scrolled this far, you're probably aware that checking and keeping track of your MMR in League of Legends, is an important feature to get a decent understanding of where you are on the MMR spectrum. \n\n<a style=\"text-decoration:underline;\" href=\"https:\/\/accountsoflegends.com\/pages\/mmr\">The LoL MMR Checker on Accounts of Legends<\/a>, by Josh from whatismymmr,\n\n is causing quite a stir in the world of unauthorized third-party MMR calculators. It has a 95% accuracy rate for ranked, normal, and ARAM matches and is able to assist you in the best way possible. Simply select your server (NA, EUW, EUNE, and KR) and enter the name of the account you wish to check out. We offer an in-depth analysis of your rank and MMR progress with an amazing interface!",
+              "title_style1": "",
+              "des_style1": "",
+              "title_style_color": "#000d41",
+              "font_size_title_style": "40px",
+              "des_style_color": "#73788a",
+              "font_size": "19px",
+              "font_siz": "14px",
+              "link_color": "#296fc2",
+              "img_style": "shopify:\/\/shop_images\/mmr_image.png"
+            }
+          }
+        },
+        "block_order": [
+          "665dc9bb-229b-44bc-ab10-20285e8edefd"
+        ],
+        "settings": {
+          "enable": true
+        }
+      },
+      "sectionimg2-mmr": {
+        "type": "sectionimg2-mmr",
+        "settings": {
+          "enable": true,
+          "back_style_left": "#f7f7f7",
+          "title_style": "MMR calculation, usage, and specifics",
+          "W": "",
+          "par1": "Every player's MMR is invisible by design and besides Riot, no one actually knows what are the involved methods in calculating his MMR. Wins and losses are likely the biggest factors, but other important statistics could be the player’s KDA, CS per minute, and average gold per minute. The game changes a player's MMR after each match, and more played games usually mean more accurate results. To avoid misrepresentation of the rating, premade matches are not taken into consideration because of the difference in their MMR's. Another thing about these estimates that this rating represents is the fact that it takes into consideration only games from a certain game mode in the last 30 days. \nMMR also affects your LP gains and losses in Ranked Queues and determines your teammates and opponents, so a lot of players have become more curious about it. One thing you should know is that dodging games in any mode doesn't affect your MMR in that mode, even though you are punished with losing 3 LP if you dodge a Ranked match. Because your MMR directly affects your LP gains and losses in Ranked, a lot of players want to improve it in any way possible, but the truth is, the only way to improve your MMR is to just win more games based on your performance. \nWe already know that MMR is not visible for players in the League Client, only the actual rank they achieved in the Ranked Mode. But what about the MMR in other modes such as ARAM? Luckily, various unofficial sites can calculate a rough estimation for a player’s MMR in different modes, and soon we are going to be a part of them!",
+          "des_style": "",
+          "des_style2": "",
+          "des_style3": "",
+          "title_style_color": "#000d41",
+          "font_size_title_style": "40px",
+          "font_size": "20px",
+          "font_siz": "20px",
+          "des_style_color": "#73788a"
+        }
+      },
+      "sectionimg2-2-mmr": {
+        "type": "sectionimg2-2-mmr",
+        "settings": {
+          "enable": true,
+          "back_style_left": "#f7f7f7",
+          "title_style": "Are MMR tools accurate for LoL?",
+          "W": "",
+          "par1": "One of the main concerns for players is how accurate these tools and sites can be. Our MMR tracker offers a 95% accuracy rate, which means if the result is 1500 MMR, there is a 95% chance the exact and correct MMR number is within the +-100 range of the given number(1400-1600). Because the estimation offers a wide range of possible correct numbers, winning a game might not immediately reflect on your MMR. So to conclude, playing more games increases the accuracy of the calculation.\nMMR is a great tool that has been used extensively in gaming, especially in a lot of multiplayer games where it's used to enumerate the progress players have made if no such system is in place.\nIt also helps you understand every aspect of your gameplay and with that information at your disposal, you can understand how to improve yourself.",
+          "des_style": "",
+          "des_style2": "",
+          "des_style3": "",
+          "title_style_color": "#000d41",
+          "font_size_title_style": "40px",
+          "font_size": "20px",
+          "font_siz": "20px",
+          "des_style_color": "#73788a"
+        }
+      },
+      "sectionimg2-3-mmr": {
+        "type": "sectionimg2-3-mmr",
+        "settings": {
+          "enable": true,
+          "back_style_left": "#f7f7f7",
+          "title_style": "Why do we need to calculate MMR?",
+          "W": "",
+          "par1": "Although these time-limited game modes are great for shaking up the atmosphere and offering something new, many players quickly return to the constant modes. Here a new problem appears, and that is that only the Ranked Solo\/Duo mode offers any way of tracking your progress. And that usually is enough for the more competitive players, who play regularly, strive for high elo and even a professional career. Ranked Solo\/Duo reflects the progress they have made through the ranking system in the form of gaining and losing League Points(LP).\n But there is a large population of the player community that usually avoids the Ranked Solo\/Duo Queue for various reasons. Some of these reasons are that some players are just not that competitive and take the game more lightly. Some players face anxiety from the possibility of losing LP or being criticized by teammates for various reasons. This and many more factors leave a huge amount of players competing outside of the Ranked Solo\/Duo Queue who also want to track their improvement, in one way or another. Here's when MMR and MMR tracking tools come into play.",
+          "des_style": "",
+          "des_style2": "",
+          "des_style3": "",
+          "title_style_color": "#000d41",
+          "font_size_title_style": "40px",
+          "font_size": "20px",
+          "font_siz": "20px",
+          "des_style_color": "#73788a"
+        }
+      },
+      "product-template-unranked": {
+        "type": "product-template-unranked",
+        "settings": {
+          "style_moreview": "vertical",
+          "video_product": true,
+          "video_product_icon": "#ec3323",
+          "enable_payment_button": true,
+          "display_product_reviews": true,
+          "display_vendor": false,
+          "text_vendor": "Vendor:",
+          "display_product_sku": false,
+          "text_product_sku": "SKU:",
+          "display_availability": false,
+          "text_availability": "Availability:",
+          "display_product_type": false,
+          "text_product_type": "Product Type:",
+          "show_desc": "short",
+          "display_subtotal": false,
+          "display_trust_img": true,
+          "enable_tab1": true,
+          "specification_tab_title": "Specification",
+          "enable_tab2": true,
+          "custom_tab_title": "Shipping and Returns | Liefer- und Versandkosten",
+          "content_cusstom_tab": "<div>\n<p><b>SHIPPING<\/b><\/p>\n<p><b>USA\/UK:<\/b><span> DHL\/FedEx\/Other Premium Courier - Tracked Shipping (5 to 8 days)<\/span><\/p>\n<p><b>Australia\/Canada: <\/b><span>DHL\/FedEx\/Other Premium Courier - Tracked Shipping (7 to 9 days)<\/span><\/p>\n<p><b>Germany\/France: <\/b><span>DHL\/FedEx\/Other Premium Courier - Tracked Shipping (6 to 10 days)<\/span><\/p>\n<p><b>Rest Of The World:<\/b><span> 10 - 21 days with full tracking via USPS (FREE)<\/span><\/p>\n<p><span>Our goal is to offer you the best shipping options, no matter where you live. Every day, we deliver to hundreds of customers across the world, ensuring that we provide the very highest levels of responsiveness to you at all times.<\/span><\/p>\n<p><span>If you haven't received a shipping confirmation email with your tracking info within 3 days then feel free to get in touch.<\/span><\/p>\n<p><b>REFUNDS<\/b><\/p>\n<p><span>We offer a 100% money-back guarantee if you are not 100% satisfied with your order. Our return policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately, we can’t offer you a refund or exchange. To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.<\/span><\/p>\n<\/div>"
+        }
+      },
+      "163872392129c7a451": {
+        "type": "featured-product-template-unranked",
+        "blocks": {
+          "4733f3be-8e33-4685-929b-48690b19f04a": {
+            "type": "text",
+            "settings": {
+              "boost_title": "Instant Delivery",
+              "boost_text": "You get your new LoL account instantly on your email after purchasing. No annoying waiting with our 24\/7 instant delivery!"
+            }
+          },
+          "33c00145-4c74-4a2b-bf7b-273aa50e11ea": {
+            "type": "text",
+            "settings": {
+              "boost_title": "Lifetime Warranty",
+              "boost_text": "We are so confident in our LoL Smurfs that we offer a Lifetime Warranty on all League Of Legends Unranked Accounts! You are either satisfied or you get your money back!"
+            }
+          },
+          "8a752c36-92ff-4b1c-bdcb-372ca37e27fb": {
+            "type": "text",
+            "settings": {
+              "boost_title": "No Hidden Fees Or Taxes",
+              "boost_text": "All prices on our website are final. that means there will not be any suprises when finalizing the order. You will never even pay a single cent more than displayed."
+            }
+          },
+          "b077faf3-b890-42a4-8360-bf1219abac57": {
+            "type": "text",
+            "settings": {
+              "boost_title": "Live Chat",
+              "boost_text": "You can always reach out to us easily in the live chat in the bottom right corner. Our dedicated customer support will cover all your needs."
+            }
+          }
+        },
+        "block_order": [
+          "4733f3be-8e33-4685-929b-48690b19f04a",
+          "33c00145-4c74-4a2b-bf7b-273aa50e11ea",
+          "8a752c36-92ff-4b1c-bdcb-372ca37e27fb",
+          "b077faf3-b890-42a4-8360-bf1219abac57"
+        ],
+        "settings": {
+          "product": "lol-smurfs",
+          "style_moreview": "horizontal",
+          "video_product": false,
+          "video_product_icon": "#ec3323",
+          "enable_payment_button": true,
+          "display_product_reviews": false,
+          "display_vendor": false,
+          "text_vendor": "Vendor:",
+          "display_product_sku": false,
+          "text_product_sku": "SKU:",
+          "display_availability": false,
+          "text_availability": "Availability:",
+          "display_product_type": false,
+          "text_product_type": "Product Type:",
+          "show_desc": "short",
+          "display_subtotal": false,
+          "display_trust_img": false,
+          "enable_tab1": false,
+          "specification_tab_title": "Specification",
+          "enable_tab2": false,
+          "custom_tab_title": "Shipping and Returns | Liefer- und Versandkosten",
+          "content_cusstom_tab": ""
+        }
+      },
+      "a-faq-product-products": {
+        "type": "a-faq-product-products",
+        "blocks": {
+          "d7e3e296-f399-4983-91e9-37ec106bdf95": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How Does Your Service Work and What Can I Expect?",
+              "answer_faqs_pre": "Through our service, you can expect to get instant delivery as we strive for customer satisfaction. As soon as the transaction is made, you will get your account delivered to your email instantly. Most of the time, there isn’t any kind of delay and the accounts are delivered as soon as our system detects the transaction has been made. If you used PayPal, the account will be sent to your paypal email, otherwise it will be sent to the email you provided in the checkout. So always make sure to enter the correct mail and check for any spelling mistakes. Apart from swift delivery, you will also be getting full access to the account (unverified). You can always change email and password and fully secure the account. The account delivered will be completely yours as you will be getting exactly what you paid for. It is also worth mentioning that we will be giving you a lifetime warranty on your account. There shouldn’t be any issue with the account, and even if there is, you will get to enjoy lifetime warranty. As a result, you can use the account without needing to worry much about anything. Besides this, you will also get to enjoy a live customer chat support. In case of any query or issues with the account or something in general, our support team will be more than happy to comply and answer all of your queries. The same goes for any issues that you might be facing while in the midst of a transaction. More specifically, the support team is available throughout and will answer to any of your query or question regarding League of Legends smurf accounts."
+            }
+          },
+          "89394b2a-e4af-49fa-bed5-64fe24da521b": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How Exactly Do I Receive My New LoL Account?",
+              "answer_faqs_pre": "At Accounts Of Legends you will always get your New Smurf Account instantly sent to your email. Make sure that you provide the correct emails during the checkout process. The email provided there will be used to send you your new personal Leauge Of Legends Smurf Account. After the payment is done, go to your email inbox and check for our emails. Also check your spam folder if you can`t find it. If you still can`t find it, kindly contact us in the live chat or via email: support@accountsoflegends.com."
+            }
+          },
+          "e4856d39-06ac-488a-85c0-33e4afb56c71": {
+            "type": "pre_sale_questions",
+            "settings": {
+              "question_faqs_pre": "How Can I Be Sure the Smurf Account Won’t Be Stolen?",
+              "answer_faqs_pre": "Now that you have set your account and are ready to enjoy smurfing on your new LoL account, you might still have one question on your mind. What’s the guarantee that your account won’t be getting stolen or stops working? We have already mentioned how all the accounts that we provide are completely unverified. This means that after you buy these accounts, you will also have to verify these accounts with your own email. Once you verify your account, you can also proceed to changing the password of the account (which is also highly recommended). In case you forget your password or (the worst case) you get hacked, you can simply recover the account using your own personal email.\nAre League of Legends Unranked Accounts Expensive?\nHow to Buy League of Legends Smurf Accounts?"
+            }
+          },
+          "4224d3aa-a584-4088-a927-0a06a39dc929": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "Are League of Legends Unranked Accounts Expensive?",
+              "answer_faqs_technical": "Players also have this concern of League of Legends accounts being too expensive. However, this isn’t true at all. Different LoL smurf accounts exist depending on the requirement of the player. The accounts having more essences will cost more than an ordinary smurf account. In case you have no idea on what a League of Legends account usually cost, our price range usually starts from $9,99 up to $19,99. A few years ago a basic smurf account with 30.000 essences would cost you over $30 and some places still offer them for such ridiculous prices. Most usually, players like to buy a level 30 LoL account as it isn’t all that expensive but allows them to enjoy most of the activities on the go. On Accounts Of Legends you get LoL Unranked Smurf accounts for only $9,99 and they are completely ready for ranked with the amount of essences on it. Another factor on what the account’s pricing might depend on is the current state of the game. To put it bluntly, the relation of pricing of the account follows the same supply and demand rule as all the other items on the market. These are mostly the two main factors on what the pricing of the LoL accounts will mostly depend. Luckily, you can find both cheap as well as more expensive accounts on accountsoflegends.com depending on your needs."
+            }
+          },
+          "4b727597-7526-466f-bd5e-1102067c6cc1": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "How to Buy League of Legends Smurf Accounts?",
+              "answer_faqs_technical": "There are a number of different ways on how one can buy League of Legends accounts. All of the ways are completely secure and won’t pose any kind of threat to the player. If you are looking for the safest advice, we recommend that you go for a professional seller that offers a wide service. Before you end up buying a LoL Smurfaccount, you will have to keep an eye on the number of services that you are getting on your transaction. For example, you should always check whether you are getting a lifetime warranty on the account or not. Also make sure that the account is unverified. That means you can change email and password. This way, nobody else will ever have access to your account and in the rare case of being hacked or forgetting your log in details, you can easily recover your account using your email. These are all the main factors that you will need to check before getting the account. This will help you to determine exactly how reliable or good the source is from where you are making your purchase. Another thing to look out for is the customer support. Is email support offered or maybe even a professional live chat support? If there is a live chat, make use of it and get all the information you need. One thing that you will need to absolutely avoid is going for an unreasonable cheap account from a random website without reputation. Sadly, some places sell verified, banned or even hacked accounts. Instead, you need to make sure that the source or website from where you are getting your LoL Account should be completely safe and reliable at all costs. It may cost you a few more bucks, but it is better than the account which might get banned or stop working after a certain period time. This is why it is crucial that you don’t just end up buying from a completely random website."
+            }
+          },
+          "e863ede0-e6e3-4c47-b5a5-8315c70b5a49": {
+            "type": "most_asked_technical",
+            "settings": {
+              "question_faqs_technical": "What to Do After Receiving the Account?",
+              "answer_faqs_technical": "As soon as you receive your account, we recommend that you check a number of things to avoid facing any kind of complication. Start with checking your account for any type of issues. If you notice anything wrong with the account, we strongly recommend that you contact us so we can have a look. If you don’t know what things to check, you will have to check things like the Server, Essences, Status of the account, and whether it has been previously used or not. The format of the account is always as to mention the name of the player followed by the password and the server. After you have confirmed that there is nothing wrong with your account, you should immediately change the email, and the password of the account in order to completely secure it. To do this, you will have to access the League’s website. After you launch the game, we suggest going to a custom game and adjusting the settings of your game. Some of the most important settings include: Video – Enable line missile display (for skillshots!) Interface - Turn on Chat as well as timestamps. Interface - Turn on Gold, Mana, Damage, Heal, Mana, and similar settings (at the bottom). Sounds – Unmute Game – Turn off movement prediction (at the bottom). Once you are done with adjusting the game’s settings, we suggest buying 20 different champions to use in ranked. Lastly, change your in-game name. You should now be set to enjoying your level 30 LoL unranked smurf account. Just make sure that you follow all these instructions, so you don’t end up facing any type of issues in the future."
+            }
+          }
+        },
+        "block_order": [
+          "d7e3e296-f399-4983-91e9-37ec106bdf95",
+          "89394b2a-e4af-49fa-bed5-64fe24da521b",
+          "e4856d39-06ac-488a-85c0-33e4afb56c71",
+          "4224d3aa-a584-4088-a927-0a06a39dc929",
+          "4b727597-7526-466f-bd5e-1102067c6cc1",
+          "e863ede0-e6e3-4c47-b5a5-8315c70b5a49"
+        ],
+        "settings": {
+          "enable": true,
+          "title_faqs": "Frequently Asked Questions",
+          "text_faqs": "",
+          "color_title_faqs": "#000d41",
+          "font_size_title_faqs": "50px",
+          "color_icon_qs": "#dddddd",
+          "color_question": "#296fc2",
+          "font_size_qs": "14px",
+          "color_question_answer": "#73788a",
+          "font_size_answer": "14px",
+          "title_pre_questions": "",
+          "des_pre_questions": "",
+          "title_technical_questions": "",
+          "des_technical_questions": "",
+          "color_title_botton": "#000d41",
+          "font_size_title_botton": "20px"
+        }
+      },
+      "1640016756a8bc3036": {
+        "type": "a-boosting-new",
+        "blocks": {
+          "1640016756a8bc3036-0": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/Placements-Icon.png",
+              "boost_text": "Unranked Accounts",
+              "hading_color": "#000d41",
+              "boost_desc": "Get your new Level 30 Unranked Smurf and start crushing your ranked games instantly!",
+              "text_color": "#313131",
+              "boost_url": "https:\/\/accountsoflegends.com\/products\/lol-smurfs?variant=32122710032472"
+            }
+          },
+          "27d37ab5-3615-4255-aab1-fd7bdbbed7b4": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/ddx6q22-c6936a5b-73d6-409d-b248-0b370494f90f.png",
+              "boost_text": "Ranked Accounts",
+              "hading_color": "#000d41",
+              "boost_desc": "We offer high quality ranked accounts for NA and EUW with full E-Mail access.",
+              "text_color": "#313131",
+              "boost_url": "https:\/\/accountsoflegends.com\/collections\/ranked-accounts"
+            }
+          },
+          "9717bb3e-aa20-44a7-b192-9fab3984307b": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/4._lulu_184429af-a149-4fc5-aa3a-d2142f835633.png",
+              "boost_text": "Free LoL Accounts",
+              "hading_color": "#000d41",
+              "boost_desc": "Win a free LoL Account in your daily Lootbox! You can win prizes every day!",
+              "text_color": "#313131",
+              "boost_url": "https:\/\/accountsoflegends.com\/pages\/lootbox"
+            }
+          },
+          "e3e352f3-ebdc-445d-8fd0-7828b80aa7ee": {
+            "type": "text",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/3.png",
+              "boost_text": "Earn Money",
+              "hading_color": "#000000",
+              "boost_desc": "Earn money by playing your favorite game! Get your Cashflow account and get paid!",
+              "text_color": "#313131",
+              "boost_url": "https:\/\/accountsoflegends.com\/products\/cashflow?variant=39808915538008"
+            }
+          }
+        },
+        "block_order": [
+          "1640016756a8bc3036-0",
+          "27d37ab5-3615-4255-aab1-fd7bdbbed7b4",
+          "9717bb3e-aa20-44a7-b192-9fab3984307b",
+          "e3e352f3-ebdc-445d-8fd0-7828b80aa7ee"
+        ],
+        "settings": {
+          "boost_text": "What we offer",
+          "hading_color": "#000d41",
+          "boost_desc": "",
+          "text_color": "#313131"
+        }
+      },
+      "product-template-additional-data": {
+        "type": "product-template-additional-data",
+        "blocks": {
+          "47481f05-f3bc-4201-be63-1be4ae6c1f16": {
+            "type": "text",
+            "settings": {
+              "boost_title": "Instant Delivery",
+              "boost_text": "You get your new LoL account instantly on your email after purchasing. No annoying waiting with our 24\/7 instant delivery!"
+            }
+          },
+          "571cf95b-540a-4316-9bc3-3a744be6e13f": {
+            "type": "text",
+            "settings": {
+              "boost_title": "Full E-Mail Access",
+              "boost_text": "All of our Ranked LoL Accounts come with full E-Mail access, that means you can change E-Mail and Password to fully secure the Account. Nobody else will ever have access to it."
+            }
+          },
+          "2e358bd1-d5e7-4e9e-a81d-61d57fb6abab": {
+            "type": "text",
+            "settings": {
+              "boost_title": "No Hidden Fees Or Taxes",
+              "boost_text": "All prices on our website are final. that means there will not be any suprises when finalizing the order. You will never even pay a single cent more than displayed."
+            }
+          },
+          "e751729f-dba2-4d38-9a14-8d1795bd7230": {
+            "type": "text",
+            "settings": {
+              "boost_title": "Live Customer Support",
+              "boost_text": "You can always reach out to us easily in the live chat in the bottom right corner. Our dedicated customer support will cover all your needs.dedicated customer support will cover all your needs."
+            }
+          }
+        },
+        "block_order": [
+          "47481f05-f3bc-4201-be63-1be4ae6c1f16",
+          "571cf95b-540a-4316-9bc3-3a744be6e13f",
+          "2e358bd1-d5e7-4e9e-a81d-61d57fb6abab",
+          "e751729f-dba2-4d38-9a14-8d1795bd7230"
+        ],
+        "settings": {}
+      },
+      "mmr-title-text": {
+        "type": "mmr-title-text",
+        "blocks": {
+          "a1f504eb-b466-44f6-84a3-e5ec35d0509b": {
+            "type": "text",
+            "settings": {
+              "title1": "<a style=\"text-decoration:underline;\" href=\"#pageMMRInner\">LoL MMR Calculator<\/a>: The Key to League of Legends Victory",
+              "textarea1": ""
+            }
+          },
+          "0464f8e6-9916-4d30-b00b-97e2e8d401b7": {
+            "type": "text",
+            "settings": {
+              "title1": "Overview",
+              "textarea1": "<a href=\"#scroll-what-exactly-is-mmr\">\n1.  What Exactly Is MMR?\n<\/a>\n<br>\n<a href=\"#scroll-how-does-mmr-work\">\n2. How does MMR Work?\n<\/a>\n<br>\n<a href=\"#scroll-how-do-i-know-my-mmr-is-good-bad\">\n3. How Do I Know My MMR In LoL Is Good\/Bad?\n<\/a>\n<br>\n<a href=\"#scroll-8-tips-to-improve-your-lol-mmr-today\">\n4. 8 Tips To Improve Your LoL MMR Today! \n<\/a>\n<br>\n<a href=\"#scroll-different-mmrs-in-different-game-modes-solo-duo-flex-normal-aram\">\n5. Different MMRs In Different Game Modes (Solo\/Duo, Flex, Normal, ARAM)\n<\/a>\n<br>\n<a href=\"#scroll-aram-mmr\">\n6. ARAM MMR\n<\/a>\n<br>\n<a href=\"#scroll-dodging\">\n7. Dodging\n<\/a>\n<br>\n<a href=\"#scroll-does-dodging-decrease-mmr\">\n8. Does Dodging Decrease MMR?\n<\/a>\n<br>\n<a href=\"#scroll-does-mmr-drop-from-decaying\">\n9. Does MMR Drop From Decaying?\n<\/a>\n<br>\n<a href=\"#scroll-your-mmr-and-smurfing\">\n10. Your MMR And Smurfing\n<\/a>\n<br>\n<a href=\"#scroll-mmr-some-final-thoughts\">\n11. MMR: Some Final Thoughts\n<\/a>\n<br>"
+            }
+          },
+          "817189cd-268a-46b1-86d3-05b1e12d59fe": {
+            "type": "text",
+            "settings": {
+              "title1": "What Exactly Is MMR?",
+              "textarea1": "Since the very beginning of League of Legends, a Matchmaking Rating system (MMR) has been one of the essential components utilized to keep it fair. It ensures that each player has the needed skill and knowledge to compete in various matches and that a novice is not pitted against more experienced players with superior knowledge (for example Platinum 2 against Diamond 1). Respectively, being Diamond 1 does not mean you only play against Diamond 1 players. Chances are that you are smurfing and have a 70%+ win rate. In this case, your hidden MMR would be much higher you’re your actual rank Diamond 1. If your MMR is higher than your actual rank, you will play against players of a higher elo, but you also win a lot more LP. Your LP gain or loss is always determined by your hidden MMR. Having a higher MMR than your actual rank leads to a higher LP gain and lower LP loss while having a lower MMR than your actual rank leads to a lower LP gain and higher LP loss. In this way, the MMR is trying to move people to their actual rank as quickly as possible. While MMR can be really confusing, it is also a really important number to understand if you are seriously trying to improve your rank. That’s why we decided to dive deep into everything you need to know about the LoL MMR system, how it works, and how to improve it!\n<br><br>"
+            }
+          },
+          "fe404699-67b5-46a0-b5ab-971a0a2d509a": {
+            "type": "text",
+            "settings": {
+              "title1": "How Does MMR Work?",
+              "textarea1": "One of the first questions you should ask is, \"Where can I find my MMR?\" and \"What metrics are used?\" MMR is not visible to players, that's why it's also called „Hidden Rank“ or „Hidden MMR“.  <br> \nThe only variables when it comes to League of Legends MMR, are wins and losses. Nothing else affects a player's MMR. Not even stats like gold per minute, kills, deaths, and assists (KDAs), or creep score (CS) per minute. It's essential to understand that just a win will boost your MMR and a defeat will lower it.\n<br> \nExpect +10 MMR points for each win and -10 MMR points for each loss (not LP!). Because LP is solely used to determine your rank on the leaderboard, getting as many points as possible is critical, especially because your MMR in LoL is always hidden but directly impacts your LP gains.\n<br>\nKeep in mind that a player's metrics are calculated after all games have been completed. In addition, the MMR tracker only considers the previous 30 days of records. This means that an MMR calculator will only return results if your account has enough games in the last 30 days. It is not possible for us, to calculate your MMR if your account hasn't been active in the last 30 days.\n<br><br>"
+            }
+          },
+          "81c376bf-479e-417a-be0a-d45393721b05": {
+            "type": "text",
+            "settings": {
+              "title1": "How Do I Know My MMR Is Good\/Bad?",
+              "textarea1": "You might have understood now that MMR has a huge impact on your LP gain in LoL. An easy way to spot a good or bad MMR is to look at your LP gains and losses. If your LP gains are small (13-16LP), chances are that your MMR is bad and the MMR system indicates that you should be in a lower elo. This leads to you being matched with lower elo players.\n<br>\nIf your LP gains are high (24+LP) you can be sure that your MMR is good and you should continue climbing without issues. The game will match you with higher ranked people because your MMR indicates that you deserve a higher rank. \n<br>\nIf you are still unsure if your MMR is good or bad, you can use MMR trackers and calculators like ours. Simply choose your ser-ver (NA, EUW, EUNE, KR) and type in your account name. After that, you will get a detailed report of your MMR. If your MMR is higher than your actual rank, your MMR is good and you gain more LP. If your MMR is lower than your actual rank, your MMR is bad and you gain less LP.\n<br><br>"
+            }
+          },
+          "61df83a3-3cdd-4138-a341-23bb3465c113": {
+            "type": "text",
+            "settings": {
+              "title1": "8 Tips To Improve Your LoL MMR Today!",
+              "textarea1": "Simply put, the only way to improve your MMR is to win. Your MMR increases when you win a game. When you lose a game, your MMR drops. Unfortunately, a big losing streak will decrease your MMR more than a long win streak would increase your MMR. That’s why it is important to play well and win consistently without long losing streaks.\n<br><br>\n\nAfter long losing streaks, many people experienced really low LP gains, and even after a long win streak, they could not recover their MMR in order to get better LP gains. That’s why a great way to improve your MMR is to take a step back from your main account and play on a smurf. Smurfing is a good way to practice new things and you have the chance to really focus on improving your gameplay. These days you don’t even have to level a LoL smurf account yourself anymore, you can easily\n\n<a style=\"text-decoration:underline;\" href=\"https:\/\/accountsoflegends.com\/products\/lol-smurfs?variant=32122710032472\">buy Level 30 LoL unranked smurf accounts<\/a> \n\nthat are ready for ranked \n\n<a style=\"text-decoration:underline;\" href=\"https:\/\/accountsoflegends.com\/products\/lol-smurfs?variant=32122710032472\">on our site<\/a>. We even offer hand-leveled Level 30+ LoL accounts with instant delivery and lifetime warranty so you can start improving right away!\n<br><br>\n\nPlay duo queue with higher MMR players. If you play with higher MMR players you will also be matched with higher MMR players. This can quickly boost your MMR if you win a lot of games with that duo partner. On the other hand, your duo partner would have to take a step back in MMR since he will be playing with lower MMR players to meet a relatively fair MMR average between both teams.\n<br><br>\n\nAnother way to improve your MMR is abusing the meta. You might have heard of terms like “meta slave” which refers to people only playing what is strong at the moment. These players will instantly drop a champ if a nerf was released or the new hot thing comes out. However, sticking to the meta will statistically improve your MMR. A wise man once said: “Monkey sees Malphite 58% win-rate, Monkey plays Malphite.”\n<br><br>\n\nARAM can help you improve your skill, and winning ARAMs can help you improve your ARAM MMR, but there are no ARAM ranks since there is no ARAM leader board. In Solo and Duo ranked games, ARAM MMR has no bearing on the real rank. But as stated, we think that playing ARAM can really improve your understanding of the game and champions in LoL, and it can teach you important team-fighting lessons. To advance in ranked games, you must polish your skills, which ARAM gameplay can help you do. You can use an MMR calculator to get a better idea of how far you've actually come.\n<br><br>\n\nSometimes it is just important to keep a clear head and not get too emotional playing the game. Because you can enhance your scoreboard rating by winning or losing LP in ranked Solo and Duo matches, it can be nerve-wracking or fiercely competitive. Some gamers aren't serious about the game and are simply looking for a way to pass the time. They have no desire to become professional gamers or to be concerned about leaderboards. Others are simply unconcerned with the tension of league games and the possibility of losing league points and MMR. It's useful to be aware of the various player demographics and where they go to play games. Depending on where you're looking for matches, you could be dealing with a wide range of people who will either employ every trick in the book or refuse to look at the screen at all. Not all people might be as dedicated as you.\n<br><br>\n\nDon’t rage queue. Rage queue refers to queueing up even after losing many games in a row and you’re really frustrated. This usually leads to even longer losing streaks and a massive drop in your performance. If you noticed that you lost a lot of games recently it is recommended to take a step back. Play some other game modes like ARAM or normals where you can take it easy and get back on track. A common practice from experienced players is getting a new LoL smurf account to practice ranked games without having to worry about losing on your main account.\n<br><br>\n\nIf you can’t win it, dodge it\nIf you avoid a game that you believe you can't win and then find a different lobby that you can win, you'll still end up with a net LP gain without putting your MMR at risk. If you had played that game and lost, you would have lost both: LP and MMR. You only lose -3 LP but not MMR if you dodge. In League of Legends, your MMR is only updated after you complete a game.\n<br>\nBy doing a quick op.gg check on your team you can also see if you’re playing with decent people or if you have bad players or even trolls in your team. To do that, simply copy all names from the champ select, and paste them into op.gg at once (do that by copying the text “player 1 joined the lobby, player 2 joined the lobby” etc. OP.GG will automatically filter the names out and provide you a list with all stats for all players at the same time) This will instantly show you the win rates and the past 10 games of all players on one page. If you see people having a 30% win rate or people lost the last 6 games you should consider dodging. This will keep your MMR safe from an almost guaranteed loss.\n<br><br> <br>"
+            }
+          },
+          "21cc7f29-e623-4172-a396-cd048e48be27": {
+            "type": "text",
+            "settings": {
+              "title1": "Different MMRs in different game modes (Solo\/Duo, Flex, Normal, ARAM)",
+              "textarea1": "League of Legends offers several game types, including Solo or Duo ranked, Flex ranked, ARAM, Draft, and Blind Pick, each with its own MMR. There are also rotating special game modes that add dimension to the player's gaming experience. MMR and the gaming flexibility have made League popular with a wide range of different players, from beginners to professionals.\n<br>\nIn the main ranked queue (Solo\/Duo Queue)you can choose whether to play alone (Solo) or with a friend from the start (Duo). If you want to play with more than two people, there is also a flex mode accessible with up to 3 or 5 people. \n<br>\nLeague of Legends offers a variety of game modes, some of which are rotational and others that are permanent. To keep the experience fresh, new modes are added regularly. Teamfight Tactics and 'All Random All Mid' (ARAM) are the other permanent games at the moment, in addition to Summoner's Rift. It is important to understand that each game mode has its own MMR, so your ARAM MMR will not impact your Solo\/Duo MMR.\n<br><br>"
+            }
+          },
+          "ff3837b4-fb74-4d07-bccb-a6736f1ac781": {
+            "type": "text",
+            "settings": {
+              "title1": "ARAM MMR",
+              "textarea1": "Many League of Legends players are unaware that ARAM MMR may be used to obtain experience before jumping into actual ranked games. By playing a lot of ARAM you gain a lot of experience. Since ARAM is heavily fighting-based, you will be able to improve your team-fight skills, which you can then implement in your ranked games. \n<br><br>"
+            }
+          },
+          "ecd40ae6-87cf-4e62-9e3f-9d9eee3c36fa": {
+            "type": "text",
+            "settings": {
+              "title1": "Dodging",
+              "textarea1": "Players can lose league points (LP) if they quit during the pick and ban phase of a ranked game, often known as the 'champ select' in League of Legends. This is known as dodging, and it requires all players to queue up to find a new lobby. This can be frustrating and time-consuming.\n<br>\nPlayers usually dodge when they think the enemy got a better or even unfair team comp. Another reason for a dodge could be being banned out, sadly not just by the enemy team (we all love this game). However, if you dodge a game you will lose LP. This is important to remember because losing a match isn't the only way to lose LP. But the main question is can dodging affect your MMR?\n<br><br>"
+            }
+          },
+          "a256a835-2d6b-4437-92f6-5ba16b783f38": {
+            "type": "text",
+            "settings": {
+              "title1": "Does Dodging Decrease MMR?",
+              "textarea1": "Simply put: No. You only lose MMR when you lose, and you win MMR when you win a game. Just keep in mind the difference between MMR and LP. MMR can only change after a game has finished, while you can already lose LP before a game even started by dodging a champ select. But there are also other factors to take care of since you don’t just lose LP by dodging but you risk getting long time penalties if you dodge too often.\n<br>\nWhen you win ranking games, you gain LP. If things don't go as planned, you lose some of your LP. Dodging is an important factor to consider. If you dodge a LoL match for the first time within 24 hours, you will lose 3 LP. But be careful, for the second dodge within 24 hours will be punished even more severely, and the third dodge will lock you out of your LoL account for 12 hours.\n<br><br>"
+            }
+          },
+          "0db8d9e3-fd99-466f-b429-4a3813be26ec": {
+            "type": "text",
+            "settings": {
+              "title1": "Does MMR Drop From Decaying?",
+              "textarea1": "If you are a Diamond 4+ player, you might be wondering if decaying has an impact on my MMR. Decaying means that you will lose LP and drop in divisions until platinum if your account has been inactive for a certain amount of time. This only happens when your rank is diamond or higher. The lowest you can drop is platinum 1. MMR does not decrease if you decay. That’s why you can be diamond 4 with a challenger MMR if your rank was challenger before decaying. So even when your displayed rank is diamond 4, the MMR system will match you with challenger players because your MMR never changed. Your LP gains would be extremely high in this case to assure you get back to your rank as quickly as possible.\n<br><br>"
+            }
+          },
+          "a74c4afc-46cf-4ee3-88bb-c3364cbbb906": {
+            "type": "text",
+            "settings": {
+              "title1": "Your MMR And Smurfing",
+              "textarea1": "Whether you believe the Smurfing practice is unjust or merely a way to have some fun, MMRs or governance do not prevent smurfing. They can, however, assist you in identifying Smurfs based on their metrics.\n<br>\nWhile a Smurf might theoretically be banned, this never really happens in practice because Smurfs are separated into a different ranked queue known as “smurf queue”.\n<br>\nSmurfs have skewed metrics in general, which may be easily identified by comparing actual rank to MMR. It's most certainly a Smurf if the actual rank on the leaderboard displayed is gold while the MMR is platinum.\n<br>\nRiot Games decided to address the Smurf problem in games by introducing a Smurf Queue, which pits Smurfs against one another.\n<br>\nIt's worth noting that, while many people think of Smurfing as a terrible thing, this isn't always the case. There are legitimate reasons for a user to create a new profile in order to join friends who have only recently begun playing a game. \n<br>\nIn games, you can expect Smurfing to persist for a while, and you'll have to adjust to the actual (rather than theoretical) gameplay and rank. The last thing a Smurf wants to do is face another Smurf, but thanks to some clever Riot Games design, this is quite likely to happen due to the creation of the smurf queue.\n<br><br>"
+            }
+          },
+          "f7918189-0c36-4994-b012-2778f918da51": {
+            "type": "text",
+            "settings": {
+              "title1": "MMR: Some Final Thoughts",
+              "textarea1": "An MMR tracker is a valuable tool for better understanding your current position on the League of Legends ladder. A higher MMR will be rewarded because it will affect how much LP you get or lose per match. The MMR of a player is calculated and estimated with <a style=\"text-decoration:underline;\" href=\"https:\/\/accountsoflegends.com\/pages\/mmr\">this tool<\/a>. \n\nYou can use the MMR checker on\n <a style=\"text-decoration:underline;\" href=\"https:\/\/accountsoflegends.com\/pages\/mmr\">Accounts Of Legends<\/a> on the servers NA, EUW, EUNE and KR."
+            }
+          },
+          "b727e490-a2d8-431c-ae4e-81c81f62d4eb": {
+            "type": "text",
+            "settings": {
+              "title1": "Thanks to Josh from  <a style=\"text-decoration:underline;\" href=\"https:\/\/https:\/\/na.whatismymmr.com\/\">whatismymmr.com<\/a>",
+              "textarea1": "Big thanks to Josh from \n\n <a style=\"text-decoration:underline;\" href=\"https:\/\/https:\/\/na.whatismymmr.com\/\">whatismymmr.com<\/a> who made this possible with his public API mmr tracker. If you want to support this project, we highly recommend you to join \n<a style=\"text-decoration:underline;\" href=\"https:\/\/www.patreon.com\/whatismymmr\">Joshs Patreon<\/a>!"
+            }
+          }
+        },
+        "block_order": [
+          "a1f504eb-b466-44f6-84a3-e5ec35d0509b",
+          "0464f8e6-9916-4d30-b00b-97e2e8d401b7",
+          "817189cd-268a-46b1-86d3-05b1e12d59fe",
+          "fe404699-67b5-46a0-b5ab-971a0a2d509a",
+          "81c376bf-479e-417a-be0a-d45393721b05",
+          "61df83a3-3cdd-4138-a341-23bb3465c113",
+          "21cc7f29-e623-4172-a396-cd048e48be27",
+          "ff3837b4-fb74-4d07-bccb-a6736f1ac781",
+          "ecd40ae6-87cf-4e62-9e3f-9d9eee3c36fa",
+          "a256a835-2d6b-4437-92f6-5ba16b783f38",
+          "0db8d9e3-fd99-466f-b429-4a3813be26ec",
+          "a74c4afc-46cf-4ee3-88bb-c3364cbbb906",
+          "f7918189-0c36-4994-b012-2778f918da51",
+          "b727e490-a2d8-431c-ae4e-81c81f62d4eb"
+        ],
+        "settings": {}
+      },
+      "lootbox-title-text": {
+        "type": "lootbox-title-text",
+        "blocks": {
+          "a6d5fc6b-7428-4b53-a774-fb20b1e3321d": {
+            "type": "text",
+            "settings": {
+              "title1": "3 ways to get LoL smurf accounts for free in 2022",
+              "textarea1": "On our website, you can get League of Legends accounts completely for free. One option is of course our loot box that you can open every day. Every 24 hours your get one free loot box and for every $10 spent you get one loot box as well. In our official LoL account loot box, you can win discount codes from 5% up to 75% as well as free LoL accounts on NA, EUW, and EUNE! To open your loot box, simply create (or log in to) your account on our website. After logging into your account, go to our loot box page and click \"Open box\". If you win a free LoL account, it will instantly be sent to your email address.\n<a style=\"text-decoration:underline;\" href=\"https:\/\/accountsoflegends.com\/account\/register\">create<\/a> \n\n (or \n\n<a style=\"text-decoration:underline;\" href=\"https:\/\/accountsoflegends.com\/account\/login\">log in<\/a>\n\n to) \n\nyour account on our website. After logging into your account, go to our lootbox page and click \"Open box\". If you win a free LoL account, it will instantly be sent to your email address.\n<br>\n<br>\nAnother way of getting a LoL account completely for free is by signing up for our newsletter. Here we offer great deals and do VIP giveaways. You can not just get normal LoL smurfs for free but even hand leveled LoL accounts for NA, EUW, and EUNE! So by signing up for our newsletter you are always up to date with the latest deals and giveaways.\n\n\n<br> <br>\n\n\nThe third way to get a LoL account without having to spend any money is by becoming an \n\n<a style=\"text-decoration:underline;\" href=\"https:\/\/accountsoflegends.com\/pages\/affiliates?\">affiliate partner<\/a>\n\n on our website. You can not just earn commissions on every sale up to 60%, but also get free LoL accounts periodically, depending on how much traffic you bring to our site."
+            }
+          },
+          "4526e836-2261-4c6c-916a-63ee5039db8b": {
+            "type": "text",
+            "settings": {
+              "title1": "<br>What rank and level are the accounts?",
+              "textarea1": "All accounts that you can get for free on our website are at least level 30 and are unranked accounts. That means they have not been in a ranked game. When getting a \n\n\n<a style=\"text-decoration:underline;\" href=\"https:\/\/accountsoflegends.com\/products\/lol-smurfs?variant=32122710032472%0A\">new unranked level 30 LoL smurf account<\/a> \n\nyou will start with a lower rank and have to climb up the leaderboard. However, if you win a few games your MMR will rise quickly on fresh LoL smurfs. After playing some ranked games you can keep track of your rank and MMR using our official\n\n<a style=\"text-decoration:underline;\" href=\"https:\/\/accountsoflegends.com\/pages\/mmr\">MMR  calculator<\/a> \n\nfor League of Legends accounts (Solo\/Duo but also Normal and ARAM) by clicking \n<a style=\"text-decoration:underline;\" href=\"https:\/\/accountsoflegends.com\/pages\/mmr\">here<\/a>."
+            }
+          },
+          "a6e14d08-3393-420d-9528-2d576eaf4934": {
+            "type": "text",
+            "settings": {
+              "title1": "<br> Do your free LoL accounts have a warranty?",
+              "textarea1": "Yes! You do not just get a free LoL account, but on top of that, you get a lifetime warranty with it. Your League of Legends smurf account will always be replaced by us in case of any issues."
+            }
+          }
+        },
+        "block_order": [
+          "a6d5fc6b-7428-4b53-a774-fb20b1e3321d",
+          "4526e836-2261-4c6c-916a-63ee5039db8b",
+          "a6e14d08-3393-420d-9528-2d576eaf4934"
+        ],
+        "settings": {}
+      },
+      "collection-template-new": {
+        "type": "collection-template-new",
+        "settings": {}
+      }
+    },
+    "content_for_index": [
+      "16370907372bb67905",
+      "163872392129c7a451",
+      "1637091630081ccd29",
+      "1640016756a8bc3036",
+      "1637091061cce3f912",
+      "1628785531c82c3e4b",
+      "1597344429549"
+    ],
+    "blocks": {
+      "10830403595879607806": {
+        "type": "shopify:\/\/apps\/reviews-io\/blocks\/reviewsio-core\/92a082e5-b297-4e88-b428-ac96cbc505f9",
+        "disabled": true,
+        "settings": {
+          "url_key": "REVIEWS.io",
+          "lang": "auto"
+        }
+      },
+      "15316669992541710076": {
+        "type": "shopify:\/\/apps\/reviews-io\/blocks\/reviewsio-rating-snippet\/92a082e5-b297-4e88-b428-ac96cbc505f9",
+        "disabled": true,
+        "settings": {
+          "star": "#000",
+          "snippet_mode": "default",
+          "text": "Reviews",
+          "line_break": false,
+          "show_popup": true,
+          "anchor_to_reviews_widget": false
+        }
+      }
+    }
+  }
+}

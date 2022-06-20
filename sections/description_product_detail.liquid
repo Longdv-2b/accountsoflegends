@@ -1,0 +1,305 @@
+{% include 'style-custom-block-overview' %}
+{% if section.settings.enable %}
+<section class="description_pr custom-block-overview section-{{section.id}} ">
+  <div class="overview-top">
+    <div class="container">
+      <h2 class="title">{% include 'multilang' with section.settings.overview_title %}</h2>
+      <p class="des">{% include 'multilang' with section.settings.overview_des %}</p>
+    </div>
+  </div>
+  <div class="overview-bottom">
+    {% for block in section.blocks %}
+      <div class="custom-overview block-{{block.id}} {% if block.settings.alignment == 'right' %}custom-overview-rtl{% endif %}" style="background: {{block.settings.back_style_left}}">
+        <div class="left ">
+          {%- assign img_style = block.settings.img_style | img_url: '1000x'-%}
+          <div class=" {% if block.settings.style_custom == 'video' %}video-mp img animate-scale {% else %}img{% endif %}">
+            {% if block.settings.img_style != blank %}
+            <div class="overview_back" style="padding-top:68.2%;">
+          	<img data-src="{{img_style}}" alt="{{img_style.alt}}" {% include 'lazyload' %}>
+              {% if block.settings.style_custom == 'video' %}
+              <div class="video icon-yt">
+                {% include 'icon-youtobe' %}
+              </div>
+              {% endif %}
+            </div>
+            {% else %}
+            <div class="no-image {% if block.settings.style_custom == 'video' %} video {% endif %}" style="padding-top:68.2%; font-size:20px">
+              <span>{% if block.settings.style_custom == 'video'%} {% include 'icon-youtobe' %} {% else %}970X650px {% endif %}</span>
+            </div>
+            {% endif %}
+          </div>
+          {% if block.settings.style_custom == 'video' %}
+          <div class="modal_cms">
+            <div class="modal-cms-overlay"></div>
+            <div class="modal-content-cms">
+              <div class="header">
+                <a class="close-button" title="{{ 'cart.ajax_cart.close' | t }}" href="javascript:void(0)">
+                  {% include 'icon-close' %}
+                </a>
+              </div>
+              <div class="videocontent">
+                {% if block.settings.video_id == 'video_youtube' %}
+                <iframe width="100%" data-video-id="{{ block.settings.video_link }}" height="100%" src="https://www.youtube.com/embed/{{ block.settings.video_link }}?enablejsapi=1&rel=0&autoplay=0" frameborder="0" allowfullscreen="" volume="0"></iframe>
+
+                {% else %}
+                <video loop controls playsinline class="video video--product">
+                  <source type="video/mp4" src="{{block.settings.video_mp4_link}}">
+                </video>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        <div class="right overview-content">
+          <div class="container-overview">
+            <div class="content">
+            <h3 class="title" style=" font-size: {{block.settings.font_size_title_style}};color: {{block.settings.title_style_color}} ;">
+              {% include 'multilang' with block.settings.title_style %}
+            </h3>
+              <div class="des" style="font-size: {{block.settings.font_size_des_style}}; color: {{block.settings.des_style_color}} ;">
+                {% include 'multilang' with block.settings.des_style %}
+              </div>
+              {% if block.settings.link_title != blank %}
+              <div class="btn-link">
+                <a class="link" href="{{block.settings.link_style}}" style="color:{{block.settings.link_color}}; font-size: {{block.settings.font_size_link}}">
+                  {% include 'multilang' with block.settings.link_title %}
+                </a>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    
+  </div>
+</section>
+{% endif %}
+
+
+
+<script>
+  $(document).ready(function(){
+    $('.overview-bottom .video-mp').click(function(){
+    	$('.video--product').trigger('play');
+    });
+  });
+  
+  
+  $(document).ready(function(){
+    $('.modal-cms-overlay').click(function(){
+    	$('.video--product').trigger('pause');
+    });
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Product Descriptions",
+    "max_blocks": 9,
+    "settings": [
+        {
+          "type":"checkbox",
+          "id":"enable",
+          "label":"Enable?",
+          "default":true
+        },
+        {
+          "type":"text",
+          "id":"overview_title",
+          "label":"Title",
+          "default":"Description"
+        },
+        {
+          "type":"color",
+          "id":"title_color",
+          "label":"Color",
+          "default":"#000d41"
+        },
+        {
+          "type":"text",
+          "id":"font_size_title",
+          "label":"Font Size",
+          "default":"50px"
+        },
+        {
+          "type":"textarea",
+          "id":"overview_des",
+          "label":"Content",
+          "default":"Phasellus lorem an malesuada ligula pulvinar commodo maecenas de metropolis"
+        },
+        {
+          "type":"color",
+          "id":"sub_content_color",
+          "label":"Color",
+          "default":"#73788a"
+        },
+        {
+          "type":"text",
+          "id":"font_size_des",
+          "label":"Font Size",
+          "default":"14px"
+		}
+     ],
+      "blocks":[
+        {
+          "type":"descript_style",
+          "name":"Description Style ",
+          "settings":[
+          {
+          "type":"select",
+          "id":"alignment",
+          "label":"Content Alignment",
+          "default":"left",
+          "options":[
+            {
+              "value":"left",
+              "label":"Left"
+            },
+            {
+              "value":"right",
+              "label":"Right"
+            }
+          ]
+        },
+        {
+          "type":"select",
+          "id":"style_custom",
+          "label":"Style Custom",
+          "default":"img",
+          "options":[
+            {
+              "value":"img",
+              "label":"Image"
+            },
+            {
+              "value":"video",
+              "label":"Video"
+            }
+          ]
+        },
+        {
+              "type":"select",
+              "id":"video_id",
+              "label":"Video",
+              "options": [
+                  {
+                    "value": "video_youtube",
+                    "label": "Video Youtube"
+                  },
+                  {
+                    "value": "video_mp4",
+                    "label": "Video Mp4"
+                  }
+                ],
+              "default": "video_youtube"
+            },
+            {
+              "type": "text",
+              "id": "video_link",
+              "label": "YouTube video ID",
+              "default": "_9VUPq3SxOc",
+              "info": "[Find your YouTube video ID](https://docs.joeworkman.net/rapidweaver/stacks/youtube/video-id)."
+            },
+            {
+              "type": "text",
+              "id": "video_mp4_link",
+              "label": "Video link"
+            },
+        {
+          "type":"header",
+          "content":"Left Style"
+        },
+        {
+          "type":"color",
+          "id":"back_style_left",
+          "label":"Background",
+          "default":"#f7f7f7"
+        },
+        {
+          "type":"text",
+          "id":"title_style",
+          "label":"Title",
+          "default":"Phasellus Loremous"
+        },
+        {
+          "type":"color",
+          "id":"title_style_color",
+          "label":"Color",
+          "default":"#000d41"
+        },
+        {
+          "type":"text",
+          "id":"font_size_title_style",
+          "label":"Font Size",
+          "default":"30px"
+        },
+        {
+          "type":"textarea",
+          "id":"des_style",
+          "label":"Content",
+		  "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis."
+        },
+        {
+          "type":"color",
+          "id":"des_style_color",
+          "label":"Color",
+          "default":"#73788a"
+        },
+        {
+          "type":"text",
+          "id":"font_size_des_style",
+          "label":"Font Size",
+          "default":"14px",
+          "info":"-----------------------------"
+        },
+        {
+              "type":"text",
+              "id":"link_title",
+              "label":"Link title"
+            },
+            {
+              "type":"color",
+              "id":"link_color",
+              "label":"Color",
+              "default":"#296fc2"
+            },
+            {
+              "type":"text",
+              "id":"font_size_link",
+              "label":"Font Size",
+              "default":"14px"
+            },
+            {
+              "type":"url",
+              "id":"link_style",
+              "label":"Add link"
+            },
+        {
+          "type":"image_picker",
+          "id":"img_style",
+          "label":"Image"
+        }
+
+
+          ]
+        }
+        
+
+      ],
+      "presets":[
+        {
+          "name":"Product Descriptions",
+          "category":"Advanced layout",
+          "blocks":[
+            {
+              "type":"descript_style"
+            }
+            
+          ]
+        }
+
+      ]
+  }
+{% endschema %}

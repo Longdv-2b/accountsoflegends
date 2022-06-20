@@ -1,0 +1,331 @@
+{% raw %}
+{% assign ready_to_ship_label = translation.filter.ready_to_ship | default: "Ready to ship" %}
+{% assign in_stock_label      = translation.filter.in_stock | default: "In Stock" %}
+{% assign out_of_stock_label  = translation.filter.out_of_stock | default: "Out of Stock" %}
+<div class="gf-filter-header">
+  <div class="gf-filter-heading">{{translation.filter.filter_by | default: "Filter by"}}</div>
+  <span onclick="globofilter.toggleCanvas()" class="gf-close-canvas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11.414 10l6.293-6.293a1 1 0 10-1.414-1.414L10 8.586 3.707 2.293a1 1 0 00-1.414 1.414L8.586 10l-6.293 6.293a1 1 0 101.414 1.414L10 11.414l6.293 6.293A.998.998 0 0018 17a.999.999 0 00-.293-.707L11.414 10z" fill="#5C5F62"></path></svg></span>
+</div>
+<div class="gf-filter-contents">
+
+  {% if filters %}
+    <div class="gf-filter-contents-inner">
+      {% for filter in filters %}
+      {% unless filter.values.size == 1 and filter.values.first.selected == false and filter.values.first.count == pagination.total %}      <div data-filter-type="{{filter.attribute | replace: 'option:', ''}}" data-filter-id="{{filter.id | escape}}" class="gf-option-block {{filter.class}}{% if filter.is_collapse %} is-collapsed{% endif %}">
+        <div class="gf-block-title">
+          <h3>
+            <span>{% if translation.labels and translation.labels[filter.id] %}{{translation.labels[filter.id]}}{% else %}{{filter.label | escape}}{% endif %}</span>
+            {% if filter.help %}
+            <span class="gf-tooltip-trigger" aria-hidden="true">?</span>
+            <div class="gf-tooltip"><div class="gf-tooltip-content">{{filter.help | newline_to_br}}</div></div>
+            {% endif %}
+          </h3>
+          {% if filter.is_selected %}
+          <a class="gf-clear" onclick="removeFilter({{filter.id | escape}})">{{ translation.filter.clear | default: "Clear"}}</a>
+          {% endif %}
+        </div>
+        <div class="gf-block-content">
+          {% if filter.searchable and filter.style != 'Slider' %}<input type="text" placeholder="{{ translation.filter.search | default: "Search options"}}" value="" onkeyup="globofilter.searchValues(this);" class="gf-search">{% endif %}
+          {% assign values_count = 0 %}
+          {% if filter.values %}{% assign values_count = filter.values | size %}{% endif %}
+          <div class="gf-scroll {% if filter.style != 'Slider' and values_count > 10 %}gf-block-scroll{% endif %}">
+            {% if filter.style == 'Slider' %}
+            <div class="gf-range-inputs">
+              <input 
+                class="gf-range-min" 
+                id="min-{{filter.id | escape}}" 
+                data-value="{{filter.values.min}}" 
+                data-min-value="{% if filter.attribute == 'Price' %}{{filter.ranges.min | money_without_format}}{% else %}{{filter.ranges.min}}{% endif %}" 
+                value="{% if filter.attribute == 'Price' %}{{filter.values.min | money_without_format}}{% else %}{{filter.values.min}}{% endif %}" 
+                type="text" 
+                aria-label="Min value"
+              />
+              <span class="gf-range-split"> - </span>
+              <input
+                class="gf-range-max"
+                id="max-{{filter.id | escape}}"
+                data-value="{{filter.values.max}}"
+                data-max-value="{% if filter.attribute == 'Price' %}{{filter.ranges.max | money_without_format}}{% else %}{{filter.ranges.max}}{% endif %}" 
+                value="{% if filter.attribute == 'Price' %}{{filter.values.max | money_without_format}}{% else %}{{filter.values.max}}{% endif %}" 
+                type="text" 
+                aria-label="Max value"
+              />
+            </div>
+            <div class="gf-range-slider" data-min="{{filter.ranges.min}}" data-max="{{filter.ranges.max}}" data-id="{{filter.id | escape}}" aria-label="{% if translation.labels and translation.labels[filter.id] %}{{translation.labels[filter.id]}}{% else %}{{filter.label}}{% endif %}" data-attribute="{{filter.id | escape}}" id="slider-{{filter.id | escape}}"></div>
+            {% else %}
+            <ul class="gf-option-box">
+              {% if filter.attribute == 'Collection' %}
+                {% assign collection_id = {% endraw %}{{collection.id | default: 0}}{% raw %} %}
+                {% if filter.tree %}
+                  {% for node in filter.tree %}
+                    <li{% if node.is_collapse %} class="is-collapsed"{% endif %} data-collection="{{node.value}}">
+                      <div>
+                      {% if filter.style == 'Checkbox' %}
+                        <a {% if node.selected or node.value == collection_id %} class="checked"{% endif %} onclick="toggleCheckboxFilter({{filter.id | escape}},'{{node.value}}')" title="{{node.label | escape}}">
+                          <span class="gf-Checkbox"></span>
+                          <span class="gf-label">{{node.label | escape}}</span>
+                                                  </a>
+                      {% elsif filter.style == 'Radio' %}
+                        <a {% if node.selected or node.value == collection_id %} class="checked"{% endif %} onclick="toggleRadioFilter({{filter.id | escape}},'{{node.value}}')" title="{{node.label | escape}}">
+                          <span class="gf-RadioButton"></span>
+                          <span class="gf-label">{{node.label | escape}}</span>
+                                                  </a>
+                      {% elsif filter.style == 'Collection' %}
+                        <a {% if node.selected or node.value == collection_id %} class="checked"{% endif %} onclick="changeCollection('{{node.handle}}')" title="{{node.label | escape}}">
+                          <span class="gf-label">{{node.label | escape}}</span>
+                                                  </a>
+                      {% endif %}
+                      {% if node.children %}<span></span>{% endif %}
+                      </div>
+                      {% if node.children %}
+                      <ul{% if node.is_collapse %} style="display:none"{% endif %}>
+                        {% for child in node.children %}
+                          <li{% if child.is_collapse %} class="is-collapsed"{% endif %} data-collection="{{child.value}}">
+                            <div>
+                            {% if filter.style == 'Checkbox' %}
+                              <a {% if child.selected or child.value == collection_id %} class="checked"{% endif %} onclick="toggleCheckboxFilter({{filter.id | escape}},'{{child.value | replace:"\\", "\\\\" | replace:"\'", "\\\'" | escape}}')" title="{{child.label | escape}}">
+                                <span class="gf-Checkbox"></span>
+                                <span class="gf-label">{{child.label | escape}}</span>
+                                                              </a>
+                            {% elsif filter.style == 'Radio' %}
+                              <a {% if child.selected or child.value == collection_id %} class="checked"{% endif %} onclick="toggleRadioFilter({{filter.id | escape}},'{{child.value | replace:"\\", "\\\\" | replace:"\'", "\\\'" | escape}}')" title="{{child.label | escape}}">
+                                <span class="gf-RadioButton"></span>
+                                <span class="gf-label">{{child.label | escape}}</span>
+                                                              </a>
+                            {% elsif filter.style == 'Collection' %}
+                              <a {% if child.selected or child.value == collection_id %} class="checked"{% endif %} onclick="changeCollection('{{child.handle}}')" title="{{child.label | escape}}">
+                                <span class="gf-label">{{child.label | escape}}</span>
+                                                              </a>
+                            {% endif %}
+                            {% if child.children %}<span></span>{% endif %}
+                            </div>
+                            {% if child.children %}
+                              <ul{% if child.is_collapse %} style="display:none"{% endif %}>
+                                {% for child2 in child.children %}
+                                  <li data-collection="{{child2.value}}">
+                                    {% if filter.style == 'Checkbox' %}
+                                      <a {% if child2.selected or child2.value == collection_id %} class="checked"{% endif %} onclick="toggleCheckboxFilter({{filter.id | escape}},'{{child2.value | replace:"\\", "\\\\" | replace:"\'", "\\\'" | escape}}')" title="{{child2.label | escape}}">
+                                        <span class="gf-Checkbox"></span>
+                                        <span class="gf-label">{{child2.label | escape}}</span>
+                                                                              </a>
+                                    {% elsif filter.style == 'Radio' %}
+                                      <a {% if child2.selected or child2.value == collection_id %} class="checked"{% endif %} onclick="toggleRadioFilter({{filter.id | escape}},'{{child2.value | replace:"\\", "\\\\" | replace:"\'", "\\\'" | escape}}')" title="{{child2.label | escape}}">
+                                        <span class="gf-RadioButton"></span>
+                                        <span class="gf-label">{{child2.label | escape}}</span>
+                                                                              </a>
+                                    {% elsif filter.style == 'Collection' %}
+                                      <a {% if child2.selected or child2.value == collection_id %} class="checked"{% endif %} onclick="changeCollection('{{child2.handle}}')" title="{{child2.label | escape}}">
+                                        <span class="gf-label">{{child2.label | escape}}</span>
+                                                                              </a>
+                                    {% endif %}
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            {% endif %}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                {% else %}
+                  {% for value in filter.values %}
+                  <li>
+                    <div>
+                    {% if filter.style == 'Checkbox' %}
+                      <a {% if value.selected or value.value == collection_id %} class="checked"{% endif %} onclick="toggleCheckboxFilter({{filter.id | escape}},'{{value.value | replace:"\\", "\\\\" | replace:"\'", "\\\'" | escape}}')" title="{{value.label | escape}}">
+                        <span class="gf-Checkbox"></span>
+                        <span class="gf-label">{{value.label | escape}}</span>
+                                              </a>
+                    {% elsif filter.style == 'Radio' %}
+                      <a {% if value.selected or value.value == collection_id %} class="checked"{% endif %} onclick="toggleRadioFilter({{filter.id | escape}},'{{value.value | replace:"\\", "\\\\" | replace:"\'", "\\\'" | escape}}')" title="{{value.label | escape}}">
+                        <span class="gf-RadioButton"></span>
+                        <span class="gf-label">{{value.label | escape}}</span>
+                                              </a>
+                    {% elsif filter.style == 'Collection' %}
+                      <a {% if node.selected or value.value == collection_id %} class="checked"{% endif %} onclick="changeCollection('{{value.handle}}')" title="{{value.label | escape}}">
+                        <span class="gf-label">{{value.label | escape}}</span>
+                                              </a>
+                    {% endif %}
+                    </div>
+                  </li>
+                  {% endfor %}
+                {% endif %}
+              {% else %}
+                {% for value in filter.values %}
+                  {% if filter.attribute == 'Ready to ship' %}
+                    {% assign value_label = ready_to_ship_label %}
+                  {% elsif filter.attribute == 'Availability' %}
+                    {% if value.value == 1 %}
+                      {% assign value_label = in_stock_label %}
+                    {% elsif value.value == 0 %}
+                      {% assign value_label = out_of_stock_label %}
+                    {% endif %}
+                  {% else %}
+                    {% assign value_label = value.label | escape %}
+                  {% endif %}
+                  {% if filter.style == 'Checkbox' %}
+                    <li>
+                      <a{% if value.selected %} class="checked"{% endif %} onclick="toggleCheckboxFilter({{filter.id | escape}},'{{value.value | replace:"\\", "\\\\" | replace:"\'", "\\\'" | escape}}')" title="{{value_label | escape}}">
+                        <span class="gf-Checkbox"></span>
+                        <span class="gf-label">{{value_label}}</span>
+                                              </a>
+                    </li>
+                  {% elsif filter.style == 'Radio' %}
+                    <li>
+                      <a{% if value.selected %} class="checked"{% endif %} onclick="toggleRadioFilter({{filter.id | escape}},'{{value.value | replace:"\\", "\\\\" | replace:"\'", "\\\'" | escape}}')" title="{{value_label | escape}}">
+                        <span class="gf-RadioButton"></span>
+                        <span class="gf-label">{{value_label}}</span>
+                                              </a>
+                    </li>
+                  {% elsif filter.style contains 'Swatch' %}
+                    {% assign attribute = filter.attribute | replace: 'option:', '' | downcase %}
+                    {% assign value_handle = value.value | downcase %}
+                    <li>
+                      <a {% if value.selected %} class="checked"{% endif %} onclick="toggleCheckboxFilter({{filter.id | escape}},'{{value.value | replace:"\\", "\\\\" | replace:"\'", "\\\'" | escape}}')" title="{{value.label | escape}}">
+                        {% if swatches[attribute] and swatches[attribute][value_handle] %}
+                          {% if swatches[attribute][value_handle].mode == 1 %}
+                            <span class="gf-option-one-color" style="background-color:{{ swatches[attribute][value_handle].color_1 }}"></span>{% if filter.style contains 'Swatch - Text' %} <span class="gf-label">{{value.label | escape}}</span>{% endif %}
+                          {% elsif swatches[attribute][value_handle].mode == 2 %}
+                            <span class="gf-option-two-color" style="background-color:{{ swatches[attribute][value_handle].color_1 }}"><span class="bottom-color" style="border-bottom-color:{{ swatches[attribute][value_handle].color_2 }}"></span></span>{% if filter.style contains 'Swatch - Text' %} <span class="gf-label">{{value.label | escape}}</span>{% endif %}
+                          {% elsif swatches[attribute][value_handle].mode == 3 %}
+                            <span class="gf-swatch-image" style="background-color: {{ value.value | replace:"\\", "\\\\" | replace:"\'", "\\\'" | escape }}; background-image: url('{{ swatches[attribute][value_handle].image }}')"></span>{% if filter.style contains 'Swatch - Text' %} <span class="gf-label">{{value.label | escape}}</span>{% endif %}
+                          {% endif %}
+                        {% else %}
+                          {% assign value_handle = value.value | handle %}
+                          {% assign value_jpg    = value_handle | append: '.jpg' %}
+                          {% assign value_png    = value_handle | append: '.png' %}
+                          {% assign value_jpeg   = value_handle | append: '.jpeg' %}
+                          <span class="gf-swatch-image" style="background-color: {{ value.value | replace:"\\", "\\\\" | replace:"\'", "\\\'" | escape }};
+                            {% if images contains value_jpg %}
+                            background-image: url('{{ value_jpg | asset_img_url: '50x' | prepend: 'https:' }}')
+                            {% elsif images contains value_png %}
+                            background-image: url('{{ value_png | asset_img_url: '50x' | prepend: 'https:' }}')
+                            {% elsif images contains value_jpeg %}
+                            background-image: url('{{ value_jpeg | asset_img_url: '50x' | prepend: 'https:' }}')
+                            {% endif %}
+                            "></span>{% if filter.style contains 'Swatch - Text' %} <span class="gf-label">{{value.label | escape}}</span>{% endif %}
+                        {% endif %}
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+                {% if filter.style == 'Swatch' %}
+                <li class="hidden-box"><a><span class="gf-swatch-image"></span></a></li>
+                <li class="hidden-box"><a><span class="gf-swatch-image"></span></a></li>
+                <li class="hidden-box"><a><span class="gf-swatch-image"></span></a></li>
+                <li class="hidden-box"><a><span class="gf-swatch-image"></span></a></li>
+                <li class="hidden-box"><a><span class="gf-swatch-image"></span></a></li>
+                {% endif %}
+              {% endif %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endunless %}      {% endfor %}
+    </div>
+  {% endif %}
+
+    {% assign relevance = '' %}
+  {% endraw %}{% if request.page_type == 'search' %}{% raw %}
+  {% assign relevance = 'relevance,' %}
+  {% endraw %}{% endif %}{% raw %}
+  {% assign available_sort  = relevance | append: 'price-ascending,price-descending,created-descending,created-ascending' | append: ',{% endraw %}{{collection.default_sort_by}}{% raw %}' | split: "," %}
+  {% capture sort_by_text %}
+    {% case sort_by %}
+    {% when 'best-selling' %}
+      {{translation.sort.best_selling | default: "Best Selling"}}
+    {% when 'manual' %}
+      {{translation.sort.manually | default: "Featured"}}
+    {% when 'relevance' %}
+      {{translation.sort.relevance | default: "Relevance"}}
+    {% when 'stock-descending' %}
+      {{translation.sort.availability_in_stock_first | default: "Availability"}}
+    {% when 'title-ascending' %}
+      {{translation.sort.alphabetically_a_z | default: "Alphabetically, A-Z"}}
+    {% when 'title-descending' %}
+      {{translation.sort.alphabetically_z_a | default: "Alphabetically, Z-A"}}
+    {% when 'price-ascending' %}
+      {{translation.sort.price_low_to_high | default: "Price, low to high"}}
+    {% when 'price-descending' %}
+      {{translation.sort.price_high_to_low | default: "Price, high to low"}}
+    {% when 'created-descending' %}
+      {{translation.sort.date_new_to_old | default: "Date, new to old"}}
+    {% when 'created-ascending' %}
+      {{translation.sort.date_old_to_new | default: "Date, old to new"}}
+    {% when 'sale-descending' %}
+      {{translation.sort.sale_off | default: "% Sale off"}}
+    {% endcase %}
+  {% endcapture %}
+  <div class="sort-by">
+    <label for="globo-dropdown-sort_options" class="sort-by-toggle" role="button" tabindex="0" aria-expanded="false">{{translation.sort.sort_by | default: "Sort by"}}: <span>{{sort_by_text}}</span></label>
+    <div id="globo-dropdown-sort_options" class="globo-dropdown-custom__options">
+      {% if available_sort contains 'best-selling' %}<span data-sort="best-selling" onclick="changeSortBy('best-selling');">{{translation.sort.best_selling | default: "Best Selling"}}</span>{% endif %}
+      {% if available_sort contains 'featured' %}<span data-sort="manual" onclick="changeSortBy('manual');">{{translation.sort.manually | default: "Featured"}}</span>{% endif %}
+      {% if available_sort contains 'relevance' %}<span data-sort="relevance" onclick="changeSortBy('relevance');">{{translation.sort.relevance | default: "Relevance"}}</span>{% endif %}
+      {% if available_sort contains 'stock-descending' %}<span data-sort="stock-descending" onclick="changeSortBy('stock-descending');">{{translation.sort.availability_in_stock_first | default: "Availability"}}</span>{% endif %}
+      {% if available_sort contains 'title-ascending' %}<span data-sort="title-ascending" onclick="changeSortBy('title-ascending');">{{translation.sort.alphabetically_a_z | default: "Alphabetically, A-Z"}}</span>{% endif %}
+      {% if available_sort contains 'title-descending' %}<span data-sort="title-descending" onclick="changeSortBy('title-descending');">{{translation.sort.alphabetically_z_a | default: "Alphabetically, Z-A"}}</span>{% endif %}
+      {% if available_sort contains 'price-ascending' %}<span data-sort="price-ascending" onclick="changeSortBy('price-ascending');">{{translation.sort.price_low_to_high | default: "Price, low to high"}}</span>{% endif %}
+      {% if available_sort contains 'price-descending' %}<span data-sort="price-descending" onclick="changeSortBy('price-descending');">{{translation.sort.price_high_to_low | default: "Price, high to low"}}</span>{% endif %}
+      {% if available_sort contains 'created-descending' %}<span data-sort="created-descending" onclick="changeSortBy('created-descending');">{{translation.sort.date_new_to_old | default: "Date, new to old"}}</span>{% endif %}
+      {% if available_sort contains 'created-ascending' %}<span data-sort="created-ascending" onclick="changeSortBy('created-ascending');">{{translation.sort.date_old_to_new | default: "Date, old to new"}}</span>{% endif %}
+      {% if available_sort contains 'sale-descending' %}<span data-sort="sale-descending" onclick="changeSortBy('sale-descending');">{{translation.sort.sale_off | default: "% Sale off"}}</span>{% endif %}
+    </div>
+  </div>
+  </div>
+<div class="globo-selected-items-wrapper">
+  {% if has_filter %}
+  <ul class="globo-selected-items">
+    {% capture selected_item_html %}
+    {% assign filter_count = 0 %}
+    {% for filter in filters %}
+      {% if filter.is_selected %}
+        {% if filter.style == 'Slider' %}
+          {% assign filter_count = filter_count | plus: 1 %}
+          <li class="selected-item gf-option-label">
+            <a onclick="removeFilter({{filter.id | escape}})">
+              <span class="selected-item">
+                <strong>
+                  {% if filter.attribute == 'Price' %}
+                    <span class="money">{{filter.values.min | money}}</span> - <span class="money">{{filter.values.max | money}}</span>
+                  {% elsif filter.attribute == 'Percent Sale' %}
+                    {{filter.values.min}}% - {{filter.values.max}}%
+                  {% else %}
+                    {{filter.values.min}} - {{filter.values.max}}
+                  {% endif %}
+                </strong>
+              </span>
+              <span class="gf-clear"></span>
+            </a>
+          </li>
+        {% else %}
+          {% for value in filter.values %}
+            {% if value.selected %}
+              {% assign filter_count = filter_count | plus: 1 %}
+              <li class="selected-item gf-option-label">
+                <a onclick="removeFilterValue({{filter.id | escape}},'{{value.value | replace:"\\", "\\\\" | replace:"\'", "\\\'" | escape}}')">
+                  <span class="selected-item"><strong><span class="gf-label">{{value.label | escape}}</span></strong></span>
+                  <span class="gf-clear"></span>
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% endcapture %}
+    {% if filter_count > 1 %}
+    <li class="selected-item gf-option-label"><a onclick="clearAllFilter()" class="clear-refinements">{{ translation.filter.clear_all | default: "Clear all"}}</a></li>
+    {% endif %}
+    {{selected_item_html}}
+  </ul>
+  {% endif %}
+</div>
+<div class="gf-filter-footer visible-xs">
+  {% assign plurality = translation.search.products | default: "Products" %}
+  {% assign singular = translation.search.product | default: "Product" %}
+  <button type="button" onclick="globofilter.toggleCanvas()">{{ translation.filter.view | default: "View"}} <b>{{pagination.total}}</b> {{pagination.total | pluralize: singular, plurality}}</button>
+</div>
+{% endraw %}

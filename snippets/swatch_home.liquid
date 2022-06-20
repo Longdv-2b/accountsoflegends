@@ -1,0 +1,92 @@
+{% assign file_extension = 'png' %}
+ {% assign option_color_swatch = settings.option_color_swatch | downcase %}
+
+{% for product_option in product.options_with_values %}
+    {% assign is_color = false %}
+    {% assign is_size = false %}
+    {% assign option_index = 0 %}
+
+    {% assign option_index = forloop.index0 %}
+    
+    {% unless product_option.name == 'Custom Engraving' %}
+    <div class="swatch" data-option-idx="{{ option_index }}">
+        <div class="header">
+          
+          {% if settings.enable_multilang  %}
+          <span class="lang1">
+            {{ product_option.name| split: '|' | first | strip }} <em>*</em>
+          </span>
+          <span class="lang2">
+            {{ product_option.name| split: '|' | last | strip }} <em>*</em>
+          </span>
+          {% else %}
+          <span>
+            {{ product_option.name | split: '|' | first }}<em>*</em>
+          </span>
+          {% endif %}
+        </div>
+
+        {%- assign options_color = 'color, colour, couleur, colore, farbe, 색,色, färg, farve' -%}
+        {%- assign options_size = 'size, taille, bröße, tamanho, tamaño, koko, サイズ' -%}
+
+        {% assign downcased_option_1 = product_option.name | downcase  | split: '|' | first | strip  %}
+
+        {% if options_color contains downcased_option_1 %}
+            {% assign is_color = true %}
+        {% endif %}
+
+        {% assign downcased_option_2 = product_option.name | downcase %}
+        {% if options_size contains  downcased_option_2 %}
+            {% assign is_size = true %}
+        {% endif %}
+
+        {% assign values = '' %}
+
+        {% for variant in product.variants %}
+
+            {%- assign current_variant = product.selected_or_first_available_variant -%}
+
+            {% assign value = variant.options[option_index] %}
+
+            {% unless values contains value %}
+
+                {% assign values = values | join: ';' %}
+                {% assign values = values | append: ';' | append: value %}
+                {% assign values = values | split: ';' %}
+
+                <div data-value="{{ value | escape }}" class="swatch-element{% if is_color %} color{% elsif is_size %} size{% endif %} {{ value | handle }}{% if variant.available %} available{% else %} soldout{% endif %}">
+                    {% if is_color %}
+                        <div class="tooltip">
+                            {{ value }}
+                        </div>
+                    {% endif %}
+
+                    <input data-variant="{{ variant.id }}" {% if variant == current_variant %}checked {% endif %}id="swatch-{{ option_index }}-{{ value | handle }}-{{ product.id }}" type="radio" name="option-{{ option_index }}-{{ product.id }}" value="{{ value | escape }}" {% unless variant.available %} disabled{% endunless %} {% if forloop.length == 1 %}checked{% endif %}/>
+
+                    {% if is_color %}
+                        {% if settings.color_swatch_style == 'normal' %}
+                            <label for="swatch-{{ option_index }}-{{ value | handle }}-{{ product.id }}">
+                                <span class="bgImg" style="background-color: {{ value | split: ' ' | last | handle }}; background-image: url({{ value | handle | append: '.' | append: file_extension | file_url }})"></span>
+                            <div class="bac-souldout"></div>
+                          </label>
+
+                        {% else %}
+                            <label class="swatch_variant_img" for="swatch-{{ option_index }}-{{ value | handle }}-{{ product.id }}">
+                                <span class="bgImg" {% if variant.image.src != blank %}style="background-image: url({{ variant.image.src | product_img_url: '50x' }}); background-size: contain;"{% else %}style="background-color: {{ value | split: ' ' | last | handle }}; background-image: url({{ value | handle | append: '.' | append: file_extension | file_url }})"{% endif %}></span>
+                                <div class="bac-souldout"></div>
+                            </label>
+                        {% endif %}
+
+                    {% else %}
+                        <label for="swatch-{{ option_index }}-{{ value | handle }}-{{ product.id }}">
+                           <span>{{ value }}</span>
+                          <div class="bac-souldout"></div>
+                        </label>
+                    {% endif %}
+                </div>
+            {% endunless %}
+
+        {% endfor %}
+    </div>
+    {% endunless %}
+{% endfor %}

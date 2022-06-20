@@ -1,0 +1,692 @@
+<section class="about-us-page container-2">
+    {% include 'breadcrumb' %}
+    <header class="page-header">
+      {% if settings.enable_multilang and section.settings.about_title contains '|' %}
+      <h2 class="lang1">
+        {{ page.title | split: '|' | first }}
+      </h2>
+      <h2 class="lang2">
+        {{ page.title | split: '|' | last }}
+      </h2>
+      {% else %}
+      <h2>
+        {{ page.title | split: '|' | first }}
+      </h2>
+      {% endif %}
+      <div class="rte">
+        {% if settings.enable_multilang %}
+        <div class="lang1 des">
+          {{ section.settings.about_text_desc | split: '[lang2]' | first }}
+        </div>
+        <div class="lang2 des">
+          {{ section.settings.about_text_desc | split: '[lang2]' | last }}
+        </div>
+        {% else %}
+        <div class="des">
+          {{ section.settings.about_text_desc | split: '[lang2]' | first }}
+        </div>
+        {% endif %}
+      </div>
+      <span class="line"></span>
+    </header> 
+  {% if section.settings.display_top_content %}
+  <div class="top-content">
+    {% for block in section.blocks %}
+    {% if block.type == 'top_content' %}
+    <div class="row content-item {% if block.settings.alignment == 'left' %}reserve{% endif %}">
+      {% if block.settings.display_banner %}
+      <div class="col banner">
+        {% if block.settings.banner != blank %}
+        <div class="background" style="background-image: url({{block.settings.banner | img_url:'800x800'}})"></div>
+        {% else %}
+        <div style ="padding-top:81%"class="no-image">
+          <span>800 x 800px</span>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+      <div class="col text">
+        {% assign slick = 0 %}
+        {% for i in (1..5) %}
+        {% capture title %}title_{{i}}{% endcapture %}
+        {% capture content %}content_{{i}}{% endcapture %}
+        {%if block.settings[title] != blank and block.settings[content] != blank %}
+        {% assign slick = slick | plus: 1 %}
+        <div class="text-item {%if slick == 2 %}init-slide{%endif%}">
+          <div class="inner">
+             {% if block.settings.block.settings[title] != '' %}
+            <h3 class="title">
+              {% include 'multilang' with block.settings[title] %}
+            </h3>
+            {% endif %}
+            <div class="content">
+              {% include 'multilang-block' with block.settings[content] %}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if section.settings.display_bottom_content %}
+  <div class="bottom-content">
+    {% if section.settings.bot_heading != '' and section.settings.bot_heading != '' %}
+    <div class="heading">
+      {% if section.settings.bot_heading != '' %}
+      <h2>{% include 'multilang' with section.settings.bot_heading %}</h2>
+      {% endif %}
+      {% if section.settings.bot_subheading != '' %}
+      <div class="subheading">
+        {% include 'multilang-block' with section.settings.bot_subheading %}
+      </div>
+      {% endif %}
+    </div>
+    <div class="block-content row">
+      {% for block in section.blocks %}
+      {% if block.type == 'bottom_content' %}
+      <div class="col-xs-12 col-sm-4 item">
+        {% if block.settings.image != blank %}
+        <div class="image">
+          <img src="{{block.settings.image | img_url:'800x800'}}" alt="{{block.settings.title}}">
+        </div>
+        {% else %}
+        <div class="image no-image">
+          <span>500x500px</span>
+        </div>
+        {% endif %}
+        <div class="text">
+          {% if block.settings.title != '' %}
+          <h3 class="title">
+            {% include 'multilang' with block.settings.title %}
+          </h3>
+          {% endif %}
+          {% if block.settings.subtitle != '' %}
+          <a class="link-btn" href="{{block.settings.url}}">{% include 'multilang-block' with block.settings.subtitle, class:'subtitle' %}</a>
+          {% endif %}
+          {% if block.settings.content != blank %}
+          <div class="content rte">
+            {% include 'multilang-block' with block.settings.content%}
+          </div>
+          {% endif %}
+          {% if section.settings.addthis_code != blank %}
+          <div class="share-icon">
+            {{section.settings.addthis_code}}
+          </div>
+          {% endif %}
+          
+          
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+</section>
+
+
+
+
+<style>
+ 
+  .about-us-page .line {
+    display: inline-block;
+    width: 270px;
+    height: 2px;
+    background-color: #c6c6c6;
+    margin-bottom:16px;
+  }
+  .about-us-page .page-header .rte {
+    padding-bottom: 29px;
+  }
+  .about-us-page  .title {
+    font-size: 24px;
+    color: #296fc2;
+    font-weight: 500;
+    margin-bottom: 25px;
+  }
+  
+  .top-content .heading{
+    text-align: center;
+    padding-top:47px;
+    padding-bottom:17px;
+    position:relative;
+    margin-bottom:55px;
+  }
+  .top-content .heading:after{
+    content:'';
+    display:block;
+    height:1px;
+    width:30%;
+    max-width:315px;
+    position:absolute;
+    top:100%;
+    left:50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background:{{section.settings.border_color}};
+  }
+  .top-content .heading h2{
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 22px;
+  }
+  .content-item .col .text-item{
+    background-color: {{section.settings.top_content_bgc}};
+    color:{{section.settings.top_content_txtc}};
+    margin-bottom: 30px;
+  }
+  .content-item.reserve{
+    -webkit-flex-direction: row-reverse;
+    -moz-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    -o-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+  }
+  
+  .content-item > div{
+    max-width:50%;
+  }
+  .content-item .banner{
+  	position:relative;
+  }
+  .content-item .banner .background{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    height:94%;
+    width: 100%;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    position:absolute;
+    top:0px;
+  }
+  .content-item .text .text-item{
+    display: none;
+  }
+  .content-item .text .text-item:first-child,.content-item .text .text-item.slick-slide{
+    display: block;
+  }
+  .content-item .text .text-item .inner{
+    width:76%;
+    margin:0 auto;
+    padding-top:130px;
+    padding-bottom:187px;
+  }
+  .content-item h3.title{
+    color:{{section.settings.top_content_ttc}};
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    font-size: {{section.settings.top_content_tt_size}}px ;
+    margin-bottom: 20px;
+  }
+  .content-item .slick-dots{
+      position:absolute;
+      width:100%;
+      bottom:45px;
+      left:0;
+  }
+    .top-content{
+      padding-bottom: 72px;
+    }
+  .content-item .slick-dots li{
+      width: 10px;
+      height: 10px;
+      margin: 0px 5px;
+  }
+  .content-item .slick-dots li button{
+      width: 10px;
+      height: 10px;
+      border-color:{{section.settings.dots_color}};
+      background-color:{{section.settings.dots_color}};
+  }
+  .content-item .slick-dots li.slick-active button{
+    border-color:{{section.settings.dots_color}};
+    background-color:transparent;
+  }
+  .content-item .content{
+    line-height:30px;
+  }
+
+  /*bottom content*/
+  .bottom-content{
+    padding-top:45px;
+  }
+  .bottom-content .heading{
+    text-align:center;
+  }
+  .bottom-content .heading h2{
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;  
+    position:relative;
+    font-size: {{section.settings.top_content_tt_size}}px ;
+    color:{{section.settings.bottom_content_ttc}};
+  }
+  .bottom-content .subheading{
+    line-height: 30px;
+    max-width:900px;
+    width:100%;
+    margin:0 auto;
+    color:{{section.settings.bottom_content_txtc}};
+  }
+
+  .bottom-content .block-content{
+    padding-top:93px;
+  }
+  .bottom-content .block-content .item{
+    padding-bottom:30px;
+  }
+  .bottom-content .block-content .image{
+    padding-top: 100%;
+    height:0;
+    border-radius: 50%;
+    position:relative;
+    margin-bottom:45px;
+    overflow: hidden;
+  }
+  .bottom-content .block-content .image > *{
+    position: absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+  }
+  .bottom-content .block-content .text{
+    text-align: left;
+  }
+  .bottom-content .block-content .text h3.title{
+   color:{{section.settings.bottom_content_ttc}};
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .about-us-page {
+    margin-bottom: 35px;
+  }
+  .about-us-page .at-resp-share-element .at-share-btn {
+    margin: 0px 19px 5px 0px!important;
+    background-color: #73788a!important;
+    border-radius: 2px!important;
+  }
+    .about-us-page  .at-resp-share-element .at-share-btn .at-icon-wrapper svg{
+      width:24px!important;
+      height: 24px!important;
+    }
+    .about-us-page  .at-resp-share-element .at-share-btn .at-icon-wrapper{
+      line-height: 24px!important;
+      width:24px!important;
+      height: 24px!important;
+    }
+  .bottom-content .share-icon {
+    padding: 29px 0px 29px;
+  }
+  .bottom-content .link-btn{
+    color:{{section.settings.link_color}};
+    font-size:14px;
+    position:relative;
+    display: inline-block;
+    padding: 6px 0px 23px;
+  }
+  .bottom-content .block-content .text h3.title a:before{
+    content:'';
+    display:block;
+    position:absolute;
+    width:100%;
+    height:1px;
+    bottom:2px;
+    background-color:{{settings.body_color | color_modify: 'alpha', 0.7}};
+    display:none;
+  }
+  .bottom-content .block-content .text h3.title a:hover:before{
+    display:block;
+  }
+  .bottom-content .slick-dots{
+    -webkit-transform: translateY(30px);
+    -ms-transform: translateY(30px);
+    -o-transform: translateY(30px);
+    transform: translateY(30px);
+  }
+
+  @media (max-width: 992px){
+    .content-item .text .text-item .inner{
+      padding-top:70px;
+      padding-bottom:90px;
+      
+    }
+    .content-item h3.title{
+      font-size: 22px;
+    }
+    .bottom-content .heading h2,.bottom-content .block-content .text h3.title{
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 767px){
+    .content-item .banner .background {
+      position: relative;
+    }
+    .top-content {
+      padding-bottom: 0px;
+    }
+    .content-item .text .text-item .inner{
+    	width:100%;
+    }
+    .content-item{
+      -webkit-flex-direction: row!important;
+      -moz-flex-direction: row!important;
+      -ms-flex-direction: row!important;
+      -o-flex-direction: row!important;
+      flex-direction: row!important;
+      flex-wrap: wrap;
+    }
+     .content-item > div{
+      max-width:100%;
+      flex-basis: 100%;
+    }
+    .content-item .banner .background{
+      padding-top:100%;
+    }
+
+  } 
+</style>
+
+<script>
+  function topSlider(){
+    var item = $('.init-slide').parent();
+    item.not('.slick-initialized').slick({
+      arrows: false,
+      dots: true
+    })
+  }
+  function bottomSlider(){
+    
+    $('.bottom-content .block-content').not('.slick-initialized').slick({
+      arrows: false,
+      dots: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    })
+  }
+  
+  $(document).ready(function(){    
+    if($('.top-content').length > 0){
+      topSlider();
+    }
+
+    if($('.bottom-content').length > 0){
+      bottomSlider();
+    }
+  })
+</script>
+
+{% schema %}
+{
+  "name": "About Us Content",
+  "class": "about-us-content about-us-2-content",
+  "settings": [
+      {
+        "type":"checkbox",
+        "id":"display_top_content",
+        "label":"Display Top Content",
+        "default":true
+      },
+      {
+        "type": "text",
+        "id": "about_title",
+        "label": "Title",
+        "default": "About Us"
+      },
+      {
+        "type": "textarea",
+        "id": "about_text_desc",
+        "label": "Text Description",
+       "default":"Phasellus lorem malesuada ligula pulvinar commodo maecenas suscipit auctom.", 
+        "info":"Use [lang2] to separate multiple language"
+      },
+    
+    {
+      "type":"color",
+      "id":"top_content_bgc",
+      "label":"Content Background Color",
+      "default":"#fafafa"
+    },
+    {
+      "type":"text",
+      "id":"top_content_tt_size",
+      "label":"Content Title Size",
+      "default":"30"
+    },
+    {
+      "type":"color",
+      "id":"top_content_ttc",
+      "label":"Content Title Color",
+      "default":"#000d41"
+    },
+    {
+      "type":"color",
+      "id":"top_content_txtc",
+      "label":"Content Text Color",
+      "default":"#73788a"
+    },
+    {
+      "type":"color",
+      "id":"dots_color",
+      "label":"Dots Color",
+      "default":"#9c9c9c"
+    },
+    {
+      "type":"header",
+      "content":"Bottom Content"
+    },
+    {
+      "type":"checkbox",
+      "id":"display_bottom_content",
+      "label":"Enable",
+      "default":true
+    },
+    {
+      "type":"text",
+      "id":"bot_heading",
+      "label":"Heading",
+      "default":"Our Team."
+    },
+    {
+      "type":"textarea",
+      "id":"bot_subheading",
+      "label":"Subheading",
+      "default":"Quisquemos sodales suscipit tortor ditaemcos condimentum de cosmo lacus meleifend menean diverra loremous. Nullam sit amet orci rutrum risus laoreet semper vel non magna. Mauris vel sem a lectus vehicula ultricies. Etiam semper sollicitudin lectus indous scelerisque. Curabitur vel tristique lacus. Nam risus mauris, accumsan et eleifend vitae, dignissim at eros."
+    },
+    {
+      "type":"color",
+      "id":"bottom_content_ttc",
+      "label":"Title Color",
+      "default":"#000d41"
+    },
+    {
+      "type":"color",
+      "id":"bottom_content_txtc",
+      "label":"Content Text Color",
+      "default":"#73788a"
+    },
+    {
+      "type":"color",
+      "id":"link_color",
+      "label":"link Color",
+      "default":"#296fc2"
+    },
+    {
+      "type":"textarea",
+      "id":"addthis_code",
+      "label":"Addthis Code"
+    }
+  ],
+  "blocks":[
+    {
+      "name":"Top Content",
+      "type":"top_content",
+      "settings":[
+        {
+          "type":"checkbox",
+          "id":"display_banner",
+          "label":"Display Banner",
+          "default":true
+        },
+        {
+          "type":"image_picker",
+          "id":"banner",
+          "label":"Banner"
+        },
+        {
+          "type":"select",
+          "id":"alignment",
+          "label":"Content Alignment",
+          "default":"right",
+          "options":[
+            {
+              "value":"left",
+              "label":"Left"
+            },
+            {
+              "value":"right",
+              "label":"Right"
+            }
+          ]
+        },
+        {
+          "type":"header",
+          "content":"Content 1"
+        },
+        {
+          "type":"text",
+          "id":"title_1",
+          "label":"Title 1",
+          "default":"Title"
+        },
+        {
+          "type":"textarea",
+          "id":"content_1",
+          "label":"Content 1",
+          "default":"Nullam daliquet vestibulum augue non varius. Cras cosmo congue an melitos. Duis tristique del ante le maliquam praesent murna de tellus laoreet cosmopolis quisque hendreritos.",
+          "info":"Use '[lang2]' to separate multi language content."
+        },
+        {
+          "type":"header",
+          "content":"Content 2"
+        },
+        {
+          "type":"text",
+          "id":"title_2",
+          "label":"Title 2"
+        },
+        {
+          "type":"textarea",
+          "id":"content_2",
+          "label":"Content 2"
+          },
+        {
+          "type":"header",
+          "content":"Content 3"
+        },
+        {
+          "type":"text",
+          "id":"title_3",
+          "label":"Title 3"
+        },
+        {
+          "type":"textarea",
+          "id":"content_3",
+          "label":"Content 3"
+        },
+        {
+          "type":"header",
+          "content":"Content 4"
+        },
+        {
+          "type":"text",
+          "id":"title_4",
+          "label":"Title 4"
+        },
+        {
+          "type":"textarea",
+          "id":"content_4",
+          "label":"Content 4"
+       },
+        {
+          "type":"header",
+          "content":"Content 5"
+        },
+        {
+          "type":"text",
+          "id":"title_5",
+          "label":"Title 5"
+        },
+        {
+          "type":"textarea",
+          "id":"content_5",
+          "label":"Content 5"
+		}
+      ]
+    },
+    {
+      "name":"Bottom Content",
+      "type":"bottom_content",
+      "settings":[
+        {
+          "type":"image_picker",
+          "id":"image",
+          "label":"Image"
+        },
+        {
+          "type":"text",
+          "id":"title",
+          "label":"title",
+          "default":"Michael D."
+        },
+        {
+          "type":"text",
+          "id":"subtitle",
+          "label":"Subtitle",
+          "default":"Managing Director"
+        },
+        {
+          "type":"textarea",
+          "id":"content",
+          "label":"Content",
+          "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos a solicitud felis. Pellentesque diam dolor elementum etos lobortis des mollis."
+        },
+         
+        {
+          "type":"url",
+          "id":"url",
+          "label":"Link To",
+          "default":"/collections/all"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

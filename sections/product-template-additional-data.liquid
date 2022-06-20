@@ -1,0 +1,53 @@
+<div class="service-faq">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <div class="service-faq-container">
+          {% for block in section.blocks %}
+          <div class="service-faq-elem">
+            <h6 class="sfe-question">
+              <span class="ion-ios-bulb">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="415.887px" height="415.887px" viewBox="0 0 415.887 415.887" style="enable-background:new 0 0 415.887 415.887;" xml:space="preserve"> <g> <g> <path d="M247.803,388.294h-73.585c-7.62,0-13.805,6.186-13.805,13.799c0,7.615,6.185,13.794,13.805,13.794h73.597    c7.614,0,13.8-6.179,13.8-13.794C261.602,394.479,255.429,388.294,247.803,388.294z"/> <path d="M247.803,353.034h-73.585c-7.62,0-13.805,6.179-13.805,13.799c0,7.614,6.185,13.799,13.805,13.799h73.597    c7.614,0,13.8-6.185,13.8-13.799C261.602,359.213,255.429,353.034,247.803,353.034z"/> <path d="M207.944,0C126.146,0,59.601,66.542,59.601,148.343c0,47.882,39.526,104.483,72.661,143.539    c16.825,19.827,22.869,29.213,25.004,33.134c-0.093,0.631-0.144,1.273-0.144,1.928c0,7.62,6.182,13.799,13.799,13.799h79.957    c0.066-0.006,0.133,0,0.181,0c7.626,0,13.793-6.179,13.793-13.799c0-1.915-0.391-3.741-1.093-5.398    c1.345-3.122,4.396-9.007,11.223-19.071c5.608-8.238,11.613-16.753,17.727-25.389c31.255-44.279,63.578-90.065,63.578-128.748    C356.292,66.542,289.752,0,207.944,0z"/> </g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </svg>
+              </span> 
+              {{ block.settings.boost_title }}
+            </h6>
+            <p class="sfe-answer">
+              {{ block.settings.boost_text }}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+
+
+{% schema %}
+  {
+    "name": "Additional Contents",
+     "max_blocks": 4,
+    "settings": [
+	],
+   "blocks":[
+      {
+        "type":"text",
+        "name":"Text",
+        "settings":[
+            {
+              "type" : "text",
+              "id" : "boost_title",
+              "label" : "Title"
+            },
+            {
+              "type":"textarea",
+              "id":"boost_text",
+              "label":"Description"
+            }
+        ]
+      }
+    ]
+  }
+{% endschema %}

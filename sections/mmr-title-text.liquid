@@ -1,0 +1,50 @@
+<div class="mmr-title-text-section">
+{% for block in section.blocks %}  
+    {% case block.type %}
+  
+      {% when 'text' %}
+<div style="" class="block-wide" id="scroll-{{block.settings.title1 | handle}}">
+ <h3 class="title cent">
+  {{ block.settings.title1 }}
+ </h3>
+ <p style="">
+  {{ block.settings.textarea1 }}
+ </p>
+</div>
+
+   {%endcase%}
+{%endfor%}
+
+</div>
+{%schema%}
+
+{
+  "name": "Title and Text Section",
+  "class": "text-section",
+  "max_blocks": 100,
+
+
+  "blocks": [
+
+    {
+      "type": "text",
+      "name": "Text and Title",
+      "settings": [
+        
+
+	{
+        "type": "text",
+        "id": "title1",
+        "label": "Enter the title"
+      },
+{
+        "type": "textarea",
+        "id": "textarea1",
+        "label": "Enter the content"
+      }
+
+      ]
+    }
+  ]
+}
+{% endschema %}

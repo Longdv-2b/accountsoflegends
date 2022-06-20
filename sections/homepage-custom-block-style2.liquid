@@ -1,0 +1,354 @@
+{% include 'style-custom-block2'  %}
+{% if section.settings.enable %}
+<section class="custom-block-style2" id="custom_block_{{section.id}}"  >
+  <div class="top-content">
+    <div class=" container-2">
+      <p class="heading">{% include 'multilang' with section.settings.heading %}</p>
+      <h2 class="title">{% include 'multilang' with section.settings.title %}</h2>
+      <ul class="site-nav">
+        {% for link in linklists[section.settings.nav_link].links %}
+        <li>
+          <a href="{{link.url}}">
+            {% include 'multilang' with link.title %}
+
+          </a>
+
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-content">
+    <div class="container">
+      <div class="row">
+        <div class="box-left col-6 col-md-6 col-lg-6">
+          {% if section.settings.img_left != blank %}
+          {%- assign img_left = section.settings.img_left | img_url:'600x'-%}
+          <img data-src="{{ img_left }}" alt="{{img_left.alt }}" {%include 'lazyload' %}>
+          {% else %}
+          <div class="no-image" style="padding-top:115% ; margin-top:-25px; font-size: 30px"><span>770x945px</span></div>
+          {% endif %}
+        </div>
+        <div class="box-right  col-6 col-md-6 col-lg-6">
+          <div class="video ">
+            <div class="{%if section.settings.enable_video %}video-mp {% endif %} animate-scale">
+            {% if section.settings.image_right != blank %}
+            {%- assign img_right = section.settings.image_right | img_url:'600x' -%}
+                <img style="width:100%" data-src="{{img_right}}" alt="{{img_right.alt}}" {% include 'lazyload' %}>
+                  {% if section.settings.enable_video %}
+                  <div class="icon-yt">
+                    {% include 'icon-youtobe' %}
+                  </div>
+                  {% endif %}
+            {% else %}
+            <div class="no-image" style="padding-top:58%; font-size:30px"><span>{% include 'icon-youtobe' %}</span></div>
+            {% endif %}
+            </div>
+            <div class="modal_cms" id="video_block_{{section.id}}" >
+              
+              <div class="modal-cms-overlay"></div>
+              <div class="modal-content-cms">
+                <div class="header">
+                  <a class="close-button" title="{{ 'cart.ajax_cart.close' | t }}" href="javascript:void(0)">
+                    {% include 'icon-close' %}
+                  </a>
+                </div>
+                <div class="videocontent">
+                  {% if section.settings.video_id == 'video_youtube' %}
+                  <div class="video_YT" data-video-id="{{ section.settings.video_link }}">
+                  </div>
+                    {% else %}
+                  <video  id="video_{{section.id}}" controls class="video">
+                    <source src="{{section.settings.video_mp4_link}}">
+                  </video>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right-content">
+            <h2 class="right-heading">
+              {% include 'multilang' with section.settings.heading_text %}
+            </h2>
+            <p class="right-des">
+              {% include 'multilang' with section.settings.sub_heading %}
+            </p>
+            <a href="{{section.settings.link_btn}}" class="btn btn-x2">
+              {% include 'multilang' with section.settings.text_btn %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</section>
+{% endif %}
+<script>
+
+  $( document ).ready(function() {
+    {% if section.settings.video_id == 'video_youtube' %}
+    var  btnApend = $("#custom_block_{{section.id}} .bottom-content "),
+         appenCodeIframe = $('#custom_block_{{section.id}}  .videocontent .video_YT'),
+         removeIframe = $("#custom_block_{{section.id}}  .close-modal, #video_block_{{section.id}} ");
+                      
+       btnApend.off('click').on('click', function(e){
+      var idVideo = ('{{ section.settings.video_link }}');
+      const $content = '<iframe\
+                            id="player"\
+                            type="text/html"\
+                            width="100%"\
+                            height="100%"\
+                            frameborder="0"\
+                            webkitAllowFullScreen\
+                            mozallowfullscreen\
+                            allowFullScreen\
+                            src="https://www.youtube.com/embed/'+idVideo+'?autoplay=1&mute=1"\
+                            data-video-player>\
+                        </iframe>\
+     ';
+      
+      appenCodeIframe.html($content);
+    });
+    removeIframe.off('click').on('click', function(e){
+      var removeCodeIframe = $('#custom_block_{{section.id}}  .videocontent .video_YT iframe');
+       removeCodeIframe.remove();
+    });
+    {% else %}
+    var videoMp4 = document.getElementById("video_{{section.id}}"); 
+    var playButton = document.querySelector(".bottom-content .video-mp");
+    playButton.addEventListener("click", function() {
+      videoMp4.play(); 
+    });
+    var pauseButton = document.querySelector("#video_block_{{section.id}} .close-modal, #video_block_{{section.id}}");
+        pauseButton.addEventListener("click", function() {
+      videoMp4.pause(); 
+    });
+
+
+
+    {% endif %}
+  });
+ 
+</script>
+
+{% schema %}
+  {
+    "name": "Custom Block Homepage",
+    "settings": [
+      {
+        "type":"checkbox",
+        "id":"enable",
+        "label":"Enable",
+        "default":true
+      },
+      {
+        "type":"header",
+        "content":"Top content"
+      },
+      {
+        "type":"select",
+        "id":"back_style",
+        "label":"Background",
+        "options":[
+          {
+            "value":"back_color",
+            "label":"Background Color"
+          },
+          {
+            "value":"back_img",
+            "label":"Background Image"
+          }
+        ],
+        "default":"back_color"
+      },
+      {
+        "type":"color",
+        "id":"back_color",
+        "label":" Background Color",
+        "default":"#fff"
+      },
+      {
+        "type":"image_picker",
+        "id":"back_img",
+        "label":" Background Image"
+      },
+      {
+        "type":"text",
+        "id":"heading",
+        "label":" Heading",
+        "default":"Sample Heading"
+      },
+      {
+        "type":"color",
+        "id":"color_heading",
+        "label":"Color Heading",
+        "default":"#000d41"
+      },
+      {
+        "type":"text",
+        "id":"font_size_heading",
+        "label":"Font Size Heading",
+        "default":"24px"
+      },
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Title",
+        "default":"Cosmo Milancelos"
+      },
+      {
+        "type":"color",
+        "id":"color_title",
+        "label":"Color Title",
+		"default":"#000d41"
+      },
+      {
+        "type":"text",
+        "id":"font_size_title",
+        "label":"Font Size Title",
+        "default":"50px"
+      },
+      {
+        "type":"link_list",
+        "id":"nav_link",
+        "label":"Menu"
+      },
+      {
+        "type":"color",
+        "id":"color_nav",
+        "label":"Color Nav",
+		"default":"#000d41"
+
+      },
+      {
+      "type":"text",
+      "id":"font_size_nav",
+      "label":"Font Size Nav",
+      "default":"14px"
+      },
+      {
+      "type":"header",
+      "content":" Bottom Content",
+      "info":"________________________"
+      },
+      {
+        "type":"header",
+        "content":" Box Left"
+      },
+      {
+        "type":"checkbox",
+        "id":"animation_image",
+        "label":"Image Animation?",
+        "default":true
+      },
+      {
+        "type":"image_picker",
+        "id":"img_left",
+        "label":"Image",
+        "info":"Recommended size 770x945px"
+      },
+      {
+        "type":"header",
+        "content":"box right"
+      },
+      {
+        "type":      "select",
+        "id":        "video_id",
+        "label":     "Video",
+        "options": [
+          {
+            "value": "video_youtube",
+            "label": "Video Youtube"
+          },
+          {
+            "value": "video_mp4",
+            "label": "Video Mp4"
+          }
+        ],
+        "default":   "video_youtube"
+      },
+      {
+        "type":"checkbox",
+        "id":"enable_video",
+        "label":"Enble icon video you",
+        "default":true
+      },
+      {
+        "type": "text",
+        "id": "video_link",
+        "label": "YouTube video ID",
+        "default": "_9VUPq3SxOc",
+        "info": "[Find your YouTube video ID](https://docs.joeworkman.net/rapidweaver/stacks/youtube/video-id)."
+      },
+      {
+        "type": "text",
+        "id": "video_mp4_link",
+        "label": "Video link"
+      },
+      {
+        "type":"image_picker",
+        "id":"image_right",
+        "label":"Background image video",
+         "info":"Recommended size 800 x 500px"
+      },
+      {
+        "type":"text",
+        "id":"heading_text",
+        "label":" Heading",
+        "default":"Metropolitanos"
+      },
+      {
+        "type":"color",
+        "id":"heading_text_color",
+        "label":"Color Heading",
+		"default":"#000d41"
+
+      },
+      {
+        "type":"text",
+        "id":"font_size_heading_text",
+        "label":"Font Size Heading",
+        "default":"30px"
+      },
+      {
+        "type":"textarea",
+        "id":"sub_heading",
+        "label":"Sub Heading",
+        "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus ansullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis."
+      },
+      {
+        "type":"color",
+        "id":"sub_heading_text_color",
+        "label":"Color Sub Heading",
+		"default":"#73788a"
+      },
+      {
+        "type":"text",
+        "id":"font_size_sub_heading",
+        "label":"Font Size Sub Heading",
+        "default":"14px"
+      },
+      {
+        "type":"text",
+        "id":"text_btn",
+        "label":"Text Button",
+        "default":"Explore"
+      },
+      {
+        "type":"url",
+        "id":"link_btn",
+        "label":"Link Button"
+      }
+
+
+   ],
+    "presets":[
+      {
+        "name":"Custom Block Homepage",
+        "category":"Advanced layout"
+      }
+    ]
+  }
+{% endschema %}
+

@@ -1,0 +1,225 @@
+
+{% if section.settings.display_gdpr %}
+<div id="accept-cookies" class="cookieMessage container-fluid " > 
+  <div class="block-cookies row">
+    <div class="col-12 col-lg-2 col-md-1 icon-cookies">
+     {% include 'gdpr-icon'  %}
+    </div>
+    <div class=" content col-12 col-lg-8 col-md-8">
+      <div class="des">
+        {% include 'multilang' with section.settings.content %}
+        {% if section.settings.privacy_policy_text != blank %}
+        <span>
+        <a target="_blank" href="{{ section.settings.privacy_policy_link }}" class="notification-cookies privacy-link">
+          {% include 'multilang' with section.settings.privacy_policy_text %}
+        </a>
+        </span>
+        {% endif %}
+      </div>
+      
+    </div>
+    {% if section.settings.privacy_policy_text != blank or section.settings.accept_cookies_text != blank %}
+    <div class="group-action-links col-12 col-lg-2 col-md-3">
+      {% if section.settings.accept_cookies_text != blank %}
+      <a href="#" class="btn btn-x1 notification-cookies accept_cookies_link" data-accept-cookie>
+        {% include 'multilang' with section.settings.accept_cookies_text %}
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div> 
+  <style>
+  .product-notification{
+    bottom: 15vh!important;
+  }
+  #accept-cookies .block-cookies,
+  #accept-cookies .privacy-link {
+    color:{{ section.settings.text_color }};
+  }
+  .cookieMessage .block-cookies .privacy-link span{
+    border-bottom: 1px solid {{ section.settings.text_color }}; 
+    text-transform: capitalize;
+    margin: 0px 3px;
+  }
+  #accept-cookies .privacy-link:hover,#accept-cookies .privacy-link:hover span{
+    color:{{ section.settings.text_color_hover }};
+  }
+  #accept-cookies.cookieMessage{
+    position:fixed;
+    bottom: 0px;
+    width: 100%;
+    z-index:99;
+  }
+  #accept-cookies.cookieMessage{
+    background: {{section.settings.bg_color }};
+  }
+  .cookieMessage .block-cookies .btn-x1 {
+    padding: 11px 15px 10px;
+  }
+  .cookieMessage .block-cookies .content {
+    display:flex;
+    justify-content:center;
+  }
+  #accept-cookies.cookieMessage .block-cookies {
+    padding: 20px 0px 19px;
+    line-height: 50px;
+  }
+  #accept-cookies.cookieMessage {
+    font-size: 12px;
+
+  }
+  #accept-cookies.cookieMessage .group-action-links{
+    text-align: right;
+  }
+  #accept-cookies .icon-cookies{
+    position: relative;
+  }
+  #accept-cookies .icon-cookies img{
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%)
+  }
+  .block-cookies .icon-cookies svg{
+    width:50px;
+    height: 50px;
+    fill: {{section.settings.icon_svg_color}};
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  @media(max-width:1590px){
+    .group-action-links  .btn-x1{
+      min-width:100%;
+    }
+    #accept-cookies.cookieMessage .block-cookies {
+      line-height: 30px;
+    }
+     .product-notification {
+      bottom: 24vh!important;
+    }
+  }
+  @media(max-width:1024px){
+    .product-notification {
+      bottom: 11vh!important;
+    }
+    #accept-cookies.cookieMessage .block-cookies {
+      line-height: 26px;
+      text-align:center;
+    }
+  }
+  @media(max-width:768px){
+    .product-notification {
+      bottom: 17vh!important;
+    }
+    
+  }
+  @media(max-width:767px){
+    .product-notification {
+      right: 30px;
+    }
+    #accept-cookies.cookieMessage .group-action-links {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .cookieMessage .block-cookies .btn-x1 {
+      min-width: 50%;
+    }
+    .icon-cookies{
+    	display:none;
+    }
+    .product-notification{
+    bottom: 25vh!important;
+  }
+  }
+  @media(max-width:320px){
+    .product-notification {
+      bottom:40vh!important;
+    }
+  }
+</style>
+</div>
+
+
+
+<script>
+    $(document).ready(function() {
+        var gdprCookie = $('#accept-cookies');
+
+        gdprCookie.show();
+
+        if ($.cookie('cookieMessage') == 'closed') {
+            gdprCookie.remove();
+        }
+
+        gdprCookie.find('[data-accept-cookie]').on('click', function(e) {
+            e.preventDefault();
+            gdprCookie.remove();
+            $.cookie('cookieMessage', 'closed', {expires: 1, path:'/'});
+        });
+    })
+</script>
+{% endif %}
+
+
+{% schema %}
+  {
+    "name": "GDPR Modal",
+    "settings": [
+		{
+            "type": "checkbox",
+            "id": "display_gdpr",
+            "label": "Enable",
+            "default": true
+        },
+        
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color ",
+            "default": "#f7f7f7"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#73788a"
+        },
+        {
+            "type": "textarea",
+            "id": "content",
+            "label": "Description text"
+        },        
+        {
+            "type": "text",
+            "id": "privacy_policy_text",
+            "label": "Privacy Policy Text"
+        },
+        {
+            "type": "color",
+            "id": "text_color_hover",
+            "label": "Text Color Hover",
+            "default": "#296fc2"
+        },
+        {
+            "type": "text",
+            "id": "privacy_policy_link",
+            "label": "Privacy Policy Link",
+            "info": "https:\/\/policies.google.com"
+        },
+        {
+            "type": "text",
+            "id": "accept_cookies_text",
+            "label": "Accept Cookies Text"
+        },
+        {
+            "type": "color",
+            "id": "icon_svg_color",
+            "label": "Icon color",
+            "default": "#296fc2"
+        }
+	]
+  }
+{% endschema %}
+
+

@@ -1,0 +1,206 @@
+{% include 'style-custom-block-overview' %}
+{% if section.settings.enable %}
+<section style="background: {{section.settings.back_style_left}}" class="custom-block-overview section-{{section.id}} " id="{{section.settings.id_scroll}}">
+
+ 
+  <div class="overview-bottom mrtp wd">
+    {% for block in section.blocks %}
+      <div class="custom-overview block-{{block.id}} {% if block.settings.alignment == 'right' %}custom-overview-rtl{% endif %}" >
+        <div style="background: {{block.settings.back_style_left1}}" class="txtse3 ">
+
+            <h1 class="coltitle" style=" font-size: {{block.settings.font_siz}};color: {{block.settings.title_styl}} ;">
+              {{block.settings.title1 }}
+          </h1>
+ 
+        </div>
+        <div class="div1">
+          <div class="div2">
+            <div class="con1">
+              
+             
+            <h3 class="title" style=" font-size: {{block.settings.font_size_title_style}};color: {{block.settings.title_style_color}} ;">
+              {{block.settings.title_style }}
+            </h3>
+              <div class="des" style="font-size: {{block.settings.font_size_des_style}}; color: {{block.settings.des_style_color}} ;">
+                {{ block.settings.des_style }}
+              </div>
+            
+              
+           
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    
+  </div>
+ 
+</section>
+
+
+
+{% endif %}
+
+<style>
+  
+   @media (min-width: 992px){
+  .min {
+    display: block;
+    margin-top: 69px;
+}
+.overview-bottom.mrtp.wd {
+    max-width: 1200px;
+    margin: auto;
+    padding-top: 64px;
+}
+     .div1 {
+    width: 50%;
+    padding: 20px 20px;
+   
+}
+     .txtse3 {
+    width: 50%;
+    padding: 118px 61px;
+}
+     .div2 {
+    padding: 27px 33px;
+}
+   }
+  
+   @media (max-width: 767px){
+  
+   .overview-bottom.mrtp.wd {
+    max-width: 1200px;
+    margin: auto;
+    padding-top: 30px;
+}
+     h1.coltitle {
+    font-size: 29px !important;
+    padding: 40px 38px;
+}
+     .con1 {
+    padding: 10px 10px;
+}
+   }
+</style>
+{% schema %}
+  {
+    "name": "sectionimage3a",
+    "max_blocks": 9,
+    "settings": [
+        {
+          "type":"checkbox",
+          "id":"enable",
+          "label":"Enable?",
+          "default":true
+        },
+          {
+          "type":"color",
+          "id":"back_style_left",
+          "label":"Background",
+          "default":"#f7f7f7"
+        }
+        
+     ],
+      "blocks":[
+        {
+          "type":"overview_style",
+          "name":"Overview Style ",
+          "settings":[
+          {
+          "type":"select",
+          "id":"alignment",
+          "label":"Content Alignment",
+          "default":"left",
+          "options":[
+            {
+              "value":"left",
+              "label":"Left"
+            },
+            {
+              "value":"right",
+              "label":"Right"
+            }
+          ]
+        },
+      
+         
+      
+      {
+          "type":"text",
+          "id":"title1",
+          "label":"Title",
+          "default":"Phasellus Loremous"
+        },
+        
+        {
+          "type":"text",
+          "id":"title_style",
+          "label":"Title",
+          "default":"Phasellus Loremous"
+        },
+        
+        {
+          "type":"textarea",
+          "id":"des_style",
+          "label":"Content",
+		  "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis."
+        },
+
+        {
+          "type":"color",
+          "id":"back_style_left1",
+          "label":"Background",
+          "default":"#f7f7f7"
+        },
+        {
+          "type":"color",
+          "id":"title_styl",
+          "label":"Color",
+          "default":"#000d41"
+        },
+         {
+          "type":"text",
+          "id":"font_siz",
+          "label":"Font Size",
+          "default":"30px"
+        },
+        {
+          "type":"text",
+          "id":"font_size_title_style",
+          "label":"Font Size",
+          "default":"30px"
+        },
+      
+        {
+          "type":"text",
+          "id":"font_size_des_style",
+          "label":"Font Size",
+          "default":"14px",
+          "info":"-----------------------------"
+        }
+       
+           
+       
+
+
+          ]
+        }
+        
+
+      ],
+      "presets":[
+        {
+          "name":"sectionimage3a",
+          "category":"Advanced layout",
+          "blocks":[
+            {
+              "type":"overview_style"
+            }
+            
+          ]
+        }
+
+      ]
+  }
+{% endschema %}

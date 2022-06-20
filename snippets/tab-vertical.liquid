@@ -1,0 +1,45 @@
+{% if section.settings.enable_tab1 or section.settings.enable_tab2 %}
+<div class="product-tab">
+  <div class="panel-group" id="accordion">
+    {% if section.settings.enable_tab1 %}
+    <div class="panel rte wow fadeInUp">
+      <div class="panel-heading">
+        <div class="panel-title  ">
+          <a data-toggle="collapse"   data-parent="#accordion" href="#collapse-tab1" class="collapsed">
+            {% include 'multilang' with section.settings.specification_tab_title %}
+          </a>
+        </div>
+      </div>
+      <div id="collapse-tab1" class="panel-collapse collapse ">
+        <div class="panel-body" itemprop="">
+          {% for block in section.blocks %}
+          <ul class="item">
+            <li class="case_des">{% include 'multilang' with block.settings.case_des %}</li>
+            <li class="des">{% include 'multilang' with block.settings.desscription %}</li>
+          </ul>
+
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if section.settings.enable_tab2 %}
+    <div class="panel wow fadeInUp" data-wow-delay="200ms">
+      <div class="panel-heading">
+        <div class="panel-title tab2">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tab2" class="collapsed">
+            {% include 'multilang' with section.settings.custom_tab_title %}
+          </a>
+        </div>
+      </div>
+      <div id="collapse-tab2" class="panel-collapse collapse">
+        <div class="panel-body rte">
+          {% include 'multilang' with section.settings.content_cusstom_tab %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>   
+</div>
+{% endif %}

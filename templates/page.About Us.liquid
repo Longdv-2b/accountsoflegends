@@ -1,0 +1,32 @@
+<div class="page-dft">
+  <div class="container-2">
+    {% include 'breadcrumb' %}
+
+    <header class="page-header">
+      <h2>
+        {% include 'multilang' with page.title %}
+      </h2>      
+    </header>
+
+    {% comment %}
+    Regular page content goes here.
+    {% endcomment %}
+
+    {% if settings.enable_multilang and page.content contains '[lang2]' %}
+    <div class="content rte lang1">
+      {{ page.content | split: '[lang2]' | first }}
+    </div>
+    <div class="content rte lang2">
+      {{ page.content | split: '[lang2]' | last }}
+    </div>
+    {% else %}
+    <div class=" content rte">
+      {{ page.content | split: '[lang2]' | first }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+  {%section 'sectionimage3a'%}
+  {%section 'Tabsectiona'%}
+  {%section 'sectionimg2a'%}
+  {%section 'sectionimage1a'%}

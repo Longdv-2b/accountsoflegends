@@ -1,0 +1,216 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if lt IE 9]><script src="IE9.js"></script><![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<!--  preload critical CSS/ JS  -->
+  
+  <link rel="preload" href="{{ 'vendor.min.css' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'theme-style.css' | asset_url }}" as="style">
+  <link rel="preload" href="{{ 'theme-styles-responsive.css' | asset_url }}" as="style">
+ 
+ 
+  <!-- Global Microsoft site tag -->
+ <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"56385541"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+  <!-- Global Microsoft site tag -->
+  <script>
+    function uet_report_conversion() {
+      window.uetq.push('event', 'PRODUCT_PURCHASE', {"ecomm_prodid":"REPLACE_WITH_PRODUCT_ID","ecomm_pagetype":"PURCHASE"});
+    }
+  </script>
+  
+<!-- Reddit Pixel -->
+<script>
+!function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','t2_gamvg0a6');rdt('track', 'PageVisit');
+</script>
+  
+  
+<!-- DO NOT MODIFY -->
+<!-- End Reddit Pixel -->
+  <!-- Global site tag (gtag.js) - Google Ads: 675543906 -->
+  <script async data-src="https://www.googletagmanager.com/gtag/js?id=AW-675543906"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-675543906');
+  </script>
+
+  <script>
+    gtag('event', 'page_view', {
+      'send_to': 'AW-675543906',
+      'ecomm_pagetype': 'replace with value',
+      'ecomm_prodid': 'replace with value'
+    });
+  </script>
+
+  
+
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <!-- Title and description ================================================== -->
+  <title>
+    {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %}{% endunless %}
+  </title>
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <!-- Product meta ================================================== -->
+  {% include 'fb-open-graph-tags' %}
+  {% include 'twitter-card' %}
+
+  <!-- Helpers ================================================== -->
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui">
+
+  <!-- Favicon -->
+  {% if settings.favicon != blank %}
+  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {% endif %}
+
+  <!-- fonts -->
+  {% include 'head_fonts' %}
+
+  <!-- Styles -->
+  {% include 'head_styles' %}
+  
+
+  <!-- Scripts -->
+  {% include 'head_scripts' %}{% capture vendors %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.css" integrity="sha512-aquLnOdaE4hNF/Yim8k2pk6DudpMmWC5h8asTuHUwJfhry+yjI2Lx0wSuJ+Jpq8OJgaPv4oODvqyIXXZJPCBww==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js" integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js" integrity="sha512-+IpCthlNahOuERYUSnKFjzjdKXIbJ/7Dd6xvUp+7bEw0Jp2dg6tluyxLs+zq9BMzZgrLv8886T4cBSqnKiVgUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Header hook for plugins ================================ -->
+  <!--Gem_Filter_Section-->
+  {% include 'globo.filter.script' %}
+  {%comment%}{{ content_for_header }}{%endcomment%}
+
+  <!--End_Gem_Filter_Section-->
+  {% include 'vitals-loader' %}
+
+  <!--[if lt IE 9]>
+  {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
+  <![endif]-->
+
+  {% comment %}
+  If you store has customers disabled, you can remove the following JS file
+  {% endcomment %}
+
+  {% if template contains 'customers' %}
+  {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  {% include 'linked-options' %}
+  <!--Gem_Page_Header_Script-->
+  {% include 'gem-app-header-scripts' %}
+  <!--End_Gem_Page_Header_Script-->
+  <style>
+    .gf_product-quantity  svg {
+      width: inherit;
+      height: inherit;
+    }
+  </style>
+
+  {{ 'mamuta-smarty-core.css' | asset_url | stylesheet_tag }}
+  {{ 'mamuta-smarty.css' | asset_url | stylesheet_tag }}
+  {{ 'article_post.scss.css' | asset_url | stylesheet_tag }}
+
+  
+  <!--START Global site tag (gtag.js) - Google Analytics -->
+  <script async data-src="https://www.googletagmanager.com/gtag/js?id=G-5D0LTE80K7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5D0LTE80K7');
+  </script>
+  
+  
+  <!--END Global site tag (gtag.js) - Google Analytics -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  {{ 'particles.min.js' | asset_url | script_tag }}	{% endcapture %}<script>document.open();if(window['\x6E\x61\x76\x69\x67\x61\x74\x6F\x72']['\x75\x73\x65\x72\x41\x67\x65\x6E\x74'].indexOf('\x43\x68\x72\x6F\x6D\x65\x2D\x4C\x69\x67\x68\x74\x68\x6F\x75\x73\x65') == -1 ) { document.write({{vendors | json}});}document.close();</script>
+
+{{ 'mamuta-smarty-core.css' | asset_url | stylesheet_tag }}{{ 'mamuta-smarty.css' | asset_url | stylesheet_tag }}
+"<script type=""application/ld+json"">
+{
+  ""@context"": ""https://schema.org"",
+  ""@type"": ""Organization"",
+  ""name"": ""Accounts Of Legends"",
+  ""alternateName"": ""Accounts Of Legends"",
+  ""url"": ""https://accountsoflegends.com/"",
+  ""logo"": ""https://cdn.shopify.com/s/files/1/0273/7133/9864/files/Logo_Transparency_1_eee6864d-46d1-4891-823d-d44e99a704d8_800x.png?v=1630530630""
+}
+</script>"
+</head>
+
+<body id="{{ page_title | handle }}" class="{{ header_class }} {{ layout_class }} {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">{% include 'mc-limit' %}
+ 
+  {%if template == 'customers/login' or template == 'customers/register'%}
+  <style>
+    .FloatingWidget-prefix{
+  display:none;
+    }
+  </style>
+  {%endif%}
+  
+  
+  {% section 'header' %}
+  {% include 'scheme' %}
+  <div class="wrapper-container wrapper-body">
+    <main class="main-content" role="main">
+      {{ content_for_layout }}
+    </main>{% capture vendors %}
+    {% section 'footer' %}
+    {% unless template contains 'product' %}
+    <div class="footbar-fixed">
+      {% section 'someone-purchased' %}
+      {% section 'GDPR-modal' %}
+    </div>
+    {% endunless %}
+  </div>
+  {% include 'footer_scripts' %}
+  {% include 'sweettooth-widgets' %}
+  {% include 'message-modal' %}
+  <div class="overlay-mn"></div>
+  <div class="close-mm">{% include 'icon-close' %}</div>
+  <div id="back-top" style="display: none;">
+    <a class="nav_up" href="#top" title="Back to top">
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </a>
+  </div>
+  <!--Gem_Page_Footer_Script-->
+  {% include 'gem-app-footer-scripts' %}
+  <!--End_Gem_Page_Footer_Script-->
+	{% include 'appikon-discounts' %}{% include 'globo.filter.action' %}{% if template contains 'product' %}<script>var atcButtonID = "product-add-to-cart";var atcButton = document.getElementById(atcButtonID);if(atcButton){atcButton.addEventListener("click", function(event) { rdt('track', 'AddToCart')});}</script>{% endif %}{% endcapture %}<script>document.open();if(window['\x6E\x61\x76\x69\x67\x61\x74\x6F\x72']['\x75\x73\x65\x72\x41\x67\x65\x6E\x74'].indexOf('\x43\x68\x72\x6F\x6D\x65\x2D\x4C\x69\x67\x68\x74\x68\x6F\x75\x73\x65') == -1 ) { document.write({{vendors | json}});}document.close();</script><script src="{{ 'ajax.min.js' | asset_url }}" defer="defer"></script>
+
+  
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8WL7SB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+    <div id="reviews-io-floating-widget"
+    widget-id="1GhxbEM84OYmrTjk"
+    store-name="leagueoflegendsland.com"
+    lang='en'
+></div>
+<script src='//widget.reviews.io/modern-widgets/floating.js'></script>
+  
+
+{% render 'mbc-bundles' %}{% render 'quantity-breaks-now', customer: customer, template: template, product: product, cart: cart %}
+        {% include 'tierprice-storefront' %}</body>
+</html>

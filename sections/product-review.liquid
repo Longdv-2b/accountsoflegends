@@ -1,0 +1,84 @@
+{% if section.settings.enable  %}
+<section id="review">
+  <div class="custom-review">
+    <h2 class="title_review">
+    	{% include 'multilang' with section.settings.review_title %}
+    </h2>
+    <div class="sub-title rte">
+      {% include 'multilang' with section.settings.content_des_review%}
+    </div>
+    <div id="shopify-product-reviews" data-id="{{product.id}}">
+      {{ product.metafields.spr.reviews }}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Product Reviews",
+    "settings": [
+        {
+          "type":"checkbox",
+          "id":"enable",
+          "label":"Enable?",
+          "default":true
+        },
+        {
+          "type":"text",
+          "id":"review_title",
+          "label":"Review title",
+          "default":"Customer Reviews"
+        },
+        {
+          "type":"color",
+          "id":"review_title_color",
+          "label":" Color",
+          "default":"#000d41"
+        },
+        {
+          "type":"textarea",
+          "id":"content_des_review",
+          "label":"sub_review",
+          "default":"Phasellus lorem an malesuada ligula pulvinar commodo maecenas de metropolis"
+        },
+        {
+          "type":"color",
+          "id":"sub_color",
+          "label":" Color",
+          "default":"#73788a"
+        }
+     ]
+  }
+{% endschema %}
+<style>
+  .custom-review .title_review {
+    color: {{section.settings.review_title_color}}!important;
+    font-weight: 500;
+    font-size: 50px;
+    text-align: center;
+    margin: 141px 0px 26px;
+  }
+  .custom-review .sub-title{
+    color:{{section.settings.sub_color}};
+    text-align: center;
+    padding-bottom: 8px;
+  }
+  .custom-review  .spr-review-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .custom-review .spr-review-header-title{
+    order: 1;
+  }
+  .custom-review .spr-starratings{
+    order: 2;
+    margin-top:20px;
+    margin-left: 34px;
+  }
+  .custom-review .spr-review-header-byline{
+    order: 3;
+    flex-basis: 100%;
+  }
+</style>

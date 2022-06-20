@@ -1,0 +1,136 @@
+{% if section.settings.enable %}
+<section class="home-custom-block">
+  <div class="container-fluid block-content">
+  {% for block in section.blocks %}
+
+        {% case section.blocks.size %}
+        {% when 1 %}
+        {%- assign column_size = 'col-12' -%}
+        {% when 2 %}
+        {%- assign column_size = 'col-12 col-lg-6' -%}
+        {% when 3 %}
+        {%- assign column_size = 'col-12 col-md-6 col-lg-4' -%}
+        {% when 4 %}
+        {%- assign column_size = 'col-12 col-md-6 col-lg-3' -%}
+        {% endcase %}
+
+        <div class="policy-item {{ column_size }}">
+          <div class="policy-icon" style="color:{{block.settings.icon_color}}">
+            {% if block.settings.icon != blank %}
+             {{block.settings.icon}}
+            {% endif %}
+          </div>
+            <div class="policy-text" style="color:{{block.settings.text_color}}">
+              {% include 'multilang' with block.settings.text %}
+            </div>
+        </div>
+        {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Policys Block",
+     "max_blocks": 4,
+    "settings": [
+        {
+          "type":"checkbox",
+          "id":"enable",
+          "label":"Enable?",
+          "default":true
+        }
+
+	],
+   "blocks":[
+      {
+        "type":"text",
+        "name":"Text",
+        "settings":[
+            {
+              "type": "text",
+              "id" : "icon",
+              "label" : "Icon",
+              "info":"Use icon fontawesome"
+            },
+            {
+              "type":"color",
+              "id":"icon_color",
+              "label":"Color",
+              "default":"#73788a"
+            },
+            {
+              "type" : "text",
+              "id" : "text",
+              "label" : "text"
+            },
+            {
+              "type":"color",
+              "id":"text_color",
+              "label":"Color",
+              "default":"#73788a"
+            }
+        ]
+      }
+    ],
+    "presets": [
+        {
+          "name": "Policys Block",
+          "category": "Advanced layout",
+          "blocks": [
+            {
+              "type": "text"
+            }
+            
+          ]
+        }
+      ]
+  }
+{% endschema %}
+<script>
+  $( document ).ready(function() {
+    $('.home-custom-block .block-content').slick({
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 4000,
+  speed: 300,
+  nextArrow: '<button type="button" class="slick-next"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 17 33" xml:space="preserve"><g id="e4eb89a6-f885-43b8-9259-0d6b1516fab0"><g id="_x38_e584754-6657-46f1-a9d8-2cfd6623b552"><g><polygon points="14.9,14.5 0,0 0,3.7 11.1,14.5 13.2,16.5 11.1,18.5 0,29.3 0,33 14.9,18.5 17,16.5 "/></g></g></g></svg></button>',
+  prevArrow: '<button type="button" class="slick-prev"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 33"><g id="7f9a1925-e8c7-4614-8787-3c6095a9f6e1" data-name="Layer 2"><g id="c9b7920a-81fa-4bfe-ad13-4da717c6854b" data-name="Layer 1"><g id="c2d982ff-0cf6-4220-b365-47f30d708fea" data-name="e4eb89a6-f885-43b8-9259-0d6b1516fab0"><g id="f51d455e-6b9c-4c4e-96db-a5004582beda" data-name="8e584754-6657-46f1-a9d8-2cfd6623b552"><polygon points="0 16.5 2.1 18.5 17 33 17 29.3 5.9 18.5 3.8 16.5 5.9 14.5 17 3.7 17 0 2.1 14.5 0 16.5"/></g></g></g></g></svg></button>',
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+        adaptiveHeight: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+        adaptiveHeight: true
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+        adaptiveHeight: true
+      }
+    }
+  ]
+});
+  });
+</script>
+

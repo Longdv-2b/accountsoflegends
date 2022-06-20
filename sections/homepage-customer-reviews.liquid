@@ -1,0 +1,216 @@
+{% if section.settings.enable %}
+<section class="homepage-reviews" id="section-{{section.id}}">
+  <div class="container">
+    {% if section.settings.title != blank %}
+    <div class="widget-title">
+      <h3 style="font-size:{{section.settings.font_size_title}}; color: {{section.settings.title_color}}">
+        {% include 'multilang' with section.settings.title %}
+      </h3>
+    </div>
+    {% endif %}
+    <div class="row has-slick" >
+      {% for block in section.blocks %}
+      <div class="item col-6 col-md-6 col-lg-6">
+        <div class="top_review">
+          <div class="item-user">
+            {% if block.settings.user != blank %}
+            <img data-src="{{ block.settings.user | img_url: '90x' }}" alt="{{block.settings.user}}" {% include 'lazyload' %}>
+            {% else %}
+            {% include 'icon_user' %}
+            {% endif %}
+          </div>
+          <div class="review-user">
+            {% if block.settings.reviews_title != blank %}
+            <div class="title-reviews">
+              <h4 style="color:{{block.settings.reviews_title_color}}">
+                {% include 'multilang' with block.settings.reviews_title %}
+              </h4>
+            </div>
+            {% endif %}
+            {% if block.settings.reviews_name != blank%}
+            <p class="name-review" style="color:{{block.settings.reviews_name_color}}"> {% include 'multilang' with block.settings.reviews_name %}</p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="botton-review">
+          {% if block.settings.body_review != blank %}
+          <div class="body-review" style="color:{{block.settings.body_review_color}}">
+            {% include 'multilang' with block.settings.body_review %}
+          </div>
+          {% endif %}
+          <div class="star-reviews {{block.settings.rating}}">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </div>
+        </div>
+        
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+<script>
+  $( document ).ready(function() {
+    $('.homepage-reviews .has-slick').slick({
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 4000,
+  speed: 300,
+  dots: true,
+  adaptiveHeight: true,
+  nextArrow: '<button type="button" class="slick-next"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 17 33" xml:space="preserve"><g id="e4eb89a6-f885-43b8-9259-0d6b1516fab0"><g id="_x38_e584754-6657-46f1-a9d8-2cfd6623b552"><g><polygon points="14.9,14.5 0,0 0,3.7 11.1,14.5 13.2,16.5 11.1,18.5 0,29.3 0,33 14.9,18.5 17,16.5 "/></g></g></g></svg></button>',
+  prevArrow: '<button type="button" class="slick-prev"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 33"><g id="7f9a1925-e8c7-4614-8787-3c6095a9f6e1" data-name="Layer 2"><g id="c9b7920a-81fa-4bfe-ad13-4da717c6854b" data-name="Layer 1"><g id="c2d982ff-0cf6-4220-b365-47f30d708fea" data-name="e4eb89a6-f885-43b8-9259-0d6b1516fab0"><g id="f51d455e-6b9c-4c4e-96db-a5004582beda" data-name="8e584754-6657-46f1-a9d8-2cfd6623b552"><polygon points="0 16.5 2.1 18.5 17 33 17 29.3 5.9 18.5 3.8 16.5 5.9 14.5 17 3.7 17 0 2.1 14.5 0 16.5"/></g></g></g></g></svg></button>',
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+        adaptiveHeight: true,
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+         dots: true,
+        adaptiveHeight: true,
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+         dots: true,
+        adaptiveHeight: true,
+      }
+    }
+  ]
+});
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Customer Reviews",
+	"max_blocks": 10,
+    "settings": [
+      {
+        "type":"checkbox",
+        "id":"enable",
+        "label":"Enable?",
+        "default":true
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "CMS Block: Reviews"
+      },
+      {
+        "type":"text",
+        "id":"font_size_title",
+        "label":"Font Size",
+        "default":"50px"
+      },
+      {
+        "type":"color",
+        "id":"title_color",
+        "label":"Color",
+        "default":"#000d41"
+      }
+	 
+	],
+    "blocks": [
+      {
+        "type": "Customer",
+        "name": "Customer",
+        "settings": [
+          {
+            "type" : "image_picker",
+            "id" : "user",
+            "label" : "Select image"
+          },
+		  {
+            "type" : "text",
+            "id" : "reviews_title",
+            "label" : " Title",
+            "default" : "Title"
+          },
+            {
+              "type":"color",
+              "id":"reviews_title_color",
+              "label":"Color",
+              "default":"#000d41"
+            },
+			{
+            "type" : "text",
+            "id" : "reviews_name",
+            "label" : " Name",
+            "default" : "name"
+          },
+           {
+              "type":"color",
+              "id":"reviews_name_color",
+              "label":"Color",
+              "default":"#73788a"
+            },
+          {
+            "type": "select",
+            "id": "rating",
+            "label": "Rating",
+            "options": [
+              { "value": "star0", "label": "0 star" },
+              { "value": "star1", "label": "1 star" },
+              { "value": "star2", "label": "2 star" },
+              { "value": "star3", "label": "3 star" },
+              { "value": "star4", "label": "4 star" },
+              { "value": "star5", "label": "5 star" }
+            ],
+          	"default": "star5"
+          },
+          {
+            "type": "textarea",
+            "id": "body_review",
+            "label": "Body of Review",
+            "default": "Body of Review"
+          },
+           {
+              "type":"color",
+              "id":"body_review_color",
+              "label":"Color",
+              "default":"#73788a"
+            }
+		  
+        ]
+      }	
+    ],
+    "presets": [
+    {
+      "name": "Customer Reviews",
+      "category": "Reviews",
+		"blocks": [
+        {
+          "type": "Customer"
+        },
+        {
+          "type": "Customer"
+        }       
+		
+      ]
+    }
+    ]
+  }
+{% endschema %}

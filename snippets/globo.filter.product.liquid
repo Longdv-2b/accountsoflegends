@@ -1,0 +1,211 @@
+{% raw %}
+  {% assign root_url = {% endraw %}"{%- if routes.root_url != "/" -%}{{ routes.root_url }}{%- endif -%}"{% raw %} %}
+  {% assign currencyFormat = {% endraw %}{{ shop.money_format | json }}{% raw %} %}
+  {% assign swatch_options = '' | downcase | replace: ', ', ',' | split: ","  %}
+  {% assign image_options  = '' | downcase | replace: ', ', ',' | split: ","  %}
+  {% assign text_options   = '' | downcase | replace: ', ', ',' | split: ","  %}
+  {% assign show_selected_variant_info = true %}
+
+  {% assign image_size     = '360x504' %}
+  {% assign images_count   = product.images | size %}
+  {% assign variants_count = product.variants | size %}
+  {% assign options_count  = product.options | size %}
+  {% assign no_image = 'https://cdn.shopify.com/s/images/themes/product-1.png' %}
+
+  {% assign featured_image            = product.featured_image %}
+  {% assign product_price             = product.price %}
+  {% assign product_compare_at_price  = product.compare_at_price %}
+  {% assign second_image_index        = 2 %}
+  {% assign selected_or_first_available_variant = product.selected_or_first_available_variant %}
+
+  {% if show_selected_variant_info and product.selected_variant %}
+    {% assign selected_or_first_available_variant = product.selected_variant %}
+    {% assign product_price             = selected_or_first_available_variant.price %}
+    {% assign product_compare_at_price  = selected_or_first_available_variant.compare_at_price %}
+    {% if selected_or_first_available_variant.image %}
+      {% assign featured_image  = selected_or_first_available_variant.image %}
+    {% endif %}
+    {% for image in product.images %}
+      {% if image.id == featured_image.id %}
+        {% if forloop.index == images_count %}
+          {% assign second_image_index = 1 %}
+        {% else %}
+          {% assign second_image_index = forloop.index | plus: 1 %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+    <div{% if showPageData %} data-page="{{page}}"{% endif %} class="account spf-col-xl-4 spf-col-lg-4 spf-col-md-6 spf-col-sm-6 spf-col-6 {% if product.title contains 'Unranked' %}unranked-bg{% elsif product.title contains 'Iron' %}iron-bg{% elsif product.title contains 'Bronze' %}bronze-bg{% elsif product.title contains 'Silver' %}silver-bg{% elsif product.title contains 'Gold' %}gold-bg{% elsif product.title contains 'Platinum' %}platinum-bg{% elsif product.title contains 'Diamond' %}diamond-bg{% elsif product.title contains 'Master' %}master-bg{% endif %}">
+        <div class="spf-product-card spf-product-card__left spf-product-card__template-1{% unless product.available %} spf-soldout{% endunless %}">
+          
+          <div class="account1">
+            <div class="rankBG"></div>
+
+              {% assign server = '' %}
+              {% assign winrate = '' %}
+              {% assign level = '' %}
+              {% assign rank = '' %}
+              {% assign win = '' %}
+              {% assign champion = '' %}
+              {% assign essence = '' %}
+              {% assign skin = '' %}
+              {% assign division = '' %}
+              {% for tag in product.tags %}
+              {% assign downtag = tag | downcase %}
+
+              {% if downtag contains 'server' %}
+              {% assign server = tag %}
+              {% endif %}
+              {% if downtag contains 'level' %}
+              {% assign level = tag %}
+              {% endif %}
+              {% if downtag contains 'winrate' %}
+              {% assign winrate = tag %}
+              {% endif %}
+              {% if downtag contains 'rank' %}
+              {% assign rank = tag %}
+              {% endif %}
+              {% if downtag contains 'win/loss' %}
+              {% assign win = tag %}
+              {% endif %}
+              {% if downtag contains 'champion' %}
+              {% assign champion = tag %}
+              {% endif %}
+              {% if downtag contains 'blue essence' %}
+              {% assign essence = tag %}
+              {% endif %}
+              {% if downtag contains 'skins' %}
+              {% assign skin = tag %}
+              {% endif %}
+              {% if downtag contains 'division' %}
+              {% assign division = tag %}
+              {% endif %}
+
+              {% endfor %}
+
+            <div class="accountHeader">
+              <div class="rankAndServer">
+                {% if product.metafields.my_fields.rank != blank %}
+                 <div>{{product.metafields.my_fields.rank}}</div>
+                {% else %}
+                 <div>{{product.title | split: ']' | last | split: 'Account' | first | strip }}</div>
+                {% endif %}
+                {% if product.metafields.my_fields.server != blank %}
+                 <div>{{product.metafields.my_fields.server}}</div>
+                {% else %}
+                 <div>{{product.title | split: ']' | first | split: '[' | last}}</div>
+                {% endif %}
+              </div>
+              <div class="w-1/2 flex justify-end mr-4">
+                {% if product.title contains 'Unranked' %}
+                <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/unrankedi.png">
+                {% elsif product.title contains 'Iron' %}
+                <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/ironi.png">
+                {% elsif product.title contains 'Bronze' %}
+                <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/bronzei.png">
+                {% elsif product.title contains 'Silver' %}
+                <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/silveri.png">
+                {% elsif product.title contains 'Gold' %}
+                <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/goldi.png">
+                {% elsif product.title contains 'Platinum' %}
+                <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/platinumi.png">
+                {% elsif product.title contains 'Diamond' %}
+                <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/diamondi.png">
+                {% elsif product.title contains 'Master' %}
+                <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/masteri.png">
+                {% endif %}
+              </div>
+            </div>
+            <div class="details">
+
+              <div class="detail">
+                <div class="infoTitle">Solo/Duo Rank</div>
+                {% if product.metafields.my_fields.rank != blank %}
+                <div class="info"><span>{{product.metafields.my_fields.rank}}</span></div>
+                {% elsif rank != blank %}
+                <div class="info"><span>{{product.title | split: ']' | last | split: 'Account' | first | strip | split: " " | first }} {{ rank | split:" " | last | replace: "1", "I" | replace: "2", "II" | replace: "3", "III" | replace: "4", "IV" | replace: "5", "V" | replace: "6", "VI" }}</span></div>
+                {% else %}
+                <div class="info"><span>-</span></div>
+                {% endif %}
+              </div>
+
+              <div class="detail">
+                <div class="infoTitle">Server</div>
+                {% if product.metafields.my_fields.server != blank %}
+                <div class="info"><span>{{product.metafields.my_fields.server}}</span></div>
+                {% elsif server != blank %}
+                <div class="info"><span>{{ server | split:" " | last }}</span></div>
+                {% else %}
+                <div class="info"><span>-</span></div>
+                {% endif %}
+              </div>
+
+              <div class="detail">
+                <div class="infoTitle">Winrate</div>
+                {% if product.metafields.my_fields.winrate != blank %}
+                <div class="info"><span>{{product.metafields.my_fields.winrate}}</span></div>
+                {% elsif winrate != blank %}
+                <div class="info"><span>{{ winrate | split:" " | last }}</span></div>
+                {% else %}
+                <div class="info"><span>-</span></div>
+                {% endif %}
+              </div>
+
+              <div class="detail">
+                <div class="infoTitle">Champions</div>
+                {% if product.metafields.my_fields.champions != blank %}
+                <div class="info"><span>{{product.metafields.my_fields.champions}}</span></div>
+                {% elsif champion != blank %}
+                <div class="info"><span>{{ champion | split:" " | last }}</span></div>
+                {% else %}
+                <div class="info"><span>-</span></div>
+                {% endif %}
+              </div>
+
+              <div class="detail">
+                <div class="infoTitle">Blue Essences</div>
+                {% if product.metafields.my_fields.blue_essences != blank %}
+                <div class="info"><span>{{product.metafields.my_fields.blue_essences}}</span></div>
+                {% elsif essence != blank %}
+                <div class="info"><span>{{ essence | split:" " | last }}</span></div>
+                {% else %}
+                <div class="info"><span>-</span></div>
+                {% endif %}
+              </div>
+
+              <div class="detail">
+                <div class="infoTitle">Level</div>
+                {% if product.metafields.my_fields.level != blank %}
+                <div class="info"><span>{{product.metafields.my_fields.level}}</span></div>
+                {% elsif level != blank %}
+                <div class="info"><span>{{ level | split:" " | last }}</span></div>
+                {% else %}
+                <div class="info"><span>-</span></div>
+                {% endif %}
+              </div>
+
+              <div class="detail">
+                <div class="infoTitle">Full Email Access</div>
+                <div class="info check">
+                  <img src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/check.svg?v=1645090567">
+                </div>
+              </div>
+            </div>
+            <div class="accountFooter">
+              <div class="priceContainer">
+                <div class="price">{{product.price | money}}</div>
+                <div class="coinPrice">
+                  <a href="{{ product.url | within: collection }}"> Details 
+                    <img src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/down.svg?v=1645089560" width="16">
+                  </a>
+                </div>
+              </div>
+
+            </div>
+            <!---->
+          </div>
+    
+        </div>
+      </div>
+{% endraw %}

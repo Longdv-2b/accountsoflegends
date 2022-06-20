@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="ranked-topbar">
+    <div class='tabbed'>
+      <ul>
+        <li class='{% if collection.handle contains 'ranked' %}active{% endif %}'><a href="/collections/ranked-accounts">Ranked Accounts</a></li>
+        <li class='{% if product.handle contains 'lol-smurfs' %}active{% endif %}'><a href="/products/lol-smurfs">Unranked Accounts</a></li>
+        <li class='{% if page.handle contains 'lootbox' %}active{% endif %}'><a href="/pages/lootbox">Free LoL Account</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="collection-template">
+  <div class="container">
+    <div class="halo-collection-content">
+      <div class="row">
+        <div class="col-md-12">
+          {% section 'collection-template' %} 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% section 'a-faq-product-collections' %}
+{% section 'a-boosting-collections' %}
+{% section 'sectionimage1p-collections' %}
+{% section 'sectionimg2-collections' %}
+
+
+<style>
+  .product-template-animations {
+    padding-top: 100px;
+  }
+  .flag-content-main { position: relative; color: #fff; text-align: center; }
+  .filters {
+    background: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 5px 35px rgb(0 0 0 / 9%);
+  }
+  .wrap-specification {
+    display: block;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 10px 0;
+}
+  .wrap-specification ul.list {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+  .wrap-specification ul.list li.item {
+    display: flex;
+    box-sizing: border-box;
+    width: auto;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    color: #50505a;
+    padding: 0 0px 0px 0;
+    margin: 0 10px;
+}
+.wrap-specification ul.list li.item .value {
+    display: block;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #d0a85c;
+    white-space: nowrap;
+    margin-left: 10px;
+}
+  .wrap-specification ul.list li.item .label {
+    display: block;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0 0 0px;
+    color: #fff;
+}
+  span.gf-summary {
+    opacity: 0;
+  }
+  .btn.gf-loadmore-btn {
+    background-color: #d0a85c;
+    color: #fff;
+    border-color: #d0a85c;
+    font-size: 16px!important;
+    font-weight: 500;
+    min-width: 190px;
+    padding: 15px 15px 13px;
+    margin-bottom: 50px;
+  }
+</style>

@@ -1,0 +1,94 @@
+{%- assign social_icons = false -%}
+
+{% if
+  settings.social_twitter_link != blank
+  or settings.social_facebook_link != blank
+  or settings.social_pinterest_link != blank
+  or settings.social_instagram_link != blank
+  or settings.social_tumblr_link != blank
+  or settings.social_rss_link != blank
+  or settings.social_snapchat_link != blank
+  or settings.social_youtube_link != blank
+  or settings.social_vimeo_link != blank
+  or template contains 'article'
+  or template contains 'blog'
+%}
+  {%- assign social_icons = true -%}
+{% endif %}
+
+{% if social_icons %}
+<ul class="social-icons">
+  {% if settings.social_facebook_link != blank %}
+  <li class="facebook">
+    <a href="{{ settings.social_facebook_link }}" title="Facebook" target="_blank">
+        {% if settings.footer_layout == '03' %}
+        <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
+        {% else %}
+        <i class="fa fa-facebook fa-lg" aria-hidden="true"></i>
+        {% endif %}
+    </a>
+  </li>
+  {% endif %}
+  {% if settings.social_twitter_link != blank %}
+  <li class="twitter">
+    <a href="{{ settings.social_twitter_link }}" title="Twitter" target="_blank">
+      <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  {% endif %}
+  
+  {% if settings.social_google_plus_link != blank %}
+  <li class="google_plus">
+    <a href="{{ settings.social_google_plus_link }}" title="Google+" target="_blank">
+      <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  {% endif %}
+  
+  
+  {% if settings.social_pinterest_link != blank %}
+  <li class="pinterest">
+    <a href="{{ settings.social_pinterest_link }}" title="Pinterest" target="_blank">
+      <i class="fa fa-pinterest-p fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  {% endif %}
+  
+  {% if settings.social_instagram_link != blank %}
+  <li class="instagram">
+    <a href="{{ settings.social_instagram_link }}" title="Instagram" target="_blank">
+      <i class="fa fa-instagram fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  {% endif %}
+     
+  {% if settings.messenger_link != blank %}
+  <li class="messenger">
+    <a href="{{ settings.messenger_link }}" title="messenger" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c-6.627 0-12 4.975-12 11.111 0 3.497 1.745 6.616 4.472 8.652v4.237l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111 0-6.136-5.373-11.111-12-11.111zm1.193 14.963l-3.056-3.259-5.963 3.259 6.559-6.963 3.13 3.259 5.889-3.259-6.559 6.963z"/></svg>
+    </a>
+  </li>
+  {% endif %}
+  {% if settings.social_snapchat_link != blank %}
+  <li class="snapchat">
+    <a href="{{ settings.social_snapchat_link }}" title="Snapchat" target="_blank">
+      <i class="fa fa-snapchat-ghost fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  {% endif %}
+  {% if settings.social_youtube_link != blank %}
+  <li class="youtube">
+    <a href="{{ settings.social_youtube_link }}" title="YouTube" target="_blank">
+      <i class="fa fa-youtube fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  {% endif %}
+  {% if settings.social_vimeo_link != blank %}
+  <li class="vimeo">
+    <a href="{{ settings.social_vimeo_link }}" title="Vimeo" target="_blank">
+      <i class="fa fa-vimeo fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  {% endif %}
+</ul>
+{% endif %}

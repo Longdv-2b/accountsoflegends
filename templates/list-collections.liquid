@@ -1,0 +1,9 @@
+
+<div class="collection-continue-shopping">
+  <p {% if settings.enable_multilang %}data-translate="collections.general.continue_shopping_htnl"{%endif%}>
+    {{ 'collections.general.continue_shopping_htnl' | t }}
+    <span {% if settings.enable_multilang %}data-translate="collections.general.click_continue"{%endif%}>
+      <a href="/">{{'collections.general.click_continue' | t}}</a>
+    </span>
+  </p>
+</div>

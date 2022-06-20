@@ -1,0 +1,231 @@
+{% include 'style-homepage-block-features'%}
+{% if section.settings.enable %}
+<section class="custom-block-feature section-{{section.id}}" id="{{section.settings.id_scroll}}">
+  {%- assign img_back = section.settings.back_img | img_url: '2000x' -%}
+  <div class="features-top lazyload new-topss"  data-bgset="{{img_back}}">
+    <div class="container-2">
+      <h2 class="title">{% include 'multilang' with section.settings.feature_title %}</h2>
+      <div class="features-des container">
+        <div class="row">
+          {% for block in section.blocks %}
+          <div class="item col-4 col-md-4 col-lg-4">
+            <div class="icon">
+            {%- assign img_url = block.settings.icon | img_url: '600x'-%}
+              {% if block.settings.icon != blank %}
+              <img data-src="{{img_url}}" alt="{{img_url.alt}}" {% include 'lazyload' %} >
+              {% else %}
+              <div class="no-image" style="padding-top: 50%; font-size:20px"><span>110X110px</span></div>
+              {% endif %}
+            </div>
+            <div class="des-title">
+              <h3 style="color:{{block.settings.features_color_des_title}}">{% include 'multilang' with block.settings.des_title %}</h3>
+            </div>
+            <div class="des" style="color:{{block.settings.features_color_des}}">
+              {% include 'multilang' with block.settings.features_content %}
+            </div>
+            
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="features-bottom">
+    <div class="container">
+      <div class="image_bottom">
+        {%- assign img_bottom = section.settings.image_btm | img_url: '2000x'-%}
+        {% if section.settings.image_btm != blank %}
+        <img data-src="{{img_bottom}}" alt="{{img_bottom.alt}}" {%include 'lazyload' %}>
+        {% else %}
+        <div class="no-image" style="padding-top:46%; font-size:20px"><span>1300x600px</span></div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="features-botton container-2">
+      <div class="row">
+        <div class="button-left col-6 col-md-6 col-lg-6">
+          <a href="{{section.settings.link_btn_1}}" class="btn btn-x2">
+            {%include 'multilang' with section.settings.text_btn_1 %}
+          </a>
+        </div>
+        <div class="button-right col-6 col-md-6 col-lg-6">
+          <a href="{{section.settings.link_btn_2}}" class="btn btn-x2">
+            {% include 'multilang' with section.settings.text_btn_2 %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% schema %}
+  {
+    "name": "Custom Block Features",
+    "max_blocks": 3,
+    "settings": [
+      {
+        "type":"checkbox",
+        "id":"enable",
+        "label":" Enable?",
+        "default":true
+      },
+      {
+        "type":"text",
+        "id":"id_scroll",
+        "label":"Add id",
+        "default":"features"
+      },
+      {
+        "type":"header",
+        "content":" Features Top"
+      },
+      {
+        "type":"select",
+        "id":"back_style",
+        "label":"Background",
+        "options":[
+          {
+            "value":"back_color",
+            "label":"Background Color"
+          },
+          {
+            "value":"back_img",
+            "label":"Background Image"
+          }
+        ],
+        "default":"back_color"
+      },
+      {
+        "type":"color",
+        "id":"back_color",
+        "label":" Background Color",
+        "default":"#fff"
+      },
+      {
+        "type":"image_picker",
+        "id":"back_img",
+        "label":" Background Image"
+      },
+      {
+        "type":"text",
+        "id":"feature_title",
+        "label":"Title",
+        "default":"Features"
+      },
+      {
+        "type":"color",
+        "id":"features_color",
+        "label":"Color",
+        "default":"#000d41"
+      },
+      {
+        "type":"header",
+        "content":"Features Bottom"
+      },
+     {
+        "type":"checkbox",
+        "id":"animation_image",
+        "label":"Image Animation?",
+        "default":true
+      },
+      {
+        "type":"image_picker",
+        "id":"image_btm",
+        "label":"Add Image",
+        "info":"Recommended size 1300x600px"
+      },
+      {
+        "type":"header",
+        "content":"Features botton"
+      },
+      {
+        "type":"text",
+        "id":"text_btn_1",
+        "label":" Button 1",
+        "default":"Shop Now"
+      },
+      {
+        "type":"url",
+        "id":"link_btn_1",
+        "label":"Add Link Button 1"
+      },
+      {
+        "type":"text",
+        "id":"text_btn_2",
+        "label":" Button 2",
+        "default":"Specification"
+      },
+      {
+        "type":"url",
+        "id":"link_btn_2",
+        "label":"Add Link Button 2"
+      }
+
+    ],
+    "blocks":[
+      {
+      "type":"features_des",
+      "name":"features des",
+      "settings":[
+          {
+            "type":"image_picker",
+            "id":"icon",
+            "label":"Add icon"
+          },
+          {
+            "type":"text",
+            "id":"des_title",
+            "label":"title",
+            "default":"Design"
+          },
+          {
+            "type":"color",
+            "id":"features_color_des_title",
+            "label":"Color",
+            "default":"#000d41"
+          },
+          {
+            "type":"textarea",
+            "id":"features_content",
+            "label":"Content",
+            "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos a solicitud felis. Pellentesque diam dolor elementum etos lobortis des mollis."
+          },
+          {
+            "type":"color",
+            "id":"features_color_des",
+            "label":"Color",
+            "default":"#73788a"
+          }
+        ]
+      }
+
+    ],
+    "presets":[
+      {
+        "name":"Custom Block Features",
+        "category":"Advanced layout",
+      "blocks":[
+        {
+        	"type":"features_des"
+        },
+        {
+           "type":"features_des"
+        },
+		{
+           "type":"features_des"
+        }
+
+      ]
+     }
+
+    ]
+  }
+{% endschema %}
+
+<style>
+  @media only screen and (min-width: 1000px) {
+  .new-topss{
+  margin-bottom:170px;
+  }
+  }
+</style>

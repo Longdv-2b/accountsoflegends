@@ -1,0 +1,981 @@
+<div class="container">
+  <div class="ranked-topbar">
+    <div class='tabbed'>
+      <ul>
+        <li class='{% if collection.handle contains 'ranked' %}active{% endif %}'><a href="/collections/ranked-accounts">Ranked Accounts</a></li>
+        <li class='{% if product.handle contains 'lol-smurfs' %}active{% endif %}'><a href="/products/lol-smurfs">Unranked Accounts</a></li>
+        <li class='{% if page.handle contains 'lootbox' %}active{% endif %}'><a href="/pages/lootbox">Free LoL Account</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="collection-template">
+  <div class="container">
+    <div class="halo-collection-content">
+      <div class="row">
+        <div class="col-md-12">
+          {% section 'collection-template-new' %} 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% section 'a-faq-product-collections' %}
+{% section 'a-boosting-collections' %}
+{% section 'sectionimage1p-collections' %}
+{% section 'sectionimg2-collections' %}
+
+
+<style>
+  .product-template-animations {
+    padding-top: 100px;
+  }
+  .flag-content-main { position: relative; color: #fff; text-align: center; }
+  .filters {
+    background: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 5px 35px rgb(0 0 0 / 9%);
+  }
+  .wrap-specification {
+    display: block;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 10px 0;
+  }
+  .wrap-specification ul.list {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+  .wrap-specification ul.list li.item {
+    display: flex;
+    box-sizing: border-box;
+    width: auto;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    color: #50505a;
+    padding: 0 0px 0px 0;
+    margin: 0 10px;
+  }
+  .wrap-specification ul.list li.item .value {
+    display: block;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #d0a85c;
+    white-space: nowrap;
+    margin-left: 10px;
+  }
+  .wrap-specification ul.list li.item .label {
+    display: block;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0 0 0px;
+    color: #fff;
+  }
+  span.gf-summary {
+    opacity: 0;
+  }
+  .btn.gf-loadmore-btn {
+    background-color: #d0a85c;
+    color: #fff;
+    border-color: #d0a85c;
+    font-size: 16px!important;
+    font-weight: 500;
+    min-width: 190px;
+    padding: 15px 15px 13px;
+    margin-bottom: 50px;
+  }
+
+
+</style>
+
+<style>
+  /********Collection Template New********/
+  .justify-end {
+    justify-content: flex-end;
+  }
+  .w-1\/2 {
+    width: 50%;
+  }
+  .flex {
+    display: flex;
+  }
+  .mr-4 {
+    margin-right: 1rem;
+  }
+
+
+  section#accountSelling .sort {
+    margin: 20px 20px 0 0
+  }
+
+  section#accountSelling .sort select {
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 9px 20px 9px 10px;
+    font-size: 16px;
+    color: #fff;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='#000'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 4px;
+    font-weight: 700
+  } 
+  
+  section#accountSelling .custom-input select {
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 10px;
+    width: 100%;
+    color: #000;
+    padding: 11px 18px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #000;
+    transition-duration: .4s;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  @media screen and (max-width: 959px) {
+    section#accountSelling .container-fluid {
+      flex-direction: column
+    }
+  }
+
+  section#accountSelling .showFilters {
+    margin: 30px auto;
+    display: none
+  }
+
+  @media screen and (max-width: 959px) {
+    section#accountSelling .showFilters {
+      display: block
+    }
+  }
+
+  section#accountSelling .filters {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 40px 30px 40px;
+    padding: 20px;
+    flex: 1 0 20%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px #00000030;
+    background: #fff;
+  }
+
+  @media screen and (max-width: 959px) {
+    section#accountSelling .filters {
+      padding: 0;
+      flex-direction: column
+    }
+  }
+
+  section#accountSelling .filters.show {
+    display: block
+  }
+
+  section#accountSelling .filters .filterGroup {
+    padding: 10px 20px;
+    margin-bottom: 10px
+  }
+
+  section#accountSelling .filters .filterGroup.small {
+    flex: 1 0 10%
+  }
+
+  section#accountSelling .filters .filterGroup.small.game {
+    flex: 1 0 7%
+  }
+
+  section#accountSelling .filters .filterGroup.medium {
+    flex: 1 0 15%
+  }
+
+  section#accountSelling .filters .filterGroup.big {
+    flex: 1 0 20%
+  }
+
+  section#accountSelling .filters .filter {
+    padding-top: 10px
+  }
+
+  section#accountSelling .filters .filter .ng2-nouislider {
+    margin-top: 20px!important;
+    margin-right: 15px
+  }
+
+  section#accountSelling .filters .filter .ng2-nouislider .noUi-tooltip {
+    border: 0;
+    background: transparent
+  }
+
+  section#accountSelling .filters .filter .label {
+    color: #fff;
+    margin-bottom: 2px
+  }
+
+  section#accountSelling .filters .filter .ranksWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center
+  }
+
+  section#accountSelling .filters .filter .ranksWrapper .rankBox {
+    padding: 4px
+  }
+
+  section#accountSelling .filters .filter .ranksWrapper .rankBox .inner {
+    direction: ltr;
+    background-color: var(--secondary-background)!important;
+      border: 1px solid var(--secondary-background);
+        border-radius: 5px;
+        transition-duration: .3s;
+        color: #fff;
+        font-weight: 700;
+        padding: 5px 10px;
+        font-size: 15px;
+        text-transform: capitalize;
+        cursor: pointer;
+        display: flex;
+        align-items: center
+  }
+
+  section#accountSelling .filters .filter .ranksWrapper .rankBox .inner img {
+    margin-left: 10px;
+    max-height: 37px
+  }
+
+  section#accountSelling .filters .filter .ranksWrapper .rankBox .inner:hover,
+  section#accountSelling .filters .filter .ranksWrapper .rankBox .inner.active {
+    border-color: var(--primary-color);
+      background-color: var(--primary-background)!important
+        }
+
+  section#accountSelling .filters .filter .ranksWrapper.roles .rankBox {
+    flex: 1 0 20%
+  }
+
+  section#accountSelling .filters .filter .ranksWrapper.roles .rankBox .inner {
+    background-position: center!important;
+    background-size: 60%!important
+  }
+
+  section#accountSelling .filters .filter .rangeFilter {
+    direction: ltr
+  }
+
+  section#accountSelling .filters .filter .rangeFilter .noUi-target {
+    background: #434546!important
+  }
+
+  section#accountSelling .filters .filter .rangeFilter .noUi-horizontal {
+    height: 6px
+  }
+
+  section#accountSelling .filters .filter .rangeFilter .noUi-horizontal .noUi-connect {
+    background: var(--primary-color)
+      }
+
+  section#accountSelling .filters .filter .rangeFilter .noUi-horizontal .noUi-handle {
+    width: 20px;
+    height: 20px;
+    top: -7px;
+    box-shadow: none
+  }
+
+  section#accountSelling .filters .filter .rangeFilter .noUi-horizontal .noUi-handle:after,
+  section#accountSelling .filters .filter .rangeFilter .noUi-horizontal .noUi-handle:before {
+    display: none
+  }
+
+  section#accountSelling .filters .filter .rangeFilter .noUi-horizontal .noUi-tooltip {
+    bottom: -40px;
+    color: var(--primary-color);
+      font-size: 14px
+      }
+
+  section#accountSelling .filters .filter .rangeFilter.yellow .noUi-connect {
+    background: #e7ad62
+  }
+
+  section#accountSelling .filters .filter .rangeFilter.yellow .noUi-tooltip {
+    color: #e7ad62
+  }
+
+  section#accountSelling .filters .filter .rangeFilter.green .noUi-connect {
+    background: var(--secondary-color)
+      }
+
+  section#accountSelling .filters .filter .rangeFilter.green .noUi-tooltip {
+    color: var(--secondary-color)
+      }
+
+  section#accountSelling .filters .filter.underSlider {
+    padding-bottom: 20px
+  }
+
+  section#accountSelling .loadingContainer {
+    width: 100%;
+    height: 300px;
+    margin-top: 50px;
+    position: relative
+  }
+
+  section#accountSelling .loadingContainer .backdrop {
+    background-color: transparent!important
+  }
+
+
+
+
+
+  section#accountSelling .accounts {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 0px 30px 30px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @media screen and (max-width: 599px) {
+    section#accountSelling .accounts {
+      flex-direction: column
+    }
+  }
+
+  section#accountSelling .accounts .account {
+    border-radius: 10px;
+    margin: 10px;
+    position: relative;
+    top: 0px;
+    transition-duration: .3s;
+    flex: 0 0 23.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 5px 15px #00000050;
+    background: #ffffff;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media screen and (min-width: 1279px) and (max-width: 1500px) {
+    section#accountSelling .accounts .account {
+      flex: 1 0 23%;
+      max-width: 23%;
+    }
+  }
+
+  @media screen and (min-width: 767px) and (max-width: 1279px) {
+    section#accountSelling .accounts .account {
+      flex: 1 0 31%;
+      max-width: 31%;
+    }
+    section#accountSelling .accounts {
+      padding: 0px 15px 30px;
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    section#accountSelling .accounts .account {
+      flex: 1 0 45%;
+      max-width: 45%;
+    }
+    section#accountSelling .accounts {
+      padding: 0px 10px 30px;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    section#accountSelling .accounts .account {
+      flex: 1 0 99%;
+      max-width: 100%;
+      margin: 10px 0;
+    }
+    section#accountSelling .accounts {
+      padding: 0px 0px 30px;
+    }
+  }
+
+  section#accountSelling .accounts .account:hover {
+    top: -8px
+  }
+
+  section#accountSelling .accounts .account .rankBG {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    border-radius: 10px;
+    opacity: .2
+  }
+
+  section#accountSelling .accounts .account .unique {
+    width: 76px;
+    height: 24px;
+    background-image: url(/assets/images/new/unique-badge.png);
+    background-size: 100%;
+    position: absolute;
+    top: -12px;
+    right: 15px
+  }
+
+  section#accountSelling .accounts .account .verified {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 15px 15px 0 0
+  }
+
+  section#accountSelling .accounts .account .verified span {
+    font-weight: bold;
+    margin-left: 6px;
+    font-family: 14px;
+    background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+      }
+
+  section#accountSelling .accounts .account .accountHeader {
+    display: flex;
+    align-items: center;
+    height: 120px;
+    color: #fff;
+    position: relative;
+    border-radius: 10px 10px 0 0;
+    font-weight: 700;
+    justify-content: space-between;
+    margin-top: 15px
+  }
+
+  section#accountSelling .accounts .account .accountHeader .rankImg {
+    z-index: 2;
+    margin: 0 10px
+  }
+
+  section#accountSelling .accounts .account .accountHeader .rankImg img {
+    height: 115px
+  }
+
+  section#accountSelling .accounts .account .accountHeader .rankAndServer {
+    padding-left: 25px;
+    float: left;
+    z-index: 2
+  }
+
+  @media screen and (max-width: 959px) {
+    section#accountSelling .accounts .account .accountHeader .rankAndServer {
+      font-size: .8em
+    }
+  }
+
+  section#accountSelling .accounts .account .accountHeader .rankAndServer div:first-child {
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000;
+  }
+
+  section#accountSelling .accounts .account .accountHeader .rankAndServer div:nth-child(2) {
+    color: #D0A85C;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  section#accountSelling .accounts .account .accountHeader .rankAndServer .hot {
+    margin-top: 5px
+  }
+
+  section#accountSelling .accounts .account .specials {
+    text-align: left;
+    padding: 5px;
+    margin: 0 10px
+  }
+
+  section#accountSelling .accounts .account .specials div {
+    padding: 3px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-right: 5px;
+    color: #fff;
+    background: #ff4d47
+  }
+
+  section#accountSelling .accounts .account .specials div:nth-child(even) {
+    background: var(--secondary-color)
+      }
+
+  section#accountSelling .accounts .account .details {
+    width: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1
+  }
+
+  section#accountSelling .accounts .account .details .detail {
+    padding: 4px 25px;
+    margin: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+  }
+
+  section#accountSelling .accounts .account .details .detail.name {
+    justify-content: center
+  }
+
+  section#accountSelling .accounts .account .details .detail .infoTitle {
+    color: #000000;
+    font-size: 17px;
+  }
+
+  section#accountSelling .accounts .account .details .detail .info {
+    color: #D0A85C;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 17px;
+  }
+
+  section#accountSelling .accounts .account .details .detail .info .rank {
+    height: 24px
+  }
+
+  section#accountSelling .accounts .account .details .detail .info img {
+    margin-right: 5px
+  }
+
+
+  section#accountSelling .accounts .account .accountFooter {
+    height: 120px;
+    padding: 0 25px;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+
+  section#accountSelling .accounts .account .accountFooter .priceContainer {
+    text-align: left;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+  }
+
+  section#accountSelling .accounts .account .accountFooter .priceContainer .price {
+    color: #D0A85C;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  section#accountSelling .accounts .account .accountFooter .priceContainer .coinPrice {
+    display: flex;
+    align-items: center;
+    font-size: 16px
+  }
+  
+  section#accountSelling .accounts .account .accountFooter .priceContainer .coinPrice a {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    background: #000;
+    border-radius: 5px;
+    padding: 10px 30px;
+    margin: 10px 0;
+    font-size: 17px;
+  }
+  
+  section#accountSelling .accounts .account .accountFooter .priceContainer .coinPrice a:hover {
+    background: #D0A85C;
+  }
+
+  section#accountSelling .accounts .account .accountFooter .priceContainer .coinPrice a img {
+    transform: rotate(-90deg);
+    padding-top: 10px;
+    width: 16px;
+  }
+
+  section#accountSelling .accounts .account .accountFooter .detailsButton {
+    position: absolute;
+    right: 0;
+    bottom: 0
+  }
+
+  section#accountSelling .accounts .account .accountFooter .detailsButton a {
+    background: var(--primary-gradient);
+      border-radius: 10px 0;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+      }
+
+  section#accountSelling .accounts .account .accountFooter .detailsButton a img {
+    transform: rotate(-90deg);
+    transition-duration: .4s
+  }
+
+  section#accountSelling .accounts .account .accountFooter .detailsButton a:hover img {
+    opacity: .5
+  }
+
+  section#accountSelling .accounts .account .selectAccountWrapper {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+
+  section#accountSelling .noAccs {
+    direction: ltr;
+    width: 90%;
+    color: #fff;
+    font-size: 1.5em;
+    text-align: center;
+    margin: 50px auto 0;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #35373a;
+    background-size: cover;
+    background-position: center center
+  }
+
+  section#accountSelling .noAccs .btn {
+    margin: 20px 0
+  }
+
+  section#accountSelling .wrapper {
+    overflow-y: hidden
+  }
+
+  section#accountSelling .wrapper .accountSellingFeatures {
+    background-position: center bottom;
+    padding: 30px 5%;
+    display: flex;
+    align-items: stretch
+  }
+
+  section#accountSelling .wrapper .accountSellingFeatures .feature {
+    text-align: center;
+    padding: 0 20px;
+    flex: 1 1 0px
+  }
+
+  section#accountSelling .wrapper .accountSellingFeatures .feature .icon {
+    width: 50px;
+    height: 50px;
+    margin: 20px auto 5px;
+    background-image: url(/assets/images/new/account-selling-icons.png);
+    background-size: 400% 100%
+  }
+
+  section#accountSelling .wrapper .accountSellingFeatures .feature .icon.icon0 {
+    background-position: 0 0%
+  }
+
+  section#accountSelling .wrapper .accountSellingFeatures .feature .icon.icon1 {
+    background-position: 33.3% 0%
+  }
+
+  section#accountSelling .wrapper .accountSellingFeatures .feature .icon.icon2 {
+    background-position: 66.6% 0%
+  }
+
+  section#accountSelling .wrapper .accountSellingFeatures .feature .icon.icon3 {
+    background-position: 100% 0%
+  }
+
+  section#accountSelling .wrapper .accountSellingFeatures .feature .title {
+    font-weight: 700;
+    font-size: 18px;
+    margin: 5px 0 20px;
+    color: var(--title-color)
+      }
+
+  section#accountSelling .wrapper .accountSellingFeatures .feature .description {
+    color: #9ea2a6;
+    font-size: 14px;
+    padding: 0 10px
+  }
+
+  @media screen and (max-width: 959px) {
+    section#accountSelling .wrapper .accountSellingFeatures {
+      align-items: center;
+      background: none;
+      padding: 30px 0
+    }
+    section#accountSelling .wrapper .accountSellingFeatures .feature {
+      flex: 1 0 100%
+    }
+    section#accountSelling .simplebar-track {
+      background: var(--secondary-background)!important;
+        border-radius: 6px
+        }
+    section#accountSelling .simplebar-track .simplebar-scrollbar:before {
+      opacity: 1;
+      background: var(--primary-gradient)
+        }
+  }
+
+  section#accountSelling .sortLine {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end
+  }
+
+  section#accountSelling .spf-product-card {
+    padding-bottom: 0px;
+    position: relative;
+    margin-bottom: 0px;
+  }
+  
+  section#accountSelling  .gf-actions {
+    padding: 20px;
+    flex: 1 0 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px #00000030;
+    background: #fff;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .gf-filter-trigger, .gf-filter-selection {
+    margin-bottom: 0px;
+  }
+  .gf-filter-trigger {
+    padding-left: 0px;
+    padding-right: 5px;
+  }
+  .gf-filter-selection {
+    padding-left: 5px;
+    padding-right: 0px;
+  }
+  .gf-filter-trigger .gf-refine-toggle-mobile, .gf-filter-selection .sort-by {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border: 1px solid rgb(229, 232, 235);
+    padding: 5px 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #707a83;
+  }
+  .gf-filter-selection .sort-by:before {
+    right: 10px;
+    height: 38px;
+  }
+  .globo-dropdown-custom__options {
+    padding: 0px;
+    border: 1px solid rgb(229, 232, 235);
+    border-radius: 10px;
+  }
+  .globo-dropdown-custom__options span {
+    padding: 10px 20px;
+    border-bottom: 1px solid rgb(229, 232, 235);
+    font-weight: 700;
+    color: #000;
+  }
+  .globo-dropdown-custom__options span:last-child {
+    border-bottom: 0px solid rgb(229, 232, 235);
+  }
+  .globo-dropdown-custom__options span:hover {
+    box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+    background: #fff;
+  }
+
+  
+  @media only screen and (min-width: 768px) {
+    #gf-controls-container {
+      display: none !important;
+    }
+    section#accountSelling  #gf-tree {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 20px 40px 30px 40px;
+      padding: 20px;
+      flex: 1 0 100%;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px #00000030;
+      background: #fff;
+    }
+    .gf-top_one #gf-tree {
+      border-bottom: 0px solid #e6e6e6;
+      margin-bottom: 30px;
+      width: calc(100% - 85px);
+      max-width: 100%;
+      flex-direction: column;
+      flex: 1 0 100%;
+    }
+    .gf-top_one #gf-tree .sort-by {
+      background-color: rgb(255, 255, 255);
+      border-radius: 10px;
+      border: 1px solid rgb(229, 232, 235);
+      padding: 10px 20px;
+      margin-right: 0;
+      color: #707a83;
+    }
+    .gf-top_one #gf-tree .sort-by label {
+      color: #707a83;
+    }
+    .gf-top_one #gf-tree .sort-by:before {
+      right: 10px;
+      height: 32px;
+    }
+    .gf-top_one #gf-tree .sort-by.active, .gf-top_one #gf-tree .sort-by:hover {
+      box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+      background: #fff;
+    }
+    .gf-top_one .gf-filter-contents {
+      margin-top: 0;
+      margin-left: 0;
+      margin-right: 0;
+      padding-bottom: 0;
+    }
+    .gf-block-title {
+      padding-top: 0px;
+    }
+    .gf-top_one .gf-option-block .gf-block-title h3 {
+      background-color: rgb(255, 255, 255);
+      border-radius: 10px;
+      border: 1px solid rgb(229, 232, 235);
+      padding: 15px 20px;
+      margin-top: 0;
+      margin-bottom: 0;
+      color: #707a83;
+    }
+    .gf-top_one .gf-option-block:not(.is-collapsed) .gf-block-title h3, .gf-top_one .gf-option-block .gf-block-title h3:hover {
+      box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+    }
+    .gf-top_one .gf-option-block .gf-swatch-image {
+      background-color: transparent !important;
+    } 
+    .gf-top_one .gf-option-block {
+      margin: 5px 10px 5px 0;
+    }
+    .gf-top_one .gf-block-content, .globo-dropdown-custom__options {
+      padding: 0px;
+      border: 1px solid rgb(229, 232, 235);
+      border-radius: 10px;
+    }
+    .gf-option-box li, .globo-dropdown-custom__options span {
+      padding: 10px 20px;
+      border-bottom: 1px solid rgb(229, 232, 235);
+      font-weight: 700;
+      color: #000;
+    }
+    .gf-option-box li:last-child, .globo-dropdown-custom__options span:last-child {
+      border-bottom: 0px solid rgb(229, 232, 235);
+    }
+    .gf-option-box li:hover, .globo-dropdown-custom__options span:hover {
+      box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+      background: #fff;
+    }
+    #gf-tree .gf-option-box li .gf-label {
+      font-weight: 700;
+      color: #000;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  .unranked-bg {
+/*     background: linear-gradient(360deg, rgba(44, 31, 47, .2) -31.65%, rgba(44, 31, 47, .2) 12.89%), linear-gradient(90deg, rgba(44, 31, 47, .08) -1.12%, rgba(44, 31, 47, .08) 25.05%), linear-gradient(180deg, rgba(44, 31, 47, .2) 0%, rgba(44, 31, 47, .2) 59.55%), #ffffff !important; */
+    background: -moz-linear-gradient(top,  rgba(44, 31, 47,0.2) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.2) 70%, rgba(44, 31, 47,0.2) 100%)!important; /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(44, 31, 47,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(44, 31, 47,0.2) 100%)!important; /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(44, 31, 47,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(44, 31, 47,0.2) 100%)!important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+
+  .iron-bg {
+/*     background: linear-gradient(360deg, rgba(161, 157, 148, .2) -36.84%, rgba(44, 30, 47, .2) 24.8%), linear-gradient(90deg, rgba(161, 157, 148, .08) -2.74%, rgba(44, 30, 47, .08) 18.46%), linear-gradient(180deg, rgba(161, 157, 148, .2) 0%, rgba(44, 30, 47, .2) 36.44%), #ffffff !important; */
+    background: -moz-linear-gradient(top,  rgba(161, 157, 148,0.2) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.2) 70%, rgba(161, 157, 148,0.2) 100%)!important; /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(161, 157, 148,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(161, 157, 148,0.2) 100%)!important; /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(161, 157, 148,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(161, 157, 148,0.2) 100%)!important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+
+  .bronze-bg {
+/*     background: linear-gradient(360deg, rgba(205, 127, 50, .2) -36.84%, rgba(44, 30, 47, .2) 24.8%), linear-gradient(90deg, rgba(205, 127, 50, .08) -2.74%, rgba(44, 30, 47, .08) 18.46%), linear-gradient(180deg, rgba(205, 127, 50, .2) 0%, rgba(44, 30, 47, .2) 36.44%), #ffffff !important; */
+    background: -moz-linear-gradient(top,  rgba(205, 127, 50,0.2) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.2) 70%, rgba(205, 127, 50,0.2) 100%)!important; /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(205, 127, 50,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(205, 127, 50,0.2) 100%)!important; /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(205, 127, 50,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(205, 127, 50,0.2) 100%)!important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+
+  .silver-bg {
+/*     background: linear-gradient(360deg, rgba(113, 129, 137, .2) -31.65%, rgba(44, 31, 47, .2) 12.89%), linear-gradient(90deg, rgba(113, 129, 137, .08) -1.12%, rgba(44, 31, 47, .08) 25.05%), linear-gradient(180deg, rgba(113, 129, 137, .2) 0%, rgba(44, 31, 47, .2) 59.55%), #ffffff !important; */
+    background: -moz-linear-gradient(top,  rgba(208,168,92,0.2) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.2) 70%, rgba(208,168,92,0.2) 100%)!important; /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(208,168,92,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(208,168,92,0.2) 100%)!important; /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(208,168,92,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(208,168,92,0.2) 100%)!important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+
+  .gold-bg {
+    /*     background: linear-gradient(360deg, rgba(205, 167, 99, .2) -36.84%, rgba(44, 30, 47, .2) 24.8%), linear-gradient(90deg, rgba(205, 167, 99, .08) -2.74%, rgba(44, 30, 47, .08) 18.46%), linear-gradient(180deg, rgba(205, 167, 99, .2) 0%, rgba(44, 30, 47, .2) 36.44%), #ffffff !important; */
+    background: -moz-linear-gradient(top,  rgba(208,168,92,0.2) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.2) 70%, rgba(208,168,92,0.2) 100%)!important; /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(208,168,92,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(208,168,92,0.2) 100%)!important; /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(208,168,92,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(208,168,92,0.2) 100%)!important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+  }
+
+  .platinum-bg {
+/*     background: linear-gradient(360deg, rgba(57, 123, 135, .2) -36.84%, rgba(44, 30, 47, .2) 24.8%), linear-gradient(90deg, rgba(57, 123, 135, .08) -2.74%, rgba(44, 30, 47, .08) 18.46%), linear-gradient(180deg, rgba(57, 123, 135, .2) 0%, rgba(44, 30, 47, .2) 36.44%), #ffffff !important; */
+    background: -moz-linear-gradient(top,  rgba(57, 123, 135,0.2) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.2) 70%, rgba(57, 123, 135,0.2) 100%)!important; /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(57, 123, 135,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(57, 123, 135,0.2) 100%)!important; /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(57, 123, 135,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(57, 123, 135,0.2) 100%)!important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+
+  .diamond-bg {
+/*     background: linear-gradient(360deg, rgba(48, 112, 222, .2) -36.84%, rgba(44, 30, 47, .2) 24.8%), linear-gradient(90deg, rgba(48, 112, 222, .08) -2.74%, rgba(44, 30, 47, .08) 18.46%), linear-gradient(180deg, rgba(48, 112, 222, .2) 0%, rgba(44, 30, 47, .2) 36.44%), #ffffff !important; */
+    background: -moz-linear-gradient(top,  rgba(48, 112, 222,0.2) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.2) 70%, rgba(48, 112, 222,0.2) 100%)!important; /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(48, 112, 222,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(48, 112, 222,0.2) 100%)!important; /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(48, 112, 222,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(48, 112, 222,0.2) 100%)!important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+  }
+
+  .master-bg {
+/*     background: linear-gradient(360deg, rgba(128, 29, 161, .2) -36.84%, rgba(44, 30, 47, .2) 24.8%), linear-gradient(90deg, rgba(128, 29, 161, .08) -2.74%, rgba(44, 30, 47, .08) 18.46%), linear-gradient(180deg, rgba(128, 29, 161, .2) 0%, rgba(44, 30, 47, .2) 36.44%), #ffffff !important; */
+    background: -moz-linear-gradient(top,  rgba(128, 29, 161,0.2) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.2) 70%, rgba(128, 29, 161,0.2) 100%)!important; /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(128, 29, 161,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(128, 29, 161,0.2) 100%)!important; /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(128, 29, 161,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,0.2) 70%,rgba(128, 29, 161,0.2) 100%)!important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+  
+</style>

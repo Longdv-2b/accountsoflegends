@@ -1,0 +1,69 @@
+<div class="header-mb">          
+  <div class=" header-mb-left header-mb-items">
+      <div class="mn_mobile mb_nav mb-item">
+        <div class="hamburger-icon svg-mb">
+            <a href="#" class="icon-nav" title="Menu Mobile Icon" data-menu-mb-toogle>
+                {% include 'menu-icon' %}
+            </a>
+        </div>
+        <nav>
+          <ul class="nav-bar ">
+            <li> <a class="" href="/">{% include 'multilang' with section.settings.goto_homepage %}</a></li>
+          </ul>
+          {% if shop.customer_accounts_enabled %}
+          <div class="account-mobile">
+             {% if customer %}
+            <a href="/account" title="User Icon" class="icon-user" {% if settings.enable_multilang %} data-translate="customer.account.title"{% endif %}>
+             {{ 'customer.account.title' | t }} 
+          </a>
+            {% else %}
+          <a href="/account/login" title="User Icon" class="icon-user" {% if settings.enable_multilang %} data-translate="customer.account.sing_and_create_acc"{% endif %}>
+             {{ 'customer.account.sing_and_create_acc' | t }}
+          </a>
+            {% endif %}
+          </div>
+          {% endif %}
+          <div class="language-mobile"> </div>
+        </nav>
+        
+      </div>  
+   
+    </div>
+  <div class="header-mb-middle header-mb-items">
+    
+    <h3 class="header-logo" itemscope itemtype="https://schema.org/Organization">
+      <meta itemprop="url" content="{{ shop.url }}">
+      {% if section.settings.brand_type == 'image' and section.settings.logo != bank %}
+      <a class="logo-img" href="/" title="Logo">
+        <img data-src="{{ section.settings.logo | img_url: 'master' }}"
+             src="{{ section.settings.logo | img_url: 'master' }}"
+             alt="{{ section.settings.logo.alt | default: shop.name }}" itemprop="logo" class="lazyautosizes lazyloade" data-sizes="auto">
+      </a>
+      {% elsif section.settings.brand_text != '' %}
+      <a class="logo-title" href="/">
+        {{ section.settings.brand_text }}
+      </a>
+      {% else %}
+      <a class="logo-title" href="/">
+        {{ shop.name }}
+      </a>
+      {% endif %}
+    </h3>
+  </div>
+  <div class="header-mb-right  header-mb-items">
+    {% if shop.customer_accounts_enabled %}
+    <div class="acc-mb svg-mb mb-item">
+      
+    </div>
+    {% endif %}
+    <div class="cart-icon svg-mb mb-item">
+      <a href="/cart" title="Cart Icon" >       
+        {% include 'icon-cart' %}
+
+        <span class="cartCount" data-cart-count>
+          {{ cart.item_count }}
+        </span>
+      </a>
+    </div>
+  </div>          
+</div>

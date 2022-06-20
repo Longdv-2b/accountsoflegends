@@ -1,0 +1,418 @@
+{% if section.settings.enable %} 
+<section class="faqs_product New-layout">
+  <div class="container">
+  {% if section.settings.title_faqs != blank %}
+  <h2 class="top-title">{% include 'multilang' with section.settings.title_faqs %}</h2>
+  {% endif %}
+  {% if section.settings.text_faqs != blank %}
+  <div class="rte top-text text-center">{% include 'multilang' with section.settings.text_faqs %}</div>
+  {% endif %}
+  <div class="panel-group">
+    <div class="pre-sale-questions col">
+      <div class="header-faq pre-sale">
+        <h4 class="title">{% include 'multilang' with section.settings.title_pre_questions %}</h4>
+        {% if section.settings.des_pre_questions != blank %}
+        <div class="description rte">
+          {% include 'multilang' with section.settings.des_pre_questions %}
+        </div>
+        {% endif %}
+      </div>
+      {% for block in section.blocks %}
+      {% if block.type == 'pre_sale_questions' %}
+      <div class=" panel">
+        <div class="panel-heading">
+          <h4 class="panel-title rte">
+            <a  data-toggle="collapse" class="collapsed" href="#faqs-{{block.id}}" >
+              {% include 'multilang' with block.settings.question_faqs_pre %}
+            </a>
+          </h4>    
+        </div>
+        <div id="faqs-{{block.id}}" class="panel-collapse collapse">
+          <div class="panel-body">
+            {% if settings.enable_multilang and block.settings.answer_faqs contains '|' %}
+            <div class="lang1 rte">
+              {{ block.settings.answer_faqs_pre | split: '|' | first }}
+            </div>
+            <div class="lang2 rte">
+              {{ block.settings.answer_faqs_pre | split: '|' | last }}
+            </div>
+            {% else %}
+            <div class="rte">
+              {{ block.settings.answer_faqs_pre | split: '|' | first }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div class="technical-questions col">
+      <div class="header-faq technical">
+        <h4 class="title">{% include 'multilang' with section.settings.title_technical_questions %}</h4>
+        {% if  section.settings.des_technical_questions != blank %}
+        <div class="description rte">
+          {% include 'multilang' with section.settings.des_technical_questions %}
+        </div>
+        {% endif %}
+      </div>
+      {% for block in section.blocks %}
+      {% if block.type == 'most_asked_technical' %}
+      <div class="panel ">
+        <div class="panel-heading">
+          <h4 class="panel-title rte">
+            <a data-toggle="collapse" class="collapsed" href="#faqs-{{block.id}}" >
+              {% include 'multilang' with block.settings.question_faqs_technical %}
+            </a>
+          </h4>    
+        </div>
+        <div id="faqs-{{block.id}}" class="panel-collapse collapse">
+          <div class="panel-body ">
+            {% if settings.enable_multilang and block.settings.answer_faqs_technical contains '|' %}
+            <div class="lang1 rte">
+              {{ block.settings.answer_faqs_technical | split: '|' | first }}
+            </div>
+            <div class="lang2 rte">
+              {{ block.settings.answer_faqs_technical | split: '|' | last }}
+            </div>
+            {% else %}
+            <div class="rte">
+              {{ block.settings.answer_faqs_technical | split: '|' | first }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if section.settings.contact_text != blank or section.settings.contact_link_text != blank %}
+  <div class="contact-link">
+    {% if section.settings.contact_text != blank %}
+    <span class="text">
+      {% include 'multilang' with section.settings.contact_text  %}
+    </span>
+    {% endif %}
+    {% if section.settings.contact_link_text != blank %}
+    <a href="{{ section.settings.contact_link }}" class="btn">
+      {% include 'multilang' with section.settings.contact_link_text  %}
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
+  </div>
+</section>
+{% endif %}
+
+<style>
+  .faqs_product .panel-title {
+    font-size: {{ section.settings.font_size_qs }};
+    font-weight: 500;
+    border-bottom: 2px solid #dddddd;
+    padding: 15px 0px;
+    margin: 0px;
+  }
+
+  .faqs_product .panel-title > a {
+    color: {{ section.settings.color_question }};
+    font-size: {{ section.settings.font_size_qs }};
+    position:relative;
+    display: block;
+  }
+
+  .faqs_product  .panel-title > a:before {
+    content: "\f29c ";
+    font-family: fontAwesome;
+    position:absolute;
+    left:0px;
+    font-size: 35px;
+    font-weight: normal;
+    line-height: initial;
+    top:50%;
+    transform: translate(0%, -50%);
+  }
+  .faqs_product  .panel-title  a span{
+    margin-left:50px;
+  }
+  .faqs_product .panel-title  a:not(.collapsed) span:before {
+    display: none;
+  }
+
+  .faqs_product  .panel-title > a:before {
+    color: {{ section.settings.color_icon_qs }};
+
+  }
+
+  .faqs_product  .panel-group .panel-body {
+    border-bottom: 2px solid #ddd;
+    padding: 10px 0px;
+  }
+  .faqs_product  .panel-group .panel-body .rte{
+    font-size: {{ section.settings.font_size_answer }};
+    color: {{ section.settings.color_question_answer }}!important;
+  }
+  .faqs_product  .des_faqs a,
+  .faqs_product .panel-group .panel-body a {
+    color: {{ section.settings.color_question_link }};
+  }
+  .faqs_product  .top-title{
+    margin: 0px;
+    text-align: center;
+    font-weight: 500;
+    padding: 70px 0px;
+    font-size:{{section.settings.font_size_title_faqs}};
+    color: {{section.settings.color_title_faqs}};
+
+  }
+  .faqs_product .description {
+    padding-bottom: 41px;
+  }
+  .faqs_product  .header-faq .title {
+    margin: 0px;
+    padding: 12px 0px 34px;
+    font-size:{{section.settings.color_title_botton}};
+    color: {{section.settings.color_title_botton}};
+    font-weight:500;
+  }
+  .faqs_product .panel-title  a span{
+    width: 75%;
+    display: block;
+    position: relative;
+  }
+  .faqs_product .panel-title  a span:before {
+    content: "";
+    width: 2px;
+    height: 15px;
+    background: #7b7b7b;
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: -22%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    -ms-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+  }
+  .faqs_product .panel-title a span:after {
+    content: "";
+    width: 15px;
+    height: 2px;
+    background: #7b7b7b;
+    display: block;
+    position: absolute;
+    top: 50%;
+       right: -23%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(0%);
+    -webkit-transform: translateX(0%) translateY(-50%);
+    -ms-transform: translateX(0%) translateY(-50%);
+    transform: translateX(0%) translateY(-50%);
+  }
+  .faqs_product .panel-group{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+
+  }
+  .faqs_product .col{
+    width:50%;
+    max-width: 100%;
+    margin: 0px 15px;
+  }
+   .faqs_product {
+    padding-bottom: 60px;
+   }
+  .panel-group .header-faq {
+    border-bottom: 2px solid #dddddd;
+  }
+  @media(max-width:1024px){
+  	.faqs_product .panel-title a span:after {
+      
+      right: -16.3%;%;
+    }
+    .faqs_product .panel-title  a span:before
+    {
+    	right: -14.7%;
+    }
+  }
+  @media(max-width:768px){
+  	.faqs_product .panel-title a span:after {
+      
+      right: -9%;
+    }
+    .faqs_product .panel-title  a span:before
+    {
+    	right: -6.5%;
+    }
+    .faqs_product {
+    padding-bottom: 60px;
+    padding-top: 30px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+  }
+</style>
+{% schema %}
+  {
+    "name": "FAQS",
+    "settings": [
+     {
+        "type":"checkbox",
+        "id":"enable",
+        "label":"Enable?",
+        "default":true
+      },     
+      {
+       "type": "text",
+       "id" : "title_faqs",
+       "label" : "Title",
+       "default":"Frequently Asked Questions"
+      },
+      {
+        "type" : "richtext",
+        "id" : "text_faqs",
+        "label" : "Descriptions"
+      },
+      {
+       "type" : "color",
+       "id" : "color_title_faqs",
+       "label" : "Color",
+       "default" : "#000d41"
+      },
+	  {
+       "type" : "text",
+       "id" : "font_size_title_faqs",
+       "label" : "Font size ",
+       "default" : "50px"
+      },
+      {
+        "type": "header",
+        "content": "Question"
+      },
+      
+      {
+       "type" : "color",
+       "id" : "color_icon_qs",
+       "label" : "Icon Color",
+       "default" : "#dddddd"
+      },
+      {
+       "type" : "color",
+       "id" : "color_question",
+       "label" : "Color Question",
+       "default" : "#296fc2"
+      },
+	  {
+       "type" : "text",
+       "id" : "font_size_qs",
+       "label" : "Font size Question",
+       "default" : "14px"
+      },
+      
+
+     {
+        "type": "header",
+        "content": "Answer"
+      },
+      {
+       "type" : "color",
+       "id" : "color_question_answer",
+       "label" : "Color Answer",
+       "default" : "#73788a"
+      },
+	  {
+       "type" : "text",
+       "id" : "font_size_answer",
+       "label" : "Font size Answer",
+       "default" : "14px"
+      },
+      {
+        "type":"header",
+        "content":"Pre Sale Questions"
+      },
+      {
+        "type":"text",
+        "id":"title_pre_questions",
+        "label":"Title",
+        "default":"Pre Sale Questions"
+      },
+      {
+        "type" : "textarea",
+        "id" : "des_pre_questions",
+        "label" : "Descriptions"
+      },
+      {
+        "type":"header",
+        "content":"Technical Questions"
+      },
+      {
+        "type":"text",
+        "id":"title_technical_questions",
+        "label":"Title",
+        "default":"Most Asked Technical Questions"
+      },
+      {
+        "type" : "textarea",
+        "id" : "des_technical_questions",
+        "label" : "Descriptions"
+      },
+      {
+        "type":"header",
+        "content":"Title style"
+      },
+      {
+       "type" : "color",
+       "id" : "color_title_botton",
+       "label" : "Color",
+       "default" : "#000d41"
+      },
+	  {
+       "type" : "text",
+       "id" : "font_size_title_botton",
+       "label" : "Font size ",
+       "default" : "20px"
+      }
+ 	],
+    "blocks": [
+      {
+        "type" : "pre_sale_questions",
+		"name" : "Pre Sale Questions",
+        "settings":[
+          {
+            "type" : "textarea",
+            "id" : "question_faqs_pre",
+            "label" : "Question"
+          },
+          {
+            "type" : "textarea",
+            "id" : "answer_faqs_pre",
+            "label" : "Answer"
+          }
+        ]
+      },
+      {
+        "type" : "most_asked_technical",
+		"name" : "Technical Questions",
+        "settings":[
+          {
+            "type" : "textarea",
+            "id" : "question_faqs_technical",
+            "label" : "Question"
+          },
+          {
+            "type" : "textarea",
+            "id" : "answer_faqs_technical",
+            "label" : "Answer"
+          }
+        ]
+      }
+
+    ]
+  }
+{% endschema %}
+

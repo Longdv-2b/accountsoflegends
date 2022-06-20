@@ -1,0 +1,50 @@
+
+{% for block in section.blocks %}  
+    {% case block.type %}
+  
+      {% when 'text' %}
+<div style="width:64%; margin-left:18%; margin-top:40px;">
+ <h3 class="title cent" style=" font-size: 40px;color: #000d41; margin-bottom:20px;text-align:center; ">
+  {{ block.settings.title1 }}
+ </h3>
+ <p style="font-size: 20px; color: #73788a ;">
+  {{ block.settings.textarea1 }}
+ </p>
+</div>
+
+   {%endcase%}
+{%endfor%}
+
+
+{%schema%}
+
+{
+  "name": "Title and Text Section",
+  "class": "text-section",
+  "max_blocks": 100,
+
+
+  "blocks": [
+
+    {
+      "type": "text",
+      "name": "Text and Title",
+      "settings": [
+        
+
+	{
+        "type": "text",
+        "id": "title1",
+        "label": "Enter the title"
+      },
+{
+        "type": "textarea",
+        "id": "textarea1",
+        "label": "Enter the content"
+      }
+
+      ]
+    }
+  ]
+}
+{% endschema %}

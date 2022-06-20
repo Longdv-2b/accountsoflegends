@@ -1,0 +1,214 @@
+<div class="section custom-block-overview section-landing-info section-landing-info-new">
+  <div class="container-2">
+    <div class="row">
+      <div class="col-12 ml-auto mr-auto text-center">
+        <h2 class="title px-3 px-md-5" style="color: {{ section.settings.hading_color }}">{{ section.settings.boost_text }}</h2>
+        <p class="lead description px-3" style="color: {{ section.settings.text_color }}">
+			{{ section.settings.boost_desc }} 
+        </p>
+      </div>
+    </div>
+    <div class="row mt-5">
+      {% for block in section.blocks %}
+      {% case section.blocks.size %}
+        {% when 4 %}
+        {%- assign column_size = 'col-12 col-md-6 col-lg-3' -%}
+        {% else %}
+        {%- assign column_size = 'col-12 col-md-6 col-lg-4' -%}
+        {% endcase %}
+      <div class="{{column_size}}">
+        {% if block.settings.boost_url != blank %}
+        <a href="{{ block.settings.boost_url }}">
+        {% endif %}
+        <div class="info info-hover">
+          <div class="icon icon-info icon-circle">
+            {%- assign img_url = block.settings.icon | img_url: '100x'-%}
+            {% if block.settings.icon != blank %}
+             <img data-src="{{img_url}}" alt="{{img_url.alt}}" {% include 'lazyload' %} >
+            {% else %}
+             <div class="no-image" style="padding-top: 50%; font-size:20px"><span>50X50px</span></div>
+            {% endif %}
+          </div>
+          <h4 class="info-title" style="color: {{ block.settings.hading_color }}">{{ block.settings.boost_text }}</h4>
+          <p class="description px-3" style="color: {{ block.settings.text_color }}">
+            {{ block.settings.boost_desc }}
+          </p>
+        </div>
+        {% if block.settings.boost_url != blank %}
+        </a>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .section-landing-info {
+    padding-top: 50px;
+  }
+  .section-landing-info h2 {
+    font-size: 38px;
+    font-weight: 500;
+  }
+  .section-landing-info h4 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .section-landing-info p.lead {
+    font-size: 20px;
+  }
+  .section-landing-info .info {
+    max-width: none;
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .section-landing-info .info p {
+    font-size: 18px;
+  }
+  .info .icon.icon-circle {
+    max-width: 80px;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    font-size: .7142em;
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .icon.icon-info {
+    color: #2ca8ff;
+  }
+  .info .icon {
+    color: #888;
+    transition: transform .4s,box-shadow .4s;
+  }
+  .info .icon.icon-circle i, .info .icon.icon-circle img {
+    line-height: 2.7;
+  }
+  .info .icon>i {
+    font-size: 3em;
+  }
+  .now-ui-icons {
+    display: inline-block;
+    font: normal normal normal 14px/1 'Nucleo Outline';
+    font-size: inherit;
+    speak: none;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .section-landing-info-new .info-hover {
+    padding: 50px 5px !important;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0.5px 1px 0 rgb(51 77 114 / 10%), 0px 1.6px 3.6px 0 rgb(51 77 114 / 15%);
+    transition: all .3s ease-out;
+    cursor: pointer;
+  }
+  .section-landing-info-new .info-hover:hover {
+    box-shadow: 0px 20px 45px rgb(51 77 114 / 15%);
+  }
+  .section-landing-info-new .icon.icon-info.icon-circle {
+    box-shadow: none;
+  }
+  .section-landing-info-new .info.info-hover:hover .icon.icon-info.icon-circle {
+    box-shadow: none;
+  }
+  .section-landing-info.section-landing-info-new .info p {
+    min-height: 120px;
+  }
+  .section-landing-info.section-landing-info-new .info .icon>img {
+    width: 80px;
+    margin: 0 auto;
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Boost New",
+     "max_blocks": 4,
+    "settings": [
+		{
+          "type":"text",
+          "id":"boost_text",
+          "label":"Heading"
+        },
+        {
+          "type":"color",
+          "id":"hading_color",
+          "label":"Heading Color",
+          "default":"#000000"
+        },
+		{
+          "type":"textarea",
+          "id":"boost_desc",
+          "label":"Description"
+        },
+        {
+          "type":"color",
+          "id":"text_color",
+          "label":"Text Color",
+          "default":"#73788a"
+        }
+
+	],
+   "blocks":[
+      {
+        "type":"text",
+        "name":"Text",
+        "settings":[
+            {
+              "type":"image_picker",
+              "id":"icon",
+              "label":"Icon"
+            },
+            {
+              "type" : "text",
+              "id" : "boost_text",
+              "label" : "Text"
+            },
+            {
+              "type":"color",
+              "id":"hading_color",
+              "label":"Heading Color",
+              "default":"#000000"
+            },
+            {
+              "type":"textarea",
+              "id":"boost_desc",
+              "label":"Description"
+            },
+            {
+              "type":"color",
+              "id":"text_color",
+              "label":"Text Color",
+              "default":"#73788a"
+            },
+            {
+              "type" : "url",
+              "id" : "boost_url",
+              "label" : "Link"
+            }
+        ]
+      }
+    ],
+    "presets": [
+        {
+          "name": "Boost New",
+          "category": "Advanced layout",
+          "blocks": [
+            {
+              "type": "text"
+            }
+            
+          ]
+        }
+      ]
+  }
+{% endschema %}

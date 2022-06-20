@@ -1,0 +1,283 @@
+{% if section.settings.enable %}
+<section class="banner-parallax New-layout section-{{section.id}}">
+  {%- assign image_url = section.settings.back_image | img_url: '2000x'-%}
+  {% if  section.settings.back_image !=blank %}
+  <div class="banner-image lazyload " data-bgset="{{image_url}}" style="background-image:url({{image_url}});min-height:{{section.settings.min_height}};{% if section.settings.fixed_enable %}background-attachment: fixed;{% endif %}">
+    
+  </div>
+  {%else%}
+  <div class="no-image" style="padding-top:55%;font-size:30px"><span>2000 x 980px</span></div>
+  {% endif %}
+  <div class="container">
+    <div class=" banner-content">
+      <div class="container-2" style="min-height:{{section.settings.min_height}}">
+        <div class="banner_left">
+          {% if section.settings.image_right != blank %}
+          {%- assign img_pos = section.settings.image_right | img_url: '800x'-%}
+           <img style="width: {{section.settings.img_width}}%;" data-src="{{img_pos}}" alt="{{img_pos.alt}}" {% include 'lazyload' %}>
+          {% endif%}
+          <div class="des">
+            <p class="banner-sub-text" style="font-size:{{section.settings.font_size_sub}}; color:{{section.settings.color_sub}}">
+              {% include 'multilang' with section.settings.sub_heading %}
+            </p>
+            <h2 class="banner-heading" style="font-size:{{section.settings.font_size_heading}}; color:{{section.settings.color_heading}}">
+              {% include 'multilang' with section.settings.heading %}
+            </h2>
+            <div class="parallax-btns btns_2">
+              {% if  section.settings.text_submit !=blank %}
+              <a href ="{{section.settings.link_button}}" class="btn btn-x2 victoria-one animated-button lol-button1" style="background-color:{{section.settings.back_btn_color}}; color:{{section.settings.btn_color}}; border-color:{{section.settings.btn_color}}"><div class="open-box-inside"><span>{% include 'multilang' with section.settings.text_submit%}</span></div></a>
+              {% endif %}
+              {% if  section.settings.text_submit2 !=blank %}
+              <a href ="{{section.settings.link_button2}}" class="btn btn-x2 victoria-one animated-button lol-button1" style="background-color:{{section.settings.back_btn_color2}}; color:{{section.settings.btn_color2}}; border-color:{{section.settings.btn_color2}}"><div class="open-box-inside"><span>{% include 'multilang' with section.settings.text_submit2%}</span></div></a>
+              {% endif %}
+            </div>
+            <div class="parallax-btns btns_1">  
+              {% if  section.settings.text_submit3 !=blank %}
+              <a href ="{{section.settings.link_button3}}" class="btn btn-x2 victoria-one animated-button lol-button1" style="background-color:{{section.settings.back_btn_color3}}; color:{{section.settings.btn_color3}}; border-color:{{section.settings.btn_color3}}"><div class="open-box-inside"><span>{% include 'multilang' with section.settings.text_submit3%}</span></div></a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+</section>
+{% endif %}
+{% schema %}
+  {
+    "name": " Homepage Banner New",
+    "settings": [
+      {
+        "type":"checkbox",
+        "id":"enable",
+        "label":"Enable?",
+        "default":true
+      },
+      
+      {
+        "type":"image_picker",
+        "id":"back_image",
+        "label":"Add Image",
+        "info":"Recommended size 2000x980px"
+      },
+      {
+        "type":"checkbox",
+        "id":"fixed_enable",
+        "label":"Fixed Image Position",
+        "default":true
+      },
+      {
+      "type":"text",
+      "id":"min_height",
+      "label":"Min Height Image",
+      "default":"890px"
+      },
+{
+"type":"header",
+"content":"Content"
+},
+{
+"type":"image_picker",
+"id":"image_right",
+"label":"Image/Logo"
+},
+      {
+        "type": "range",
+        "id": "img_width",
+        "label": "Image/Logo Width",
+        "default": 100,
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "unit": "%"
+      },
+{
+"type":"textarea",
+"id":"sub_heading",
+"label":"Sub Heading",
+"default":"Phasellus lorem malesuada ligula pulvinar commodo maecenas"
+},
+{
+"type":"color",
+"id":"color_sub",
+"label":"Color",
+"default":"#fff"
+},
+{
+"type":"text",
+"id":"font_size_sub",
+"label":"Font Size",
+"default":"14px"
+},
+{
+"type":"text",
+"id":"heading",
+"label":"Heading",
+"default":"Hear Whatever You Need."
+},
+{
+"type":"color",
+"id":"color_heading",
+"label":"Color",
+"default":"#fff"
+},
+{
+"type":"text",
+"id":"font_size_heading",
+"label":"Font Size",
+"default":"50px"
+},
+{
+"type":"header",
+"content":"Button 1"
+},
+{
+"type":"text",
+"id":"text_submit",
+"label":"Text buttton",
+"default":"Shop Now"
+},
+{
+"type":"color",
+"id":"btn_color",
+"label":"Color",
+"default":"#fff"
+},
+{
+"type":"color",
+"id":"back_btn_color",
+"label":"Background Color",
+"default":"transparent"
+},
+{
+"type":"url",
+"id":"link_button",
+"label":" Link Button"
+},
+{
+"type":"header",
+"content":"Button 2"
+},
+{
+"type":"text",
+"id":"text_submit2",
+"label":"Text buttton",
+"default":"Shop Now"
+},
+{
+"type":"color",
+"id":"btn_color2",
+"label":"Color",
+"default":"#fff"
+},
+{
+"type":"color",
+"id":"back_btn_color2",
+"label":"Background Color",
+"default":"transparent"
+},
+{
+"type":"url",
+"id":"link_button2",
+"label":" Link Button"
+},
+{
+"type":"header",
+"content":"Button 3"
+},
+{
+"type":"text",
+"id":"text_submit3",
+"label":"Text buttton",
+"default":"Shop Now"
+},
+{
+"type":"color",
+"id":"btn_color3",
+"label":"Color",
+"default":"#fff"
+},
+{
+"type":"color",
+"id":"back_btn_color3",
+"label":"Background Color",
+"default":"transparent"
+},
+{
+"type":"url",
+"id":"link_button3",
+"label":" Link Button"
+}
+
+    ],
+    "presets":[
+      {
+        "name":"Homepage Banner New",
+        "category":"block image"
+      }
+    ]
+  }
+{% endschema %}
+<style>
+  .section-{{section.id}} .banner-image{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+  }
+ 
+  {% if section.settings.animation_image %}
+  .banner-parallax  .banner_right  img{
+    animation-name: anumation_image;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    position: relative
+
+  }
+  @keyframes  anumation_image{
+    from {
+      top: -15px;
+      width: 100%;
+    }
+    to {
+      top: 20px;
+      width: 100%;
+    }
+  }
+  {% endif %}
+  
+  @media (min-width: 1025px)
+  {
+    .header .header-bottom {
+      background-color: transparent;
+      position: absolute;
+      width: 100%;
+      margin:0 auto;
+      z-index:99;
+    }
+  
+  }
+  
+  @media (max-width:767px) {
+    .banner-parallax .container-2 .banner_left {
+      width: 100%;
+    }
+    .parallax-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .banner-parallax .banner-content .banner_left .parallax-btns .btn-x2 {
+      min-width: 160px;
+      padding: 10px;
+      margin: 5px;
+      font-size: 15px;
+    }
+  }
+
+  
+</style>

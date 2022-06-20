@@ -1,0 +1,100 @@
+{% if section.settings.enable %}
+<section class="contact-support-pr">
+    <div class="des-contact-pr">{% include 'multilang' with section.settings.des %}</div>
+    <div class="button-contact-pr">
+      <a href="/pages/contact-us" class="btn btn-x1">{% include 'multilang' with section.settings.text_button %}</a>
+    </div>
+</section>
+{% endif %}
+<style>
+  .des-contact-pr span{
+    color:{{section.settings.color_title}};
+  }
+  .contact-support-pr {
+    padding: 34px 15px 100px;
+    text-align: center;
+  }
+  .contact-support-pr .des-contact-pr {
+    padding-bottom: 32px;
+  }
+  .contact-support-pr .btn-x1 {
+    background-color: {{section.settings.back_button_content}};
+    color: {{section.settings.color_button_content}};
+    border-color:{{section.settings.back_button_content}}!important;
+    min-width: 332px;
+  }
+  .contact-support-pr .btn-x1:hover {
+    background-color: {{section.settings.back_button_hover}}!important;
+    color: {{section.settings.color_hover}}!important;
+    border-color:{{section.settings.color_hover}}!important;
+  }
+</style>
+{% schema %}
+  {
+    "name": "Contact Support",
+    "settings": [
+          {
+            "type":"checkbox",
+            "id":"enable",
+            "label":"Enable?",
+            "default":true
+          },
+          {
+            "type":"textarea",
+            "id":"des",
+            "label":"Description",
+            "default":"Unable to find satisfactory answers ?"
+          },
+          {
+            "type":"color",
+            "id":"color_title",
+            "label":"Color",
+            "default":"#73788a"
+          },
+          {
+            "type":"text",
+            "id":"font_size_title",
+            "label":"Font Size",
+            "default":"14px"
+          },
+          {
+            "type":"header",
+            "content":"Button"
+          },
+          {
+            "type":"text",
+            "id":"text_button",
+            "label":"Button Content",
+            "default":"Contact Support"
+          },
+          
+          {
+            "type":"color",
+            "id":"color_button_content",
+            "label":" Color",
+            "default":"#fff"
+          },
+          {
+            "type":"color",
+            "id":"back_button_content",
+            "label":" Background",
+            "default":"#ec3323"
+          },
+          {
+            "type":"color",
+            "id":"color_hover",
+            "label":" Color Hover",
+            "default":"#ec3323"
+          },
+          {
+            "type":"color",
+            "id":"back_button_hover",
+            "label":" Background Hover",
+            "default":"#fff"
+          }
+      ]
+    }
+{% endschema %}
+
+<style>
+</style>

@@ -1,0 +1,557 @@
+<section class="container homepage-product" id="{{section.settings.id_scroll}}">
+  {%- assign product = all_products[section.settings.product] -%}
+  <div class="header-pr">
+    <h2 class="title" style="color:{{section.settings.color_title}}; font-size:{{section.settings.font_size_title}}">
+      {% include 'multilang' with section.settings.prhm_title %}
+    </h2>
+    <div class="sub-title rte" style="color:{{section.settings.color_sub}}; font-size:{{section.settings.font_size_sub}}">
+      {% include 'multilang' with section.settings.sub_title %}
+    </div>
+  </div>
+  {% if section.settings.product != blank %}
+  <div data-section-id="{{ section.id }}" data-section-type="product" id="ProductSection-{{ section.id }}" data-enable-history-state="true" data-collections-related="/collections/{{collection.handle}}?view=related">
+    <div class="product product-detail">
+
+      {%- assign current_variant = product.selected_or_first_available_variant -%}
+      {% assign variantCount = product.variants | size %}
+      <div class="row product_top{% if section.settings.show_tab == 'horizontal'%} horizontal-tabs{% else %} vertical-tabs has-sticky-product-img{% endif %}">
+        <div class="col-md-6 product-photos" data-more-view-product>
+          <div {% if section.settings.show_tab == 'vertical' %} data-sticky-product-img{% endif %} class="product-img-box{% if section.settings.style_moreview == 'horizontal' %} horizontal-moreview{% else %}  left-vertical-moreview vertical-moreview{% endif %}{% if settings.product_image_border%} grid-item-border{% endif %}">
+            <div style="position: relative;" class="wrapper-images">
+              <div class="product-photo-container slider-for">
+                {% for image in product.images %}
+                <div class="thumb filter-{{ image.alt | handle }}">
+                  <a data-zoom class="fancybox" rel="gallery1" href="{{ image | img_url: 'original' }}" data-fancybox="images">
+                    <img id="product-featured-image-{{image.id}}" data-src="{{ image | img_url: 'original' }}" alt="{{ image.alt | escape }}" {% include 'lazyload' %}>
+                  </a>
+                </div>
+                {% endfor %}
+              </div>
+
+              <div class="slider-nav" data-rows="5" data-vertical="{% if section.settings.style_moreview == 'horizontal' %}false{% else %}true{% endif %}" style="display:none">
+                {% for image in product.images %}
+                <div class="item filter-{{ image.alt | handle }}">
+                  <a href="javascript:void(0)" data-image="{{ image.src | product_img_url: 'original' }}" data-zoom-image="{{ image.src | product_img_url: 'original' }}">
+                    <img data-src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" {% include 'lazyload' %}>
+                  </a>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 product-shop">
+          <h1 class="product-title">
+            <a href="{{section.settings.link_detail}}"> {% include 'multilang' with product.title %}</a>
+          </h1>
+
+          {% if section.settings.display_product_reviews %}
+          <div class="group_item">
+            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+          </div>
+          {% endif %}
+
+          {% if product.description contains '[countdown]' %}
+          {% assign des = product.description | split:'[/countdown]' | last %}
+          {% if des contains '[custom tab]'%}
+          {% assign des = des | split:'[custom tab]' | first | split:'<iframe' | first %}
+          {% endif %}
+          {% else %}
+          {% assign des = product.description %}
+          {% if des contains '[custom tab]'%}
+          {% assign des = des | split:'[custom tab]' | first | split:'<iframe' | first %}
+          {% endif %}
+          {% endif %}
+
+          {% if section.settings.show_desc == 'short' %}
+
+          {% if product.metafields.c_f['Short Description'] %}
+          {% assign des = product.metafields.c_f['Short Description'] %}
+          {% assign word_numbeer = 100000000000000 %}
+          {% else %}
+          {% assign word_numbeer = 50 %}
+          {% endif %}
+
+          {% if settings.enable_multilang and des contains '[lang2]' %}
+          <div class="rte short-description">
+            <div class="lang1">
+              {{ des | split: '[lang2]' | first | strip_html | replace: '&nbsp;', ' ' | truncatewords: word_numbeer }}
+            </div>
+            <div class="lang2">
+              {{ des | split: '[lang2]' | last | strip_html | replace: '&nbsp;', ' ' | truncatewords: word_numbeer }}
+            </div>
+          </div>
+          {% else %}
+          <div class="rte short-description">
+            {{ des | split: '[lang2]' | first | strip_html | replace: '&nbsp;', ' ' | truncatewords: word_numbeer }}
+          </div>
+          {% endif %}
+
+          {% elsif section.settings.show_desc == 'full' %}
+          {% if settings.enable_multilang and des contains '[lang2]' %}
+          <div class="rte short-description">
+            <div class="lang1">
+              {{ des | split: '[lang2]' | first }}
+            </div>
+            <div class="lang2">
+              {{ des | split: '[lang2]' | last }}
+            </div>
+          </div>
+          {% else %}
+          <div class="rte short-description">
+            {{ des | split: '[lang2]' | first }}
+          </div>
+          {% endif %}
+          {% endif %}
+          <div class="prices" style="display:none">
+            {% if product.compare_at_price > product.price %}
+            <span class="compare-price">
+              {{ product.compare_at_price_max | money }}
+            </span>
+            <span class="price on-sale" itemprop="price">
+              {{ product.price | money }}
+            </span>
+            {% else %}
+            <span class="price" itemprop="price">
+              {{ product.price | money }}
+            </span>
+            {% endif %}
+          </div>
+
+          {% form 'product', product, id: "add-to-cart-form", novalidate: 'novalidate' %}
+
+          <script>
+            window.productVariants = window.productVariants || {};
+            window.productVariants[{{ product.id }}] = {{ product.variants | json }};
+          </script>
+          {% if product.available %}
+          <div id="product-variants" class="product-options" data-fbt-pro-id="product-options-{{ product.id }}" data-product-id="{{ product.id }}">
+            {% if variantCount > 1  or product.variants[0].title != 'Default Title'  %}
+            <select id="product-variants-{{ product.id }}" name="id" style="display: none;">
+              {% for variant in product.variants %}
+              {% if variant.available %}
+              <option data-imge="{% if variant.image.size != blank %}{{ variant.image.src | product_img_url: 'compact' }}{% else  %}{{ product.featured_image.src | product_img_url: 'compact' }}{% endif %}" {% if variant == current_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                {{ variant.title }}
+              </option>
+              {% else %}
+              <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+              {% endif %}
+              {% endfor %}
+            </select>
+
+            {% if settings.use_color_swatch %}
+            	{% include 'swatch_home' with option %}
+            {% endif %}
+
+            {% else %}
+            <input type="hidden" name="id" value="{{ product.variants[0].id }}" />
+            {% endif %}
+          </div>
+          {% endif %}
+          <div class="btn-group">
+            {% if current_variant.available %}
+            <div class="quantity">
+              <label for="quantity" {% if settings.enable_multilang %}data-translate="cart.label.quantity"{%endif%}>
+                {{ 'cart.label.quantity' | t }}:
+              </label>
+              <div class="qty-group">
+                <a href="#" data-minus-qtt class="minus button"></a>
+                <input type="text" data-qtt-id="quantity__{{ product.id }}" name="quantity" value="1">
+                <a href="#" data-plus-qtt class="plus button"></a>
+              </div>
+            </div>
+            {% endif %}
+            <div class="atc-btn">
+              {% if current_variant.available %}
+              <input data-btn-addToCart type="submit" name="add" class="btn btn-x1" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{%endif%} id="product-add-to-cart" value="{{ 'products.product.add_to_cart' | t }}" data-form-id="#add-to-cart-form">
+              {% else %}
+              <input type="submit" name="add" class="btn" {% if settings.enable_multilang %}data-translate="products.product.unavailable"{%endif%} id="product-add-to-cart" disabled value="{{ 'products.product.unavailable' | t }}" >
+              {% endif %}
+            </div>
+            {% if section.settings.link_detail != blank %}
+            <a href="{{section.settings.link_detail}}" class="detail">{% include 'multilang' with section.settings.text_link_detail %}</a>
+            {% endif %}
+          </div>
+          {% if section.settings.enable_payment_button and current_variant.available %}
+          {{ form | payment_button }}
+          {% endif %}
+          {% endform %}
+          {% if section.settings.display_trust_img and settings.img_trust != blank %}
+          <div class="secure-shopping-guarantee">
+            {% if settings.secure_text != blank %}
+            <p class="title-trust-img"> {% include 'multilang' with settings.secure_text %}</p>
+            {% endif %}
+            <img data-src="{{ settings.img_trust | img_url: '800x'  }}" {% include 'lazyload' %}>
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+{% unless product == empty %}
+<script>
+  var buttonSlt = '[data-minus-qtt], [data-plus-qtt]',
+      buttonElm = $(buttonSlt);
+
+  $(document).on('click', buttonSlt, function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      var self = $(this),
+          input = $('.quantity input[name="quantity"]'),
+          oldVal = parseInt(input.val()),
+          newVal = 1;
+
+      switch (true) {
+          case (self.hasClass('plus')): {
+              newVal = oldVal + 1;
+              break;
+          }
+          case (self.hasClass('minus') && oldVal > 1): {
+              newVal = oldVal - 1;
+              break;
+          }
+      }
+
+      input.val(newVal).trigger('change');
+
+
+  });
+  //script for product homepage
+  jQuery(document).ready(function() {
+
+      changeSwatchProductBundle();
+     var swatchSlt = '.product-shop .swatch :radio';
+	$(swatchSlt).trigger("change");
+    });
+    var changeSwatchProductBundle = function() {
+    var swatchSlt = '.product-shop .swatch :radio';
+
+    $(document).off('change.changeBundleSwatch', swatchSlt).on('change.changeBundleSwatch', swatchSlt, function(e) {
+        var self = $(this);
+        if (self.prop('checked')) {
+            var productItem = $(this).closest('.product-options');
+            var productId = productItem.data('product-id');
+            var variantList = window.productVariants[productId];
+            var optionIdx = self.closest('[data-option-idx]').data('option-idx');
+            var swatches = productItem.find('.swatch-element');
+            var thisVal = self.val();
+            var selectedVariant;
+            var productPrice = $('.product .price'),
+            comparePrice = $('.product .compare-price');
+            var productInput = productItem.find('[name=id]');
+            // Get selected swatches
+            var selectedSwatchOpt1 = productItem.find('[data-option-idx="0"]').find('input:checked').val();
+            var selectedSwatchOpt2 = productItem.find('[data-option-idx="1"]').find('input:checked').val();
+            var selectedSwatchOpt3 = productItem.find('[data-option-idx="2"]').find('input:checked').val();
+          
+          	// Re-active all swatches
+            swatches.removeClass('soldout');
+            swatches.find(':radio').prop('disabled',false);
+          
+            switch (optionIdx){
+                case 0:
+                    var availableVariants = variantList.find(function(variant){
+                        return variant.option1 == thisVal && variant.option2 == selectedSwatchOpt2 && variant.available;
+                    })
+                    if(availableVariants != undefined){
+                        selectedVariant =  availableVariants;
+                    }else{
+                         // variant was sold out, so auto select other available variant
+                        var altAvailableVariants = variantList.find(function(variant){
+                            return variant.option1 == thisVal && variant.available;
+                        })
+                        selectedVariant =  altAvailableVariants;
+                    };
+                    break;
+                case 1:
+                    var availableVariants = variantList.find(function(variant){
+                        return variant.option1 == selectedSwatchOpt1 && variant.option2 == thisVal && variant.available;
+                    })
+                    if(availableVariants != undefined){
+                        selectedVariant =  availableVariants;
+                    }else{
+                        // Something went wrong, if correct, never meet this
+                        console.log('Bundle Error: variant was soldout, on option selection #2')
+                    };
+                    break;
+                case 2:
+                    var availableVariants = variantList.find(function(variant){
+                        return variant.option1 == selectedSwatchOpt1 && variant.option2 == selectedSwatchOpt2 && variant.option3 == thisVal && variant.available;
+                    })
+                    if(availableVariants != undefined){
+                       selectedVariant =  availableVariants;
+                    }else{
+                        // Something went wrong, if correct, never meet this
+                        console.log('Bundle Error: variant was soldout, on option selection #3')
+                    };
+                    break;
+            }
+
+            productInput.val(selectedVariant.id);
+          	 // Check new swatch input
+            initSelectedSwatch(productItem);
+            // Disable sold out swatches base on new checked inputs
+            disableSoldoutSwatchBundle(productItem);
+
+            // Do select callback function
+            productItem.find('select').val(selectedVariant.id).trigger('change');
+          
+          // Prices
+            productPrice.html(Shopify.formatMoney(selectedVariant.price, "{{ shop.money_format }}"));
+
+            if(selectedVariant.compare_at_price > selectedVariant.price) {
+                productPrice.addClass("on-sale");
+                comparePrice
+                    .html(Shopify.formatMoney(selectedVariant.compare_at_price, "{{ shop.money_format }}"))
+                    .show();
+            }
+            else {
+                comparePrice.hide();
+                productPrice.removeClass("on-sale");
+          
+            };
+            $('.prices').show();
+            {% if settings.enable_multiple_currencies %}
+            Currency.convertAll(window.shop_currency, $('#currencies .active').attr('data-currency'), 'span.money', 'money_format');
+            {% endif %}
+               
+
+            // Change product image
+      var newImage = productInput.find('option:selected',this).attr('data-imge');
+      if (selectedVariant && selectedVariant.featured_image) {
+            var originalImage = $("img[id|='product-featured-image']");
+            var newImage = selectedVariant.featured_image;
+            var element = originalImage[0];
+
+            Shopify.Image.switchImage(newImage, element, function (newImageSizedSrc, newImage, element) {
+                jQuery('.slider-nav img').each(function() {
+                    var grandSize = $(this).attr('data-src').split('?')[0].replace('compact','1024x1024');
+
+                    newImageSizedSrc = newImageSizedSrc.split('?')[0];
+
+                    if(grandSize === newImageSizedSrc) {
+                        var item = $(this).closest('.item');
+
+                        item.trigger('click');
+                        return false;
+                    }
+                });
+            });
+        };
+
+        }
+    });
+      
+}
+    
+var initSelectedSwatch = function(productItem) {
+        var productId = productItem.data('product-id');
+        var selectedVariantId = productItem.find('[name="id"]').val();
+        var productOpts = productItem.find('.swatch');
+        var variantArr = window.productVariants[productId];
+
+        if (!variantArr) {
+            return;
+        }
+        // Get selected variant
+        var selectedVariant = variantArr.find(function(variant){
+            return variant.id == selectedVariantId
+        });
+
+        // Check selected swatch
+        productOpts.each(function(index){
+            var optionIndex = 'option' + (index + 1);
+            var selectedSwatch = $(this).find('.swatch-element[data-value="'+selectedVariant[optionIndex]+'"]');
+
+            selectedSwatch.find('input').prop('checked', true);
+        })
+};
+
+var disableSoldoutSwatchBundle = function(productItem){
+    var productId = productItem.data('product-id');
+    var variantList = window.productVariants[productId];
+    var options = productItem.find('[data-option-idx]');
+    var selectedSwatchOpt1 = productItem.find('[data-option-idx="0"]').find('input:checked').val();
+    var selectedSwatchOpt2 = productItem.find('[data-option-idx="1"]').find('input:checked').val();
+    var selectedSwatchOpt3 = productItem.find('[data-option-idx="2"]').find('input:checked').val();
+
+    options.each(function(){
+        var optionIndex = $(this).data('option-idx');
+        var swatch = $(this).find('.swatch-element');
+        
+        switch (optionIndex) {
+            case 0:
+            // loop through all swatchs in option 1 anh filter sold out swatch
+            swatch.each(function(){
+                var swatchVal = $(this).data('value');
+                var opt1Soldout = variantList.find(function(variant){
+                    return variant.option1 == swatchVal && variant.available;
+                });
+                if(opt1Soldout == undefined ){
+                    $(this).addClass('soldout');
+                    $(this).find(':radio').prop('disabled',true);
+                }
+            })
+            break;
+            case 1:
+            // loop through all swatchs in option 2 anh filter sold out swatch
+            swatch.each(function(){
+                var swatchVal = $(this).data('value');
+                var opt1Soldout = variantList.find(function(variant){
+                    return variant.option1 == selectedSwatchOpt1 && variant.option2 == swatchVal && variant.available;
+                });
+              console.log(opt1Soldout);
+                if(opt1Soldout == undefined){
+                    $(this).addClass('soldout');
+                    $(this).find(':radio').prop('disabled',true);
+                }
+            })
+            break;
+            case 2:
+            // loop through all swatchs in option 3 anh filter sold out swatch
+            swatch.each(function(){
+                var swatchVal = $(this).data('value');
+                var opt1Soldout = variantList.find(function(variant){
+                    return variant.option1 == selectedSwatchOpt1 && variant.option2 == selectedSwatchOpt2 && variant.option3 == swatchVal && variant.available;
+                });
+                if(opt1Soldout == undefined){
+                    $(this).addClass('soldout');
+                    $(this).find(':radio').prop('disabled',true);
+                }
+            })
+            break;
+        }
+    });
+};
+</script>
+{% endunless %}
+
+{% schema %}
+  {
+    "name": "Product Homepage",
+    "settings": [
+      {
+        "type":"text",
+        "id":"id_scroll",
+        "label":"Add id",
+        "default":"shopnow"
+      },
+	  {
+        "type" : "header",
+        "content" : "Add Product"
+      },
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      },
+      {
+        "type":"header",
+        "content":"Descriptions"
+      },
+      {
+        "type":"text",
+        "id":"prhm_title",
+        "label":"Title",
+        "default":"Shop Now"
+      },
+      {
+        "type":"color",
+        "id":"color_title",
+        "label":"Color Title",
+        "default":"#000d41"
+      },
+      {
+        "type":"text",
+        "id":"font_size_title",
+        "label":"Font size title",
+        "default":"50px"
+      },
+      {
+        "type":"textarea",
+        "id":"sub_title",
+        "label":"Sub Title",
+        "default":"Phasellus lorem an malesuada ligula pulvinar commodo maecenas."
+      },
+      {
+        "type":"color",
+        "id":"color_sub",
+        "label":"Color Sub",
+        "default":"#73788a"
+      },
+      {
+        "type":"text",
+        "id":"font_size_sub",
+        "label":"Font size Sub",
+        "default":"14px"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_product_reviews",
+        "label": "Display Product Review?",
+        "default": true
+      },
+      {
+        "type":"text",
+        "id":"text_link_detail",
+        "label":" Detail text",
+        "default":"detail"
+      },
+      {
+        "type":"url",
+        "id":"link_detail",
+        "label":" Add link detail"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_payment_button",
+        "label": "Show dynamic checkout button",
+        "info": "Lets customers check out directly using a familiar payment method. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "display_trust_img",
+        "label": "Display Trust Image?",
+        "default": true
+      },
+      {
+        "type": "radio",
+        "id": "show_desc",
+        "label": "Short description",
+        "options": [
+          {
+            "value": "no-show",
+            "label": "No"
+          },
+          {
+            "value": "short",
+            "label": "Yes"
+          },
+          {
+            "value": "full",
+            "label": "Show Full Description"
+          }
+        ],
+        "default": "short"
+      }
+
+	],
+    "presets":[
+          {
+            "name":"Product Homepage",
+            "category":"Product Homepage"
+          }
+        ]
+	
+  }
+{% endschema %}

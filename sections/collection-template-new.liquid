@@ -1,0 +1,185 @@
+<section id="accountSelling" >
+
+  <div class="accounts" id="gf-products">
+
+    {% for product in collection.products %}
+    <div class="account {% if product.title contains 'Unranked' %}unranked-bg{% elsif product.title contains 'Iron' %}iron-bg{% elsif product.title contains 'Bronze' %}bronze-bg{% elsif product.title contains 'Silver' %}silver-bg{% elsif product.title contains 'Gold' %}gold-bg{% elsif product.title contains 'Platinum' %}platinum-bg{% elsif product.title contains 'Diamond' %}diamond-bg{% elsif product.title contains 'Master' %}master-bg{% endif %}">
+      <div class="rankBG"></div>
+      
+        {% assign server = '' %}
+        {% assign winrate = '' %}
+        {% assign level = '' %}
+        {% assign rank = '' %}
+        {% assign win = '' %}
+        {% assign champion = '' %}
+        {% assign essence = '' %}
+        {% assign skin = '' %}
+        {% assign division = '' %}
+        {% for tag in product.tags %}
+        {% assign downtag = tag | downcase %}
+
+        {% if downtag contains 'server' %}
+        {% assign server = tag %}
+        {% endif %}
+        {% if downtag contains 'level' %}
+        {% assign level = tag %}
+        {% endif %}
+        {% if downtag contains 'winrate' %}
+        {% assign winrate = tag %}
+        {% endif %}
+        {% if downtag contains 'rank' %}
+        {% assign rank = tag %}
+        {% endif %}
+        {% if downtag contains 'win/loss' %}
+        {% assign win = tag %}
+        {% endif %}
+        {% if downtag contains 'champion' %}
+        {% assign champion = tag %}
+        {% endif %}
+        {% if downtag contains 'blue essence' %}
+        {% assign essence = tag %}
+        {% endif %}
+        {% if downtag contains 'skins' %}
+        {% assign skin = tag %}
+        {% endif %}
+        {% if downtag contains 'division' %}
+        {% assign division = tag %}
+        {% endif %}
+
+        {% endfor %}
+      
+      <div class="accountHeader">
+        <div class="rankAndServer">
+          {% if product.metafields.my_fields.rank != blank %}
+           <div>{{product.metafields.my_fields.rank}}</div>
+          {% else %}
+           <div>{{product.title | split: ']' | last | split: 'Account' | first}}</div>
+          {% endif %}
+          {% if product.metafields.my_fields.server != blank %}
+           <div>{{product.metafields.my_fields.server}}</div>
+          {% else %}
+           <div>{{product.title | split: ']' | first | split: '[' | last}}</div>
+          {% endif %}
+        </div>
+        <div class="w-1/2 flex justify-end mr-4">
+          {% if product.title contains 'Unranked' %}
+          <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/unrankedi.png">
+          {% elsif product.title contains 'Iron' %}
+          <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/ironi.png">
+          {% elsif product.title contains 'Bronze' %}
+          <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/bronzei.png">
+          {% elsif product.title contains 'Silver' %}
+          <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/silveri.png">
+          {% elsif product.title contains 'Gold' %}
+          <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/goldi.png">
+          {% elsif product.title contains 'Platinum' %}
+          <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/platinumi.png">
+          {% elsif product.title contains 'Diamond' %}
+          <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/diamondi.png">
+          {% elsif product.title contains 'Master' %}
+          <img style="height: inherit; width: inherit;" src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/masteri.png">
+          {% endif %}
+        </div>
+      </div>
+      <div class="details">
+        
+        <div class="detail">
+          <div class="infoTitle">Solo/Duo Rank</div>
+          {% if product.metafields.my_fields.rank != blank %}
+          <div class="info"><span>{{product.metafields.my_fields.rank}}</span></div>
+          {% elsif rank != blank %}
+          <div class="info"><span>{{ rank | split:" " | last }}</span></div>
+          {% else %}
+          <div class="info"><span>-</span></div>
+          {% endif %}
+        </div>
+        
+        <div class="detail">
+          <div class="infoTitle">Server</div>
+          {% if product.metafields.my_fields.server != blank %}
+          <div class="info"><span>{{product.metafields.my_fields.server}}</span></div>
+          {% elsif server != blank %}
+          <div class="info"><span>{{ server | split:" " | last }}</span></div>
+          {% else %}
+          <div class="info"><span>-</span></div>
+          {% endif %}
+        </div>
+        
+        <div class="detail">
+          <div class="infoTitle">Winrate</div>
+          {% if product.metafields.my_fields.winrate != blank %}
+          <div class="info"><span>{{product.metafields.my_fields.winrate}}</span></div>
+          {% elsif winrate != blank %}
+          <div class="info"><span>{{ winrate | split:" " | last }}</span></div>
+          {% else %}
+          <div class="info"><span>-</span></div>
+          {% endif %}
+        </div>
+        
+        <div class="detail">
+          <div class="infoTitle">Champions</div>
+          {% if product.metafields.my_fields.champions != blank %}
+          <div class="info"><span>{{product.metafields.my_fields.champions}}</span></div>
+          {% elsif champion != blank %}
+          <div class="info"><span>{{ champion | split:" " | last }}</span></div>
+          {% else %}
+          <div class="info"><span>-</span></div>
+          {% endif %}
+        </div>
+        
+        <div class="detail">
+          <div class="infoTitle">Blue Essences</div>
+          {% if product.metafields.my_fields.blue_essences != blank %}
+          <div class="info"><span>{{product.metafields.my_fields.blue_essences}}</span></div>
+          {% elsif essence != blank %}
+          <div class="info"><span>{{ essence | split:" " | last }}</span></div>
+          {% else %}
+          <div class="info"><span>-</span></div>
+          {% endif %}
+        </div>
+        
+        <div class="detail">
+          <div class="infoTitle">Level</div>
+          {% if product.metafields.my_fields.level != blank %}
+          <div class="info"><span>{{product.metafields.my_fields.level}}</span></div>
+          {% elsif level != blank %}
+          <div class="info"><span>{{ level | split:" " | last }}</span></div>
+          {% else %}
+          <div class="info"><span>-</span></div>
+          {% endif %}
+        </div>
+        
+        <div class="detail">
+          <div class="infoTitle">Full Email Access</div>
+          <div class="info check">
+            <img src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/check.svg?v=1645090567">
+          </div>
+        </div>
+      </div>
+      <div class="accountFooter">
+        <div class="priceContainer">
+          <div class="price">{{product.price | money}}</div>
+          <div class="coinPrice">
+            <a href="{{ product.url | within: collection }}"> Details 
+              <img src="https://cdn.shopify.com/s/files/1/0273/7133/9864/files/down.svg?v=1645089560" width="16">
+            </a>
+          </div>
+        </div>
+
+      </div>
+      <!---->
+    </div>
+    {% endfor %}
+
+  </div>
+  
+</section>
+
+
+{% schema %}
+  {
+    "name": "Collection Page",
+    "settings": []
+  }
+{% endschema %}
+

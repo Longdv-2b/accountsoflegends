@@ -1,0 +1,211 @@
+{% include 'style-custom-block-overview' %}
+{% if section.settings.enable %}
+<section class="custom-block-overview section-{{section.id}} " id="{{section.settings.id_scroll}}">
+
+  
+  <div class="overview-bottom mrtp">
+   
+      <div class="custom image2">
+     
+        <div class="right overview-content section2">
+          <div class="container-overview">
+            <div class="content sec2">
+                <h3 class="title cent" style=" font-size: {{section.settings.font_size_title_style}};color: {{section.settings.title_style_color}} ;">
+              {{section.settings.title_style }}
+            </h3>
+              <div class="des2" >
+                <p>
+                  <span class="outerspan2">
+                  <span class="Wclass2"  style="font-size: {{section.settings.font_siz}}; ">{{section.settings.W}}</span>
+                    </span>
+                <p  style="font-size: {{section.settings.font_size}}; color: {{section.settings.des_style_color}} ;"> {{ section.settings.par1 }}</p>
+                </p>
+              </div>
+          
+              <div class="des3" style="font-size: {{section.settings.font_size}}; color: {{section.settings.des_style_color}} ;">
+                {{ section.settings.des_style }}
+              </div>
+            
+              <div class="des3" style="font-size: {{section.settings.font_size}}; color: {{section.settings.des_style_color}} ;">
+                {{ section.settings.des_style2 }}
+              </div>
+            
+              <div class="des3" style="font-size: {{section.settings.font_size}}; color: {{section.settings.des_style_color}} ;">
+                {{ section.settings.des_style3 }}
+              </div>
+            
+            
+            </div>
+          </div>
+        </div>
+      </div>
+   
+    
+  
+ 
+  </div>
+</section>
+
+
+
+{% endif %}
+
+<style>
+  
+   @media (min-width: 992px){
+  h3.title.cent {
+    text-align: center;
+}
+  span.outerspan2 {
+    float: left;
+    text-align: center;
+    line-height: 1;
+    
+    margin-right: 10px;
+}
+  .des2 {
+    display: flex;
+}
+ .right.overview-content.section2{
+    /* text-align: center; */
+    width: 50%;
+    margin: auto;
+        padding: 47px 37px;
+}
+.des3 {
+    padding: 10px 7px;
+}
+  
+   }
+  
+   @media (max-width: 767px){
+ 
+     h3.title.cent {
+    font-size: 24px !important;
+   
+}
+     .content.sec2 {
+    padding: 10px 10px;
+}
+
+   }
+</style>
+{% schema %}
+  {
+    "name": "sectionimage2p",
+    "max_blocks": 9,
+    "settings": [
+        {
+          "type":"checkbox",
+          "id":"enable",
+          "label":"Enable?",
+          "default":true
+        },
+  
+      
+        {
+          "type":"color",
+          "id":"back_style_left",
+          "label":"Background",
+          "default":"#f7f7f7"
+        },
+{
+          "type":"text",
+          "id":"title_style",
+          "label":"Title",
+          "default":"Phasellus Loremous"
+        },
+        {
+          "type":"text",
+          "id":"W",
+          "label":"Title",
+          "default":"Phasellus Loremous"
+        },
+        {
+          "type":"textarea",
+          "id":"par1",
+          "label":"Content",
+		  "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis."
+        },
+        
+        
+        {
+          "type":"textarea",
+          "id":"des_style",
+          "label":"Content",
+		  "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis."
+        },
+{
+          "type":"textarea",
+          "id":"des_style2",
+          "label":"Content",
+		  "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis."
+        },
+{
+          "type":"textarea",
+          "id":"des_style3",
+          "label":"Content",
+		  "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis."
+        },
+
+        {
+          "type":"color",
+          "id":"title_style_color",
+          "label":"Color",
+          "default":"#000d41"
+        },
+        {
+          "type":"text",
+          "id":"font_size_title_style",
+          "label":"Font Size",
+          "default":"30px"
+        },
+        {
+          "type":"text",
+          "id":"font_size",
+          "label":"Font Size",
+          "default":"20px"
+        },
+       {
+          "type":"text",
+          "id":"font_siz",
+          "label":"Font Size",
+          "default":"20px"
+        },
+        {
+          "type":"color",
+          "id":"des_style_color",
+          "label":"Color",
+          "default":"#73788a"
+        }
+
+        
+     ],
+      "blocks":[
+        {
+          "type":"overview_style",
+          "name":"Overview Style ",
+          "settings":[
+  
+
+
+          ]
+        }
+        
+
+      ],
+      "presets":[
+        {
+          "name":"sectionimage2p",
+          "category":"Advanced layout",
+          "blocks":[
+            {
+              "type":"overview_style"
+            }
+            
+          ]
+        }
+
+      ]
+  }
+{% endschema %}

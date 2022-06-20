@@ -1,0 +1,73 @@
+<style>
+  
+  /*------ background --------*/
+  {%- assign img_back = section.settings.back_img | img_url: '2000x' -%}
+
+  {% if section.settings.back_style == 'back_img' %}
+ 
+  .custom-block-style2 .top-content{
+    background-image: url({{img_back}});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid transparent;
+  }
+ 
+  {% else %}
+  .custom-block-style2 .top-content{
+    background-color:{{section.settings.back_color}};
+    border: 1px solid transparent;
+  }
+  {% endif %}
+  /*------ heading --------*/
+  .custom-block-style2 .top-content .heading {
+    color:{{section.settings.color_heading}};
+    font-size:{{section.settings.font_size_heading}};
+    font-weight:400;
+  }
+  /*------ title --------*/
+  .custom-block-style2 .top-content .title {
+    color:{{section.settings.color_title}};
+    font-size:{{section.settings.font_size_title}};
+    font-weight:500;
+  }
+  /*------ nav --------*/
+  .custom-block-style2 .top-content .site-nav li a{
+    color:{{section.settings.color_nav}};
+    font-size:{{section.settings.font_size_nav}};
+    font-weight:500;
+  }
+  .site-nav li:hover a span:after, .header .Back-to-home:hover a span:after{
+    border-color: {{section.settings.color_nav}};
+    }
+  /*------ botton content --------*/
+  .custom-block-style2 .bottom-content .right-heading{
+    color:{{section.settings.heading_text_color}};
+    font-size:{{section.settings.font_size_heading_text}};
+    font-weight:500;
+  }
+  .custom-block-style2 .bottom-content .right-des{
+     color:{{section.settings.sub_heading_text_color}};
+    font-size:{{section.settings.font_size_sub_heading}};
+  }
+  {% if section.settings.animation_image %}
+  .custom-block-style2 .box-left  img{
+    animation-name: anumation_image;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    position: relative
+
+  }
+  @keyframes  anumation_image{
+    from {
+      top: -10px;
+    }
+    to {
+      top: 10px;
+    }
+  }
+  {% endif %}
+</style>

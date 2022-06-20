@@ -1,0 +1,802 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/OBJLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/postprocessing@6.22.5/build/postprocessing.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+
+<style>
+  .center-text {
+    text-align: center;
+    padding-top: 10px;
+  }
+  .page-header {
+    padding-bottom: 0;
+  }
+  .page-header h2 {
+    font-size: 45px !important;
+    font-weight: 600 !important;
+    color: #f3de94 !important;
+  }
+  .page-header .rte {
+    color: #e1e1e1;
+    padding-bottom: 29px;
+    font-size: 18px;
+  }
+  .page-header .rte .des {
+    max-width: 650px;
+    margin: auto;
+  }
+  .page-header .line {
+    display: inline-block;
+    width: 270px;
+    height: 2px;
+    background-color: #f3de94;
+    margin-bottom: 16px;
+  }
+  .not-login-noti {
+    min-height: 500px;
+    color: #f3de94;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+  }
+  .login-link {
+    color: #34b7bf;
+    margin: 0 5px;
+    text-decoration: underline;
+    text-underline-offset: 7px;
+  }
+  .login-link:hover {
+    color: #34b7bf;
+    text-decoration: underline;
+    text-shadow: 0 0 5px #20dce7;
+  }
+  #boxCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin-top: -70px;
+  }
+  .lootbox-screen {
+    background: linear-gradient(-60deg, #040814, #0D3743, #050D1A);
+    background-size: 150% 150%;
+    animation: gradient 15s ease infinite;
+    position: relative;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .lol-button {
+    background-color: transparent;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transition: box-shadow linear 0.5s;
+    transition: box-shadow linear 0.5s;
+    box-sizing: content-box;
+    border-style: solid;
+    border-image: linear-gradient(to right bottom, #e7d9aa, #ad924b, #e7d9aa);
+    border-image-slice: 1;
+    color: #f3de94;
+    padding: 1px;
+  }
+  .lol-button>.open-box-inside {
+    padding: 14px 12px 12px;
+    background: linear-gradient(-60deg, #1a8882, #0d3636, #14726f);
+    border: 1px solid;
+    border-image: linear-gradient(to right bottom, #34b7bf, #2da8ab, #20dce7);
+    border-image-slice: 1;
+    background-size: 100% 100%;
+    box-shadow: inset 0 0 4px 1px #145858;
+    transition: backgroud-size linear 1s;
+  }
+  .lol-button:hover>.open-box-inside {
+    background-size: 150% 150%;
+    animation: gradient 3s ease infinite;
+    color: #f3de94;
+  }
+  .lol-button:disabled:hover>.open-box-inside {
+    cursor: not-allowed;
+    animation: none;
+    background-size: unset;
+  }
+  .server-select-container {
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    margin-top: 20px;
+  }
+  .prize-detail-container {
+    font-size: 18px;
+    position: absolute;
+    bottom: 7%;
+    text-align: center;
+    color: #e1e1e1;
+    opacity: 0;
+  }
+  #prizeDetail {
+    color: #f3de94;
+    font-weight: 700;
+  }
+  .additional-noti {
+    opacity: 0;
+  }
+  #setting__server-name--select {
+    width: 200px;
+    margin-left: 20px;
+    background-color: transparent;
+    color: #ffffff;
+  }
+  #setting__server-name--select option {
+    background-color: transparent;
+  }
+  .spinner-icon {
+    display: none;
+    font-size: 25px;
+    color: #f3de94;
+  }
+  #openBoxButton.loading:disabled {
+    opacity: 1;
+  }
+  #openBoxButton.loading {
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: box-shadow linear 0.5s;
+    box-shadow: 0 0 15px #f3de94;
+  }
+  #openBoxButton.loading > .open-box-inside {
+    background-size: 150% 150%;
+    animation: gradient 3s ease infinite;
+  }
+  #openBoxButton.loading > .open-box-inside > .spinner-icon {
+    display: block;
+  }
+  #openBoxButton.loading > .open-box-inside > span {
+    display: none;
+  }
+  @media only screen and (max-width: 600px) {
+    .page-header h2 {
+      font-size: 40px !important;
+      font-weight: 500 !important;
+    }
+    .page-header .rte {
+      font-size: 14px;
+    }
+    #boxCanvas {
+      height: 500px;
+    }
+    .prize-detail-container {
+      font-size: 16px;
+      bottom: 5.5%;
+    }
+  }
+</style>
+
+<div class="lootbox-screen">
+  <header class="page-header container">
+    <br>
+    <h2>Free LoL Account</h2>
+    <div class="rte">
+      <div class="des">
+        Open your daily lootbox and win discount codes and even a free LoL Smurf Account. Every 24 hours and every $10 spent, you get a free spin.
+      </div>
+    </div>
+    <span class="line"></span>
+    <div class="d-none text-nowrap align-items-center server-select-container">
+      <b>Please select your server (the reward is only valid at one server):</b>
+      <select id="setting__server-name--select" style="padding-left: 30px"></select>
+    </div>
+  </header>
+  <div class="prize-detail-container container-fluid" id="prizeInfo">
+    <span id="prizeType"></span>
+    <span id="prizeDetail"></span>
+    <p class="additional-noti">Your Discount will be applied.</p>
+  </div>
+  <canvas id="boxCanvas"></canvas>
+  {% if customer %}
+    <button class="btn btn-x2 lol-button" id="openBoxButton" disabled>
+      <div class="open-box-inside">
+        <i class="fa fa-circle-o-notch fa-spin spinner-icon"></i>
+        <span>Open box</span>
+      </div>
+    </button>
+  {% else %}
+    <a href="/account/login?return_url=/pages/{{ page.handle }}" class="btn btn-x2 lol-button" id="openBoxNotLoginButton">
+      <div class="open-box-inside">
+        <span>Login to open box</span>
+      </div>
+    </a>
+  {% endif %}
+</div>
+
+{% assign customerData = customer %}
+{% assign objLink = 'hextechbox_OBJ.obj' | asset_url %}
+{% assign objBaseColorLink = 'hextechbox_Base_Color.png' | asset_url %}
+{% assign objEmissiveLink = 'hextechbox_Emissive.png' | asset_url %}
+{% assign objMetallicLink = 'hextechbox_Metallic.png' | asset_url %}
+{% assign objMixedAOLink = 'hextechbox_Mixed_AO.png' | asset_url %}
+{% assign objNormalLink = 'hextechbox_Normal.png' | asset_url %}
+{% assign objRoughnewssLink = 'hextechbox_Roughness.png' | asset_url %}
+{% assign defaultImg = '1.jpeg' | asset_url %}
+{% assign accountPrizeImg = section.settings.prize_product | img_url: '300x' %}
+{% assign discount5PrizeImg = section.settings.prize_5percent | img_url: '300x' %}
+{% assign discount10PrizeImg = section.settings.prize_10percent | img_url: '300x' %}
+{% assign discount15PrizeImg = section.settings.prize_15percent | img_url: '300x' %}
+{% assign discount20PrizeImg = section.settings.prize_20percent | img_url: '300x' %}
+{% assign discount25PrizeImg = section.settings.prize_25percent | img_url: '300x' %}
+{% assign discount30PrizeImg = section.settings.prize_30percent | img_url: '300x' %}
+{% assign discount35PrizeImg = section.settings.prize_35percent | img_url: '300x' %}
+{% assign discount40PrizeImg = section.settings.prize_40percent | img_url: '300x' %}
+{% assign discount45PrizeImg = section.settings.prize_45percent | img_url: '300x' %}
+{% assign discount50PrizeImg = section.settings.prize_50percent | img_url: '300x' %}
+{% assign discount55PrizeImg = section.settings.prize_55percent | img_url: '300x' %}
+{% assign discount60PrizeImg = section.settings.prize_60percent | img_url: '300x' %}
+{% assign discount65PrizeImg = section.settings.prize_65percent | img_url: '300x' %}
+{% assign discount70PrizeImg = section.settings.prize_70percent | img_url: '300x' %}
+{% assign discount75PrizeImg = section.settings.prize_75percent | img_url: '300x' %}
+
+<script type="module">
+  const PREFIX = "[SERVER]_";
+  const SERVERS = [
+    'NA',
+    'EUW',
+    'EUNE',
+    'TR',
+    'BR',
+    'OCE'
+  ];
+  const API_URL = '/a/hura';
+  let credit = 0;
+  let isHaveServer = false;
+
+  let scene, camera, renderer, control, pointLight, composer, composer2, crystal, postprocessing = {}, prizeMesh;
+  const loader = new THREE.OBJLoader();
+  const group = new THREE.Group();
+  const prizesGroup = new THREE.Group();
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
+  const mouseMove = {
+    x: 1,
+    y: 0
+  };
+  let movingVerticalVelocity = 0.002;
+  let shakingVeloity = 0;
+  let shakingVeloityZ = 0;
+  let godRayEffectPass, bloomEffectPass;
+  const delayedCalls = [];
+  const prizes = [];
+  const canvas = document.getElementById('boxCanvas');
+  const objLink = '{{ objLink }}';
+  const objBaseColorLink = '{{ objBaseColorLink }}';
+  const objEmissiveLink = '{{ objEmissiveLink }}';
+  const objMetallicLink = '{{ objMetallicLink }}';
+  const objMixedAOLink = '{{ objMixedAOLink }}';
+  const objNormalLink = '{{ objNormalLink }}';
+  const objRoughnewssLink = '{{ objRoughnewssLink }}';
+
+  const loadBoxObject = function() {
+    loader.load(
+      objLink,
+      function(obj) {
+        obj.position.set(0,-1,0)
+        obj.scale.set(0.5,0.5,0.5)
+        const textureLoader = new THREE.TextureLoader()
+        const baseTexture = textureLoader.load(objBaseColorLink)
+        const emissiveTexture = textureLoader.load(objEmissiveLink)
+        const metalicTexture = textureLoader.load(objMetallicLink)
+        const normalTexture = textureLoader.load(objNormalLink)
+        const aoTexture = textureLoader.load(objMixedAOLink)
+        const roughnessTexture = textureLoader.load(objRoughnewssLink)
+
+        const material = new THREE.MeshStandardMaterial({
+          map: baseTexture,
+          normalMap: normalTexture,
+          metalnessMap: metalicTexture,
+          roughnessMap: roughnessTexture,
+          aoMap: aoTexture,
+          emissiveMap: emissiveTexture,
+          metalness: 0.7,
+          emissiveIntensity: 7,
+          emissive: '#0050B5'
+        })
+
+        obj.traverse((o) => {
+          if (o.isMesh) {
+            o.material = material
+          }
+        })
+
+        group.add(obj)
+      }
+    )
+  }
+
+  // set up the environment -
+  // initiallize scene, camera, objects and renderer
+  let init = function() {
+    // 1. create the scene
+    scene = new THREE.Scene();
+    //scene.background = new THREE.Color(0x000000);
+
+    // 2. create an locate the camera
+    camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 1, 5000);
+    camera.position.set(0,3,10);
+
+    // create light
+    const light = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(light);
+
+    pointLight = new THREE.PointLight(0xffffff, 2, 0);
+    pointLight.position.set(0,10,3);
+
+    // 3. create and locate the objects on the scene
+    // Loot box
+    loadBoxObject();
+
+    // Loot box crystal
+    const crystalGeometry = new THREE.CylinderBufferGeometry(0.26, 0.25, 0.1, 6);
+    const crystalMaterial = new THREE.MeshBasicMaterial({
+      color: 0x8bffff
+    });
+    crystal = new THREE.Mesh(crystalGeometry, crystalMaterial);
+    crystal.rotation.x = 90/180 * Math.PI;
+    crystal.rotation.z = Math.PI;
+    crystal.position.set(0,1.12,1.7);
+
+    // Prize
+    const texture = new THREE.TextureLoader().load('{{ defaultImg }}');
+    const prizeCardGeometry = new THREE.PlaneBufferGeometry(4, 6);
+    const prizeCardMaterial = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      opacity: 0,
+      side: THREE.DoubleSide,
+      map: texture
+    });
+    prizeMesh = new THREE.Mesh(prizeCardGeometry, prizeCardMaterial);
+    prizeMesh.visible = false;
+    prizes.push(prizeMesh);
+    prizesGroup.add(prizeMesh);
+    prizesGroup.position.set(0,3,0);
+
+    group.add(crystal);
+    group.position.set(0,3,0);
+    group.rotation.y = 20/180 * Math.PI;
+    group.rotation.x = 20/180 * Math.PI;
+    scene.add(group);
+    scene.add(prizesGroup);
+
+    // 4. create the renderer
+    renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true
+    });
+
+    renderer.setClearColor(0xffffff, 0);
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    //renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    document.querySelector('.lootbox-screen').appendChild(renderer.domElement);
+
+    scene.add(camera);
+    scene.add(pointLight);
+
+    // Composer (Post processing)
+    const areaImage = new Image()
+    areaImage.src = POSTPROCESSING.SMAAEffect.areaImageDataURL;
+    const searchImage = new Image();
+    searchImage.src = POSTPROCESSING.SMAAEffect.searchImageDataURL;
+    const smaaEffect = new POSTPROCESSING.SMAAEffect(searchImage,areaImage,1);
+
+    let godRayEffect = new POSTPROCESSING.GodRaysEffect(camera, crystal, {
+      resolutionScale: 0.6,
+      density: 3,
+      decay: 0.8,
+      weight: 1.2,
+      samples: 5
+    })
+
+    godRayEffectPass = new POSTPROCESSING.EffectPass(
+      camera,
+      smaaEffect,
+      godRayEffect
+    )
+
+    godRayEffectPass.renderToScreen = true
+
+    const bloomOption = {
+      luminanceThreshold: 0.1,
+      luminanceSmoothing: 0.1,
+      intensity: 0,
+      height: 1080,
+      kernelSize: 5
+    }
+
+    const bloomEffect = new POSTPROCESSING.BloomEffect(bloomOption)
+    bloomEffectPass = new POSTPROCESSING.EffectPass(
+      camera,
+      smaaEffect,
+      bloomEffect
+    )
+
+    bloomEffectPass.renderToScreen = true
+
+    const renderPass = new POSTPROCESSING.RenderPass(scene, camera)
+    composer = new POSTPROCESSING.EffectComposer(renderer)
+    composer.addPass(renderPass)
+    composer.addPass(bloomEffectPass)
+
+    const renderPass2 = new POSTPROCESSING.RenderPass(scene, camera)
+    composer2 = new POSTPROCESSING.EffectComposer(renderer)
+    composer2.addPass(renderPass2)
+    composer2.addPass(godRayEffectPass)
+    postprocessing.godrayCrystal = godRayEffect
+    postprocessing.bloomBox = bloomEffect
+  }
+
+  const getIntersects = function (point, objects) {
+    raycaster.setFromCamera(point, camera);
+
+    return raycaster.intersectObjects(objects, true);
+  };
+
+  const getDiscountImage = function (percentage) {
+    switch (percentage) {
+      case 75:
+        return '{{ discount75PrizeImg }}';
+      case 70:
+        return '{{ discount70PrizeImg }}';
+      case 65:
+        return '{{ discount65PrizeImg }}';
+      case 60:
+        return '{{ discount60PrizeImg }}';
+      case 55:
+        return '{{ discount55PrizeImg }}';
+      case 50:
+        return '{{ discount50PrizeImg }}';
+      case 45:
+        return '{{ discount45PrizeImg }}';
+      case 40:
+        return '{{ discount40PrizeImg }}';
+      case 35:
+        return '{{ discount35PrizeImg }}';
+      case 30:
+        return '{{ discount30PrizeImg }}';
+      case 25:
+        return '{{ discount25PrizeImg }}';
+      case 20:
+        return '{{ discount20PrizeImg }}';
+      case 15:
+        return '{{ discount15PrizeImg }}';
+      case 10:
+        return '{{ discount10PrizeImg }}';
+      default:
+        return '{{ discount5PrizeImg }}';
+    }
+  }
+
+  const showPrize = function(prizeData) {
+    const prizeContainer = $('#prizeInfo');
+    const additionalNoti = $('.additional-noti');
+    gsap.to(prizeContainer, { opacity: 1, duration: 0.5 });
+    gsap.to(additionalNoti, { opacity: 1, duration: 0.5 });
+  }
+
+  const openLootBox = () => {
+    movingVerticalVelocity = 0
+
+    const glowingMoreInterval = setInterval(() => {
+      postprocessing.godrayCrystal.godRaysMaterial.uniforms['decay'].value += 0.1
+      postprocessing.godrayCrystal.godRaysMaterial.uniforms['density'].value -= 0.02
+    }, 100)
+
+    const groupDelayedCall = gsap.delayedCall(0.8, () => {
+      clearInterval(glowingMoreInterval)
+      group.children.forEach((child) => {
+        if (child.children && child.children.length) {
+          const boxDelayedCall = gsap.delayedCall(1, () => {
+            shakingVeloity = 0.02
+            shakingVeloityZ = 0.02
+            gsap.to(postprocessing.bloomBox, { intensity: 5, duration: 2 })
+            setTimeout(() => {
+              shakingVeloity = 0
+              shakingVeloityZ = 0
+              flashOutPrizes()
+            }, 1200)
+          })
+          delayedCalls.push(boxDelayedCall)
+        } else {
+          gsap.to(child.material, { opacity: 0, duration: 1.2 })
+          const crystallDelayedCall = gsap.delayedCall(1.2, () => {
+            composer2.removePass(godRayEffectPass)
+          })
+          delayedCalls.push(crystallDelayedCall)
+        }
+      })
+    })
+
+    delayedCalls.push(groupDelayedCall)
+    gsap.delayedCall(3.5, function() {
+      showPrize()
+    })
+  }
+
+  const flashOutPrizes = function () {
+    delayedCalls.map((call) => {
+      call.kill();
+    });
+
+    gsap.to(group, { visible: 0, duration: 0 });
+    gsap.to(postprocessing.bloomBox, { intensity: 2, duration: 1 });
+    postprocessing.bloomBox.blurPass.kernelSize = 5;
+    prizes[0].visible = true;
+    gsap.to(prizes[0].material, { opacity: 1, duration: 2 });
+  };
+
+  const onMouseMove = function(e) {
+    mouseMove.x = (e.clientX / canvas.clientWidth) * 2 - 1;
+    mouseMove.y = - (e.clientY / canvas.clientHeight) * 2 + 1;
+  };
+
+  const onWindowResize = function() {
+    renderer.setPixelRatio(window.devicePixelRatio);
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    renderer.setSize(window.innerWidth - scrollbarWidth, canvas.clientHeight);
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  };
+
+  const getPrizeData = function (data) {
+    const prizeType = $('#prizeType');
+    const prizeDetail = $('#prizeDetail');
+    const additionalNoti = $('.additional-noti');
+    switch (data.prizeType) {
+      case 'DISCOUNT_CODE':
+        const discountImg = getDiscountImage(data.discountValue)
+        if (discountImg) {
+          const texture = new THREE.TextureLoader().load(discountImg);
+          prizeMesh.material = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            opacity: 0,
+            side: THREE.DoubleSide,
+            map: texture
+          });
+        }
+
+        prizeType.html('Discount code ' + data.discountValue + '%: ');
+        prizeDetail.html(data.code);
+        break;
+      case 'PRODUCT_FREE':
+        const productImg = '{{ accountPrizeImg }}';
+        if (productImg) {
+          const texture = new THREE.TextureLoader().load(productImg);
+          prizeMesh.material = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            opacity: 0,
+            side: THREE.DoubleSide,
+            map: texture
+          });
+        }
+
+        prizeDetail.html('A free account will be sent to your email.');
+        additionalNoti.html('');
+        break;
+      default:
+        prizeDetail.html('Goodluck next time.');
+        additionalNoti.html('');
+        break;
+    }
+  };
+
+  const onClickOpenButton = function () {
+    const customerId = {{ customer.id | json }};
+    const openBoxButton = $('#openBoxButton');
+    if (openBoxButton.hasClass('loading')) {
+      return false;
+    }
+    openBoxButton.addClass('loading').prop('disabled', true);
+
+    $.ajax(`${API_URL}/customers/${customerId}/open-lootbox`, {
+      method: 'GET',
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function(data) {
+        openBoxButton.removeClass('loading');
+        openBoxButton.hide();
+        getPrizeData(data);
+        openLootBox();
+
+      },
+      error: function(err) {
+        openBoxButton.removeClass('loading').prop('disabled', false);
+        openBoxButton.hide();
+        const prizeContainer = $('#prizeInfo');
+        const prizeDetail = $('#prizeDetail');
+        if (err.responseText === 'No credit') {
+          prizeDetail.html = 'You can not open more for today. Please come back tomorrow for more box.'
+        } else {
+          prizeDetail.html = 'There is something wrong when open a lootbox. Please come back later.'
+        }
+
+        gsap.to(prizeContainer, { opacity: 1, duration: 0.5 });
+      }
+    });
+  };
+
+  // main animation loop - calls every 50-60 ms.
+  let mainLoop = function() {
+    group.position.y += movingVerticalVelocity;
+    group.position.x += shakingVeloity;
+    group.position.z += shakingVeloityZ;
+    gsap.to(group.rotation, {
+      x: -mouseMove.y * 0.2,
+      y: (mouseMove.x + 0.4) * 0.5,
+      duration: 2
+    });
+    gsap.to(prizesGroup.rotation, {
+      x: -mouseMove.y * 0.2,
+      y: (mouseMove.x + 0.4) * 0.5,
+      duration: 2
+    });
+
+    if (group.position.y >= 0.15 || group.position.y <= -0.15) {
+      movingVerticalVelocity *= -1;
+    }
+
+    if (group.position.x >= 0.04 || group.position.x <= -0.04) {
+      shakingVeloity *= -1;
+    }
+
+    if (group.position.z >= 0.04 || group.position.z <= -0.04) {
+      shakingVeloityZ *= -1;
+    }
+
+    // renderer.clear()
+    composer.render()
+    composer2.render()
+
+    requestAnimationFrame(mainLoop);
+  };
+
+  ///////////////////////////////////////////////
+  if (document.getElementById('openBoxButton')) {
+    document.getElementById('openBoxButton').addEventListener('click', onClickOpenButton, false);
+  }
+  canvas.addEventListener('mousemove', onMouseMove, false);
+  window.addEventListener('resize', onWindowResize, false);
+  init();
+  mainLoop();
+
+  $(document).ready(function() {
+    const customerId = {{ customer.id | json }};
+    const tags = {{ customer.tags | json }};
+    if (!customerId) {
+      return;
+    }
+
+    const currentServer = tags.find((tag) => tag.includes(PREFIX))?.replace(PREFIX, '');
+    isHaveServer = currentServer && SERVERS.includes(currentServer);
+
+    $.ajax(`${API_URL}/customers/${customerId}/credits`, {
+      method: 'GET',
+      contentType: 'application/json',
+      dataType: 'json',
+      success: function(data) {
+        credit = data.credits || 0;
+        if (credit && isHaveServer) {
+          $('#openBoxButton').attr('disabled', false)
+        }
+      },
+      error: function(e) {
+        console.log(e);
+      }
+    });
+
+    if (!isHaveServer) {
+      $('.server-select-container').removeClass('d-none').addClass('d-flex');
+      $('#setting__server-name--select').append("<option selected disabled value=\"\">" + "Select server" + "</option>");
+      for (var s of SERVERS) {
+        $('#setting__server-name--select').append("<option value=\"" + PREFIX + s + "\">" + s + "</option>");
+      }
+      $('#setting__server-name--select').on('change',(event) => {
+        const serverName = event.target.value;
+        $.ajax(`${API_URL}/customers/${customerId}/change-server`, {
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({ serverName }),
+          dataType: 'json',
+          success: function() {
+            isHaveServer = true;
+          },
+          error: function() {
+            window.location.reload()
+          }
+        });
+      });
+    }
+  });
+</script>
+{% schema %}
+{
+  "name": "Config lootbox",
+  "settings": [
+    {
+      "type":"image_picker",
+      "id":"prize_product",
+      "label":"Product prize"
+    },
+    {
+      "type":"image_picker",
+      "id":"prize_5percent",
+      "label":"Discount 5%"
+    },
+    {
+      "type":"image_picker",
+      "id":"prize_10percent",
+      "label":"Discount 10%"
+    },
+    {
+      "type":"image_picker",
+      "id":"prize_15percent",
+      "label":"Discount 15%"
+    },
+    {
+      "type":"image_picker",
+      "id":"prize_20percent",
+      "label":"Discount 20%"
+    },
+    {
+      "type":"image_picker",
+      "id":"prize_25percent",
+      "label":"Discount 25%"
+    },
+    {
+      "type":"image_picker",
+      "id":"prize_30percent",
+      "label":"Discount 30%"
+    },
+    {
+      "type":"image_picker",
+      "id":"prize_35percent",
+      "label":"Discount 35%"
+    },
+    {
+      "type":"image_picker",
+      "id":"prize_40percent",
+      "label":"Discount 40%"
+    },
+    {
+      "type":"image_picker",
+      "id":"prize_45percent",
+      "label":"Discount 45%"
+    },
+    {
+      "type":"image_picker",
+      "id":"prize_50percent",
+      "label":"Discount 50%"
+    },
+    {
+      "type":"image_picker",
+      "id":"prize_60percent",
+      "label":"Discount 60%"
+    },
+    {
+      "type":"image_picker",
+      "id":"prize_75percent",
+      "label":"Discount 75%"
+    }
+  ]
+}
+{% endschema %}

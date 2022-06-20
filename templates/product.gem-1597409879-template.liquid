@@ -1,0 +1,178 @@
+<div class="container">
+  <div class="ranked-topbar">
+    <div class='tabbed'>
+      <ul>
+        <li class='{% if collection.handle contains 'ranked' %}active{% endif %}'><a href="/collections/ranked-accounts">Ranked Accounts</a></li>
+        <li class='{% if product.handle contains 'lol-smurfs' %}active{% endif %}'><a href="/products/lol-smurfs">Unranked Accounts</a></li>
+        <li class='{% if page.handle contains 'lootbox' %}active{% endif %}'><a href="/pages/lootbox">Free LoL Account</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="product-template">
+  <div class="product-template-animations">
+    <div id="particles-js"></div>
+<!--     <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div> -->
+    <div class="container">
+      <div class="halo-product-content">
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <div class="row pro-page">
+              {% section 'product-template' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% section 'product-template-additional-data' %}
+  </div>
+  {% section 'description_product_detail' %}
+  
+
+
+
+{% section 'a-faq-product-collections' %}
+{% section 'a-boosting-collections' %}
+{% section 'sectionimage1p-collections' %}
+{% section 'sectionimg2-collections' %}
+  
+  <div class="container">
+    
+    {% section 'contact-support-pr' %}
+    {% section 'product-review' %}
+  </div>
+
+
+  {%section 'sectionimage3p'%}
+  {%section 'Tabsectionp'%}
+  {%section 'sectionimg2p'%}
+  {%section 'sectionimage1p'%}
+</div>
+
+
+
+<script type="text/javascript">
+  var _learnq = _learnq || [];
+  document.getElementById("product-add-to-cart").addEventListener('click',function (){
+    _learnq.push(['track', 'Added to Cart', item]);
+  });
+
+  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {}
+  else {
+  if($('#particles-js').length){
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 60,
+          "density": {
+            "enable": !0,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#f6c975"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          },
+          "image": {
+            "src": "img/github.svg",
+            "width": 100,
+            "height": 100
+          }
+        },
+        "opacity": {
+          "value": 1,
+          "random": !0,
+          "anim": {
+            "enable": !0,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": !1
+          }
+        },
+        "size": {
+          "value": 5,
+          "random": !0,
+          "anim": {
+            "enable": !1,
+            "speed": 2,
+            "size_min": 0.3,
+            "sync": !1
+          }
+        },
+        "line_linked": {
+          "enable": !1,
+          "distance": 150,
+          "color": "#f6c975",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": !0,
+          "speed": .5,
+          "direction": "top",
+          "random": !0,
+          "straight": !1,
+          "out_mode": "out",
+          "bounce": !1,
+          "attract": {
+            "enable": !1,
+            "rotateX": 600,
+            "rotateY": 600
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "window",
+        "events": {
+          "onhover": {
+            "enable": !1,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": !1,
+            "mode": "push"
+          },
+          "resize": !0
+        },
+        "modes": {
+          "grab": {
+            "distance": 400,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 250,
+            "size": 0,
+            "duration": 2,
+            "opacity": 0,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 400,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": !0
+    })
+  }
+  }
+
+</script>

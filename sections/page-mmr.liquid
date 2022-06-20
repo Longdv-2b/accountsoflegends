@@ -1,0 +1,1150 @@
+{%- comment -%} sections/page-mmr.liquid {%- endcomment -%}
+<style>
+  #pageMMRWrap {
+    min-height: calc(100vh - 156px - 180px);
+  }
+
+  #pageMMRInner {
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    padding: 3rem 1.5rem;
+    margin-top: 40px;
+  }
+
+  #pageMMRWrap .container {
+    position: relative;
+    text-align: center;
+    max-width: 1344px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  #pageMMRWrap .brand-logo {
+    font-family: proxima-nova, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #444546
+  }
+
+  #pageMMRWrap .brand-logo--large {
+    font-size: 2.5rem;
+    font-weight: 700
+  }
+
+  #pageMMRWrap .brand-logo span {
+    color: #00a7ff
+  }
+
+  #pageMMRWrap .popover {
+    z-index: 1060;
+    max-width: 276px;
+    min-width: 100px;
+    padding: 1px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: left;
+    white-space: normal;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    position: absolute;
+    top: 4em;
+    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #pageMMRWrap .popover-content {
+    padding: 9px 14px
+  }
+
+  #pageMMRWrap .popover[x-placement^=bottom] {
+    margin-top: 15px
+  }
+
+  #pageMMRWrap .popover[x-placement^=top] {
+    margin-bottom: 15px
+  }
+
+  #pageMMRWrap .popover[x-placement^=left] {
+    margin-right: 15px
+  }
+
+  #pageMMRWrap .popover[x-placement^=right] {
+    margin-left: 15px
+  }
+
+  #pageMMRWrap .field.has-addons {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+
+  #pageMMRWrap .field.has-addons .control:not(:last-child) {
+    margin-right: -1px;
+  }
+
+  #pageMMRWrap .summoner-search {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  #pageMMRWrap .summoner-search--center {
+    -ms-flex-pack: center !important;
+    justify-content: center !important
+  }
+
+  #pageMMRWrap .summoner-search--large .summoner-search__search-container {
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    -ms-flex-preferred-size: 280px;
+    flex-basis: 280px
+  }
+
+  #pageMMRWrap .summoner-search--large .summoner-search__search-field,
+  #pageMMRWrap .summoner-search--large .summoner-search__region-switcher {
+    width: 100%;
+    height: 3.5em;
+    padding: calc(1em - 1px)
+  }
+
+  #pageMMRWrap .summoner-search .icon {
+    -ms-flex-align: center;
+    align-items: center;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 1.5em;
+    width: 1.5em;
+    margin-right: 14px
+  }
+
+  #pageMMRWrap .summoner-search .button .icon:first-child:not(:last-child) {
+    margin-left: calc(-0.375em - 1px);
+    margin-right: 0.1875em;
+  }
+
+  #pageMMRWrap .summoner-search .icon svg {
+    height: 1rem;
+    fill: currentColor
+  }
+
+  #pageMMRWrap .input.is-active,
+  #pageMMRWrap .input:active,
+  #pageMMRWrap .input:focus {
+    border-color: #00a7ff;
+    outline: none;
+  }
+
+  #pageMMRWrap .summoner-search__search-field {
+    background: #47535d;
+    border: none;
+    color: #fff;
+    box-shadow: none
+  }
+
+  #pageMMRWrap .summoner-search__search-field:-ms-input-placeholder {
+    color: hsla(0, 0%, 100%, .5)
+  }
+
+  #pageMMRWrap .summoner-search__search-field::placeholder {
+    color: hsla(0, 0%, 100%, .5)
+  }
+
+  #pageMMRWrap .control {
+    font-size: 1rem;
+    position: relative;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  #pageMMRWrap .dropdown-content {
+    padding: 3px 0
+  }
+
+  #pageMMRWrap .popper-dropdown {
+    border-radius: 3px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  #pageMMRWrap .popper-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #pageMMRWrap .popper-dropdown .menu-list {
+    list-style: none;
+    margin-bottom: 0;
+  }
+
+  #pageMMRWrap .popper-dropdown .menu-list li {
+    padding: 5px 10px;
+    color: #444546;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+
+  #pageMMRWrap .popper-dropdown .menu-list li:hover {
+    color: #505050;
+    background-color: #f5f5f5;
+  }
+
+  #pageMMRWrap .popper-dropdown .menu-list>li.is-active {
+    color: #fff;
+    background-color: #00a7ff;
+  }
+
+  #pageMMRWrap .popper-dropdown[x-placement^=bottom] {
+    margin-top: 5px
+  }
+
+  #pageMMRWrap .dropdown {
+    position: relative;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: top;
+    min-width: 80px;
+  }
+
+  #pageMMRWrap .brand-lead {
+    margin-top: 0;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  #pageMMRWrap .button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    box-shadow: none;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    font-size: 1rem;
+    height: 2.25em;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    line-height: 1.5;
+    padding-left: calc(0.625em - 1px);
+    padding-right: calc(0.625em - 1px);
+    position: relative;
+    vertical-align: top;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #fafafa;
+    border-color: #dbdbdb;
+    color: #363636;
+    cursor: pointer;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: calc(0.375em - 1px) 0.75em;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  #pageMMRWrap .button.is-primary {
+    background-color: #00a7ff;
+    border-color: transparent;
+    color: #fff;
+  }
+
+  #pageMMRWrap .button.is-small {
+    border-radius: 2px;
+    font-size: .75rem;
+  }
+
+  #pageMMRWrap .field.has-addons .control .button,
+  #pageMMRWrap .field.has-addons .control .input {
+    border-radius: 0;
+  }
+
+  #pageMMRWrap .field.has-addons .control:first-child .button,
+  #pageMMRWrap .field.has-addons .control:first-child .input {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+  }
+
+  #pageMMRWrap .field.has-addons .control:last-child .button,
+  #pageMMRWrap .field.has-addons .control:last-child .input {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  #pageMMRWrap .box {
+    box-shadow: 0 3px 4px rgb(0 0 0 / 18%);
+    background-color: #fff;
+    border-radius: 0;
+    border-collapse: collapse;
+    color: #444546;
+    display: block;
+    padding: 1.25rem 60px;
+    margin-top: 4rem;
+  }
+
+  #pageMMRWrap .box:not(:last-child) {
+    margin-bottom: 4rem;
+  }
+
+  #pageMMRWrap .box--highlight {
+    border-top: 5px solid #00a7ff;
+  }
+
+  #pageMMRWrap .column {
+    display: block;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    padding: 0.75rem;
+  }
+
+  #pageMMRWrap .columns.is-gapless {
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0;
+  }
+
+  #pageMMRWrap .column.is-flex,
+  #pageMMRWrap .is-flex {
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  #pageMMRWrap .column.is-narrow {
+    -ms-flex: none;
+    flex: none;
+  }
+
+  #pageMMRWrap .columns.is-gapless>.column {
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+  }
+
+  #pageMMRWrap .tier {
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  #pageMMRWrap .tier__icon {
+    height: 150px;
+    width: 150px;
+    margin-right: 60px;
+    text-align: center;
+  }
+
+  #pageMMRWrap img {
+    height: auto;
+    max-width: 100%;
+  }
+
+  #pageMMRWrap .tier__icon>img {
+    max-height: 100%;
+    display: none;
+  }
+
+  #pageMMRWrap .summoner-score,
+  #pageMMRWrap .summoner {
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #pageMMRWrap .summoner {
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  #pageMMRWrap .summoner__name {
+    font-size: 2.5rem;
+    font-weight: 500;
+  }
+
+  #pageMMRWrap .summoner__rank {
+    font-weight: 500;
+  }
+
+  #pageMMRWrap .summoner-score__value {
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  #pageMMRWrap .summoner-score__subtitle {
+    font-size: .9rem;
+    line-height: 1;
+  }
+
+  #pageMMRWrap .queue-navigation {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  #pageMMRWrap .field.has-addons {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+
+  #pageMMRWrap .field.has-addons .control:not(:last-child) {
+    margin-right: -1px;
+  }
+
+  #pageMMRWrap .error--sms {
+    width: 100%;
+    text-align: center;
+    padding: 1.25rem;
+    margin-top: 4rem;
+    color: var(--danger);
+  }
+
+  #pageMMRWrap [data-game-type] {
+    display: none;
+  }
+
+  #pageMMRWrap .queue-navigation [data-game-type] {
+    display: block !important;
+  }
+
+  #pageMMRWrap .queue-navigation [data-game-type].active>.button {
+    background-color: #00a7ff;
+    border-color: transparent;
+    color: #fff;
+  }
+
+  @media screen and (max-width: 768px) {
+    #pageMMRWrap .box {
+      padding: 1.25rem;
+    }
+
+    #pageMMRWrap .columns.is-gapless {
+      flex-flow: column;
+      justify-content: center;
+    }
+
+    #pageMMRWrap .columns.is-gapless>.column {
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    #pageMMRWrap .columns.is-gapless>.column:last-child {
+      margin-bottom: 0;
+    }
+
+    #pageMMRWrap .tier__icon {
+      margin-right: 0;
+    }
+
+    #pageMMRWrap .summoner__name {
+      font-size: 2rem;
+    }
+
+    #pageMMRWrap .summoner__rank {
+      text-align: center;
+    }
+  }
+  #pageMMRWrap .c3-grid .grid-solid line{
+    stroke-dasharray: 1,3;
+  }
+  #pageMMRWrap .tooltip--custom {
+    background: #4f80f0;
+    color: #fff;
+    padding: 0.5em 0.7em;
+    border-radius: 2px;
+    white-space: nowrap;
+    line-break: none;
+  }
+
+  .c3 svg {
+    width: auto;
+    height: auto;
+  }
+  .title-chart{
+    font-size: 24px;
+  }
+</style>
+
+<div id="pageMMRWrap">
+  <div id="pageMMRInner">
+
+    <div class="container">
+      {%- if section.settings.brand_logo != blank -%}
+      <div class="brand-logo brand-logo--large">{{ section.settings.brand_logo }}</div>
+      {%- endif -%}
+
+      <div class="field has-addons summoner-search summoner-search--center summoner-search--large">
+        <div class="control">
+          {%- if section.blocks.size > 0 -%}
+          {%- if section.blocks[0].settings.server_code != blank -%}
+          <span class="dropdown">
+            <a class="button is-primary summoner-search__region-switcher">
+              <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <polygon points="9.293 12.95 10 13.657 15.657 8 14.243 6.586 10 10.828 5.757 6.586 4.343 8"></polygon>
+                </svg>
+              </span>
+              <span class="server-name-selected"
+                data-server-code-selected="{{ section.blocks[0].settings.server_code }}">{%- if
+                section.blocks[0].settings.server_code != blank -%}{{ section.blocks[0].settings.server_name }}{%- else
+                -%}{{ section.blocks[0].settings.server_code | upcase }}{%- endif -%}</span>
+            </a>
+          </span>
+          {%- endif -%}
+
+          <div class="popover popper-dropdown">
+            <div class="popover-content dropdown-content">
+              <ul class="menu-list">
+                {%- for block in section.blocks -%}
+                {%- if block.settings.server_code != blank -%}
+                <li {% if forloop.first==true %}class="is-active" {% endif %}
+                  data-server-code="{{ block.settings.server_code }}">
+                  <span>{% if block.settings.server_name != blank %}{{ block.settings.server_name }}{% else %}{{
+                    block.settings.server_code | upcase }}{% endif %}</span>
+                </li>
+                {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+          </div>
+          {%- endif -%}
+        </div>
+
+        <p class="control summoner-search__search-container">
+          <input type="search"
+            placeholder="{%- if section.settings.field_placeholder != blank -%}{{ section.settings.field_placeholder }}{%- endif -%}"
+            class="input summoner-search__search-field">
+        </p>
+      </div>
+      <p>Powered by whatismymmr</p>
+      {%- if section.settings.brand_lead != blank -%}
+      <p class="brand-lead">{{ section.settings.brand_lead }}</p>
+      {%- endif -%}
+
+      <div class="box box--highlight" style="display: none;">
+        <div class="columns is-gapless">
+
+          <div class="column is-narrow is-flex">
+            <div class="tier is-flex">
+              <div class="tier__icon">
+                <img src="{{ 'bronze.png' | asset_url }}" alt="bronze icon">
+                <img src="{{ 'bronze_i.png' | asset_url }}" alt="bronze_i icon">
+                <img src="{{ 'bronze_ii.png' | asset_url }}" alt="bronze_ii icon">
+                <img src="{{ 'bronze_iii.png' | asset_url }}" alt="bronze_iii icon">
+                <img src="{{ 'bronze_iv.png' | asset_url }}" alt="bronze_iv icon">
+                <img src="{{ 'challenger.png' | asset_url }}" alt="challenger icon">
+                <img src="{{ 'challenger_i.png' | asset_url }}" alt="challenger_i icon">
+                <img src="{{ 'challenger_ii.png' | asset_url }}" alt="challenger_ii icon">
+                <img src="{{ 'challenger_iii.png' | asset_url }}" alt="challenger_iii icon">
+                <img src="{{ 'challenger_iv.png' | asset_url }}" alt="challenger_iv icon">
+                <img src="{{ 'diamond.png' | asset_url }}" alt="diamond icon">
+                <img src="{{ 'diamond_i.png' | asset_url }}" alt="diamond_i icon">
+                <img src="{{ 'diamond_ii.png' | asset_url }}" alt="diamond_ii icon">
+                <img src="{{ 'diamond_iii.png' | asset_url }}" alt="diamond_iii icon">
+                <img src="{{ 'diamond_iv.png' | asset_url }}" alt="diamond_iv icon">
+                <img src="{{ 'gold.png' | asset_url }}" alt="gold icon">
+                <img src="{{ 'gold_i.png' | asset_url }}" alt="gold_i icon">
+                <img src="{{ 'gold_ii.png' | asset_url }}" alt="gold_ii icon">
+                <img src="{{ 'gold_iii.png' | asset_url }}" alt="gold_iii icon">
+                <img src="{{ 'gold_iv.png' | asset_url }}" alt="gold_iv icon">
+                <img src="{{ 'grandmaster.png' | asset_url }}" alt="grandmaster icon">
+                <img src="{{ 'grandmaster_i.png' | asset_url }}" alt="grandmaster_i icon">
+                <img src="{{ 'grandmaster_ii.png' | asset_url }}" alt="grandmaster_ii icon">
+                <img src="{{ 'grandmaster_iii.png' | asset_url }}" alt="grandmaster_iii icon">
+                <img src="{{ 'grandmaster_iv.png' | asset_url }}" alt="grandmaster_iv icon">
+                <img src="{{ 'iron.png' | asset_url }}" alt="iron icon">
+                <img src="{{ 'iron_i.png' | asset_url }}" alt="iron_i icon">
+                <img src="{{ 'iron_ii.png' | asset_url }}" alt="iron_ii icon">
+                <img src="{{ 'iron_iii.png' | asset_url }}" alt="iron_iii icon">
+                <img src="{{ 'iron_iv.png' | asset_url }}" alt="iron_iv icon">
+                <img src="{{ 'master.png' | asset_url }}" alt="master icon">
+                <img src="{{ 'master_i.png' | asset_url }}" alt="master_i icon">
+                <img src="{{ 'master_ii.png' | asset_url }}" alt="master_ii icon">
+                <img src="{{ 'master_iii.png' | asset_url }}" alt="master_iii icon">
+                <img src="{{ 'master_iv.png' | asset_url }}" alt="master_iv icon">
+                <img src="{{ 'platinum.png' | asset_url }}" alt="platinum icon">
+                <img src="{{ 'platinum_i.png' | asset_url }}" alt="platinum_i icon">
+                <img src="{{ 'platinum_ii.png' | asset_url }}" alt="platinum_ii icon">
+                <img src="{{ 'platinum_iii.png' | asset_url }}" alt="platinum_iii icon">
+                <img src="{{ 'platinum_iv.png' | asset_url }}" alt="platinum_iv icon">
+                <img src="{{ 'silver.png' | asset_url }}" alt="silver icon">
+                <img src="{{ 'silver_i.png' | asset_url }}" alt="silver_i icon">
+                <img src="{{ 'silver_ii.png' | asset_url }}" alt="silver_ii icon">
+                <img src="{{ 'silver_iii.png' | asset_url }}" alt="silver_iii icon">
+                <img src="{{ 'silver_iv.png' | asset_url }}" alt="silver_iv icon">
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-flex">
+            <div class="summoner is-flex">
+              <div class="summoner__name"></div>
+              <div class="summoner__rank"></div>
+            </div>
+          </div>
+
+          <div class="column is-narrow is-flex">
+            <div class="summoner-score is-flex">
+              <div class="summoner-score__value"></div>
+              <div class="summoner-score__subtitle">MMR Score</div>
+              <div class="queue-navigation">
+                <div class="field has-addons"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="box box-chart" style="display: none;">
+        <h2 class="title-chart">Ranked progress of the last 30 days</h2>
+        <div id="chart" class="c3"></div>
+      </div>
+
+      <!-- <div class="box box-chart" style="display: none;">
+        <h2 class="title-chart">Closest ranked division by average MMR</h2>
+        <div id="chart-3" class="c3"></div>
+      </div> -->
+
+      <!-- <div class="box box-chart" style="display: none;">
+        <h2 class="title-chart">Ranking spread</h2>
+        <div id="chart-2" class="c3"></div>
+      </div> -->
+
+      <p class="error--sms" style="display: none;"></p>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // Load the script
+    var script = document.createElement("SCRIPT");
+    script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js';
+    script.type = 'text/javascript';
+    script.onload = function () {
+      jQueryL = jQuery.noConflict(true);
+
+      const $btnToggle = jQueryL("#pageMMRWrap .dropdown > a.button"),
+        $popperDropdown = jQueryL("#pageMMRWrap .popper-dropdown"),
+        $summonerSearch = jQueryL("#pageMMRWrap .summoner-search"),
+        $boxHighlight = jQueryL("#pageMMRWrap .box--highlight"),
+        $boxChart = jQueryL("#pageMMRWrap .box-chart"),
+        $errorSms = jQueryL("#pageMMRWrap .error--sms");
+      let serverName, userName, avgRanked = 0, dataApi2, dataApi3, checkGetApi1 = false, checkGetApi2 = false, chartColors = {
+        grey: "rgba(204, 204, 204, 0.5)",
+        blue: "rgba(79, 128, 240, 0.5)",
+        paleblue: "rgba(205, 216, 249, 1)",
+        darkblue: "rgba(79, 128, 240, 1)",
+        lightgrey: "rgba(204, 204, 204, 0.35)"
+      },
+        charts = {
+          rankedPlacement: null,
+          rankedDistribution: null,
+          normalDistribution: null,
+          aramDistribution: null
+        };
+      function updateRankedPlacementChartModel(e) {
+        var t = [],
+          r = e.ranked.tierData,
+          a = {},
+          o = {};
+        e.ranked.tierData.length < 3 && ("Bronze V" === r[0].name ? r.splice(0, 0, {
+          name: null,
+          avg: r[0].min + .25 * (r[0].avg - r[0].min),
+          min: 0,
+          max: 1 / 0
+        }) : r.splice(2, 0, {
+          name: null,
+          avg: r[1].avg + .75 * (r[1].max - r[1].avg),
+          min: 0,
+          max: 1 / 0
+        })), a[r[0].name] = chartColors.grey, a[r[1].name] = chartColors.blue, a[r[2].name] = chartColors.grey;
+        var n = r[1].avg - r[0].avg,
+          i = r[2].avg - r[1].avg,
+          s = Math.min(r[1].min, r[0].avg - n),
+          l = Math.max(r[1].max, r[2].avg + i),
+          c = ["x", s, Math.min((s + r[0].avg) / 2, r[0].avg - n / 2), r[0].avg, (r[0].avg + r[1].avg) / 2, r[1].avg, (r[1].avg + r[2].avg) / 2, r[2].avg, Math.max((l + r[2].avg) / 2, r[2].avg + i / 2), l];
+        t.push(c), t = t.concat([
+          [r[0].name, 4, 20, 100, 20, 4 * (r[0].max > r[1].avg), 0, 0, 0, 0],
+          [r[1].name, 0, 0, 4 * (r[1].min < r[0].avg), 20, 100, 20, 4 * (r[1].max > r[2].avg), 0, 0],
+          [r[2].name, 0, 0, 0, 0, 4 * (r[2].min < r[1].avg), 20, 100, 20, 4]
+        ]);
+        for (var d = [], u = 0; u < t.length; u++) t[u][0] && (d.push(t[u]), o[t[u][0]] = "area-spline");
+        t = d;
+        for (var m = [{
+          value: r[0].avg,
+          text: r[0].name,
+          position: "top",
+          "class": "gridline--secondary gridline--dashed",
+          rotateLabel: !1
+        }, {
+          value: r[1].avg,
+          text: r[1].name,
+          position: "top",
+          "class": "gridline--primary gridline--dashed",
+          rotateLabel: !1
+        }, {
+          value: r[2].avg,
+          text: r[2].name,
+          position: "top",
+          "class": "gridline--secondary gridline--dashed",
+          rotateLabel: !1
+        }, {
+          value: e.ranked.avg,
+          text: localizedNumber(e.ranked.avg) + " MMR",
+          position: "middle",
+          "class": "gridline--primary gridline--bold gridline--pulse",
+          rotateLabel: !0
+        }], h = [], u = 0; u < m.length; u++) m[u].text && h.push(m[u]);
+        m = h;
+        var g = charts.rankedPlacement,
+          p = {
+            columns: t,
+            unload: !0,
+            colors: a,
+            types: o,
+          };
+        console.log("[ui] loading chart with obj:", m)
+        console.log("gggggggg", g)
+        pushDataChart3(p, m)
+      }
+      function localizedNumber(e) {
+        return e.toLocaleString()
+      }
+
+      /****** GET connectAPI ******/
+      function connectAPI() {
+        this.getData = function (server, user) {
+          jQueryL.ajax({
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: `/a/hura/summoner?server=${server}&name=${user}`
+          }).done(res => {
+            $summonerSearch.css({ "opacity": 1, "pointer-events": "visible" });
+            if (res.status === "error") {
+              $boxHighlight.fadeOut();
+              $boxChart.fadeOut();
+              $errorSms.fadeIn().html(res.message);
+            };
+            if (res.status === "success") {
+              $errorSms.fadeOut();
+              $boxHighlight.fadeIn();
+              $boxChart.fadeIn();
+              showData(res.data);
+              pushDataChart(res.data);
+              avgRanked = res.data.ranked.avg;
+              dataApi3 = res.data;
+              checkGetApi1 = true;
+              pushDataChart2();
+              pushDataChart3();
+              updateRankedPlacementChartModel(res.data)
+            };
+          }).fail(err => {
+            $summonerSearch.css({ "opacity": 1, "pointer-events": "visible" });
+            $boxHighlight.fadeOut();
+            $boxChart.fadeOut();
+            $errorSms.fadeIn().html(err.message);
+          });
+        };
+      };
+
+
+      function connectAPIChart2() {
+        this.getData = function (server) {
+          jQueryL.ajax({
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: `/a/hura/distribution?server=${server}`
+          }).done(res => {
+            $summonerSearch.css({ "opacity": 1, "pointer-events": "visible" });
+            if (res.status === "error") {
+              $boxChart.fadeOut();
+              $errorSms.fadeIn().html(res.message);
+            };
+            if (res.status === "success") {
+              $errorSms.fadeOut();
+              $boxChart.fadeIn();
+              dataApi2 = res.data;
+              checkGetApi2 = true;
+              pushDataChart2();
+            };
+          }).fail(err => {
+            console.log("getData err:", err);
+            $summonerSearch.css({ "opacity": 1, "pointer-events": "visible" });
+            $boxChart.fadeOut();
+            $errorSms.fadeIn().html(err.message);
+          });
+        };
+      };
+
+      /****** GET showData ******/
+      const showData = function (data) {
+        let getDataTop = dataApi2.ranked;
+        let getDataRankAvg = data.ranked.avg;
+        const dataTooltipShow = Object
+          .keys(getDataTop)
+          .map(key => ({
+              pointx: Number(key),
+              players: Number(getDataTop[key])
+            }))
+          .map((cur, i, arr) => {
+            const total = arr.reduce((t, c) => t += c.players, 0)
+            const gtValue = arr
+              .filter(v => v.pointx >= cur.pointx)
+              .reduce((t, c) => t += c.players, 0)
+            return {
+              ...cur,
+              topScore: gtValue / total * 100
+            }
+          })
+          let indexMin = 0;
+          for( let i = 0; i < dataTooltipShow.length; i++){
+            if(Math.abs(dataTooltipShow[i].pointx - getDataRankAvg) < Math.abs(dataTooltipShow[indexMin].pointx - getDataRankAvg)){
+              indexMin = i;
+            }
+          }
+          let topPlayer = dataTooltipShow[indexMin].topScore;
+          const mmrTopText = topPlayer <= 50
+                    ? `Top ${topPlayer.toFixed(topPlayer <= 3 ? 2 : 0)}%`
+                    : `Bottom ${(100 - topPlayer).toFixed(topPlayer >= 97 ? 2 : 0)}%`;
+
+        jQueryL("#pageMMRWrap .tier__icon > img").removeClass("active").hide();
+        $boxHighlight.find(".queue-navigation .field.has-addons").html("");
+        $boxHighlight.find(".summoner__rank").html("");
+        $boxHighlight.find(".summoner-score__value").html("");
+        let arrData = [data.ranked, data.normal, data.ARAM];
+        let arrGameType = ["Ranked", "Normal", "Aram"];
+        let count = 0;
+        for (let i of arrData) {
+          count++;
+          if (!i) continue;
+          let avg = i.avg ? i.avg : "N/A", closestRank = i.closestRank ? i.closestRank : "N/A";
+          $boxHighlight.find(".queue-navigation .field.has-addons").append(`<p class="control" data-game-type="${count}" data-closest-rank="${closestRank.toLowerCase().replace(" ", "_")}"><span class="is-small button is-darkmode-dark">${arrGameType[count - 1]}</span></p>`);
+          $boxHighlight.find(".summoner__rank").append(`<span data-game-type="${count}">${closestRank}, ${mmrTopText}</span>`);
+          $boxHighlight.find(".summoner-score__value").append(`<span data-game-type="${count}">${avg}</span>`);
+        };
+        $boxHighlight.find(".summoner__name").html(userName);
+        changeData();
+      };
+
+      /****** GET changeData ******/
+      const changeData = function () {
+        let dataClosestRank = jQueryL("#pageMMRWrap .queue-navigation .field.has-addons [data-game-type='1']").attr("data-closest-rank");
+        jQueryL(`#pageMMRWrap .tier__icon > img[alt="${dataClosestRank} icon"]`).addClass("active").show();
+
+        $boxHighlight.find("[data-game-type='1']").addClass("active").show();
+        jQueryL("#pageMMRWrap .queue-navigation .field.has-addons [data-game-type]").on("click", function () {
+          if (jQueryL(this).hasClass("active")) return;
+          if (!jQueryL(this).hasClass("active")) {
+            let thisDataClosestRank = jQueryL(this).attr("data-closest-rank");
+            jQueryL("#pageMMRWrap .tier__icon > img").removeClass("active").hide();
+            jQueryL(`#pageMMRWrap .tier__icon > img[alt="${thisDataClosestRank} icon"]`).addClass("active").show();
+
+            let dataTypeCount = jQueryL(this).attr("data-game-type");
+            jQueryL(`#pageMMRWrap [data-game-type]`).removeClass("active").hide();
+            jQueryL(`#pageMMRWrap [data-game-type=${dataTypeCount}]`).addClass("active").show();
+          };
+        });
+      };
+
+      /****** GET toggleDropdown ******/
+      const toggleDropdown = function () {
+        $btnToggle.on("click", function () {
+          $popperDropdown.toggleClass("active");
+        });
+
+        const $servers = jQueryL("#pageMMRWrap .popper-dropdown .menu-list li");
+        $servers.on("click", function () {
+          $servers.removeClass("is-active");
+          jQueryL(this).addClass("is-active");
+          $btnToggle.find("span.server-name-selected").attr("data-server-code-selected", jQueryL(this).attr("data-server-code")).html(jQueryL(this).find("span").html());
+          $popperDropdown.toggleClass("active");
+        });
+
+        jQueryL(document).mouseup(function (e) {
+          let container = jQueryL("#pageMMRWrap .dropdown, #pageMMRWrap .popper-dropdown");
+          // if the target of the click isn't the container nor a descendant of the container
+          if (!container.is(e.target) && container.has(e.target).length === 0) $popperDropdown.removeClass("active");
+        });
+      };
+
+      /****** GET getDataInput ******/
+      const getDataInput = function () {
+        $summonerSearch.find("input.summoner-search__search-field").on("keyup", function (e) {
+          if (e.key === 'Enter' || e.keyCode === 13) {
+            $summonerSearch.css({ "opacity": 0.5, "pointer-events": "none" });
+            serverName = jQueryL(this).closest(".summoner-search").find("span.server-name-selected").attr("data-server-code-selected");
+            userName = jQueryL(this).val().trim();
+            const api = new connectAPI();
+            const api2 = new connectAPIChart2();
+            api.getData(serverName, userName);
+            api2.getData(serverName);
+          };
+        });
+      };
+
+      /**********
+      * RUN FUNC
+      **********/
+      jQueryL(document).ready(function () {
+        if ($btnToggle.length !== 0 && $popperDropdown.length !== 0) toggleDropdown();
+        if ($summonerSearch.length !== 0) getDataInput();
+      });
+
+      const pushDataChart = function (pdata) {
+        let arrpData = pdata.ranked.historical;
+        let getHistoricalTierData = pdata.ranked.historicalTierData;
+        let dataJson = JSON.stringify(arrpData)
+        if (arrpData.length > 0) {
+          var chart = c3.generate({
+            bindto: '#chart',
+            padding: {
+                top: 60,
+                right: 0,
+                bottom: 60,
+                left: 0,
+            },
+            data: {
+              x: 'date',
+              columns: [
+                ['date', ...(arrpData.map(i => i.timestamp * 1000))],
+                ['MinMMR', ...(arrpData.map(i => Number(i.avg) - Number(i.err)))],
+                ['MMR', ...(arrpData.map(i => i.avg))],
+                ['MaxMMR', ...(arrpData.map(i => Number(i.avg) + Number(i.err)))]
+              ],
+              colors: {
+                MinMMR: '#dddddd',
+                MMR: '#4f80f0',
+                MaxMMR: '#dddddd'
+              }
+            },
+            axis: {
+              x: {
+                type: 'timeseries',
+                tick: {
+                  fit: true,
+                  format: "%e %b %y"
+                }
+              },
+              y: {
+                show: false
+              }
+            },
+            grid: {
+                y: {
+                    lines: [
+                      ...getHistoricalTierData.map(i => ({value: `${i.avg}`, text: `${i.name} Avg`, position: 'middle', class: 'grid-solid'}))
+                    ]
+                }
+            }
+          });
+        } else {
+          $('#chart').text('Not enough games played solo');
+        }
+      }
+      const pushDataChart2 = function () {
+        if (checkGetApi1 && checkGetApi2) {
+          let objpDataNd = dataApi2.ranked;
+          let dataJson = JSON.stringify(objpDataNd)
+          const dataTooltip = Object
+            .keys(objpDataNd)
+            .map(key => ({
+              pointx: Number(key),
+              players: Number(objpDataNd[key])
+            }))
+            .map((cur, i, arr) => {
+              const total = arr.reduce((t, c) => t += c.players, 0)
+              const gtValue = arr
+                .filter(v => v.pointx >= cur.pointx)
+                .reduce((t, c) => t += c.players, 0)
+              return {
+                ...cur,
+                tooltipVal: gtValue / total * 100
+              }
+            })
+          if (objpDataNd != null) {
+            var chart = c3.generate({
+              bindto: '#chart-2',
+              data: {
+                x: 'pointX',
+                y: 'valueY',
+                columns: [
+                  ['pointX', ...(Object.keys(objpDataNd))],
+                  ['Players', ...(Object.values(objpDataNd))]
+                ],
+                colors: {
+                  MMR2: '#4f80f0'
+                }
+              },
+              axis: {
+                x: {
+                  tick: {
+                    fit: true
+                  }
+                },
+                y: {
+                  show: false
+                }
+              },
+              grid: {
+                x: {
+                  color: '#4f80f0',
+                  width: '1.5px',
+                  lines: [
+                    { value: avgRanked, text: avgRanked + ' MMR', position: 'middle' }
+                  ]
+                }
+              },
+              tooltip: {
+                show: false,
+                contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+                  const val = dataTooltip[d[0].index].tooltipVal
+                  const mmrTopText = val <= 50
+                    ? `Top ${val.toFixed(val <= 3 ? 2 : 0)}%`
+                    : `Bottom ${(100 - val).toFixed(val >= 97 ? 2 : 0)}%`
+                  return `<div class="tooltip--custom"><b>${d[0].x}</b> MMR<br>${mmrTopText}</div>`
+                }
+              },
+              point: {
+                  show: false
+              }
+            });
+          } else {
+            $('#chart-2').text('Not enough games played solo');
+          }
+        }
+      }
+      const pushDataChart3 = function (data, types) {
+        let getTierData = dataApi3.ranked.tierData;
+        if (data != null) {
+          let chart = c3.generate({
+            bindto: '#chart-3',
+
+            data: {
+              x: 'x',
+              columns: data.columns,
+              type: 'area-spline',
+              colors: data.colors
+            },
+            axis: {
+              x: {
+                height: 50,
+                tick: {
+                  // fit: !0,
+                  // outer: !1,
+                  format: function (e) {
+                    return Math.round(e)
+                  }
+                }
+              },
+
+              y: {
+                show: !1
+              }
+            },
+            bar: {
+              width: {
+                ratio: .15
+              }
+            },
+            grid: {
+              x: {
+                lines: [
+                  // ...getTierData.map(i => ({value: `${i.avg}`, text: i.max === Infinity ? `${Math.floor(i.avg)} MMR` : `${i.name} Avg`, class: 'grid-solid'}))
+                  ...getTierData.map(i => i.name !== null ? ({value: `${i.avg}`, text: `${i.name}`, class: 'grid-solid'}) : ''),
+                  { value: avgRanked, text: avgRanked + ' MMR', position: 'middle' }
+                ]
+              },
+              y: {
+                color: '#4f80f0',
+                width: '1.5px',
+                lines: types
+              }
+            },
+            tooltip: {
+              grouped: !0,
+              contents: function (e, t, r, a) {
+                return "<container class='tooltip--custom'>" +Math.round(e[0].x) + " MMR" + "</container>"
+              }
+            },
+          });
+        } else {
+          $('#chart-3').text('Not enough games played solo');
+        }
+      }
+    };
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+
+</script>
+
+{% schema %}
+{
+"name": "MMR",
+"settings": [
+{
+"type": "text",
+"id": "brand_logo",
+"label": "Brand logo",
+"default": "MMR TRACKER"
+},
+{
+"type": "text",
+"id": "brand_lead",
+"label": "Brand lead",
+"default": "League of Legends League MMR Tracker"
+},
+{
+"type": "text",
+"id": "field_placeholder",
+"label": "Field placeholder",
+"default": "Find a summoner"
+}
+],
+"blocks": [
+{
+"name": "Servers",
+"type": "Server",
+"settings": [
+{
+"type": "text",
+"id": "server_code",
+"label": "Server Code"
+},
+{
+"type": "text",
+"id": "server_name",
+"label": "Server Name"
+}
+]
+}
+]
+}
+{% endschema %}

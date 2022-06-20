@@ -1,0 +1,428 @@
+<style>
+ .discor-div {
+   margin-left:50px;
+   display:flex; 
+   padding:5px 10px; 
+   background-color:#3F5BBC; 
+   border-radius:5px;
+   justify-content:center;
+   max-width:200px;
+   color:white;
+  }
+  .discor-div:hover{
+  background-color:#446ccf;
+  }
+  .announcement-text{
+  //margin-top:4px;
+  }
+  .header-top .top-message{
+  padding-top:10px;
+    padding-bottom:2px;
+  }
+  @media screen and (max-width:770px)
+  {
+    .discor-div{
+    margin-top:15px;
+    }
+  }  
+</style>
+{% include 'style-header' %}
+
+<header class="header" role="banner">
+
+  <div class="header-top">
+    <div class="container-fluid">
+      <div class="top-message">
+        {% if section.settings.display_header_top and section.settings.top_message_text != blank %}
+        <div class="top-left" style="display:flex; justify-content:center;">
+          <p class="announcement-text">
+            {% include 'multilang' with section.settings.top_message_text %}
+         
+          </p>
+          
+<a href="https://discord.gg/NqBqpQB4aC">
+<div class="discor-div">
+
+ 
+     <svg style="margin-right:10px;width:25px; height:25px; fill: white;" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 245 240">
+        <path class="st0" d="M104.4 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zM140.9 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z" />
+        <path class="st0" d="M189.5 20h-134C44.2 20 35 29.2 35 40.6v135.2c0 11.4 9.2 20.6 20.5 20.6h113.4l-5.3-18.5 12.8 11.9 12.1 11.2 21.5 19V40.6c0-11.4-9.2-20.6-20.5-20.6zm-38.6 130.6s-3.6-4.3-6.6-8.1c13.1-3.7 18.1-11.9 18.1-11.9-4.1 2.7-8 4.6-11.5 5.9-5 2.1-9.8 3.5-14.5 4.3-9.6 1.8-18.4 1.3-25.9-.1-5.7-1.1-10.6-2.7-14.7-4.3-2.3-.9-4.8-2-7.3-3.4-.3-.2-.6-.3-.9-.5-.2-.1-.3-.2-.4-.3-1.8-1-2.8-1.7-2.8-1.7s4.8 8 17.5 11.8c-3 3.8-6.7 8.3-6.7 8.3-22.1-.7-30.5-15.2-30.5-15.2 0-32.2 14.4-58.3 14.4-58.3 14.4-10.8 28.1-10.5 28.1-10.5l1 1.2c-18 5.2-26.3 13.1-26.3 13.1s2.2-1.2 5.9-2.9c10.7-4.7 19.2-6 22.7-6.3.6-.1 1.1-.2 1.7-.2 6.1-.8 13-1 20.2-.2 9.5 1.1 19.7 3.9 30.1 9.6 0 0-7.9-7.5-24.9-12.7l1.4-1.6s13.7-.3 28.1 10.5c0 0 14.4 26.1 14.4 58.3 0 0-8.5 14.5-30.6 15.2z" />
+      </svg>
+   
+ <span style="font-size:16px; font-weight:600"> 
+     Join Discord
+  </span>
+  </div>
+</a>
+
+        </div>
+        {% endif %}
+        <div class="top-right">
+          {% if settings.enable_multilang or settings.enable_multiple_currencies %}
+          <div class="lang-currency-groups">
+            {% include 'new-language-picker' %}
+            {% include 'new-currency-picker' %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="header-bottom" data-sticky-mb >
+    <div class="container-fluid">
+      <div class="wrapper-header-bt">
+        {% include 'header-mobile' %}
+        <div class="header-pc">
+          <div class="left-header header-items">
+            <h3 class="header-logo" itemscope itemtype="https://schema.org/Organization">
+              <meta itemprop="url" content="{{ shop.url }}">
+              {% if section.settings.brand_type == 'image'%}
+              {% if section.settings.logo_pc != blank %}
+              <a class="logo-img home-logo" href="/" title="Logo">
+               <img data-src="{{ section.settings.logo_pc | img_url: 'master' }}" itemprop="logo" {% include 'lazyload' %}>
+              </a>
+              {% endif %}
+              {% if section.settings.logo_pc_homepage %}
+              <a class="logo-img " href="/" title="Logo">
+                <img data-src="{{ section.settings.logo_pc_homepage | img_url: 'master' }}" itemprop="logo" {% include 'lazyload' %}>
+              </a>
+              {% endif %}
+              {% elsif section.settings.brand_text != '' %}
+              <a class="logo-title" href="/">
+                {{ section.settings.brand_text }}
+              </a>
+              {% else %}
+              <a class="logo-title" href="/">
+                {{ shop.name }}
+              </a>
+              {% endif %}
+            </h3>
+          </div>
+          <div class="wrapper-navigation">
+            <div class="main-menu jas-mb-style">
+              <div class="col-12">
+                <nav class="nav-bar" role="navigation">
+                    {% include 'site-nav' %}
+                  </nav>
+
+                {% comment %}
+                 {% if template contains 'index' %}
+                <div class="mb-area">
+                  <nav class="nav-bar" role="navigation">
+                    {% include 'site-nav' %}
+                  </nav>
+                </div>
+                {% else %}
+                <div class="Back-to-home">
+                  <a class="icon-bth" href="/">{% include 'icon-back-to-home' %}</a>
+                  <a class="" href="/">{% include 'multilang' with section.settings.goto_homepage %}</a>
+                </div>
+                {% endif %}
+                 {% endcomment %}
+              </div>
+            </div>
+          </div>
+          <div class="right-header header-items" data-append-header-pc>
+            <div class="grp-acc-cart">
+            <div class="cart-icon svg-mb" >
+              <a href="/cart" title="Cart Icon">
+                {% include 'icon-cart' %}
+
+                <span class="cartCount" data-cart-count>
+                  {{ cart.item_count }}
+                </span>
+              </a>
+            </div>
+            {% if shop.customer_accounts_enabled %}
+              {% if customer %}
+                <div class="cart-icon svg-mb" style="padding-left: 15px">
+                  <a href="/pages/lootbox" title="Lootbox">
+                    {% include 'icon-box' %}
+                    <span class="cartCount" id="countCreditBrand" data-cart-count>
+                      0
+                    </span>
+                  </a>
+                </div>
+              {% endif %}
+            <div class="acc-mb svg-mb" style="padding-left: 15px">
+              <a href="/account" title="User Icon" class="icon-user" >
+                {% include 'icon-user' %}
+              </a>
+            </div>
+            {% endif %}
+            </div>
+
+            <div class="header-buy-now">
+              <button class="btn btn-x1" onclick="window.location.href='{{ settings.buy_now_header }}'" >{% include 'multilang' with section.settings.text_buy_now %}</button>
+            </div>
+          </div>
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header Top"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_header_top",
+        "label": "Display Header Top?",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "top_message_text",
+        "label": "Top Message Text",
+        "default": "Mid-Season Sale Up to 70% OFF."
+      },
+      {
+        "type": "color",
+        "id": "bg_header_top",
+        "label": "Background Color",
+        "default": "#f7f7f7"
+      },
+      {
+        "type": "color",
+        "id": "text_header_top_color",
+        "label": "Text Color",
+        "default": "#b05d5d"
+      },
+      {
+        "type":"header",
+        "content":"Custom Dropdown"
+      },
+      {
+        "type": "color",
+        "id": "dropdown_color",
+        "label": "Color",
+        "default": "#73788a"
+      },
+      {
+        "type":"color",
+        "id":"back_dropdown",
+        "label":"Background",
+        "default":"#fff"
+      },
+      {
+        "type":"text",
+        "id":"font-size-hd-top",
+        "label":" Font Size",
+        "default":"12px"
+      },
+      {
+		"type": "header",
+		"content": "Header Bottom"
+	  },{
+        "type": "color",
+        "id": "back_header_bottom",
+        "label": "Background",
+        "default": "#fff"
+      },
+	  {
+		"type": "header",
+		"content": "Logo"
+	  },
+	  {
+        "type": "radio",
+        "id": "brand_type",
+        "label": "Use image or text for logo?",
+        "options": [
+          {
+            "value": "text",
+            "label": "Text"
+          },
+          {
+            "value": "image",
+            "label": "Image"
+          }
+        ],
+        "default": "text"
+      },
+      {
+        "type": "text",
+        "id": "brand_text",
+        "label": "Logo text"
+      },
+      {
+       "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image for Mobile",
+		"info": "95px x 44px recommended"
+      },
+	  {
+        "type": "text",
+        "id": "max_height_logo_mb",
+        "label": "Max Height of Logo Mobile",
+        "default": "26px"
+      },
+      {
+       "type": "image_picker",
+        "id": "logo_pc_homepage",
+        "label": "Logo image for PC on Homepage",
+		"info": "95px x 44px recommended"
+      },
+	  {
+        "type": "text",
+        "id": "max_height_logo_pc_homepage",
+        "label": "Max Height of Logo PC on homepage",
+        "default": "36px"
+      },
+	  {
+       "type": "image_picker",
+        "id": "logo_pc",
+        "label": "Logo image for PC",
+		"info": "95px x 44px recommended"
+      },
+	  {
+        "type": "text",
+        "id": "max_height_logo_pc",
+        "label": "Max Height of Logo PC",
+        "default": "36px"
+      },
+	   {
+        "type": "header",
+        "content": "Navigation"
+      },
+      {
+      "type":"color",
+      "id":"color_nav_homepage",
+      "label":"Menu color on homepage",
+      "default":"#fff"
+
+      },
+      {
+        "type":"color",
+        "id":"color_nav",
+        "label":"Back to home color",
+        "default":"#000d41"
+
+      },
+      {
+        "type":"text",
+        "id":"goto_homepage",
+        "label":"Back to Home",
+        "default":"Back to Home"
+      },
+      {
+        "type":"text",
+        "id":"font_size_menu",
+        "label":" Font Size",
+        "default":"14px"
+      },
+       {
+        "type": "header",
+        "content": "Sub Navigation"
+      },
+      {
+        "type":"color",
+        "id":"color_sub_nav",
+        "label":"Sub menu color",
+        "default":"#000d41"
+      },
+       {
+        "type":"color",
+        "id":"color_hover_sub_nav",
+        "label":"Sub menu hover color",
+        "default":"#296fc2"
+      },
+      {
+        "type":"color",
+        "id":"back_sub_nav",
+        "label":"Sub menu background",
+        "default":"#fff"
+      },
+      {
+        "type":"color",
+        "id":"back_sub_nav_hover",
+        "label":"Sub menu hover background",
+        "default":"#f4f4f4"
+      },
+	  {
+        "type": "header",
+        "content": "Cart Header"
+      },
+      {
+        "type": "color",
+        "id": "bg_cart_color",
+        "label": "Background Color Items Cart",
+        "default": "#000d41"
+      },
+       {
+        "type": "color",
+        "id": "bg_cart_color_mb",
+        "label": "Background Color Items Cart Mobile",
+        "default": "#000d41"
+      },
+	  {
+        "type": "color",
+        "id": "cart_color",
+        "label": "Color Items Cart",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "cart_color_mb",
+        "label": "Color Items Cart Mobile",
+        "default": "#fff",
+		"info": "======================="
+      },
+      {
+        "type":"header",
+        "content":"Header Mobile"
+      },
+      {
+        "type":"color",
+        "id":"back_header_mb",
+        "label":"Background Header Mobile",
+        "default":"#fff"
+      },
+      {
+        "type":"color",
+        "id":"color_header_mobile",
+        "label":" Color Header Mobile",
+        "default":"#000d41"
+      },
+      {
+        "type": "header",
+        "content": "Button Header"
+      },
+      {
+        "type":"text",
+        "id":"text_buy_now",
+        "label":"Add content",
+        "default":" Buy Now"
+      }
+
+    ]
+  }
+{% endschema %}
+
+<script>
+  const customerId = {{ customer.id | json }};
+  if (customerId) {
+    $.ajax(`/a/hura/customers/${customerId}/credits`, {
+        method: 'GET',
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (data) {
+          document.getElementById('countCreditBrand').innerText = data.credits || 0
+          if (document.getElementById('2b-total-credits')) {
+            document.getElementById('2b-total-credits').innerText = data.credits || 0
+          }
+        }
+    })
+  }
+</script>

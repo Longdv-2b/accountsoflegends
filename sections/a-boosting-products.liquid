@@ -1,0 +1,184 @@
+<div class="section custom-block-overview section-landing-info">
+  <div class="container-2">
+    <div class="row">
+      <div class="col-12 ml-auto mr-auto text-center">
+        <h2 class="title px-3 px-md-5" style="color: {{ section.settings.hading_color }}">{{ section.settings.boost_text }}</h2>
+        <p class="lead description px-3" style="color: {{ section.settings.text_color }}">
+			{{ section.settings.boost_desc }} 
+        </p>
+      </div>
+    </div>
+    <div class="row mt-5">
+      {% for block in section.blocks %}
+      {% case section.blocks.size %}
+        {% when 4 %}
+        {%- assign column_size = 'col-12 col-md-6 col-lg-3' -%}
+        {% else %}
+        {%- assign column_size = 'col-12 col-md-6 col-lg-4' -%}
+        {% endcase %}
+      <div class="{{column_size}}">
+        <div class="info info-hover">
+          <div class="icon icon-info icon-circle">
+            {%- assign img_url = block.settings.icon | img_url: '50x'-%}
+            {% if block.settings.icon != blank %}
+             <img data-src="{{img_url}}" alt="{{img_url.alt}}" {% include 'lazyload' %} >
+            {% else %}
+             <div class="no-image" style="padding-top: 50%; font-size:20px"><span>50X50px</span></div>
+            {% endif %}
+          </div>
+          <h4 class="info-title" style="color: {{ block.settings.hading_color }}">{{ block.settings.boost_text }}</h4>
+          <p class="description px-3" style="color: {{ block.settings.text_color }}">
+            {{ block.settings.boost_desc }}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .section-landing-info {
+    padding-top: 50px;
+  }
+  .section-landing-info h2 {
+    font-size: 38px;
+    font-weight: 500;
+  }
+  .section-landing-info h4 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .section-landing-info p.lead {
+    font-size: 20px;
+  }
+  .section-landing-info .info {
+    max-width: none;
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .section-landing-info .info p {
+    font-size: 18px;
+  }
+  .icon.icon-info.icon-circle {
+    box-shadow: 0 9px 30px -6px rgb(44 168 255 / 30%);
+  }
+  .info .icon.icon-circle {
+    max-width: 80px;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    font-size: .7142em;
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .icon.icon-info {
+    color: #2ca8ff;
+  }
+  .info .icon {
+    color: #888;
+    transition: transform .4s,box-shadow .4s;
+  }
+  .info .icon.icon-circle i, .info .icon.icon-circle img {
+    line-height: 2.7;
+  }
+  .info .icon>i {
+    font-size: 3em;
+  }
+  .info .icon>img {
+    width: 50px;
+    margin: 0 auto;
+  }
+  .now-ui-icons {
+    display: inline-block;
+    font: normal normal normal 14px/1 'Nucleo Outline';
+    font-size: inherit;
+    speak: none;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .info.info-hover:hover .icon.icon-info.icon-circle {
+    box-shadow: 0 15px 35px 0 rgb(44 168 255 / 35%);
+  }
+  .info.info-hover:hover .icon {
+    -webkit-transform: translate3d(0,-0.5rem,0);
+    -moz-transform: translate3d(0,-0.5rem,0);
+    -o-transform: translate3d(0,-0.5rem,0);
+    -ms-transform: translate3d(0,-0.5rem,0);
+    transform: translate3d(0,-0.5rem,0);
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Boost",
+     "max_blocks": 4,
+    "settings": [
+		{
+          "type":"text",
+          "id":"boost_text",
+          "label":"Heading"
+        },
+        {
+          "type":"color",
+          "id":"hading_color",
+          "label":"Heading Color",
+          "default":"#000000"
+        },
+		{
+          "type":"textarea",
+          "id":"boost_desc",
+          "label":"Description"
+        },
+        {
+          "type":"color",
+          "id":"text_color",
+          "label":"Text Color",
+          "default":"#73788a"
+        }
+
+	],
+   "blocks":[
+      {
+        "type":"text",
+        "name":"Text",
+        "settings":[
+            {
+              "type":"image_picker",
+              "id":"icon",
+              "label":"Icon"
+            },
+            {
+              "type" : "text",
+              "id" : "boost_text",
+              "label" : "Text"
+            },
+            {
+              "type":"color",
+              "id":"hading_color",
+              "label":"Heading Color",
+              "default":"#000000"
+            },
+            {
+              "type":"textarea",
+              "id":"boost_desc",
+              "label":"Description"
+            },
+            {
+              "type":"color",
+              "id":"text_color",
+              "label":"Text Color",
+              "default":"#73788a"
+            }
+        ]
+      }
+    ]
+  }
+{% endschema %}

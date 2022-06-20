@@ -1,0 +1,274 @@
+{% if section.settings.enable %}
+<section class=" custom-block-specification section-{{section.id}}" id="{{section.settings.id_scroll}}">
+  <div class="container">
+    <div class="specification-top">
+      <h2 class="title">{% include 'multilang' with section.settings.specification_title %}</h2>
+    </div>
+    <div class="specification-bottom row">
+      <div class="specification-left col-6 col-md-6 col-lg-6">
+        <div class="specification-ctn">
+        <div class="left-top rte">
+          {% include 'multilang' with section.settings.cotent_sub %}
+        </div>
+        <div class="specification-tab">
+          <div class="panel-group" id="accordion">
+            {% if section.settings.enable_tab1 %}
+            <div class="panel rte wow fadeInUp">
+              <div class="panel-heading">
+                <div class="panel-title active ">
+                  <a data-toggle="collapse"   data-parent="#accordion" href="#collapse-tab1" class="" style="color:{{section.settings.specification_tab_title_color}}">
+                    {% include 'multilang' with section.settings.specification_tab_title %}
+                  </a>
+                </div>
+              </div>
+              <div id="collapse-tab1" class="panel-collapse collapse in show">
+                <div class="panel-body" itemprop="">
+                 {% for block in section.blocks %}
+                  <ul class="item">
+                    <li class="case_des" style="color:{{block.settings.case_des_color}}">{% include 'multilang' with block.settings.case_des %}</li>
+                    <li class="des" style="color:{{block.settings.desscription_color}}">{% include 'multilang' with block.settings.desscription %}</li>
+                  </ul>
+                  
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if section.settings.enable_tab2 %}
+            <div class="panel wow fadeInUp" data-wow-delay="200ms">
+              <div class="panel-heading">
+                <div class="panel-title tab2">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tab2" class="collapsed" style="color:{{section.settings.custom_tab_title_color}}">
+                    {% include 'multilang' with section.settings.custom_tab_title %}
+                  </a>
+                </div>
+              </div>
+              <div id="collapse-tab2" class="panel-collapse collapse">
+                <div class="panel-body rte" style="color:{{section.settings.content_cusstom_tab_color}}">
+                  {% include 'multilang' with section.settings.content_cusstom_tab %}
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </div>   
+        </div>
+        </div>
+
+      </div>
+      <div class="specification-right col-6 col-md-6 col-lg-6">
+        <div class="image-ifo">
+          {%-assign image_ifo = section.settings.image_ifo | img_url: '800x'-%}
+          {% if section.settings.image_ifo != blank %}
+          <img data-src="{{image_ifo}}" alt="{{image_ifo.alt}}" {% include 'lazyload' %}>
+          {% else %}
+          <div class="no-image" style="padding-top:106%; font-size:20px"><span>800x960px</span></div>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Block Specification",
+    "settings": [
+       {
+          "type":"checkbox",
+          "id":"enable",
+          "label":"Enable?",
+          "default":true
+        },
+        {
+          "type":"text",
+          "id":"id_scroll",
+          "label":"Add id",
+          "default":"specification"
+        },
+        {
+          "type":"header",
+          "content":"specification top"
+        },
+        {
+          "type":"text",
+          "id":"specification_title",
+          "label":"Title",
+          "default":"Specification"
+        },
+        {
+          "type":"color",
+          "id":"title_color",
+          "label":"Color",
+          "default":"#000d41"
+        },
+        {
+          "type":"text",
+          "id":"font_size_title",
+          "label":"Font Size",
+          "default":"50px"
+        },
+        {
+          "type":"header",
+          "content":"specification left"
+        },
+        {
+          "type":"textarea",
+          "id":"cotent_sub",
+          "label":"Content",
+          "default":"Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras"
+        },
+        {
+          "type":"color",
+          "id":"cotent_color",
+          "label":"Color",
+          "default":"#73788a"
+        },
+        {
+          "type":"text",
+          "id":"font_size_cotent",
+          "label":"Font Size",
+          "default":"14px"
+        },
+        {
+        "type":"header",
+        "content":"tab"
+        },
+        {
+        "type":"checkbox",
+        "id":"enable_tab1",
+        "label":"Display specification tab?",
+        "default":true
+        },
+        {
+        "type":"text",
+        "id":"specification_tab_title",
+        "label":"Specification tab title",
+        "default":"Specification"
+        },
+        {
+          "type":"color",
+          "id":"specification_tab_title_color",
+          "label":"Color",
+          "default":"#000d41"
+        },
+        {
+        "type":"checkbox",
+        "id":"enable_tab2",
+        "label":"Display Custom Tab?",
+        "default":true
+        },
+        {
+        "type":"text",
+        "id":"custom_tab_title",
+        "label":"Custom tab title",
+        "default":"Shipping and Returns | Liefer- und Versandkosten"
+        },
+        {
+          "type":"color",
+          "id":"custom_tab_title_color",
+          "label":"Color",
+          "default":"#000d41"
+        },
+        {
+          "type":"textarea",
+          "id":"content_cusstom_tab",
+          "label":"Custom Tab HTML Code",
+          "default":"<div><p><b>SHIPPING</b></p><p><b>USA/UK:</b><span> DHL/FedEx/Other Premium Courier - Tracked Shipping (5 to 8 days)</span></p><p><b>Australia/Canada: </b><span>DHL/FedEx/Other Premium Courier - Tracked Shipping (7 to 9 days)</span></p><p><b>Germany/France: </b><span>DHL/FedEx/Other Premium Courier - Tracked Shipping (6 to 10 days)</span></p><p><b>Rest Of The World:</b><span> 10 - 21 days with full tracking via USPS (FREE)</span></p><p><span>Our goal is to offer you the best shipping options, no matter where you live. Every day, we deliver to hundreds of customers across the world, ensuring that we provide the very highest levels of responsiveness to you at all times.</span></p><p><span>If you haven't received a shipping confirmation email with your tracking info within 3 days then feel free to get in touch.</span></p><p><b>REFUNDS</b></p><p><span>We offer a 100% money-back guarantee if you are not 100% satisfied with your order. Our return policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately, we can’t offer you a refund or exchange. To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.</span></p></div>"
+        },
+        {
+          "type":"color",
+          "id":"content_cusstom_tab_color",
+          "label":"Color",
+          "default":"#73788a"
+        },
+        {
+          "type":"header",
+          "content":" specification right "
+        },
+       {
+        "type":"checkbox",
+        "id":"animation_image",
+        "label":"Image Animation?",
+        "default":true
+      },
+        {
+          "type":"image_picker",
+          "id":"image_ifo",
+          "label":"Image"
+        }
+
+      ],
+      "blocks":[
+      {
+        "type":"Specification_content",
+        "name":"Specification content",
+          "settings":[
+            {
+              "type":"text",
+              "id":"case_des",
+              "label":"Case Description"
+            },
+            {
+              "type":"color",
+              "id":"case_des_color",
+              "label":"Color",
+              "default":"#000d41"
+            },
+            {
+              "type":"text",
+              "id":"desscription",
+              "label":"Description"
+            },
+            {
+              "type":"color",
+              "id":"desscription_color",
+              "label":"Color",
+              "default":"#73788a"
+            }
+          ]
+        }
+      ],
+      "presets":[
+        {
+          "name":"Block Specification",
+          "category":"Advanced layout"
+        }
+
+      ]
+  }
+{% endschema %}
+<style>
+  .custom-block-specification.section-{{section.id}} .specification-top .title{
+    font-size: {{section.settings.font_size_title}};
+    color: {{section.settings.title_color}};
+    text-align: center;
+    font-weight: 500;
+  }
+  .custom-block-specification.section-{{section.id}} .specification-left .left-top{
+    font-size: {{section.settings.font_size_cotent}};
+    color: {{section.settings.cotent_color}};
+  }
+  {% if section.settings.animation_image %}
+  .custom-block-specification .image-ifo  img{
+    animation-name: anumation_image;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    position: relative
+
+  }
+  @keyframes  anumation_image{
+    from {
+      top: -10px;
+    }
+    to {
+      top: 10px;
+    }
+  }
+  {% endif %}
+</style>

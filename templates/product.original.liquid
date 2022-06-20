@@ -1,0 +1,38 @@
+<div class="product-template">
+  <div class="container">
+    {% include 'breadcrumb' %}
+    <div class="halo-product-content">
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="row pro-page">
+            {% section 'product-template-unranked' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% section 'description_product_detail' %}
+  <div class="container">
+    {% section 'faq-product' %}
+    {% section 'contact-support-pr' %}
+    {% section 'product-review' %}
+  </div>
+ 
+
+  {%section 'sectionimage3p'%}
+  {%section 'Tabsectionp'%}
+  {%section 'sectionimg2p'%}
+  {%section 'sectionimage1p'%}
+</div>
+
+
+
+<script type="text/javascript">
+	var _learnq = _learnq || [];
+	document.getElementById("product-add-to-cart").addEventListener('click',function (){
+ 		_learnq.push(['track', 'Added to Cart', item]);
+	});
+  
+
+
+</script>

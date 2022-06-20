@@ -1,0 +1,196 @@
+{% if section.settings.enable %}
+<section class="banner-parallax section-{{section.id}}">
+  {%- assign image_url = section.settings.back_image | img_url: '2000x'-%}
+  {% if  section.settings.back_image !=blank %}
+  <div class="banner-image lazyload " data-bgset="{{image_url}}" style="background-image:url({{image_url}});min-height:{{section.settings.min_height}};background-attachment: fixed;">
+    
+  </div>
+  {%else%}
+  <div class="no-image" style="padding-top:55%;font-size:30px"><span>2000 x 980px</span></div>
+ 
+  {% endif %}
+  <div class="container">
+    <div class=" banner-content">
+      <div class="container-2" style="min-height:{{section.settings.min_height}}">
+      <div class="banner_left">
+          <div class="des">
+            <p class="banner-sub-text" style="font-size:{{section.settings.font_size_sub}}; color:{{section.settings.color_sub}}">
+              {% include 'multilang' with section.settings.sub_heading %}
+            </p>
+            <h2 class="banner-heading" style="font-size:{{section.settings.font_size_heading}}; color:{{section.settings.color_heading}}">
+              {% include 'multilang' with section.settings.heading %}
+            </h2>
+            <a href ="{{section.settings.link_button}}" class="btn btn-x2" style="background-color:{{section.settings.back_btn_color}}; color:{{section.settings.btn_color}}; border-color:{{section.settings.btn_color}}">{% include 'multilang' with section.settings.text_submit%}</a>
+          </div>
+        </div>
+        </div>
+      <div class="banner_right ">
+        {% if section.settings.image_right != blank %}
+         {%- assign img_pos = section.settings.image_right | img_url: '800x'-%}
+        <img data-src="{{img_pos}}" alt="{{img_pos.alt}}" {% include 'lazyload' %}>
+        {% endif%}
+      </div>
+    </div>
+  </div>
+    
+</section>
+{% endif %}
+{% schema %}
+  {
+    "name": " Homepage Block Banner",
+    "settings": [
+      {
+        "type":"checkbox",
+        "id":"enable",
+        "label":"Enable?",
+        "default":true
+      },
+      
+      {
+        "type":"image_picker",
+        "id":"back_image",
+        "label":"Add Image",
+        "info":"Recommended size 2000x980px"
+      },
+      {
+      "type":"text",
+      "id":"min_height",
+      "label":"Min Height Image",
+      "default":"890px"
+      },
+{
+"type":"header",
+"content":"Content"
+},
+{
+"type":"textarea",
+"id":"sub_heading",
+"label":"Sub Heading",
+"default":"Phasellus lorem malesuada ligula pulvinar commodo maecenas"
+},
+{
+"type":"color",
+"id":"color_sub",
+"label":"Color",
+"default":"#fff"
+},
+{
+"type":"text",
+"id":"font_size_sub",
+"label":"Font Size",
+"default":"14px"
+},
+{
+"type":"text",
+"id":"heading",
+"label":"Heading",
+"default":"Hear Whatever You Need."
+},
+{
+"type":"color",
+"id":"color_heading",
+"label":"Color",
+"default":"#fff"
+},
+{
+"type":"text",
+"id":"font_size_heading",
+"label":"Font Size",
+"default":"50px"
+},
+{
+"type":"header",
+"content":"Button"
+},
+{
+"type":"text",
+"id":"text_submit",
+"label":"Text buttton",
+"default":"Shop Now"
+},
+{
+"type":"color",
+"id":"btn_color",
+"label":"Color",
+"default":"#fff"
+},
+{
+"type":"color",
+"id":"back_btn_color",
+"label":"Background Color",
+"default":"transparent"
+},
+{
+"type":"url",
+"id":"link_button",
+"label":" Link Button"
+},
+{
+"type":"header",
+"content":"Image"
+},
+{
+"type":"checkbox",
+"id":"animation_image",
+"label":"Image Animation?",
+"default":true
+},
+{
+"type":"image_picker",
+"id":"image_right",
+"label":"Image"
+}
+    ],
+    "presets":[
+      {
+        "name":"Homepage Block Banner",
+        "category":"block image"
+      }
+    ]
+  }
+{% endschema %}
+<style>
+  .section-{{section.id}} .banner-image{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+  }
+ 
+  {% if section.settings.animation_image %}
+  .banner-parallax  .banner_right  img{
+    animation-name: anumation_image;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    position: relative
+
+  }
+  @keyframes  anumation_image{
+    from {
+      top: -15px;
+      width: 100%;
+    }
+    to {
+      top: 20px;
+      width: 100%;
+    }
+  }
+  {% endif %}
+  
+  @media (min-width: 1025px)
+  {
+    .header .header-bottom {
+      background-color: transparent;
+      position: absolute;
+      width: 100%;
+      margin:0 auto;
+      z-index:99;
+    }
+  
+ 
+  
+  
+</style>

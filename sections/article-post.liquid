@@ -1,0 +1,201 @@
+<section class="main-article-post">
+
+  <div class="banner-img">
+    <img src="{{ article.image | img_url:'original' }}">
+    <div class="bot-fade"></div>
+    <div class="banner-detail">
+      <div class="entry-header">
+        <h1 class="entry-title">{{ article.title }}</h1>
+      </div>
+      <div class="entry-meta">
+        <span class="cat-links">
+          {% for tag in article.tags %}
+          <a href="#">{{ tag }}</a>
+          {% endfor %}
+        </span>
+      </div>
+      <div class="entry-meta meta-bot">
+        <span class="entry-date">
+          <i class="fa fa-clock-o post-meta-icon"></i>
+          <a href="#">
+            <time class="entry-date" datetime="2019-01-16T12:33:08-08:00">{{ article.published_at | date: "%B %d, %Y"  }}</time>
+          </a>
+        </span>
+<!--         <span class="comment-link">
+          <i class="fa fa-comment-o post-meta-icon"></i>
+          <a href="#">15 Comments</a>
+        </span> -->
+        <span class="byline">
+          <span class="author vcard">
+            <i class="fa fa-user post-meta-icon"></i>
+            <a class="url fn n" href="#">{{ article.author }}</a>
+          </span>
+        </span>
+        {% comment %}
+        {% for block in section.blocks %}
+        {% if block.settings.f_post == article.handle %}
+        <span class="read-time">
+          <i class="fa fa-bookmark post-meta-icon"></i>
+          <span class="span-reading-time rt-reading-time"><span class="rt-time">{{ block.settings.read_time }}</span> <span class="rt-label rt-postfix">min read</span></span>                                    
+        </span>
+        {% endif %}
+        {% endfor %}
+        {% endcomment %}
+      </div>
+    </div>
+  </div>
+  <div class="layout-fixed">
+    <div class="article-cols">
+      <div class="content-col">
+        <div class="post-body">
+        {{ article.content }}
+        </div>
+        <aside class="about-author">
+          <h3>WRITTEN BY</h3>
+          <div class="author-bio">
+            {% if section.settings.author-img-enable_sec %}
+            <div class="author-img">
+              <img src="{{ section.settings.author_img | img_url: 'master' }}">
+            </div>
+            {% endif %}
+            <div class="author-info">
+              <h4 class="author-name">{{ article.author }}</h4>
+              {% if section.settings.author-detail-enable_sec %}
+              <p> 
+                {{ section.settings.author-info }}
+              </p>
+              {% endif %}
+            </div>
+          </div>
+        </aside>
+        <div class="container-fluid role-ico d-md-none d-lg-none d-xl-block col-block">
+          <div class="row">
+            <div class="col-xl-12">
+              <h3>Featured posts</h3>
+            </div>
+            {% for article in blogs.news.articles %}
+            <div class="col-xl-4">
+              <div class="post-slide">
+                <div class="img-wrap">
+                  <a href="{{article.url}}"><img src="{{ article.image | img_url:'original' }}"></a>
+                </div>
+                <div class="detail-wrap">
+                  <h4><a href="{{article.url}}">{{article.title}}</a></h4>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="sidebar-right">
+          <div>
+            <div class="widget pop-widget">
+              <h4 class="widget-title">Popular posts</h4>
+              <ul>
+                {% for article in blogs.news.articles %}
+                <li>
+                  <a href="{{ article.url }}"><img src="{{ article.image | img_url:'original' }}">
+                    <span class="pop-item">{{ article.title }}</span>
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<script>
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+  function onYouTubePlayerAPIReady() {
+    player = new YT.Player('player', {
+      playerVars: { 'autoplay': 1, 'controls': 1,'autohide':1,'wmode':'opaque' },
+      videoId: 'JW5meKfy3fY',
+      events: {
+        'onReady': onPlayerReady}
+    });
+  }
+
+
+  function onPlayerReady(event) {
+    event.target.mute();
+  }
+</script>
+{% schema %}
+{
+"name": "Article post",
+"settings": [
+{
+        "type" : "header",
+        "content" : "Author Image"
+},
+{
+
+"type": "text",
+"id": "readtime",
+"label": "Read Time"
+
+},
+
+{
+"type": "checkbox",
+"id": "author-img-enable_sec",
+"label": "Enable Author Image"
+},
+
+{
+"type": "image_picker",
+"id": "author_img",
+"label": "Author Image"
+},
+{
+        "type" : "header",
+        "content" : "Author Detail"
+},
+{
+"type": "checkbox",
+"id": "author-detail-enable_sec",
+"label": "Enable Author Detail"
+},
+{
+"type": "textarea",
+"id": "author-info",
+"label": "Author Detail"
+}
+],
+"blocks":[
+{
+"type":"read-time",
+"name":"Read Time",
+"settings":[
+{
+"type":"article",
+"id":"f_post",
+"label":"Blog Post"
+},
+{
+"type":"number",
+"label":"Read Time",
+"id":"read_time"
+}
+]
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
