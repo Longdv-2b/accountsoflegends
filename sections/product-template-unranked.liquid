@@ -321,7 +321,7 @@
 
         {% if product.available %}
         <div id="product-variants">
-          {% if variantCount > 1  or product.variants[0].title != 'Default Title'  %}
+          {% if variantCount > 1  or product.variants[0].title != 'Default Title' %}
           <select id="product-selectors" name="id" style="background:#fff !important; display: none;">
             {% for variant in product.variants %}
             {% if variant.available %}
@@ -370,6 +370,7 @@
         </div>
         {% endif %}
         {% endform %}
+        <div class ="btn-buy-it-now">Buy It Now</div>
         {% if section.settings.display_trust_img and settings.img_trust != blank %}
         <div class="secure-shopping-guarantee">
           {% if settings.secure_text != blank %}
@@ -396,7 +397,37 @@
 {{ 'option_selection.js' | shopify_asset_url | script_tag }}
 
 
+<script>
+  const btnBuyItNow = document.querySelector('.btn-buy-it-now');
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    btnBuyItNow.addEventListener('click', function(e){
+      location.href = `/pages/order-summary/{{ product.handle }}`;
+    })
+  })
+  </script>
 
+  <style>
+    .product-shop .product-details {
+      position:relative;
+    }
+    .btn-buy-it-now {
+      background-color: #313131;
+      color: white;
+      padding: 19px;
+      text-align: center;
+      border-radius: 5px;
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      font-size:18px;
+      cursor: pointer;
+    }
+    .btn-buy-it-now a {
+      color:white;
+    }
+  </style>
 {% unless product == empty %}
 <script>
   var buttonSlt = '[data-minus-qtt], [data-plus-qtt]',
