@@ -154,14 +154,15 @@
     {% endif %}
 
     <div class="btn-actions">
-      {% if customer and customer.metafields["custom_2b_io"]["discounts_available"].size > 0 and has_tag_unranked %}
+      <div class ="btn-buy-it-now">Buy It Now</div>
+      {% comment %} {% if customer and customer.metafields["custom_2b_io"]["discounts_available"].size > 0 and has_tag_unranked %}
         <a class="btn btn-x1 btn-checkout" href="/checkout?discount={{ customer.metafields["custom_2b_io"]["discounts_available"].first }}">{{ 'cart.general.button_checkout' | t }}</a>
       {% else %}
         <input class="btn btn-x1 btn-checkout" type="submit"  name="checkout" {% if settings.enable_multilang %}data-translate="cart.general.button_checkout"{% endif %} value="{{ 'cart.general.button_checkout' | t }}">
       {% endif %}
       {% if additional_checkout_buttons %}
       <div>{{ content_for_additional_checkout_buttons }}</div>
-      {% endif %}
+      {% endif %} {% endcomment %}
     </div>
   </div>
   {% unless cart.item_count == 0 %}
@@ -178,6 +179,36 @@
 </p>
 {% endif %}
 
+<style>
+  .product-shop .product-details {
+    position:relative;
+  }
+  .btn-buy-it-now {
+    background-color: #313131;
+    color: white;
+    padding: 19px;
+    text-align: center;
+    border-radius: 5px;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    font-size:18px;
+    cursor: pointer;
+  }
+  .btn-buy-it-now a {
+    color:white;
+  }
+</style>
+<script>
+const btnBuyItNow = document.querySelector('.btn-buy-it-now');
+
+document.addEventListener('DOMContentLoaded', function() {
+  btnBuyItNow.addEventListener('click', function(e){
+    location.href = `/pages/order-summary/{{ product.handle }}`;
+  })
+})
+</script>
 {% schema %}
   {
     "name": "Cart Page",
