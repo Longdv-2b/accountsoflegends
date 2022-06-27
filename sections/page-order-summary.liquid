@@ -1,4 +1,8 @@
 <div>
+
+<div class="preloader">
+    <div class="preloader-spinner"></div>
+</div>
     <ul class='list-order'>
     
     </ul>
@@ -17,17 +21,17 @@
 
         <div>
             <div class='wrapper-discount-code'>
-                <input class='input-text' type='text' placeholder='Discount code' />
+                <input class='input-discount-code' type='text' placeholder='Discount code' />
                 <button class='btn'>Apply</button>
             </div>
             <div class='info-prices'>
 
-                <div class='price-percent'>
-                    <span>-25%</span>
+                <div>
+                    <span class='price-percent'></span>
                 </div>
 
-                <div class='price-old'>
-                    <span></span>
+                <div>
+                    <span class='price-old'></span>
                 </div>
 
                 <div>
@@ -43,67 +47,197 @@
     </div>
 </div>
 <script>
+    document.addEventListener('DOMContentLoaded', function(){
 
-    const pathName = location.pathname;
-    const keyProductHandle = pathName.slice(pathName.lastIndexOf('/') + 1);
-    const API_CART = '/cart.js';
-    const listOrder = document.querySelector('.list-order');
-    const customerInfo = document.querySelector('#customer-info');
+        const ROOT_API = 'https://3e87-59-153-254-97.ngrok.io/storefront';
+        const API_CART = '/cart.js';
+        const API_VALIDATE_DISCOUNT_CODE = 'validate-discount-code';
+        let tagApplyDiscountCode = false;
 
-    async function handleApi(url = '', data = {}, METHOD = 'GET') {
-      const response = await fetch(url, {
-        method: METHOD,
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: METHOD !== 'GET' ? JSON.stringify(data) : null
-      });
-      return response.json();
-    }
+        const pathName = location.pathname;
+        const keyProductHandle = pathName.slice(pathName.lastIndexOf('/') + 1);
+        const listOrder = document.querySelector('.list-order');
+        const customerInfo = document.querySelector('#customer-info');
+        const inputEmail = document.querySelector('.input-email');
+        const inputDiscountCode = document.querySelector('.input-discount-code');
+        const btnApply = document.querySelector('.wrapper-discount-code .btn');
 
-    function handlePrintListOrder(items){
-        items.forEach(async item => {
-            const price = await Shopify.formatMoney(item.price);
-            listOrder.innerHTML +=`<li>
-                <div class='image-product'>
-                    <img src=${item.image ? item.image : 'https://dummyimage.com/200x200/ffffff/cccccc&text=no+thumb'} />
-                    ${item.quantity ? `<span class='qlt-count'>${item.quantity}</span>`:  ''}   
-                </div>
+        let totalPrice, emailAddress, productList = [];
 
-                <div class='box-content'>
-                    <div>
-                        <div class='heading'>
-                            <span class='title'>${item.product_title}</span>
-                        </div>   
-
-                        ${item.variant_title 
-                            ? `<div class='variant'>
-                                    <span>${item.variant_title}</span>
-                                </div>`
-                            : ""}
-                    </div>
-                    ${item.price ? `<span class='price'>${price}</span>` : ''}
-                </div>
-            </li>`
+        async function handleApi(url = '', data = {}, METHOD = 'GET') {
+        const response = await fetch(url, {
+            method: METHOD,
+            cache: 'no-cache',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            },
+            body: METHOD !== 'GET' ? JSON.stringify(data) : null
         });
-    }
-    function selectorPriceElement(selectorEl){
-        const domPrice = document.querySelector('.info-prices');
-        return domPrice.querySelector(selectorEl);
-    }
-    // vanlong todo
-    if(customerInfo && customerInfo.textContent) {
+        return response.json();
+        }
 
-    }
+        function handlePrintListOrder(items){
+            items.forEach(async item => {
+                const priceOriginal = await item.price
+                const price = await Shopify.formatMoney(priceOriginal);
+                listOrder.innerHTML +=`<li>
+                    <div class='image-product'>
+                        <img src=${item.image ? item.image : 'https://dummyimage.com/200x200/ffffff/cccccc&text=no+thumb'} />
+                        ${item.quantity ? `<span class='qlt-count'>${item.quantity}</span>`:  ''}   
+                    </div>
 
-    if(document.referrer === `${location.origin}/cart`){
-        handleApi(API_CART)
-        .then(data => {
-            console.log('data',data);
-            handlePrintListOrder(data.items)
-        })
-    }else {
-        console.log('a');
-    }
+                    <div class='box-content'>
+                        <div>
+                            <div class='heading'>
+                                <span class='title'>${item.product_title}</span>
+                            </div>   
+
+                            ${item.variant_title 
+                                ? `<div class='variant'>
+                                        <span>${item.variant_title}</span>
+                                    </div>`
+                                : ""}
+                        </div>
+                        ${item.price ? `<span class='price'>${price}</span>` : ''}
+                    </div>
+                </li>`
+            });
+        }
+
+        async function priceThenDiscount(priceFinal){
+            console.log('vanlong', Shopify.formatMoney())
+            const pFinal = await Shopify.formatMoney(priceFinal);
+            const pOld = await Shopify.formatMoney(totalPrice);
+            const pPercent = ( 100 -( (priceFinal * 100) / totalPrice ) ).toFixed(2);
+
+            document.querySelector('.price-final').textContent = pFinal;
+            console.log('totalPrice', totalPrice);
+            console.log('priceFinal', priceFinal);
+            if(Number(totalPrice) !== Number(priceFinal)){
+                document.querySelector('.price-percent').textContent = `${pPercent}%`;
+                document.querySelector('.price-old').textContent = pOld
+            }else {
+                document.querySelector('.price-percent').textContent = '';
+                document.querySelector('.price-old').textContent = '';
+            }
+            document.body.classList.add('loaded')
+        }
+        
+        function handleDiscountCode(emailAddress, discountCode) {
+            if(tagApplyDiscountCode){
+                handleApi(
+                    `${ROOT_API}/${API_VALIDATE_DISCOUNT_CODE}`,
+                    {
+                        "email" : emailAddress,
+                        "discount_code": discountCode,
+                        "total_price": `${Number(totalPrice)}`,
+                        "product": productList
+                    },
+                    'POST' 
+                )
+                .then(res => {
+                    if(res.message === 'success'){
+                        priceThenDiscount(res.total_price)
+                        setTimeout(()=>{
+                            alert('Successfully applied discount code')
+                        })
+                    }else {
+                        alert(res.message)
+                    }
+                })
+                return;
+            }
+            if(customerInfo) {
+                handleApi(
+                    `${ROOT_API}/${API_VALIDATE_DISCOUNT_CODE}`,
+                    {
+                        "email" : "{{ customer.email }}",
+                        "discount_code": customerInfo.textContent,
+                        "total_price": `${totalPrice}`,
+                        "product": productList
+                    },
+                    'POST' 
+                )
+                .then(res => {
+                    priceThenDiscount(res.total_price)
+                })
+            }else {
+                if(!emailAddress && !discountCode){
+                    priceThenDiscount(totalPrice)
+                    return;
+                }
+                handleApi(
+                    `${ROOT_API}/${API_VALIDATE_DISCOUNT_CODE}`,
+                    {
+                        "email" : emailAddress,
+                        "discount_code": discountCode,
+                        "total_price": `${Number(totalPrice)}`,
+                        "product": productList
+                    },
+                    'POST' 
+                )
+                .then(res => {
+                    if(res.message === 'success'){
+                        priceThenDiscount(res.total_price)
+                        setTimeout(()=>{
+                            alert('Successfully applied discount code')
+                        })
+                    }else {
+                        priceThenDiscount(res.total_price);
+                        setTimeout(()=>{
+                            alert(res.message)
+                        })
+                    }
+                })
+            }
+        }
+
+        function handleSubmitDiscountCode(){
+            btnApply.addEventListener('click', function(){
+                if(inputDiscountCode.value.trim() === ''){
+                    alert('You have not entered the discount code');
+                    return;
+                }
+                if(!customerInfo){
+                    if(inputEmail.value.trim() === ''){
+                        alert('Email address is required');
+                        return;
+                    }
+                    if(inputEmail.validationMessage !== ''){
+                        alert(inputEmail.validationMessage);
+                        return;
+                    }
+                    handleDiscountCode(inputEmail.value.trim(),  inputDiscountCode.value.trim())
+                }else {
+                    tagApplyDiscountCode = true;
+                    handleDiscountCode("{{ customer.email }}",  inputDiscountCode.value.trim())
+                }
+                
+            })
+        }
+        handleSubmitDiscountCode();
+
+        if(document.referrer === `${location.origin}/cart`) {
+            handleApi(API_CART)
+            .then(data => {
+                console.log('data',data);
+                
+                handlePrintListOrder(data.items)
+
+                const products = data.items.map(item => {
+                    return {
+                        id: item.id,
+                        price: item.price
+                    }
+                })
+
+                productList = products;
+                totalPrice = data.total_price;
+                handleDiscountCode()
+            })
+        }else {
+            console.log('a');
+        }
+    })
 </script>
