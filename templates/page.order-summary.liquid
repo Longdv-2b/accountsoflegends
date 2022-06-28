@@ -1,4 +1,11 @@
 <div class="page-order-summary">
+  <p style="
+    text-align: center;
+    font-size: 30px;
+    margin-top: 90px;
+    color: black;
+    font-weight: 600;
+">Order Summary Page</p>
   {% section 'page-order-summary' %}
 </div>
 <style>
@@ -82,12 +89,13 @@ background-color: #f1f5fe;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-top: 25px;
 }
 #shopify-section-page-order-summary {
   max-width: 550px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 75px;
+  margin-top: 30px;
   background: linear-gradient(to bottom,  rgba(208,168,92,0.2) 0%,rgba(255,255,255,0.2) 40%,rgba(255,255,255,1) 70%,rgba(208,168,92,0.2) 100%)!important;
   padding: 40px 40px 68px;
 }
@@ -152,8 +160,8 @@ background-color: #f1f5fe;
   transform: translateY(-50%);
 }
 .list-order {
-  overflow-y: scroll;
-  max-height: 518px;
+  overflow-y: auto;
+  max-height: 380px;
   padding-top: 10px;
   padding-bottom: 30px;
   padding-right: 15px;

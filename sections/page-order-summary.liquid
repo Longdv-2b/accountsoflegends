@@ -22,19 +22,24 @@
         <div>
             <div class='wrapper-discount-code'>
                 <input class='input-discount-code' type='text' placeholder='Discount code' />
-                <button class='btn'>Apply</button>
+                <button class='btn btn-apply-discount'>
+                    <div class="load"></div>
+                    <span>Apply</span>
+                </button>
             </div>
             <div class='info-prices'>
 
-                <div>
+                <div class='box-price-percent'>
+                    <span>Discount:</span>
                     <span class='price-percent'></span>
                 </div>
 
-                <div>
+                <div class='box-price-old'>
+                    <span>SubTotal:</span>
                     <span class='price-old'></span>
                 </div>
 
-                <div>
+                <div class='box-price-final'>
                     <span>Total Price:</span>
                     <span class='price-final'></span>
                 </div>
@@ -49,10 +54,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', function(){
 
-        const ROOT_API = 'https://3e87-59-153-254-97.ngrok.io/storefront';
+        const ROOT_API = 'https://2490-59-153-254-184.ngrok.io/storefront';
         const API_CART = '/cart.js';
         const API_VALIDATE_DISCOUNT_CODE = 'validate-discount-code';
-        let tagApplyDiscountCode = false;
 
         const pathName = location.pathname;
         const keyProductHandle = pathName.slice(pathName.lastIndexOf('/') + 1);
@@ -75,6 +79,30 @@
             body: METHOD !== 'GET' ? JSON.stringify(data) : null
         });
         return response.json();
+        }
+
+        function handleLoadingButton(selectorElement, action){
+            document.querySelector(selectorElement).classList[action]('is-loading')
+        }
+
+        function initRenderPrice(){
+            if(customerInfo && customerInfo.textContent) {
+                handleApi(
+                    `${ROOT_API}/${API_VALIDATE_DISCOUNT_CODE}`,
+                    {
+                        "email" : "{{ customer.email }}",
+                        "discount_code": customerInfo.textContent,
+                        "total_price": `${totalPrice}`,
+                        "product": productList
+                    },
+                    'POST' 
+                )
+                .then(res => {
+                    priceThenDiscount(res.total_price)
+                })
+            }else {
+                priceThenDiscount(totalPrice)
+            }
         }
 
         function handlePrintListOrder(items){
@@ -106,94 +134,47 @@
         }
 
         async function priceThenDiscount(priceFinal){
-            console.log('vanlong', Shopify.formatMoney())
-            const pFinal = await Shopify.formatMoney(priceFinal);
-            const pOld = await Shopify.formatMoney(totalPrice);
-            const pPercent = ( 100 -( (priceFinal * 100) / totalPrice ) ).toFixed(2);
-
-            document.querySelector('.price-final').textContent = pFinal;
-            console.log('totalPrice', totalPrice);
-            console.log('priceFinal', priceFinal);
+            document.querySelector('.price-final').textContent = Shopify.formatMoney(priceFinal);
             if(Number(totalPrice) !== Number(priceFinal)){
-                document.querySelector('.price-percent').textContent = `${pPercent}%`;
-                document.querySelector('.price-old').textContent = pOld
+                togglePriceDiscount('flex')
+                document.querySelector('.price-percent').textContent = `- ${Shopify.formatMoney(totalPrice-priceFinal)}`;
+                document.querySelector('.price-old').textContent = Shopify.formatMoney(totalPrice);
             }else {
-                document.querySelector('.price-percent').textContent = '';
-                document.querySelector('.price-old').textContent = '';
+                togglePriceDiscount('none')
             }
-            document.body.classList.add('loaded')
+            document.body.classList.add('loaded');
+            handleLoadingButton('.btn-apply-discount','remove');
         }
-        
+        function togglePriceDiscount(action){
+            document.querySelector('.box-price-percent').style.display = action;
+            document.querySelector('.box-price-old').style.display = action;
+        }
         function handleDiscountCode(emailAddress, discountCode) {
-            if(tagApplyDiscountCode){
-                handleApi(
-                    `${ROOT_API}/${API_VALIDATE_DISCOUNT_CODE}`,
-                    {
-                        "email" : emailAddress,
-                        "discount_code": discountCode,
-                        "total_price": `${Number(totalPrice)}`,
-                        "product": productList
-                    },
-                    'POST' 
-                )
-                .then(res => {
-                    if(res.message === 'success'){
-                        priceThenDiscount(res.total_price)
-                        setTimeout(()=>{
-                            alert('Successfully applied discount code')
-                        })
-                    }else {
-                        alert(res.message)
-                    }
-                })
-                return;
-            }
-            if(customerInfo) {
-                handleApi(
-                    `${ROOT_API}/${API_VALIDATE_DISCOUNT_CODE}`,
-                    {
-                        "email" : "{{ customer.email }}",
-                        "discount_code": customerInfo.textContent,
-                        "total_price": `${totalPrice}`,
-                        "product": productList
-                    },
-                    'POST' 
-                )
-                .then(res => {
+            handleApi(
+                `${ROOT_API}/${API_VALIDATE_DISCOUNT_CODE}`,
+                {
+                    "email" : emailAddress,
+                    "discount_code": discountCode,
+                    "total_price": `${Number(totalPrice)}`,
+                    "product": productList
+                },
+                'POST' 
+            )
+            .then(res => {
+                if(res.message === 'success'){
                     priceThenDiscount(res.total_price)
-                })
-            }else {
-                if(!emailAddress && !discountCode){
-                    priceThenDiscount(totalPrice)
-                    return;
+                    handleLoadingButton('.btn-apply-discount','remove');
+                    setTimeout(()=>{
+                        alert('Successfully applied discount code')
+                    })
+                }else {
+                    handleLoadingButton('.btn-apply-discount','remove');
+                    alert(res.message)
                 }
-                handleApi(
-                    `${ROOT_API}/${API_VALIDATE_DISCOUNT_CODE}`,
-                    {
-                        "email" : emailAddress,
-                        "discount_code": discountCode,
-                        "total_price": `${Number(totalPrice)}`,
-                        "product": productList
-                    },
-                    'POST' 
-                )
-                .then(res => {
-                    if(res.message === 'success'){
-                        priceThenDiscount(res.total_price)
-                        setTimeout(()=>{
-                            alert('Successfully applied discount code')
-                        })
-                    }else {
-                        priceThenDiscount(res.total_price);
-                        setTimeout(()=>{
-                            alert(res.message)
-                        })
-                    }
-                })
-            }
+            })
         }
 
-        function handleSubmitDiscountCode(){
+        (function handleSubmitApplyCode(){
             btnApply.addEventListener('click', function(){
                 if(inputDiscountCode.value.trim() === ''){
                     alert('You have not entered the discount code');
@@ -210,15 +191,13 @@
                     }
                     handleDiscountCode(inputEmail.value.trim(),  inputDiscountCode.value.trim())
                 }else {
-                    tagApplyDiscountCode = true;
                     handleDiscountCode("{{ customer.email }}",  inputDiscountCode.value.trim())
                 }
-                
+                handleLoadingButton('.btn-apply-discount','add');
             })
-        }
-        handleSubmitDiscountCode();
+        })()
 
-        if(document.referrer === `${location.origin}/cart`) {
+        if(location.pathname === '/pages/order-summary') {
             handleApi(API_CART)
             .then(data => {
                 console.log('data',data);
@@ -234,10 +213,77 @@
 
                 productList = products;
                 totalPrice = data.total_price;
-                handleDiscountCode()
+                initRenderPrice()
             })
         }else {
             console.log('a');
         }
     })
 </script>
+<style>
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to { 
+        transform: rotate(360deg);
+    }
+}
+ 
+
+ @-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to { 
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.load {
+    width: 20px;
+    height: 20px;
+    border: solid 3px white;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    -webkit-transition: all 0.5s ease-in;
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 0.6s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    transition: all 0.5s ease-in;
+    animation-name: rotate;
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.wrapper-discount-code .load{
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    left: 27px;
+}
+.wrapper-discount-code .is-loading .load{
+    opacity: 1;
+    pointer-events: auto;
+}
+.btn-apply-discount {
+    position: relative;
+}
+.wrapper-discount-code .is-loading .load + span{
+    opacity: 0;
+    pointer-events: none;
+}
+.wrapper-discount-code .is-loading {
+    pointer-events: none;
+}
+.info-prices > div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #000000c4;
+    margin-top: 15px;
+}
+</style>

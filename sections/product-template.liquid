@@ -358,6 +358,8 @@
           <div class="atc-btn ranked">
             {% if current_variant.available %}
             <button data-btn-addToCart type="submit" name="add" class="btn11 btn-x11 theme-btn1  animated-button victoria-one" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{%endif%} id="product-add-to-cart" value="{{ 'products.product.add_to_cart' | t }}" data-form-id="#add-to-cart-form"><span>{{ 'products.product.add_to_cart' | t }}</span></button>
+            
+            <div class ="btn-buy-it-now">Buy It Now</div>
             {% else %}
             <input type="submit" name="add" class="btn " {% if settings.enable_multilang %}data-translate="products.product.unavailable"{%endif%} id="product-add-to-cart" disabled value="{{ 'products.product.unavailable' | t }}" >
             {% endif %}
@@ -378,7 +380,6 @@
         </div>
         {% endif %}
         {% endform %}
-        <div class ="btn-buy-it-now">Buy It Now</div>
         {% if section.settings.display_trust_img and settings.img_trust != blank %}
         <div class="secure-shopping-guarantee">
           {% if settings.secure_text != blank %}
@@ -672,10 +673,10 @@
     text-align: center;
     border-radius: 5px;
     position: absolute;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    font-size:18px;
+    left: 0;
+    right: 0;
+    bottom: -60px;
+    font-size: 18px;
     cursor: pointer;
   }
   .btn-buy-it-now a {

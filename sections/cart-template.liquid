@@ -154,7 +154,7 @@
     {% endif %}
 
     <div class="btn-actions">
-      <div class ="btn-buy-it-now">Buy It Now</div>
+      <div class ="btn-buy-it-now">Proceed to Checkout</div>
       {% comment %} {% if customer and customer.metafields["custom_2b_io"]["discounts_available"].size > 0 and has_tag_unranked %}
         <a class="btn btn-x1 btn-checkout" href="/checkout?discount={{ customer.metafields["custom_2b_io"]["discounts_available"].first }}">{{ 'cart.general.button_checkout' | t }}</a>
       {% else %}
@@ -204,7 +204,7 @@ const btnBuyItNow = document.querySelector('.btn-buy-it-now');
 
 document.addEventListener('DOMContentLoaded', function() {
   btnBuyItNow.addEventListener('click', function(e){
-    location.href = `/pages/order-summary/{{ product.handle }}`;
+    location.href = `/pages/order-summary`;
   })
 })
 </script>
