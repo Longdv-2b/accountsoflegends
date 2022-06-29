@@ -88,11 +88,12 @@
             document.querySelector(selectorElement).classList[action]('is-loading')
         }
 
-        function handleCatchLoaded(){
+        function handleCatch(){
             alert('You should redirect from product or cart page')
             location.href = '/'
         }
 
+        // render Discount, SubTotal, Total Price in initial
         function initRenderPrice(){
             if(customerInfo && customerInfo.textContent) {
                 handleApi(
@@ -108,7 +109,7 @@
                 .then(res => {
                     priceThenDiscount(res.total_price)
                 })
-                .catch(()=> handleCatchLoaded())
+                .catch(()=> handleCatch())
             }else {
                 priceThenDiscount(totalPrice)
             }
@@ -145,6 +146,7 @@
             document.querySelector('.box-price-old').style.display = action;
         }
 
+        // event render price then use discount code
         function priceThenDiscount(priceFinal){
             document.querySelector('.price-final').textContent = Shopify.formatMoney(priceFinal);
             if(Number(totalPrice) !== Number(priceFinal)){
@@ -158,6 +160,7 @@
             handleLoadingButton('.btn-apply-discount','remove');
         }
 
+        // event handle discount code
         function handleDiscountCode(emailAddress, discountCode) {
             handleApi(
                 `${API_ROOT}/${API_VALIDATE_DISCOUNT_CODE}`,
@@ -183,6 +186,7 @@
             .catch (error=> console.log('error', error))
         }
 
+        // event submit button discount code
         (function handleSubmitApplyCode(){
             document.querySelector('.btn-apply-discount').addEventListener('click', function(){
                 if(inputDiscountCode.value.trim() === ''){
@@ -204,56 +208,60 @@
                 }
                 handleLoadingButton('.btn-apply-discount','add');
             })
-        })()
+        })();
 
-        if(location.href === `${location.origin}/pages/order-summary`) {
-            handleApi(API_CART)
-            .then(res => {
+        (function initPage(){
+            
+            if(location.href === `${location.origin}/pages/order-summary`) { // case redirect from cart page
+                handleApi(API_CART)
+                .then(res => {
 
-                renderOrders(res.items)
+                    renderOrders(res.items)
 
-                const products = res.items.map(item => {
-                    return {
-                        id: item.id,
-                        price: item.price
-                    }
+                    const products = res.items.map(item => {
+                        return {
+                            id: item.id,
+                            price: item.price
+                        }
+                    })
+
+                    productList = products;
+                    totalPrice = res.total_price;
+                    initRenderPrice()
                 })
+                .catch( () => handleCatchLoaded())
+            } else if(getParamUrl('product-handle')){ //case of redirect from product
+                handleApi(`/products/${getParamUrl('product-handle')}.js`)
+                .then(res => {
 
-                productList = products;
-                totalPrice = res.total_price;
-                initRenderPrice()
-            })
-            .catch( () => handleCatchLoaded())
-        } else if(getParamUrl('product-handle')){
-            handleApi(`/products/${getParamUrl('product-handle')}.js`)
-            .then(res => {
+                    let variantTitle ='';
+                    if(getParamUrl('server')){
+                        variantTitle += getParamUrl('server')
+                    }
+                    if(getParamUrl('essences')){
+                        variantTitle += ` / ${getParamUrl('essences')}`
+                    }
 
-                let variantTitle ='';
-                if(getParamUrl('server')){
-                    variantTitle += getParamUrl('server')
-                }
-                if(getParamUrl('essences')){
-                    variantTitle += ` / ${getParamUrl('essences')}`
-                }
+                    renderOrders(
+                        [{
+                            price: res.price,
+                            quantity: 1,
+                            image: res.featured_image,
+                            product_title: res.title,
+                            variant_title: variantTitle
+                        }]
+                    )
 
-                renderOrders(
-                    [{
-                        price: res.price,
-                        quantity: 1,
-                        image: res.featured_image,
-                        product_title: res.title,
-                        variant_title: variantTitle
-                    }]
-                )
+                    productList = [{id: res.id, price: res.price}];
+                    totalPrice = res.price;
+                    initRenderPrice()
+                })
+                .catch( () => handleCatchLoaded())
+            } else {
+                handleCatchLoaded()
+            }
 
-                productList = [{id: res.id, price: res.price}];
-                totalPrice = res.price;
-                initRenderPrice()
-            })
-            .catch( () => handleCatchLoaded())
-        } else {
-            handleCatchLoaded()
-        }
+        })();
     })
 </script>
 <style>

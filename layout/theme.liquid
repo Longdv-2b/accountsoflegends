@@ -221,7 +221,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     })
     let urlNav = `/pages/order-summary?product-handle={{ product.handle }}`;
 
-    btnBuyItNow.addEventListener('click', function(e){
+    btnBuyItNow && btnBuyItNow.addEventListener('click', function(e){
       const url_string = location.href;
       const url = new URL(url_string);
       const variantKey = url.searchParams.get("variant");
