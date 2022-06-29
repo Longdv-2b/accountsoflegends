@@ -1,0 +1,206 @@
+<div>
+    <div class='sm-payments-gateway'>click me</div>
+</div>
+<script>
+
+    const API_ROOT = 'https://gateway.accountsoflegends.com/storefront';
+    const API_CART = '/cart.js';
+    const API_VALIDATE_DISCOUNT_CODE = 'validate-discount-code';
+
+    const url_string = location.href;
+    const url = new URL(url_string);
+    function getParamUrl(keyParam){
+        return url.searchParams.get(keyParam);
+    }
+
+    async function handleApi(url = '', data = {}, METHOD = 'GET') {
+        const response = await fetch(url, {
+            method: METHOD,
+            cache: 'no-cache',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'pass_dev': 'pass_dev'
+            },
+            body: METHOD !== 'GET' ? JSON.stringify(data) : null
+        });
+        return response.json();
+    }
+
+    function handleCatch(message = 'something is wrong'){
+        alert(message)
+        {% comment %} location.href = '/' {% endcomment %}
+    }
+
+    function handleSubmit(
+        line_items=[],
+        product=[], 
+        total_price='', 
+        type='default'
+    ){
+        
+        if(!getParamUrl('email')){
+            handleCatch('You have not entered your email')
+            return;
+        }
+
+        // PHAI CHECK TYPE TRUOC KHI SUBMIT
+
+        let dataPaymentsGateway = {
+            email: getParamUrl('email'),
+            discount_code:'',
+            order:{
+                line_items,
+            },
+            product,
+            type,
+            total_price
+        }
+
+        if(getParamUrl('discount_code')){
+            dataPaymentsGateway.discount_code = getParamUrl('discount_code');
+        }
+
+
+        document.querySelector('.sm-payments-gateway').addEventListener('click', function(){
+            console.log('dataPaymentsGateway', dataPaymentsGateway)
+        })
+        
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+        if(document.referrer === `${location.origin}/pages/order-summary`) {
+            handleApi(API_CART)
+            .then(res => {
+
+                console.log('res', res)
+                const line_items = res.items.map(item => {
+                    return {
+                        variant_id: item.variant_id,
+                        quantity: item.quantity
+                    }
+                })
+
+                const products = res.items.map(item => {
+                    return {
+                        id: item.product_id,
+                        price: item.price
+                    }
+                })
+
+                handleSubmit(
+                    line_items,
+                    products,
+                    res.total_price,
+                );
+
+            })
+            .catch( () => handleCatch(' error api cart '))
+
+        } else if(getParamUrl('product-handle') && getParamUrl('variant_id')){
+
+
+            handleApi(`/products/${getParamUrl('product-handle')}.js`)
+            .then(res => {
+                
+                const line_items = [
+                    {
+                        variant_id: getParamUrl('variant_id'),
+                        quantity: 1
+                    }
+                ]
+
+                const product = [
+                    {
+                        id: res.id,
+                        price: res.price
+                    }
+                ]
+                handleSubmit(
+                    line_items,
+                    product,
+                    res.price
+                )
+
+            })
+            .catch( () => handleCatch())
+
+        }
+
+    })
+
+
+</script>
+<style>
+.sm-payments-gateway {
+    text-align: center;
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to { 
+        transform: rotate(360deg);
+    }
+}
+ 
+
+ @-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to { 
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.load {
+    width: 20px;
+    height: 20px;
+    border: solid 3px white;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    -webkit-transition: all 0.5s ease-in;
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 0.6s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    transition: all 0.5s ease-in;
+    animation-name: rotate;
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.wrapper-discount-code .load{
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    left: 27px;
+}
+.wrapper-discount-code .is-loading .load{
+    opacity: 1;
+    pointer-events: auto;
+}
+.btn-apply-discount {
+    position: relative;
+}
+.wrapper-discount-code .is-loading .load + span{
+    opacity: 0;
+    pointer-events: none;
+}
+.wrapper-discount-code .is-loading {
+    pointer-events: none;
+}
+.info-prices > div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #000000c4;
+    margin-top: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+</style>

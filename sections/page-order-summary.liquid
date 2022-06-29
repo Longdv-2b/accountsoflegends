@@ -57,14 +57,13 @@
 
         const url_string = location.href;
         const url = new URL(url_string);
-        const productHandle = url.searchParams.get("product-handle");
 
         const listOrder = document.querySelector('.list-order');
         const customerInfo = document.querySelector('#customer-info');
         const inputEmail = document.querySelector('.input-email');
         const inputDiscountCode = document.querySelector('.input-discount-code');
 
-        let totalPrice, emailAddress, productList = [];
+        let totalPrice, emailAddress, discountCodeAdded='', productList = [];
 
         async function handleApi(url = '', data = {}, METHOD = 'GET') {
             const response = await fetch(url, {
@@ -89,6 +88,7 @@
         }
 
         function handleCatch(){
+            console.log('location.href', location.href);
             alert('You should redirect from product or cart page')
             location.href = '/'
         }
@@ -96,6 +96,9 @@
         // render Discount, SubTotal, Total Price in initial
         function initRenderPrice(){
             if(customerInfo && customerInfo.textContent) {
+
+                discountCodeAdded = customerInfo.textContent;
+                
                 handleApi(
                     `${API_ROOT}/${API_VALIDATE_DISCOUNT_CODE}`,
                     {
@@ -175,10 +178,12 @@
             .then(res => {
                 if(res.message === 'success'){
                     priceThenDiscount(res.total_price)
+                    discountCodeAdded = discountCode
                     setTimeout(()=>{
                         alert('Successfully applied discount code')
                     })
                 }else {
+                    discountCodeAdded = ''
                     alert(res.message)
                 }
                 handleLoadingButton('.btn-apply-discount','remove');
@@ -212,7 +217,7 @@
 
         (function initPage(){
             
-            if(location.href === `${location.origin}/pages/order-summary`) { // case redirect from cart page
+            if(location.href === `${location.origin}/pages/order-summary` || location.origin.includes('myshopify.com')) { // case redirect from cart page
                 handleApi(API_CART)
                 .then(res => {
 
@@ -220,7 +225,7 @@
 
                     const products = res.items.map(item => {
                         return {
-                            id: item.id,
+                            id: item.product_id,
                             price: item.price
                         }
                     })
@@ -229,7 +234,7 @@
                     totalPrice = res.total_price;
                     initRenderPrice()
                 })
-                .catch( () => handleCatchLoaded())
+                .catch( () => handleCatch())
             } else if(getParamUrl('product-handle')){ //case of redirect from product
                 handleApi(`/products/${getParamUrl('product-handle')}.js`)
                 .then(res => {
@@ -256,12 +261,56 @@
                     totalPrice = res.price;
                     initRenderPrice()
                 })
-                .catch( () => handleCatchLoaded())
+                .catch( () => handleCatch())
             } else {
-                handleCatchLoaded()
+                handleCatch()
             }
 
         })();
+
+        (function handleSubmitBuyBoostNow(){
+
+            document.querySelector('.sm-data-os').addEventListener('click', function(){
+
+                let urlNav = location.href.replace(`${location.origin}/pages/order-summary`, '');
+                let discount_code = discountCodeAdded ? `&discount_code=${discountCodeAdded}` : '';
+
+                if(location.href === `${location.origin}/pages/order-summary`){
+                    if(!customerInfo){
+                        if(inputEmail.value.trim() === ''){
+                            alert('Email address is required');
+                            return;
+                        }
+                        if(inputEmail.validationMessage !== ''){
+                            alert(inputEmail.validationMessage);
+                            return;
+                        }
+                        urlNav += `?email=${inputEmail.value.trim()}${discount_code}`
+                    }else {
+                        urlNav += `?email={{ customer.email }}${discount_code}`
+                    }
+
+                    location.href = `/pages/payments-gateway${urlNav}`;
+                } else if(getParamUrl('product-handle')){
+                    if(!customerInfo){
+                        if(inputEmail.value.trim() === ''){
+                            alert('Email address is required');
+                            return;
+                        }
+                        if(inputEmail.validationMessage !== ''){
+                            alert(inputEmail.validationMessage);
+                            return;
+                        }
+                        urlNav += `&email=${inputEmail.value.trim()}${discount_code}`
+                    }else {
+                        urlNav += `&email={{ customer.email }}${discount_code}`
+                    }
+
+                    location.href = `/pages/payments-gateway${urlNav}`;
+                }
+            })
+        })();
+
     })
 </script>
 <style>
