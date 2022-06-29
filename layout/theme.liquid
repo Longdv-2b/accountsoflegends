@@ -210,7 +210,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 ></div>
 <script src='//widget.reviews.io/modern-widgets/floating.js'></script>
   
+<script>
+  
+  document.addEventListener('DOMContentLoaded', function() {
 
+    const btnBuyItNow = document.querySelector('.btn-buy-it-now');
+    let listVariant;
+    setTimeout(()=>{
+      listVariant = document.querySelectorAll('#product-variants select');
+    })
+    let urlNav = `/pages/order-summary?product-handle={{ product.handle }}`;
+
+    btnBuyItNow.addEventListener('click', function(e){
+      const url_string = location.href;
+      const url = new URL(url_string);
+      const variantKey = url.searchParams.get("variant");
+      if(variantKey) {
+        urlNav += `&variant=${variantKey}`;
+      }
+
+      listVariant.forEach(variant => {
+        if(variant.style.display !=='none'){
+          urlNav += `&${(variant.previousElementSibling.textContent).toLocaleLowerCase().replace('*', '')}=${variant.value}`
+        }
+      })
+
+      location.href = urlNav;
+    })
+  })
+</script>
 {% render 'mbc-bundles' %}{% render 'quantity-breaks-now', customer: customer, template: template, product: product, cart: cart %}
         {% include 'tierprice-storefront' %}</body>
 </html>

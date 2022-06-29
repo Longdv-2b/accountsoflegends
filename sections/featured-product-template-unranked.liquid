@@ -859,15 +859,7 @@
     color:white;
   }
 </style>
-<script>
-const btnBuyItNow = document.querySelector('.btn-buy-it-now');
 
-document.addEventListener('DOMContentLoaded', function() {
-  btnBuyItNow.addEventListener('click', function(e){
-    location.href = `/pages/order-summary/{{ product.handle }}`;
-  })
-})
-</script>
 {% schema %}
 {
     "name": "Featured Product Unranked",

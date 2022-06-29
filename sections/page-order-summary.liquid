@@ -43,52 +43,60 @@
                     <span>Total Price:</span>
                     <span class='price-final'></span>
                 </div>
-
-                <div>
-                </div>
             </div>
         </div>
-        <button class='sm-data'>Buy Boost Now</button>
+        <button class='sm-data-os'>Buy Boost Now</button>
     </div>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function(){
 
-        const ROOT_API = 'https://2490-59-153-254-184.ngrok.io/storefront';
+        const API_ROOT = 'https://gateway.accountsoflegends.com/storefront';
         const API_CART = '/cart.js';
         const API_VALIDATE_DISCOUNT_CODE = 'validate-discount-code';
 
-        const pathName = location.pathname;
-        const keyProductHandle = pathName.slice(pathName.lastIndexOf('/') + 1);
+        const url_string = location.href;
+        const url = new URL(url_string);
+        const productHandle = url.searchParams.get("product-handle");
+
         const listOrder = document.querySelector('.list-order');
         const customerInfo = document.querySelector('#customer-info');
         const inputEmail = document.querySelector('.input-email');
         const inputDiscountCode = document.querySelector('.input-discount-code');
-        const btnApply = document.querySelector('.wrapper-discount-code .btn');
 
         let totalPrice, emailAddress, productList = [];
 
         async function handleApi(url = '', data = {}, METHOD = 'GET') {
-        const response = await fetch(url, {
-            method: METHOD,
-            cache: 'no-cache',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            },
-            body: METHOD !== 'GET' ? JSON.stringify(data) : null
-        });
-        return response.json();
+            const response = await fetch(url, {
+                method: METHOD,
+                cache: 'no-cache',
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'pass_dev': 'pass_dev'
+                },
+                body: METHOD !== 'GET' ? JSON.stringify(data) : null
+            });
+            return response.json();
+        }
+
+        function getParamUrl(keyParam){
+            return url.searchParams.get(keyParam);
         }
 
         function handleLoadingButton(selectorElement, action){
             document.querySelector(selectorElement).classList[action]('is-loading')
         }
 
+        function handleCatchLoaded(){
+            alert('You should redirect from product or cart page')
+            location.href = '/'
+        }
+
         function initRenderPrice(){
             if(customerInfo && customerInfo.textContent) {
                 handleApi(
-                    `${ROOT_API}/${API_VALIDATE_DISCOUNT_CODE}`,
+                    `${API_ROOT}/${API_VALIDATE_DISCOUNT_CODE}`,
                     {
                         "email" : "{{ customer.email }}",
                         "discount_code": customerInfo.textContent,
@@ -100,15 +108,14 @@
                 .then(res => {
                     priceThenDiscount(res.total_price)
                 })
+                .catch(()=> handleCatchLoaded())
             }else {
                 priceThenDiscount(totalPrice)
             }
         }
 
-        function handlePrintListOrder(items){
-            items.forEach(async item => {
-                const priceOriginal = await item.price
-                const price = await Shopify.formatMoney(priceOriginal);
+        function renderOrders(items){
+            items.forEach( item => {
                 listOrder.innerHTML +=`<li>
                     <div class='image-product'>
                         <img src=${item.image ? item.image : 'https://dummyimage.com/200x200/ffffff/cccccc&text=no+thumb'} />
@@ -127,13 +134,18 @@
                                     </div>`
                                 : ""}
                         </div>
-                        ${item.price ? `<span class='price'>${price}</span>` : ''}
+                        ${item.price ? `<span class='price'>${Shopify.formatMoney(item.price)}</span>` : ''}
                     </div>
                 </li>`
             });
         }
 
-        async function priceThenDiscount(priceFinal){
+        function togglePriceDiscount(action){
+            document.querySelector('.box-price-percent').style.display = action;
+            document.querySelector('.box-price-old').style.display = action;
+        }
+
+        function priceThenDiscount(priceFinal){
             document.querySelector('.price-final').textContent = Shopify.formatMoney(priceFinal);
             if(Number(totalPrice) !== Number(priceFinal)){
                 togglePriceDiscount('flex')
@@ -145,13 +157,10 @@
             document.body.classList.add('loaded');
             handleLoadingButton('.btn-apply-discount','remove');
         }
-        function togglePriceDiscount(action){
-            document.querySelector('.box-price-percent').style.display = action;
-            document.querySelector('.box-price-old').style.display = action;
-        }
+
         function handleDiscountCode(emailAddress, discountCode) {
             handleApi(
-                `${ROOT_API}/${API_VALIDATE_DISCOUNT_CODE}`,
+                `${API_ROOT}/${API_VALIDATE_DISCOUNT_CODE}`,
                 {
                     "email" : emailAddress,
                     "discount_code": discountCode,
@@ -163,19 +172,19 @@
             .then(res => {
                 if(res.message === 'success'){
                     priceThenDiscount(res.total_price)
-                    handleLoadingButton('.btn-apply-discount','remove');
                     setTimeout(()=>{
                         alert('Successfully applied discount code')
                     })
                 }else {
-                    handleLoadingButton('.btn-apply-discount','remove');
                     alert(res.message)
                 }
+                handleLoadingButton('.btn-apply-discount','remove');
             })
+            .catch (error=> console.log('error', error))
         }
 
         (function handleSubmitApplyCode(){
-            btnApply.addEventListener('click', function(){
+            document.querySelector('.btn-apply-discount').addEventListener('click', function(){
                 if(inputDiscountCode.value.trim() === ''){
                     alert('You have not entered the discount code');
                     return;
@@ -197,14 +206,13 @@
             })
         })()
 
-        if(location.pathname === '/pages/order-summary') {
+        if(location.href === `${location.origin}/pages/order-summary`) {
             handleApi(API_CART)
-            .then(data => {
-                console.log('data',data);
-                
-                handlePrintListOrder(data.items)
+            .then(res => {
 
-                const products = data.items.map(item => {
+                renderOrders(res.items)
+
+                const products = res.items.map(item => {
                     return {
                         id: item.id,
                         price: item.price
@@ -212,11 +220,39 @@
                 })
 
                 productList = products;
-                totalPrice = data.total_price;
+                totalPrice = res.total_price;
                 initRenderPrice()
             })
-        }else {
-            console.log('a');
+            .catch( () => handleCatchLoaded())
+        } else if(getParamUrl('product-handle')){
+            handleApi(`/products/${getParamUrl('product-handle')}.js`)
+            .then(res => {
+
+                let variantTitle ='';
+                if(getParamUrl('server')){
+                    variantTitle += getParamUrl('server')
+                }
+                if(getParamUrl('essences')){
+                    variantTitle += ` / ${getParamUrl('essences')}`
+                }
+
+                renderOrders(
+                    [{
+                        price: res.price,
+                        quantity: 1,
+                        image: res.featured_image,
+                        product_title: res.title,
+                        variant_title: variantTitle
+                    }]
+                )
+
+                productList = [{id: res.id, price: res.price}];
+                totalPrice = res.price;
+                initRenderPrice()
+            })
+            .catch( () => handleCatchLoaded())
+        } else {
+            handleCatchLoaded()
         }
     })
 </script>
@@ -285,5 +321,8 @@
     font-size: 16px;
     color: #000000c4;
     margin-top: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 </style>

@@ -154,7 +154,7 @@
     {% endif %}
 
     <div class="btn-actions">
-      <div class ="btn-buy-it-now">Proceed to Checkout</div>
+      <div class ="btn-buy-it-now-cart">Proceed to Checkout</div>
       {% comment %} {% if customer and customer.metafields["custom_2b_io"]["discounts_available"].size > 0 and has_tag_unranked %}
         <a class="btn btn-x1 btn-checkout" href="/checkout?discount={{ customer.metafields["custom_2b_io"]["discounts_available"].first }}">{{ 'cart.general.button_checkout' | t }}</a>
       {% else %}
@@ -183,7 +183,7 @@
   .product-shop .product-details {
     position:relative;
   }
-  .btn-buy-it-now {
+  .btn-buy-it-now-cart {
     background-color: #ec3323;
     color: white;
     padding: 15px 19px;
@@ -192,15 +192,15 @@
     font-size:18px;
     cursor: pointer;
   }
-  .btn-buy-it-now:hover {
+  .btn-buy-it-now-cart:hover {
     background-color:#313131;
   }
-  .btn-buy-it-now a {
+  .btn-buy-it-now-cart a {
     color:white;
   }
 </style>
 <script>
-const btnBuyItNow = document.querySelector('.btn-buy-it-now');
+const btnBuyItNow = document.querySelector('.btn-buy-it-now-cart');
 
 document.addEventListener('DOMContentLoaded', function() {
   btnBuyItNow.addEventListener('click', function(e){

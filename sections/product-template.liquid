@@ -358,7 +358,6 @@
           <div class="atc-btn ranked">
             {% if current_variant.available %}
             <button data-btn-addToCart type="submit" name="add" class="btn11 btn-x11 theme-btn1  animated-button victoria-one" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{%endif%} id="product-add-to-cart" value="{{ 'products.product.add_to_cart' | t }}" data-form-id="#add-to-cart-form"><span>{{ 'products.product.add_to_cart' | t }}</span></button>
-            
             <div class ="btn-buy-it-now">Buy It Now</div>
             {% else %}
             <input type="submit" name="add" class="btn " {% if settings.enable_multilang %}data-translate="products.product.unavailable"{%endif%} id="product-add-to-cart" disabled value="{{ 'products.product.unavailable' | t }}" >
@@ -683,16 +682,6 @@
     color:white;
   }
 </style>
-<script>
-const btnBuyItNow = document.querySelector('.btn-buy-it-now');
-
-document.addEventListener('DOMContentLoaded', function() {
-  btnBuyItNow.addEventListener('click', function(e){
-    location.href = `/pages/order-summary/{{ product.handle }}`;
-  })
-})
-</script>
-
 
 {% if product.description contains '[countdown]' and section.settings.countdown == 'countdown_2' %}
 <style>
