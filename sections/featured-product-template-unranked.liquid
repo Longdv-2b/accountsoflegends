@@ -822,38 +822,6 @@
   }
 */
 </script>
-<script>
-  
-  document.addEventListener('DOMContentLoaded', function() {
-
-    const btnBuyItNow = document.querySelector('.btn-buy-it-now');
-    let listVariant;
-    setTimeout(()=>{
-      listVariant = document.querySelectorAll('#product-variants select');
-    })
-    let urlNav = `/pages/order-summary?product-handle={{ product.handle }}`;
-
-    btnBuyItNow && btnBuyItNow.addEventListener('click', function(e){
-      const url_string = location.href;
-      const url = new URL(url_string);
-      const variantKey = url.searchParams.get("variant");
-      
-      if(variantKey) {
-        urlNav += `&variant_id=${variantKey}`;
-      }else {
-        urlNav += `&variant_id=${variantKey}`;
-      }
-
-      listVariant.forEach(variant => {
-        if(variant.style.display !=='none'){
-          urlNav += `&${(variant.previousElementSibling.textContent).toLocaleLowerCase().replace('*', '')}=${variant.value}`
-        }
-      })
-
-      location.href = urlNav;
-    })
-  })
-</script>
 {% if product.description contains '[countdown]' and section.settings.countdown == 'countdown_2' %}
 <style>
   .product-shop .countdown-progressbar #progressbar {
@@ -890,6 +858,7 @@
     color:white;
   }
 </style>
+
 <script>
   
   document.addEventListener('DOMContentLoaded', function() {
@@ -899,7 +868,7 @@
     setTimeout(()=>{
       listVariant = document.querySelectorAll('#product-variants select');
     })
-    let urlNav = `/pages/order-summary?product-handle={{ product.handle }}`;
+    let urlNav = `/pages/order-summary?product_handle={{ product.handle }}`;
 
     btnBuyItNow && btnBuyItNow.addEventListener('click', function(e){
       const url_string = location.href;
@@ -912,12 +881,6 @@
       }else if(variantsProduct.length === 1) {
         urlNav += `&variant_id=${variantsProduct[0].id}`;
       }
-
-      listVariant.forEach(variant => {
-        if(variant.style.display !=='none'){
-          urlNav += `&${(variant.previousElementSibling.textContent).toLocaleLowerCase().replace('*', '')}=${variant.value}`
-        }
-      })
       location.href = urlNav;
     })
   })

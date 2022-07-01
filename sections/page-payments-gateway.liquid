@@ -1,206 +1,593 @@
-<div>
-    <div class='sm-payments-gateway'>click me</div>
+<div class='wrapper-payments-gateway'>
+    <div class="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+    {%- assign img_logo = section.settings.img_logo | img_url: '100x'-%}
+    {% if section.settings.img_logo != blank %}
+    <div class='box-logo'>
+        <img data-src="{{img_logo}}" alt="{{img_logo.alt}}" {% include 'lazyload' %}>
+    </div>
+    {% endif %}
+    <h3 class="pay-title">Pay With</h3>
+    <ul class="list-payment">
+        {% for block in section.blocks %}
+        {% if block.settings.image_payment_list != blank %}
+        <li type="{{ block.type }}">
+            <div class="box-item">
+                {% if block.settings.recommended != blank %}
+                <span>recommended</span>
+                {% endif %}
+                {%- assign image_title = block.settings.image_title | img_url: '400x'-%}
+                {% if block.settings.image_payment_list != blank %}
+                <div class='img-title'>
+                    <img data-src="{{image_title}}" alt="{{image_title.alt}}" {% include 'lazyload' %}>
+                </div>
+                {% endif %}
+
+                {%- assign image_payment_list = block.settings.image_payment_list | img_url: '400x'-%}
+                {% if block.settings.image_payment_list != blank %}
+                <div class='img-payment'>
+                    <img data-src="{{image_payment_list}}" alt="{{image_payment_list.alt}}" {% include 'lazyload' %}>
+                </div>
+                {% endif %}
+            </div>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <p class="payment-summary">Payment Summary:</p>
+    <div class="info-prices">
+
+        <div class="box-price-discount" style="display: none;">
+            <span>Discount:</span>
+            <span class="price-discount"></span>
+        </div>
+
+        <div class="box-sub-total" style="display: none;">
+            <span>SubTotal:</span>
+            <span class="sub-total"></span>
+        </div>
+
+        <div class="box-total-price" style="display: none;">
+            <span>Total Price:</span>
+            <span class="total-price"></span>
+        </div>
+    </div>
+    <div class="btn-sm-payment-gateway">Pay Now</div>
+    <div class="come-back">Come Back</div>
 </div>
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const API_ROOT = 'https://gateway.accountsoflegends.com/storefront';
+        const API_CART = '/cart.js';
+        const GET_GATEWAY_URL = '/get-gateway-url';
 
-    const API_ROOT = 'https://gateway.accountsoflegends.com/storefront';
-    const API_CART = '/cart.js';
-    const API_VALIDATE_DISCOUNT_CODE = 'validate-discount-code';
+        const listPayments = document.querySelector('.list-payment');
+        const btnSubmit = document.querySelector('.btn-sm-payment-gateway')
 
-    const url_string = location.href;
-    const url = new URL(url_string);
-    function getParamUrl(keyParam){
-        return url.searchParams.get(keyParam);
-    }
-
-    async function handleApi(url = '', data = {}, METHOD = 'GET') {
-        const response = await fetch(url, {
-            method: METHOD,
-            cache: 'no-cache',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'pass_dev': 'pass_dev'
-            },
-            body: METHOD !== 'GET' ? JSON.stringify(data) : null
-        });
-        return response.json();
-    }
-
-    function handleCatch(message = 'something is wrong'){
-        alert(message)
-        {% comment %} location.href = '/' {% endcomment %}
-    }
-
-    function handleSubmit(
-        line_items=[],
-        product=[], 
-        total_price='', 
-        type='default'
-    ){
-        
-        if(!getParamUrl('email')){
-            handleCatch('You have not entered your email')
-            return;
+        const url_string = location.href;
+        const url = new URL(url_string);
+        function getParamUrl(keyParam) {
+            return url.searchParams.get(keyParam);
         }
 
-        // PHAI CHECK TYPE TRUOC KHI SUBMIT
-
-        let dataPaymentsGateway = {
-            email: getParamUrl('email'),
-            discount_code:'',
-            order:{
-                line_items,
-            },
-            product,
-            type,
-            total_price
-        }
-
-        if(getParamUrl('discount_code')){
-            dataPaymentsGateway.discount_code = getParamUrl('discount_code');
-        }
-
-
-        document.querySelector('.sm-payments-gateway').addEventListener('click', function(){
-            console.log('dataPaymentsGateway', dataPaymentsGateway)
-        })
-        
-    }
-
-    document.addEventListener('DOMContentLoaded', function(){
-        if(document.referrer === `${location.origin}/pages/order-summary`) {
-            handleApi(API_CART)
-            .then(res => {
-
-                console.log('res', res)
-                const line_items = res.items.map(item => {
-                    return {
-                        variant_id: item.variant_id,
-                        quantity: item.quantity
-                    }
-                })
-
-                const products = res.items.map(item => {
-                    return {
-                        id: item.product_id,
-                        price: item.price
-                    }
-                })
-
-                handleSubmit(
-                    line_items,
-                    products,
-                    res.total_price,
-                );
-
+        (function handleComback() {
+            document.querySelector('.come-back').addEventListener('click', function(){
+                history.back();
             })
-            .catch( () => handleCatch(' error api cart '))
+        })()
 
-        } else if(getParamUrl('product-handle') && getParamUrl('variant_id')){
+        function handleCatch(message = 'You should redirect from Order Summary page') {
+            alert(message)
+            if (history.length !== 1) {
+                history.back();
+            } else {
+                location.href = '/'
+            }
+        }
+
+        function isAdminPage() {
+            let isAdmin;
+            if(location.origin.includes('myshopify.com')){
+                alert('In the admin page, you can only customize the interface!');
+                isAdmin = true;
+                const boxTotalPrice = document.querySelector('.box-total-price');
+                boxTotalPrice.style.display = 'none';
 
 
-            handleApi(`/products/${getParamUrl('product-handle')}.js`)
-            .then(res => {
+                const boxPriceDiscount = document.querySelector('.box-price-discount');
+                const boxPriceOld = document.querySelector('.box-sub-total');
+                const boxPriceFinal = document.querySelector('.box-total-price');
+
+                boxPriceDiscount.style.display = 'flex';
+                boxPriceDiscount.querySelector('.price-discount').textContent = '$0';
+
+                boxPriceOld.style.display = 'flex';
+                boxPriceOld.querySelector('.sub-total').textContent = '$0';
                 
-                const line_items = [
-                    {
-                        variant_id: getParamUrl('variant_id'),
-                        quantity: 1
-                    }
-                ]
+                boxPriceFinal.style.display = 'flex';
+                boxPriceFinal.querySelector('.total-price').textContent = '$0';
 
-                const product = [
-                    {
-                        id: res.id,
-                        price: res.price
-                    }
-                ]
-                handleSubmit(
-                    line_items,
-                    product,
-                    res.price
-                )
+                document.body.style.pointerEvents='none';
+            }
+            return isAdmin;
+        }
 
+
+        function handlePageLoaded(isLoaded = true){
+            if(isLoaded){
+                setTimeout(()=>{
+                    document.body.classList.add('loaded');
+                },1000)
+            } else {
+                document.body.classList.add('loadding');
+                document.body.classList.remove('loaded');
+            }
+        }
+
+        (function handleSelectorPayment() {
+            listPayments.querySelectorAll('li').forEach(item => {
+                item.addEventListener('click', function (e) {
+                    if (this.classList.contains('active')) {
+                        return;
+                    }
+                    listPayments.querySelector('li.active') && listPayments.querySelector('li.active').classList.remove('active');
+                    this.classList.add('active');
+                })
             })
-            .catch( () => handleCatch())
+        })();
+
+        async function handleApi(url = '', data = {}, METHOD = 'GET') {
+            const response = await fetch(url, {
+                method: METHOD,
+                cache: 'no-cache',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'pass_dev': 'pass_dev'
+                },
+                body: METHOD !== 'GET' ? JSON.stringify(data) : null
+            });
+            return response.json();
+        }
+
+        function handleSubmit(
+            line_items = [],
+            product = [],
+        ) {
+
+            let type;
+            if (!listPayments.querySelector('li.active')) {
+                alert('You must choose a payment method')
+                return;
+            } else {
+                type = listPayments.querySelector('li.active').getAttribute('type')
+            }
+            handlePageLoaded(false)
+            let dataPaymentsGateway = {
+                email: getParamUrl('email'),
+                discount_code: '',
+                order: {
+                    line_items,
+                },
+                product,
+                type,
+            }
+
+            if (getParamUrl('discount_code')) {
+                dataPaymentsGateway.discount_code = getParamUrl('discount_code');
+            }
+
+            console.log('dataPaymentsGateway', dataPaymentsGateway)
+            handleApi(
+                `${API_ROOT}${GET_GATEWAY_URL}`,
+                dataPaymentsGateway,
+                'POST'
+            )
+                .then(res => {
+                    console.log('res gateway => ', res)
+                    location.href = res.checkout_url;
+                })
+                .catch((error)=> {
+                    handleCatch('System failed, please try again after');
+                    console.log('error', error);
+                });
 
         }
+
+        (function renderPrice() {
+            const boxPriceDiscount = document.querySelector('.box-price-discount');
+            const boxPriceOld = document.querySelector('.box-sub-total');
+            const boxPriceFinal = document.querySelector('.box-total-price');
+
+            if (getParamUrl('price_discount')) {
+                boxPriceDiscount.style.display = 'flex';
+                boxPriceDiscount.querySelector('.price-discount').textContent = getParamUrl('price_discount');
+            }
+            if (getParamUrl('sub_total')) {
+                boxPriceOld.style.display = 'flex';
+                boxPriceOld.querySelector('.sub-total').textContent = getParamUrl('sub_total');
+            }
+            if (getParamUrl('total_price')) {
+                boxPriceFinal.style.display = 'flex';
+                boxPriceFinal.querySelector('.total-price').textContent = getParamUrl('total_price');
+            }
+
+            handlePageLoaded()
+        })();
+
+        (function initPage() {
+
+            if(isAdminPage()){
+                return;
+            }
+
+            if (document.referrer === `${location.origin}/pages/order-summary`) {
+                handleApi(API_CART)
+                    .then(res => {
+                        
+                        const line_items = res.items.map(item => {
+                            return {
+                                variant_id: item.variant_id,
+                                quantity: item.quantity
+                            }
+                        })
+
+                        const products = res.items.map(item => {
+                            return {
+                                id: item.product_id,
+                                variant: [{ id: Number(item.variant_id), quantity: 1 }]
+                            }
+                        })
+
+                        btnSubmit.addEventListener('click', function () {
+                            handleSubmit(
+                                line_items,
+                                products,
+                            );
+                        })
+
+                    })
+                    .catch(() => handleCatch())
+
+            } else if (document.referrer.includes('product_handle')) {
+
+                handleApi(`/products/${getParamUrl('product_handle')}.js`)
+                    .then(res => {
+                        const variantProduct = res.variants.find(item => item.id === Number(getParamUrl('variant_id')))
+
+                        if (!variantProduct) {
+                            handleCatch();
+                            return;
+                        }
+                        const line_items = [
+                            {
+                                variant_id: getParamUrl('variant_id'),
+                                quantity: 1
+                            }
+                        ]
+
+                        const product = [
+                            {
+                                id: res.id,
+                                variant: [{ id: Number(variantProduct.id), quantity: 1 }]
+                            }
+                        ]
+
+                        btnSubmit.addEventListener('click', function () {
+                            handleSubmit(
+                                line_items,
+                                product,
+                            );
+                        })
+
+                    })
+                    .catch(() => handleCatch())
+            } else {
+                handleCatch();
+            }
+        })()
 
     })
 
 
 </script>
 <style>
-.sm-payments-gateway {
-    text-align: center;
-}
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
+    .come-back {
+        text-align: center;
+        padding: 11px 0 10px;
+        font-size: 13px;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-top: 10px;
     }
-    to { 
-        transform: rotate(360deg);
+    body.loadding {
+        pointer-events: none;
+        opacity: 0.5;
     }
-}
- 
+    body.loadding .wrapper-payments-gateway, body.loadding .preloader  {
+        pointer-events: none;
+        opacity: 0.5;
+    }
 
- @-webkit-keyframes rotate {
-    from {
-        -webkit-transform: rotate(0deg);
+    .sm-payments-gateway {
+        text-align: center;
     }
-    to { 
-        -webkit-transform: rotate(360deg);
-    }
-}
 
-.load {
-    width: 20px;
-    height: 20px;
-    border: solid 3px white;
-    border-radius: 50%;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    -webkit-transition: all 0.5s ease-in;
-    -webkit-animation-name: rotate;
-    -webkit-animation-duration: 0.6s;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
-    transition: all 0.5s ease-in;
-    animation-name: rotate;
-    animation-duration: 0.6s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-.wrapper-discount-code .load{
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    left: 27px;
-}
-.wrapper-discount-code .is-loading .load{
-    opacity: 1;
-    pointer-events: auto;
-}
-.btn-apply-discount {
-    position: relative;
-}
-.wrapper-discount-code .is-loading .load + span{
-    opacity: 0;
-    pointer-events: none;
-}
-.wrapper-discount-code .is-loading {
-    pointer-events: none;
-}
-.info-prices > div {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    font-size: 16px;
-    color: #000000c4;
-    margin-top: 15px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-    padding-top: 10px;
-}
+    .info-prices>div {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        font-size: 15px;
+        color: #000000c4;
+        margin-top: 15px;
+        border-bottom: 1px solid #cccccc80;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    .btn-sm-payment-gateway {
+        background-color: #D0A85C;
+        border: none;
+        width: 100%;
+        padding: 20px;
+        font-size: 18px;
+        color: white;
+        margin-top: 50px;
+        border-radius: 5px;
+        font-weight: 700;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .payment-summary {
+        font-weight: 500;
+        color: #343f52;
+        font-size: 21px;
+        margin: 5px 0 30px;
+    }
+
+    .wrapper-payments-gateway {
+        width: 600px;
+        background-color: white;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 35px;
+        border-radius: 15px;
+        margin-top: 60px;
+        box-shadow: 0 0.5px 1px 0 rgb(51 77 114 / 10%), 0 1.6px 3.6px 0 rgb(51 77 114 / 15%);
+    }
+
+    .wrapper-payments-gateway .box-logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .pay-title {
+        font-weight: 500;
+        color: #343f52;
+        font-size: 26px;
+    }
+
+    .list-payment li.active::after {
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMzInIGhlaWdodD0nMzInIHZpZXdCb3g9JzAgMCAzMiAzMicgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBkPSdNNS40MTQgMTFMNCAxMi40MTRsNS40MTQgNS40MTRMMjAuODI4IDYuNDE0IDE5LjQxNCA1bC0xMCAxMHonIGZpbGw9JyNmZmYnIGZpbGwtcnVsZT0nbm9uemVybycvPjwvc3ZnPiA=);
+    }
+
+    li.active>div {
+        background-color: rgba(66, 134, 244, .2) !important;
+    }
+
+    .list-payment li::after {
+        content: '';
+        height: 32px;
+        width: 32px;
+        border: 2px solid #b7c4d7;
+        background-color: #fff;
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-position: 2px 3px;
+    }
+
+    .list-payment {
+        list-style: none;
+        max-height: 500px;
+        overflow-y: auto;
+        padding: 20px 0;
+        margin-bottom: 0;
+    }
+
+    .list-payment li {
+        margin-bottom: 25px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .list-payment .box-item {
+        display: flex;
+        flex-direction: column;
+        background: #f5f7fa;
+        padding: 12px 30px;
+        border-radius: 15px;
+        border: 1px solid hsl(216deg 29% 78%);
+    }
+
+    .list-payment .box-item>span {
+        border-radius: 3px;
+        border: 1px solid #4286f4;
+        background: #286ae6;
+        text-align: center;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 1px rgb(0 0 0 / 10%);
+        color: #fff;
+        box-shadow: 0 0 5px 3px rgb(0 0 0 / 3%);
+        display: inline-block;
+        position: absolute;
+        padding: 3px 10px;
+        top: -12px;
+        left: 16px;
+        font-size: 12px;
+    }
+
+    .img-title img {
+        max-width: 76px;
+    }
+    @media (max-width: 767px) {
+        .wrapper-payments-gateway {
+            width: 100%;
+            padding: 20px;
+        }
+        #shopify-section-page-payments-gateway {
+            padding: 0 20px;
+        }
+        .img-payment img{
+            max-width: 200px;
+        }
+        .img-title img {
+            max-width: 50px;
+            margin: 5px 0;
+        }
+        .list-payment .box-item {
+            padding: 10px 15px;
+        }
+        .list-payment li {
+            margin-bottom: 20px;
+        }
+        .list-payment li::after {
+            height: 25px;
+            width: 25px;
+            right: 20px;
+        }
+        .list-payment li.active::after {
+            background-size: 23px;
+        }
+    }
 </style>
+
+{% schema %}
+  {
+    "name": "Payments Method",
+    "settings": [
+        {
+          "type":"image_picker",
+          "id":"img_logo",
+          "label":"Logo"
+        }
+	],
+   "blocks":[
+        {
+            "type":"CoinbaseComerce",
+            "name":"Payment CoinbaseComerce",
+            "settings":[
+                {
+                    "type":"image_picker",
+                    "id":"image_payment_list",
+                    "label":"Image payment list"
+                },
+                {
+                    "type":"image_picker",
+                    "id":"image_title",
+                    "label":"Image title"
+                },
+                {
+                    "type":"checkbox",
+                    "id":"recommended",
+                    "label":"Recommended",
+                    "default":false
+                }
+            ]
+        },
+        {
+            "type":"Stripe",
+            "name":"Payment Stripe",
+            "settings":[
+                {
+                    "type":"image_picker",
+                    "id":"image_payment_list",
+                    "label":"Image payment list"
+                },
+                {
+                    "type":"image_picker",
+                    "id":"image_title",
+                    "label":"Image title"
+                },
+                {
+                    "type":"checkbox",
+                    "id":"recommended",
+                    "label":"Recommended",
+                    "default":false
+                }
+            ]
+        },
+        {
+            "type":"PayOp",
+            "name":"Payment PayOp",
+            "settings":[
+                {
+                    "type":"image_picker",
+                    "id":"image_payment_list",
+                    "label":"Image payment list"
+                },
+                {
+                    "type":"image_picker",
+                    "id":"image_title",
+                    "label":"Image title"
+                },
+                {
+                    "type":"checkbox",
+                    "id":"recommended",
+                    "label":"Recommended",
+                    "default":false
+                }
+            ]
+        },
+        {
+            "type":"CoinPayments",
+            "name":"Payment CoinPayments",
+            "settings":[
+                {
+                    "type":"image_picker",
+                    "id":"image_payment_list",
+                    "label":"Image payment list"
+                },
+                {
+                    "type":"image_picker",
+                    "id":"image_title",
+                    "label":"Image title"
+                },
+                {
+                    "type":"checkbox",
+                    "id":"recommended",
+                    "label":"Recommended",
+                    "default":false
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+          "name": "Payments Method",
+          "category": "Advanced layout",
+          "blocks": [
+            {
+              "type": "CoinbaseComerce"
+            },
+            {
+              "type": "Stripe"
+            },
+            {
+              "type": "PayOp"
+            },
+            {
+              "type": "CoinPayments"
+            }
+          ]
+        }
+      ]
+  }
+{% endschema %}

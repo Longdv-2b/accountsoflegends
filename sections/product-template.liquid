@@ -691,7 +691,7 @@
     setTimeout(()=>{
       listVariant = document.querySelectorAll('#product-variants select');
     })
-    let urlNav = `/pages/order-summary?product-handle={{ product.handle }}`;
+    let urlNav = `/pages/order-summary?product_handle={{ product.handle }}`;
 
     btnBuyItNow && btnBuyItNow.addEventListener('click', function(e){
       const url_string = location.href;
@@ -704,12 +704,6 @@
       }else if(variantsProduct.length === 1) {
         urlNav += `&variant_id=${variantsProduct[0].id}`;
       }
-
-      listVariant.forEach(variant => {
-        if(variant.style.display !=='none'){
-          urlNav += `&${(variant.previousElementSibling.textContent).toLocaleLowerCase().replace('*', '')}=${variant.value}`
-        }
-      })
       location.href = urlNav;
     })
   })

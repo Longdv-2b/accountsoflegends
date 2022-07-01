@@ -2289,6 +2289,52 @@
       "collection-template-new": {
         "type": "collection-template-new",
         "settings": {}
+      },
+      "page-payments-gateway": {
+        "type": "page-payments-gateway",
+        "blocks": {
+          "03885e6a-2497-4e76-b484-2404cbfaec6d": {
+            "type": "CoinbaseComerce",
+            "settings": {
+              "image_payment_list": "shopify:\/\/shop_images\/payment-1.png",
+              "image_title": "shopify:\/\/shop_images\/payment-title-1.png",
+              "recommended": true
+            }
+          },
+          "d30a056d-6870-4153-9e50-822595ad6db6": {
+            "type": "Stripe",
+            "settings": {
+              "image_payment_list": "shopify:\/\/shop_images\/payment-1.png",
+              "image_title": "shopify:\/\/shop_images\/payment-title-1.png",
+              "recommended": false
+            }
+          },
+          "5801b4b0-5c28-4ce0-8de3-bea919a01af7": {
+            "type": "PayOp",
+            "settings": {
+              "image_payment_list": "shopify:\/\/shop_images\/payment-1.png",
+              "image_title": "shopify:\/\/shop_images\/payment-title-1.png",
+              "recommended": false
+            }
+          },
+          "66cdaa78-1b9b-455a-84d0-c00f332b51ae": {
+            "type": "CoinPayments",
+            "settings": {
+              "image_payment_list": "shopify:\/\/shop_images\/payment-1.png",
+              "image_title": "shopify:\/\/shop_images\/payment-title-1.png",
+              "recommended": false
+            }
+          }
+        },
+        "block_order": [
+          "03885e6a-2497-4e76-b484-2404cbfaec6d",
+          "d30a056d-6870-4153-9e50-822595ad6db6",
+          "5801b4b0-5c28-4ce0-8de3-bea919a01af7",
+          "66cdaa78-1b9b-455a-84d0-c00f332b51ae"
+        ],
+        "settings": {
+          "img_logo": "shopify:\/\/shop_images\/android-icon-192x192_9b790f9f-990c-4490-a8a6-e982a015221e.png"
+        }
       }
     },
     "content_for_index": [

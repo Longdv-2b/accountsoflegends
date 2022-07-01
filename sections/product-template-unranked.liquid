@@ -417,38 +417,33 @@
       color:white;
     }
   </style>
-  <script>
-    
-    document.addEventListener('DOMContentLoaded', function() {
   
-      const btnBuyItNow = document.querySelector('.btn-buy-it-now');
-      let listVariant;
-      setTimeout(()=>{
-        listVariant = document.querySelectorAll('#product-variants select');
-      })
-      let urlNav = `/pages/order-summary?product-handle={{ product.handle }}`;
+<script>
   
-      btnBuyItNow && btnBuyItNow.addEventListener('click', function(e){
-        const url_string = location.href;
-        const url = new URL(url_string);
-        const variantKey = url.searchParams.get("variant");
-        
-        const variantsProduct = JSON.parse(`{{ product.variants | json}}`);
-        if(variantKey) {
-          urlNav += `&variant_id=${variantKey}`;
-        }else if(variantsProduct.length === 1) {
-          urlNav += `&variant_id=${variantsProduct[0].id}`;
-        }
-  
-        listVariant.forEach(variant => {
-          if(variant.style.display !=='none'){
-            urlNav += `&${(variant.previousElementSibling.textContent).toLocaleLowerCase().replace('*', '')}=${variant.value}`
-          }
-        })
-        location.href = urlNav;
-      })
+  document.addEventListener('DOMContentLoaded', function() {
+
+    const btnBuyItNow = document.querySelector('.btn-buy-it-now');
+    let listVariant;
+    setTimeout(()=>{
+      listVariant = document.querySelectorAll('#product-variants select');
     })
-  </script>
+    let urlNav = `/pages/order-summary?product_handle={{ product.handle }}`;
+
+    btnBuyItNow && btnBuyItNow.addEventListener('click', function(e){
+      const url_string = location.href;
+      const url = new URL(url_string);
+      const variantKey = url.searchParams.get("variant");
+      
+      const variantsProduct = JSON.parse(`{{ product.variants | json}}`);
+      if(variantKey) {
+        urlNav += `&variant_id=${variantKey}`;
+      }else if(variantsProduct.length === 1) {
+        urlNav += `&variant_id=${variantsProduct[0].id}`;
+      }
+      location.href = urlNav;
+    })
+  })
+</script>
 {% unless product == empty %}
 <script>
   var buttonSlt = '[data-minus-qtt], [data-plus-qtt]',
