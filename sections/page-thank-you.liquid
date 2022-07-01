@@ -11,6 +11,29 @@
     <p class='desc-thank-you'>Please check the email you have registered to purchase, we will send information about your order by email.</p>
     <a href='/'>Goto homepage</a>
 </div>
+<script>
+
+    async function handleApi(url = '', data = {}, METHOD = 'GET') {
+        const response = await fetch(url, {
+            method: METHOD,
+            cache: 'no-cache',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'pass_dev': 'pass_dev'
+            },
+            body: METHOD !== 'GET' ? JSON.stringify(data) : null
+        });
+        return response.json();
+    }
+    handleApi('/cart/clear.js')
+    .then (res => {
+        const cartCount = document.querySelectorAll('.cartCount')
+        cartCount.forEach(item => {
+            item.textContent = '0';
+        })
+    })
+</script>
 <style>
     .wrapper-thank-you {
         text-align: center;
