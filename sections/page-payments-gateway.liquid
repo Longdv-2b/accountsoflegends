@@ -57,6 +57,24 @@
     <div class="come-back">Come Back</div>
 </div>
 <script>
+
+    function handleCatch(message = 'You should redirect from Order Summary page') {
+        alert(message)
+        if (history.length !== 1) {
+            history.back();
+            setTimeout(()=> {
+                location.href = '/';
+            }, 4000)
+        } else {
+            location.href = '/';
+            setTimeout(()=> {
+                history.back();
+            }, 4000)
+        }
+    }
+    if(!localStorage.getItem('NAV_TO_ORDER')){
+        handleCatch('You have completed your order, please continue to choose your product')
+    }
     document.addEventListener('DOMContentLoaded', function () {
         const API_ROOT = 'https://gateway.accountsoflegends.com/storefront';
         const API_CART = '/cart.js';
@@ -76,15 +94,6 @@
                 history.back();
             })
         })()
-
-        function handleCatch(message = 'You should redirect from Order Summary page') {
-            alert(message)
-            if (history.length !== 1) {
-                history.back();
-            } else {
-                location.href = '/'
-            }
-        }
 
         function isAdminPage() {
             let isAdmin;

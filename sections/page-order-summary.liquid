@@ -50,6 +50,9 @@
     </div>
 </div>
 <script>
+    function saveNavToOrder(tagNavPage) {
+        localStorage.setItem('NAV_TO_ORDER', 'cart');
+    }
     document.addEventListener('DOMContentLoaded', function () {
 
         const API_ROOT = 'https://gateway.accountsoflegends.com/storefront';
@@ -324,8 +327,10 @@
                 }
 
                 if (location.href === `${location.origin}/pages/order-summary`) {
+                    saveNavToOrder('cart')
                     utilsUrlNav('?')
                 } else if (getParamUrl('product_handle') && getParamUrl('variant_id')) {
+                    saveNavToOrder('products')
                     utilsUrlNav('&')
                 } else {
                     handleCatch()

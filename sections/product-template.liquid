@@ -683,8 +683,15 @@
   }
 </style>
 <script>
+
+
+  function saveNavToOrder() {
+    localStorage.setItem('NAV_TO_ORDER', 'products');
+  }
   
   document.addEventListener('DOMContentLoaded', function() {
+
+    saveNavToOrder();
 
     const btnBuyItNow = document.querySelector('.btn-buy-it-now');
     let listVariant;

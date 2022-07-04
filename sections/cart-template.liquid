@@ -202,8 +202,13 @@
 <script>
 const btnBuyItNow = document.querySelector('.btn-buy-it-now-cart');
 
+function saveNavToOrder() {
+  localStorage.setItem('NAV_TO_ORDER', 'cart');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   btnBuyItNow.addEventListener('click', function(e){
+    saveNavToOrder();
     location.href = `/pages/order-summary`;
   })
 })
