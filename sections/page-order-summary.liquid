@@ -53,6 +53,26 @@
     function saveNavToOrder(tagNavPage) {
         localStorage.setItem('NAV_TO_ORDER', 'cart');
     }
+    function getCookie(name) {
+        var dc = document.cookie;
+        var prefix = name + "=";
+        var begin = dc.indexOf("; " + prefix);
+        if (begin == -1) {
+            begin = dc.indexOf(prefix);
+            if (begin != 0) return null;
+        }
+        else
+        {
+            begin += 2;
+            var end = document.cookie.indexOf(";", begin);
+            if (end == -1) {
+            end = dc.length;
+            }
+        }
+        // because unescape has been deprecated, replaced with decodeURI
+        //return unescape(dc.substring(begin + prefix.length, end));
+        return decodeURI(dc.substring(begin + prefix.length, end));
+    } 
     document.addEventListener('DOMContentLoaded', function () {
 
         const API_ROOT = 'https://gateway.accountsoflegends.com/storefront';
@@ -115,10 +135,15 @@
                 discountCodeAdded = discountCode;
             }
 
-            if (initLoadPage && (customerInfo && !customerInfo.textContent || !customerInfo)) {
-                priceThenDiscount(totalPriceInitPage)
-                return;
+            if(initLoadPage && getCookie('discount_code')){
+                discountCode = getCookie('discount_code')
+            }else {
+                if (initLoadPage && (customerInfo && !customerInfo || !customerInfo.textContent)) {
+                    priceThenDiscount(totalPriceInitPage)
+                    return;
+                }
             }
+
 
             if (!initLoadPage) {
                 discountCode = inputDiscountCode.value.trim();
@@ -135,7 +160,7 @@
             handleApi(
                 `${API_ROOT}${API_VALIDATE_DISCOUNT_CODE}`,
                 {
-                    "email": emailAddress(initLoadPage),
+                    "email": initLoadPage ? (getCookie('discount_code') ? '' : emailAddress(initLoadPage)) : emailAddress(initLoadPage),
                     "discount_code": discountCode,
                     "product": productList,
                 },
