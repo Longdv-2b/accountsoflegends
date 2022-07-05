@@ -135,17 +135,22 @@
                 discountCodeAdded = discountCode;
             }
 
-            if(initLoadPage && getCookie('discount_code')){
-                discountCode = getCookie('discount_code')
-            }else {
-                if (initLoadPage && (customerInfo && !customerInfo || !customerInfo.textContent)) {
-                    priceThenDiscount(totalPriceInitPage)
-                    return;
+            if(initLoadPage){
+                if(getCookie('discount_code')){
+                    discountCode = getCookie('discount_code');
+                    discountCodeAdded = getCookie('discount_code');
+                }else {
+                    if(customerInfo){
+                        if(customerInfo.textContent){
+                            discountCode = customerInfo.textContent;
+                            discountCodeAdded = discountCode;
+                        }else {
+                            priceThenDiscount(totalPriceInitPage)
+                        }
+                    }
                 }
-            }
+            }else {
 
-
-            if (!initLoadPage) {
                 discountCode = inputDiscountCode.value.trim();
                 if (discountCode === '') {
                     alert('You have not entered the discount code');
@@ -160,7 +165,7 @@
             handleApi(
                 `${API_ROOT}${API_VALIDATE_DISCOUNT_CODE}`,
                 {
-                    "email": initLoadPage ? (getCookie('discount_code') ? '' : emailAddress(initLoadPage)) : emailAddress(initLoadPage),
+                    "email": initLoadPage && !customerInfo ? (getCookie('discount_code') ? '' : emailAddress(initLoadPage)) : emailAddress(initLoadPage),
                     "discount_code": discountCode,
                     "product": productList,
                 },
