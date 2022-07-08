@@ -108,18 +108,18 @@
             return response.json();
         }
 
-        function emailAddress() {
+        function emailAddress(initLoadPage) {
             let email = '';
 
             if (customerInfo) {
                 email = "{{ customer.email }}";
             } else {
                 if (inputEmail.value.trim() === '') {
-                    alert('Email address is required');
+                    !initLoadPage && alert('Email address is required');
                     return;
                 }
                 if (inputEmail.validationMessage !== '') {
-                    alert(inputEmail.validationMessage);
+                    !initLoadPage && alert(inputEmail.validationMessage);
                     return;
                 }
                 email = inputEmail.value.trim();
@@ -136,19 +136,20 @@
             }
 
             if(initLoadPage){
+                if(customerInfo){
+                    if(customerInfo.textContent){
+                        discountCode = customerInfo.textContent;
+                        discountCodeAdded = discountCode;
+                    }else {
+                        priceThenDiscount(totalPriceInitPage)
+                    }
+                }
+
                 if(getCookie('discount_code')){
                     discountCode = getCookie('discount_code');
                     discountCodeAdded = getCookie('discount_code');
-                }else {
-                    if(customerInfo){
-                        if(customerInfo.textContent){
-                            discountCode = customerInfo.textContent;
-                            discountCodeAdded = discountCode;
-                        }else {
-                            priceThenDiscount(totalPriceInitPage)
-                        }
-                    }
                 }
+
             }else {
 
                 discountCode = inputDiscountCode.value.trim();
@@ -160,7 +161,7 @@
                     return;
                 }
             }
-
+            console.log('discountCodeAdded =>', discountCodeAdded);
             handleLoadingButton('add');
             handleApi(
                 `${API_ROOT}${API_VALIDATE_DISCOUNT_CODE}`,
@@ -182,6 +183,8 @@
                         } else {
                             alert(res.message)
                         }
+                        console.log('vanlong 12');
+                        discountCodeAdded = '';
                     }
                     handleLoadingButton('remove');
                 })
@@ -259,6 +262,7 @@
 
         (function initPage() {
 
+
             if (location.href === `${location.origin}/pages/order-summary` || location.origin.includes('myshopify.com')) { // case redirect from cart page
                 
                 handleApi(API_CART)
@@ -325,6 +329,7 @@
 
         (function handleSubmitBuyBoostNow() {
 
+             
             document.querySelector('.sm-data-os').addEventListener('click', function () {
 
                 let urlNav = location.href.replace(`${location.origin}/pages/order-summary`, '');
@@ -353,6 +358,14 @@
 
                 if(location.origin.includes('myshopify.com')){
                     location.href = `/pages/payments-gateway`;
+                    return;
+                }
+                if(getCookie('discount_code')){
+                    if(discountCodeAdded){
+                        handleDiscountCode()
+                    }else {
+                        alert('discount err')
+                    }
                     return;
                 }
 
