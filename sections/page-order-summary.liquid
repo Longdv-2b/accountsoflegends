@@ -47,17 +47,17 @@
                             <span class="print-discount"></span>
                         </span>
                     </div>
-                    <span class='price-discount'></span>
+                    <span class='price-discount money'></span>
                 </div>
 
                 <div class='box-sub-total'>
                     <span>SubTotal:</span>
-                    <span class='sub-total'></span>
+                    <div class="sub-total-money"><span class='sub-total money'></span></div>
                 </div>
 
                 <div class='box-total-price'>
                     <span>Total Price:</span>
-                    <span class='total-price'></span>
+                    <span class='total-price money'></span>
                 </div>
             </div>
         </div>
@@ -65,6 +65,7 @@
     </div>
 </div>
 <script>
+    const textCurrency = document.querySelector('.currency_CC_KT')?.textContent || 'USD';
     function saveNavToOrder(tagNavPage) {
         localStorage.setItem('NAV_TO_ORDER', 'cart');
     }
@@ -87,7 +88,7 @@
         //return unescape(dc.substring(begin + prefix.length, end));
         return decodeURI(dc.substring(begin + prefix.length, end));
     }
-    document.addEventListener('DOMContentLoaded', function () {
+    // document.addEventListener('DOMContentLoaded', function () {
 
         const API_ROOT = 'https://gateway.accountsoflegends.com/storefront';
         const API_CART = '/cart.js';
@@ -172,7 +173,7 @@
                                     </div>`
                                 : ""}
                         </div>
-                        ${item.price ? `<span class='price'>${Shopify.formatMoney(item.price)}</span>` : ''}
+                        ${item.price ? `<span class='price money'>${Shopify.formatMoney(item.price)}</span>` : ''}
                     </div>
                 </li>`
             });
@@ -212,7 +213,16 @@
                 const priceDiscount = Number(subTotal.replace(symbolCurrency, '') - Number(totalPriceParam))
 
                 document.querySelector('.price-discount').textContent = `- ${symbolCurrency}${(priceDiscount).toFixed(2)}`;
-                document.querySelector('.sub-total').textContent = subTotal;
+
+                const htmlsubTotalMoney = document.querySelector('.sub-total-money');
+                htmlsubTotalMoney.innerHTML = null;
+                const newSubTotal = document.createElement('span');
+                newSubTotal.classList.add('sub-total');
+                newSubTotal.classList.add('money');
+                newSubTotal.textContent = subTotal;
+                htmlsubTotalMoney.appendChild(newSubTotal);
+
+                // document.querySelector('.sub-total').textContent = subTotal;
                 document.querySelector('.total-price').textContent = `${symbolCurrency}${totalPriceParam}`
 
                 document.querySelectorAll('.print-discount')[0].textContent = discountCodeAdded;
@@ -323,13 +333,12 @@
                         totalPrice = res.total_price;
                         initDiscountCode()
                     })
-                    .catch(() => handleCatch())
+                    .catch(() => handleCatch(res.message))
             }
             function handleDataNavProduct(productHandle, variantId){
 
                 handleApi(`/products/${productHandle || getParamUrl('product_handle')}.js`)
                     .then(res => {
-
                         const variantProduct = res.variants.find(item => item.id === Number(variantId || getParamUrl('variant_id')))
                         if (!variantProduct) {
                             handleCatch();
@@ -449,9 +458,12 @@
             })
         })();
 
-    })
+    // })
 </script>
 <style>
+    .sm-data-os {
+        outline: none !important;
+    }
     .discount-code-view1 span + svg {
         cursor: pointer;
     }
