@@ -59,7 +59,7 @@
             <span class="total-price"></span>
         </div>
     </div>
-    <div class="btn-sm-payment-gateway">Pay Now</div>
+    <div class="btn-sm-payment-gateway"><div class="load"></div><span>Pay Now</span></div>
     <div class="come-back">Come Back</div>
 </div>
 <script>
@@ -135,8 +135,7 @@
                     document.body.classList.add('loaded');
                 },1000)
             } else {
-                document.body.classList.add('loadding');
-                document.body.classList.remove('loaded');
+                document.body.classList.add('none-dom');
             }
         }
 
@@ -166,9 +165,7 @@
             return response.json();
         }
 
-        function handleSubmit(
-            product = [],
-        ) {
+        function handleSubmit(product = []) {
 
             let type;
             if (!listPayments.querySelector('li.active')) {
@@ -189,21 +186,19 @@
                 dataPaymentsGateway.discount_code = getParamUrl('discount_code');
             }
 
-            console.log('dataPaymentsGateway', dataPaymentsGateway)
+            document.querySelector('.btn-sm-payment-gateway').classList.add('is-loading');
             handleApi(
                 `${API_ROOT}${GET_GATEWAY_URL}`,
                 dataPaymentsGateway,
                 'POST'
             )
                 .then(res => {
-                    console.log('res gateway => ', res)
                     location.href = res.checkout_url;
                 })
                 .catch((error)=> {
                     handleCatch('System failed, please try again after');
                     console.log('error', error);
                 });
-
         }
 
         (function renderPrice() {
@@ -246,9 +241,7 @@
                         })
 
                         btnSubmit.addEventListener('click', function () {
-                            handleSubmit(
-                                products
-                            );
+                            handleSubmit( products );
                         })
 
                     })
@@ -272,9 +265,7 @@
                         ]
 
                         btnSubmit.addEventListener('click', function () {
-                            handleSubmit(
-                                product
-                            );
+                            handleSubmit(product);
                         })
 
                     })
@@ -289,6 +280,73 @@
 
 </script>
 <style>
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+
+    @-webkit-keyframes rotate {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+
+        to {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    .load {
+        width: 20px;
+        height: 20px;
+        border: solid 3px white;
+        border-radius: 50%;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        -webkit-transition: all 0.5s ease-in;
+        -webkit-animation-name: rotate;
+        -webkit-animation-duration: 0.6s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+        transition: all 0.5s ease-in;
+        animation-name: rotate;
+        animation-duration: 0.6s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    .wrapper-payments-gateway .load  {
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        left: 27px;
+        top: 18px;
+    }
+    .wrapper-payments-gateway .is-loading .load  {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .btn-sm-payment-gateway {
+        display:flex;
+        justify-content: center;
+    }
+    .wrapper-payments-gateway .is-loading .load+span {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .wrapper-payments-gateway .load {
+        left: calc(50% - 10px);
+        top: 22px;
+    }
+    .wrapper-payments-gateway .is-loading {
+        pointer-events: none;
+        position: relative;
+    }
     .discount-code-view2 svg{
         width: 16px;
         height: 16px;
@@ -309,15 +367,13 @@
         margin-top: 9px;
         color: #73788a;
     }
-    body.loadding {
+    body.none-dom {
         pointer-events: none;
         opacity: 0.5;
     }
-    body.loadding .wrapper-payments-gateway, body.loadding .preloader  {
+    body.none-dom *{
         pointer-events: none;
-        opacity: 0.5;
     }
-
     .sm-payments-gateway {
         text-align: center;
     }

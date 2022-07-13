@@ -185,7 +185,6 @@
 
         function utilsUrlNav(type) {
 
-            console.log('discountCodeAdded123', discountCodeAdded);
             let urlNav = location.href.replace(`${location.origin}/pages/order-summary`, '');
             let discount_code = discountCodeAdded ? `&discount_code=${discountCodeAdded}` : '';
             const boxPricePercent = document.querySelector('.box-price-discount');
