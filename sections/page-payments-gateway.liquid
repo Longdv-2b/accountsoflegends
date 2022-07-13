@@ -39,7 +39,13 @@
     <div class="info-prices">
 
         <div class="box-price-discount" style="display: none;">
-            <span>Discount:</span>
+            <div class="discount-code-left">
+                <span>Discount:</span>
+                <span class='discount-code-view2'>
+                    {% include 'icon-tag' %}
+                    <span class="print-discount"></span>
+                </span>
+            </div>
             <span class="price-discount"></span>
         </div>
 
@@ -161,7 +167,6 @@
         }
 
         function handleSubmit(
-            line_items = [],
             product = [],
         ) {
 
@@ -176,9 +181,6 @@
             let dataPaymentsGateway = {
                 email: getParamUrl('email'),
                 discount_code: '',
-                order: {
-                    line_items,
-                },
                 product,
                 type,
             }
@@ -212,6 +214,7 @@
             if (getParamUrl('price_discount')) {
                 boxPriceDiscount.style.display = 'flex';
                 boxPriceDiscount.querySelector('.price-discount').textContent = getParamUrl('price_discount');
+                document.querySelector('.print-discount').textContent = getParamUrl('discount_code');
             }
             if (getParamUrl('sub_total')) {
                 boxPriceOld.style.display = 'flex';
@@ -234,25 +237,17 @@
             if (document.referrer === `${location.origin}/pages/order-summary`) {
                 handleApi(API_CART)
                     .then(res => {
-                        
-                        const line_items = res.items.map(item => {
-                            return {
-                                variant_id: item.variant_id,
-                                quantity: item.quantity
-                            }
-                        })
 
                         const products = res.items.map(item => {
                             return {
                                 id: item.product_id,
-                                variant: [{ id: Number(item.variant_id), quantity: 1 }]
+                                variant: [{ id: Number(item.variant_id), quantity: item.quantity}]
                             }
                         })
 
                         btnSubmit.addEventListener('click', function () {
                             handleSubmit(
-                                line_items,
-                                products,
+                                products
                             );
                         })
 
@@ -269,13 +264,6 @@
                             handleCatch();
                             return;
                         }
-                        const line_items = [
-                            {
-                                variant_id: getParamUrl('variant_id'),
-                                quantity: 1
-                            }
-                        ]
-
                         const product = [
                             {
                                 id: res.id,
@@ -285,8 +273,7 @@
 
                         btnSubmit.addEventListener('click', function () {
                             handleSubmit(
-                                line_items,
-                                product,
+                                product
                             );
                         })
 
@@ -302,6 +289,10 @@
 
 </script>
 <style>
+    .discount-code-view2 svg{
+        width: 16px;
+        height: 16px;
+    }
     .come-back {
         text-align: center;
         padding: 11px 0 10px;
@@ -309,6 +300,14 @@
         text-decoration: underline;
         cursor: pointer;
         margin-top: 10px;
+    }
+    .discount-code-view2 {
+        font-size: 14px;
+        display: flex;
+        gap: 7px;
+        margin-bottom: -5px;
+        margin-top: 9px;
+        color: #73788a;
     }
     body.loadding {
         pointer-events: none;

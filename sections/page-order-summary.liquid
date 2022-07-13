@@ -22,16 +22,31 @@
 
         <div>
             <div class='wrapper-discount-code'>
-                <input class='input-discount-code' autocomplete="off" type='text' placeholder='Discount code' />
-                <button class='btn btn-apply-discount'>
-                    <div class="load"></div>
-                    <span>Apply</span>
-                </button>
+                <div class='wrapper-input-button'>
+                    <input class='input-discount-code' autocomplete="off" type='text' placeholder='Discount code' />
+                    <button class='btn btn-apply-discount'>
+                        <div class="load"></div>
+                        <span>Apply</span>
+                    </button>
+                </div>
+                <div class='discount-code-view1'>
+                    <div>
+                            {% include 'icon-tag' %}
+                            <span class="print-discount"></span>
+                            {% include 'icon-close' %}
+                        </div>
+                    </div>
             </div>
             <div class='info-prices'>
 
                 <div class='box-price-discount'>
-                    <span>Discount:</span>
+                    <div class="discount-code-left">
+                        <span>Discount:</span>
+                        <span class='discount-code-view2'>
+                            {% include 'icon-tag' %}
+                            <span class="print-discount"></span>
+                        </span>
+                    </div>
                     <span class='price-discount'></span>
                 </div>
 
@@ -46,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <button class='sm-data-os'>Buy Boost Now</button>
+        <button class='sm-data-os'><div class="load"></div><span>Buy Boost Now</span></button>
     </div>
 </div>
 <script>
@@ -61,18 +76,17 @@
             begin = dc.indexOf(prefix);
             if (begin != 0) return null;
         }
-        else
-        {
+        else {
             begin += 2;
             var end = document.cookie.indexOf(";", begin);
             if (end == -1) {
-            end = dc.length;
+                end = dc.length;
             }
         }
         // because unescape has been deprecated, replaced with decodeURI
         //return unescape(dc.substring(begin + prefix.length, end));
         return decodeURI(dc.substring(begin + prefix.length, end));
-    } 
+    }
     document.addEventListener('DOMContentLoaded', function () {
 
         const API_ROOT = 'https://gateway.accountsoflegends.com/storefront';
@@ -90,7 +104,7 @@
         const inputEmail = document.querySelector('.input-email');
         const inputDiscountCode = document.querySelector('.input-discount-code');
 
-        const symbolCurrency = '$'
+        const symbolCurrency = '$';
 
         let totalPrice, discountCodeAdded = '', productList = [];
 
@@ -127,78 +141,13 @@
             return email;
         }
 
-        function handleDiscountCode(initLoadPage, totalPriceInitPage) {
-            let discountCode = '';
-
-            if (initLoadPage && customerInfo && customerInfo.textContent) {
-                discountCode = customerInfo.textContent;
-                discountCodeAdded = discountCode;
-            }
-
-            if(initLoadPage){
-                if(customerInfo){
-                    if(customerInfo.textContent){
-                        discountCode = customerInfo.textContent;
-                        discountCodeAdded = discountCode;
-                    }else {
-                        priceThenDiscount(totalPriceInitPage)
-                    }
-                }
-
-                if(getCookie('discount_code')){
-                    discountCode = getCookie('discount_code');
-                    discountCodeAdded = getCookie('discount_code');
-                }
-
-            }else {
-
-                discountCode = inputDiscountCode.value.trim();
-                if (discountCode === '') {
-                    alert('You have not entered the discount code');
-                    return;
-                }
-                if (!emailAddress()) {
-                    return;
-                }
-            }
-            console.log('discountCodeAdded =>', discountCodeAdded);
-            handleLoadingButton('add');
-            handleApi(
-                `${API_ROOT}${API_VALIDATE_DISCOUNT_CODE}`,
-                {
-                    "email": initLoadPage && !customerInfo ? (getCookie('discount_code') ? '' : emailAddress(initLoadPage)) : emailAddress(initLoadPage),
-                    "discount_code": discountCode,
-                    "product": productList,
-                },
-                'POST'
-            )
-                .then(res => {
-                    if (res.message === 'success') {
-                        priceThenDiscount(res.total_price)
-                        !initLoadPage && alert('Successfully applied discount code')
-                        discountCodeAdded = discountCode;
-                    } else {
-                        if (initLoadPage) {
-                            priceThenDiscount(totalPriceInitPage)
-                        } else {
-                            alert(res.message)
-                        }
-                        console.log('vanlong 12');
-                        discountCodeAdded = '';
-                    }
-                    handleLoadingButton('remove');
-                })
-                .catch(() => handleCatch('Please reload the page, and try again', false))
-
-        }
-
         function handleLoadingButton(action) {
             document.querySelector('.btn-apply-discount').classList[action]('is-loading')
         }
 
-        function handleCatch(message = 'You should redirect from product or cart page', navPage= true) {
+        function handleCatch(message = 'You should redirect from product or cart page', navPage = true) {
             alert(message);
-            if(navPage){
+            if (navPage) {
                 location.href = '/'
             }
         }
@@ -218,10 +167,10 @@
                             </div>   
 
                             ${item.variant_title
-                        ? `<div class='variant'>
+                                ? `<div class='variant'>
                                         <span>${item.variant_title}</span>
                                     </div>`
-                        : ""}
+                                : ""}
                         </div>
                         ${item.price ? `<span class='price'>${Shopify.formatMoney(item.price)}</span>` : ''}
                     </div>
@@ -234,23 +183,52 @@
             document.querySelector('.box-sub-total').style.display = action;
         }
 
+        function utilsUrlNav(type) {
+
+            console.log('discountCodeAdded123', discountCodeAdded);
+            let urlNav = location.href.replace(`${location.origin}/pages/order-summary`, '');
+            let discount_code = discountCodeAdded ? `&discount_code=${discountCodeAdded}` : '';
+            const boxPricePercent = document.querySelector('.box-price-discount');
+            const boxPriceOld = document.querySelector('.box-sub-total');
+            const boxPriceFinal = document.querySelector('.box-total-price');
+
+            urlNav += `${type}email=${emailAddress()}${discount_code}`
+            if (boxPricePercent.style.display === 'flex') {
+                urlNav += `&price_discount=${boxPricePercent.querySelector('.price-discount').textContent}`;
+            }
+            if (boxPriceOld.style.display === 'flex') {
+                urlNav += `&sub_total=${boxPriceOld.querySelector('.sub-total').textContent}`;
+            }
+
+            urlNav += `&total_price=${boxPriceFinal.querySelector('.total-price').textContent}`;
+            location.href = `/pages/payments-gateway${urlNav}`;
+        }
+
         function priceThenDiscount(totalPriceParam) {
             const priceOld = Shopify.formatMoney(totalPriceParam).replace(symbolCurrency, '')
             if (Number(totalPriceParam) !== Number(totalPrice)) {
-
                 togglePriceDiscount('flex')
 
-                const subTotal =  Shopify.formatMoney(totalPrice)
-                const priceDiscount = Number(subTotal.replace(symbolCurrency, '') - Number(totalPriceParam) )
+                const subTotal = Shopify.formatMoney(totalPrice)
+                const priceDiscount = Number(subTotal.replace(symbolCurrency, '') - Number(totalPriceParam))
 
                 document.querySelector('.price-discount').textContent = `- ${symbolCurrency}${(priceDiscount).toFixed(2)}`;
-                document.querySelector('.sub-total').textContent =  subTotal;
+                document.querySelector('.sub-total').textContent = subTotal;
                 document.querySelector('.total-price').textContent = `${symbolCurrency}${totalPriceParam}`
+
+                document.querySelectorAll('.print-discount')[0].textContent = discountCodeAdded;
+                document.querySelectorAll('.print-discount')[1].textContent = discountCodeAdded;
+                document.querySelectorAll('.print-discount')[0].style.display='block';
+                document.querySelectorAll('.print-discount')[1].style.display='block';
+                document.querySelector('.discount-code-view1').style.display='inline-block';
+                
             } else {
                 document.querySelector('.total-price').textContent = Shopify.formatMoney(totalPriceParam)
+                document.querySelectorAll('.print-discount')[0].style.display='none';
+                document.querySelectorAll('.print-discount')[1].style.display='none';
+                document.querySelector('.discount-code-view1').style.display='none';
                 togglePriceDiscount('none')
             }
-            document.body.classList.add('loaded');
             handleLoadingButton('remove');
         }
 
@@ -260,51 +238,111 @@
             })
         })();
 
+        function handleApiDiscountCode(discountCode, initLoadPage) {
+            if(!initLoadPage && !emailAddress()){
+                return;
+            }
+            handleApi(
+                `${API_ROOT}${API_VALIDATE_DISCOUNT_CODE}`,
+                {
+                    "email": emailAddress(initLoadPage),
+                    "discount_code": discountCode,
+                    "product": productList,
+                },
+                'POST'
+            )
+                .then(res => {
+                    if (res.message === 'success') {
+                        discountCodeAdded = discountCode;
+                        priceThenDiscount(res.total_price);
+                    } else {
+                        togglePriceDiscount('remove');
+                        // discountCodeAdded = ''; 
+                        !initLoadPage && alert(res.message);
+                    }
+                    document.body.classList.add('loaded');
+                    handleLoadingButton('remove')
+                })
+                .catch(() => !initLoadPage && handleCatch('Please reload the page, and try again', false))
+        }
+
+        function initDiscountCode() {
+
+            priceThenDiscount(totalPrice)
+
+            let discountCode = '';
+            if (customerInfo && customerInfo.textContent) {
+                discountCode = customerInfo.textContent;
+            }
+            if (getCookie('discount_code')) {
+                discountCode = getCookie('discount_code');
+            }
+
+            if (!getCookie('discount_code') && !customerInfo?.textContent) {
+                document.body.classList.add('loaded');
+                return;
+            }
+
+            handleApiDiscountCode(discountCode, true)
+        }
+
+        function handleDiscountCode() {
+            let discountCode = '';
+
+            discountCode = inputDiscountCode.value.trim();
+            if (discountCode === '') {
+                alert('You have not entered the discount code');
+                return;
+            }
+            if (!emailAddress()) {
+                return;
+            }
+
+            handleLoadingButton('add');
+
+            handleApiDiscountCode(discountCode, false)
+
+        }
+
         (function initPage() {
-
-
-            if (location.href === `${location.origin}/pages/order-summary` || location.origin.includes('myshopify.com')) { // case redirect from cart page
-                
+            function handleDataNavCartPage(){
                 handleApi(API_CART)
                     .then(res => {
-
+                        if(res.items.length === 0) {
+                            handleCatch('There are no products in your cart', true);
+                            return;
+                        }
                         renderOrders(res.items)
                         const products = res.items.map(item => {
                             return {
                                 id: item.product_id,
-                                variant: [{ id: Number(item.variant_id), quantity: item.quantity }] 
+                                variant: [{ id: Number(item.variant_id), quantity: item.quantity }]
                             }
                         })
 
                         productList = products;
                         totalPrice = res.total_price;
-                        handleDiscountCode(initLoadPage = true, totalPriceInitPage = totalPrice)
+                        initDiscountCode()
                     })
                     .catch(() => handleCatch())
+            }
+            function handleDataNavProduct(productHandle, variantId){
 
-            } else if (getParamUrl('product_handle') && getParamUrl('variant_id')) {
-
-                handleApi(`/products/${getParamUrl('product_handle')}.js`)
+                handleApi(`/products/${productHandle || getParamUrl('product_handle')}.js`)
                     .then(res => {
 
-                        const variantProduct = res.variants.find(item => item.id === Number(getParamUrl('variant_id')))
-
+                        const variantProduct = res.variants.find(item => item.id === Number(variantId || getParamUrl('variant_id')))
                         if (!variantProduct) {
                             handleCatch();
                             return;
                         }
-
                         let variantTitle = '';
-
                         if (variantProduct.title && variantProduct.title !== 'Default Title') {
                             variantTitle += variantProduct.title
                         }
-
-                        const priceProduct = variantProduct.price;
-
                         renderOrders(
                             [{
-                                price: priceProduct,
+                                price: variantProduct.price,
                                 quantity: 1,
                                 image: res.featured_image,
                                 product_title: res.title,
@@ -312,78 +350,143 @@
                             }]
                         )
 
-                        productList = [{ 
-                            id: res.id, 
-                            variant: [{ id: Number(variantProduct.id), quantity: 1 }] 
+                        productList = [{
+                            id: res.id,
+                            variant: [{ id: Number(variantProduct.id), quantity: 1 }]
                         }];
-                        totalPrice = priceProduct;
-
-                        handleDiscountCode(initLoadPage = true, totalPriceInitPage = variantProduct.price)
+                        totalPrice = variantProduct.price;
+                        initDiscountCode()
                     })
                     .catch((err) => { handleCatch('error init'); })
+            }
+            if(location.href.includes('admin')){
+                if(location.href.includes('product_handle')){
+                    const numberStartV = location.href.lastIndexOf('%');
+                    const numberEndV = location.href.length;
+                    const vId = location.href.slice(numberStartV + 3, numberEndV);
+
+                    const getStringUrl = location.search;
+                    const startCut = getStringUrl.indexOf('3Fproduct_handle') +19;
+                    const endCut = getStringUrl.indexOf('variant_id') + -3;
+
+                    const hId = getStringUrl.slice(startCut, endCut);
+
+                    getHandleProduct.indexOf('product_handle')
+
+                    handleDataNavProduct(hId, vId)
+                }else {
+                    handleDataNavCartPage();
+                }
+                return;
+            }
+
+            if (location.href === `${location.origin}/pages/order-summary`) { // case redirect from cart page
+                handleDataNavCartPage();
+
+            } else if (getParamUrl('product_handle') && getParamUrl('variant_id')) {
+                handleDataNavProduct()
             } else {
                 handleCatch();
             }
 
         })();
 
-        (function handleSubmitBuyBoostNow() {
+        function redirectPaymentGate() {
+            if (location.href === `${location.origin}/pages/order-summary`) {
+                saveNavToOrder('cart')
+                utilsUrlNav('?')
+            } else if (getParamUrl('product_handle') && getParamUrl('variant_id')) {
+                saveNavToOrder('products')
+                utilsUrlNav('&')
+            } else {
+                handleCatch()
+            }
+        }
 
-             
+        (function handleRemoveDiscountCode(){
+            document.querySelector('.discount-code-view1 span + svg').addEventListener('click', function(){
+                document.querySelector('.discount-code-view1').style.display = 'none';
+                discountCodeAdded = '';
+                togglePriceDiscount('none');
+                priceThenDiscount(totalPrice);
+            })
+        })();
+
+        (function handleSubmitBuyBoostNow() {
             document.querySelector('.sm-data-os').addEventListener('click', function () {
 
-                let urlNav = location.href.replace(`${location.origin}/pages/order-summary`, '');
-                let discount_code = discountCodeAdded ? `&discount_code=${discountCodeAdded}` : '';
-
-                function utilsUrlNav(type) {
-                    const boxPricePercent = document.querySelector('.box-price-discount');
-                    const boxPriceOld = document.querySelector('.box-sub-total');
-                    const boxPriceFinal = document.querySelector('.box-total-price');
-
-                    if (!emailAddress()) {
-                        return;
-                    }
-
-                    urlNav += `${type}email=${emailAddress()}${discount_code}`
-                    if (boxPricePercent.style.display === 'flex') {
-                        urlNav += `&price_discount=${boxPricePercent.querySelector('.price-discount').textContent}`;
-                    }
-                    if (boxPriceOld.style.display === 'flex') {
-                        urlNav += `&sub_total=${boxPriceOld.querySelector('.sub-total').textContent}`;
-                    }
-
-                    urlNav += `&total_price=${boxPriceFinal.querySelector('.total-price').textContent}`;
-                    location.href = `/pages/payments-gateway${urlNav}`;
-                }
-
-                if(location.origin.includes('myshopify.com')){
+                if (location.origin.includes('admin')) {
                     location.href = `/pages/payments-gateway`;
                     return;
                 }
-                if(getCookie('discount_code')){
-                    if(discountCodeAdded){
-                        handleDiscountCode()
-                    }else {
-                        alert('discount err')
-                    }
+
+                if (!emailAddress()) {
                     return;
                 }
+                if (getCookie('discount_code') === discountCodeAdded) {
 
-                if (location.href === `${location.origin}/pages/order-summary`) {
-                    saveNavToOrder('cart')
-                    utilsUrlNav('?')
-                } else if (getParamUrl('product_handle') && getParamUrl('variant_id')) {
-                    saveNavToOrder('products')
-                    utilsUrlNav('&')
+                    handleApi(
+                        `${API_ROOT}${API_VALIDATE_DISCOUNT_CODE}`,
+                        {
+                            "email": emailAddress(),
+                            "discount_code": discountCodeAdded,
+                            "product": productList,
+                        },
+                        'POST'
+                    )
+                        .then(res => {
+                            if (res.message === 'success') {
+                                redirectPaymentGate()
+                            }else {
+                                alert('You can only use this discount code once')
+                            }
+                        })
+                        .catch(() => handleCatch('Please reload the page, and try again', false))
+
                 } else {
-                    handleCatch()
+                    redirectPaymentGate()
                 }
+                document.querySelector('.sm-data-os').classList.add('is-loading');
             })
         })();
 
     })
 </script>
 <style>
+    .discount-code-view1 span + svg {
+        cursor: pointer;
+    }
+    .discount-code-view2 {
+        font-size: 14px;
+        display: flex;
+        gap: 7px;
+        margin-bottom: -5px;
+        margin-top: 9px;
+        color: #73788a;
+    }
+    .discount-code-left {
+        display: flex;
+        flex-direction: column;
+    }
+    .discount-code-view1 {
+        font-size: 14px;
+        margin-bottom: -5px;
+        color: #717171;
+        bottom: -36px;
+        background-color: rgba(113,113,113,0.11);
+        padding: 10px;
+        border-radius: 10px;
+        display: inline-block;
+        margin-top: 10px;
+    }
+    .discount-code-view1 svg, .discount-code-view2 svg{
+        width: 16px;
+        height: 16px;
+    }
+    .discount-code-view1 >div{
+        display: flex;
+        gap: 7px;
+    }
     @keyframes rotate {
         from {
             transform: rotate(0deg);
@@ -423,8 +526,12 @@
         animation-iteration-count: infinite;
         animation-timing-function: linear;
     }
+    .btn-apply-discount {
+        position: relative;
+    }
 
-    .wrapper-discount-code .load {
+
+    .form-os .load  {
         opacity: 0;
         pointer-events: none;
         position: absolute;
@@ -432,22 +539,27 @@
         top: 18px;
     }
 
-    .wrapper-discount-code .is-loading .load {
+    .wrapper-input-button, .form-os .sm-data-os {
+        display:flex;
+        justify-content: center;
+    }
+
+    .form-os .is-loading .load  {
         opacity: 1;
         pointer-events: auto;
     }
 
-    .btn-apply-discount {
-        position: relative;
-    }
-
-    .wrapper-discount-code .is-loading .load+span {
+    .form-os .is-loading .load+span {
         opacity: 0;
         pointer-events: none;
     }
-
-    .wrapper-discount-code .is-loading {
+    .sm-data-os .load {
+        left: calc(50% - 10px);
+        top: 22px;
+    }
+    .form-os .is-loading {
         pointer-events: none;
+        position: relative;
     }
 
     .info-prices>div {
