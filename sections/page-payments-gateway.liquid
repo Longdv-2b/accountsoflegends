@@ -56,11 +56,11 @@
 
         <div class="box-total-price" style="display: none;">
             <span>Total Price:</span>
-            <span class="total-price money"></span>
+            <span class="total-price"></span>
         </div>
     </div>
     <div class="btn-sm-payment-gateway"><div class="load"></div><span>Pay Now</span></div>
-    <div class="come-back">Come Back</div>
+    <a class="come-back">Come Back</a>
 </div>
 <script>
 
@@ -96,15 +96,12 @@
         }
 
         (function handleComback() {
-            document.querySelector('.come-back').addEventListener('click', function(){
-                history.back();
-            })
+            document.querySelector('.come-back').setAttribute('href', document.referrer);
         })()
 
         function isAdminPage() {
             let isAdmin;
             if(location.origin.includes('myshopify.com')){
-                alert('In the admin page, you can only customize the interface!');
                 isAdmin = true;
                 const boxTotalPrice = document.querySelector('.box-total-price');
                 boxTotalPrice.style.display = 'none';
@@ -180,6 +177,7 @@
                 discount_code: '',
                 product,
                 type,
+                currency: getParamUrl('currency')
             }
 
             if (getParamUrl('discount_code')) {
@@ -193,11 +191,11 @@
                 'POST'
             )
                 .then(res => {
-                    location.href = res.checkout_url;
+                    console.log('res',res)
+                    {% comment %} location.href = res.checkout_url; {% endcomment %}
                 })
                 .catch((error)=> {
                     handleCatch('System failed, please try again after');
-                    console.log('error', error);
                 });
         }
 
@@ -278,27 +276,14 @@
     })
 
 </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        
-        let textCurrency = localStorage.getItem('textCurrency');
-        function saveCurrency(){
-
-        }
-
-
-        (function getCurrency(){
-            textCurrency
-        })();
-
-      setTimeout(()=>{
-          const textCurrency = document.querySelector('.currency_CC_KT')?.textContent || 'USD';
-          console.log('textCurrency', textCurrency);
-      },1000)
-    })
-</script>
 <style>
+
+    input:focus-visible {
+        outline: 1px solid #D0A85C !important;
+    }
+    .dropdown_head_CC_KT {
+        display: none !important;
+    }
     @keyframes rotate {
         from {
             transform: rotate(0deg);
@@ -318,6 +303,10 @@
         to {
             -webkit-transform: rotate(360deg);
         }
+    }
+    
+    .price-discount::before{
+        content: '- ';
     }
     .load {
         width: 20px;
@@ -371,6 +360,7 @@
         height: 16px;
     }
     .come-back {
+        display: block;
         text-align: center;
         padding: 11px 0 10px;
         font-size: 13px;
@@ -386,13 +376,13 @@
         margin-top: 9px;
         color: #73788a;
     }
-    body.none-dom {
+    {% comment %} body.none-dom {
         pointer-events: none;
         opacity: 0.5;
     }
     body.none-dom *{
         pointer-events: none;
-    }
+    } {% endcomment %}
     .sm-payments-gateway {
         text-align: center;
     }

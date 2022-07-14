@@ -2335,6 +2335,10 @@
         "settings": {
           "img_logo": "shopify:\/\/shop_images\/android-icon-192x192_9b790f9f-990c-4490-a8a6-e982a015221e.png"
         }
+      },
+      "page-order-summary": {
+        "type": "page-order-summary",
+        "settings": {}
       }
     },
     "content_for_index": [
@@ -2365,6 +2369,13 @@
           "line_break": false,
           "show_popup": true,
           "anchor_to_reviews_widget": false
+        }
+      },
+      "10877485987994266655": {
+        "type": "shopify:\/\/apps\/currency-converter-ultimate\/blocks\/app-embed\/02f6ce2a-77b5-4364-9c8f-2ef6e1a1289c",
+        "disabled": true,
+        "settings": {
+          "enable_shopify_market": false
         }
       }
     }
